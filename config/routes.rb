@@ -1,7 +1,11 @@
 HvO::Application.routes.draw do
-  resources :projects
 
-	root :to => "projects#index"
+  resources :questions do
+	  resources :items
+	  resources :comments
+	end
+
+	root :to => "questions#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
