@@ -4,8 +4,8 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
     @help = Question.where(:type => "help")
-    @tools = Question.where(:type => "tool")
-    @materials = Question.where(:type => "material")
+    @tools = Question.where(:type => "tools")
+    @materials = Question.where(:type => "materials")
 
     respond_to do |format|
       format.html # index.html.erb

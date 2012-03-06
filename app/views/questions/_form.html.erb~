@@ -16,9 +16,6 @@
 		<%= f.text_field :query %>
  	</div>
 
-	<div>
-		<%= f.hidden_field :type, :value => params[:type] %>
- 	</div>
   <div class="actions">
     <%= f.submit %>
   </div>

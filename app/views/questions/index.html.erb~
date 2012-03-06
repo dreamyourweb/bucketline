@@ -6,18 +6,11 @@
 <div class="row">
 	<div class="span4">
 		<h2>Handjes</h2>
-		<% @help.each do |question| %>
-			<div class="well">
-		    		<%= link_to question.query, question %><br>
-		    		<%= link_to 'Edit', edit_question_path(question) %> | 
-		    		<%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %>
-			</div>
-		<% end %>
 		<%= link_to 'Nieuwe vraag om handjes', :controller => :questions, :action => :new, :type => "help" %>
 	</div>
 	<div class="span4">
 		<h2>Gereedschappen</h2>
-		<% @tools.each do |question| %>
+		<% @questions.each do |question| %>
 			<div class="well">
 		    		<%= link_to question.query, question %><br>
 		    		<%= link_to 'Edit', edit_question_path(question) %> | 
@@ -28,13 +21,6 @@
 	</div>
 	<div class="span4">
 		<h2>Materialen</h2>
-		<% @materials.each do |question| %>
-			<div class="well">
-		    		<%= link_to question.query, question %><br>
-		    		<%= link_to 'Edit', edit_question_path(question) %> | 
-		    		<%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %>
-			</div>
-		<% end %>
 		<%= link_to 'Nieuwe vraag om materiaal', :controller => :questions, :action => :new, :type => "material" %>
 	</div>
 </div>
