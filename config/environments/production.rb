@@ -61,4 +61,6 @@ HvO::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+	#TODO change to actual hostname
+  config.action_mailer.default_url_options = { :host => 'yourhost' }
 end
