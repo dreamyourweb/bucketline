@@ -4,4 +4,6 @@ class Question
 	belongs_to :project
 	embeds_many :comments
 	embeds_many :items
+
+	field :query
 end

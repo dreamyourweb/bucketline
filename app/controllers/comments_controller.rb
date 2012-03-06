@@ -1,8 +1,14 @@
 class CommentsController < ApplicationController
+	before_filter :get_question
+
+	def get_question
+		@question = Question.find_by_id(params[:question])
+	end
+
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = @question.comments.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +30,7 @@ class CommentsController < ApplicationController
   # GET /comments/new
   # GET /comments/new.json
   def new
-    @comment = Comment.new
+    @comment = @question.comments.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +46,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = @question.comments.new(params[:comment])
 
     respond_to do |format|
       if @comment.save

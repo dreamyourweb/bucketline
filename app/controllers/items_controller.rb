@@ -1,8 +1,14 @@
 class ItemsController < ApplicationController
+	before_filter :get_question
+
+	def get_question
+		@question = Question.find_by_id(params[:question])
+	end
+
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = @question.items.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +30,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new
+    @item = @question.items.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +46,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
+    @item = @question.items.new(params[:item])
 
     respond_to do |format|
       if @item.save
