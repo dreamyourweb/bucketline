@@ -1,0 +1,6 @@
+<div class="well">
+   	<%= link_to question.query, question %><br>
+    	<%= link_to 'Edit', edit_question_path(question) %> | 
+  	<%= link_to 'Destroy', question, confirm: "Weet je zeker dat je deze vraag wilt verwijderen? Alle bijbehorende reacties worden hierdoor ook verwijderd.", method: :delete %>
+</div>
+

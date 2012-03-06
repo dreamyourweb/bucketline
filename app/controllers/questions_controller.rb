@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to root_path, notice: 'De vraag is geplaatst' }
         format.json { render json: @question, status: :created, location: @question }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to @question, notice: 'De vraag is bijgewerkt' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
