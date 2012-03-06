@@ -1,0 +1,5 @@
+<p class="fields">
+	<%= f.label :description, "Item:" %><br />
+	<%= link_to_remove_fields "Verwijder item", f %><br>	
+	<%= f.text_field :description %><br />
+</p>

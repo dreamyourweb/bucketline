@@ -3,8 +3,10 @@ class Question
  	include Mongoid::Timestamps
 	
 	belongs_to :project
-	embeds_many :comments, :dependent => :destroy
-	embeds_many :items, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
+	has_many :items, :dependent => :destroy
+	
+	accepts_nested_attributes_for :items
 
 	validates_presence_of :query
 	validates_format_of :type, :with => /^help\z|^tool\z|^material\z/

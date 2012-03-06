@@ -8,9 +8,14 @@
 </head>
 <body>
 	<div class="container main">
+		<div class="hero-unit">
+			<h1>Overvloed Verbinder</h1>
+			<p>Beetje uitleg enzo</p>
+		</div>
+
 		<div class="alert-message info fade in">
 			<% flash.each do |key, value| %>
-					<%= content_tag(:div, value, :class => "site-flash #{key}") %>
+				<%= content_tag(:div, value, :class => "site-flash #{key}") %>
 			<% end %>
 		</div>
 

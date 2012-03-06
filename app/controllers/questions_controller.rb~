@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all.entries
+    @questions = Question.all
     @help = Question.where(:type => "help")
     @tools = Question.where(:type => "tool")
     @materials = Question.where(:type => "material")
