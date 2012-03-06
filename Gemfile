@@ -7,7 +7,6 @@ gem 'jquery-rails'
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
 
-gem 'heroku'
 gem 'mail_form'
 gem 'devise'
 
@@ -33,6 +32,11 @@ group :test do
   gem "database_cleaner"
   gem 'mongoid-rspec'
   gem 'guard-rspec'
+end
+
+group :production do
+	gem 'heroku'
+	gem 'pg'
 end
 
 # To use ActiveModel has_secure_password
