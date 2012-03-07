@@ -2,9 +2,8 @@ class Question
   	include Mongoid::Document
  	include Mongoid::Timestamps
 	
-	belongs_to :project
-	has_many :comments, :dependent => :destroy
-	has_many :items, :dependent => :destroy
+	embeds_many :comments
+	embeds_many :items
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:description].blank? }, :allow_destroy => true
 

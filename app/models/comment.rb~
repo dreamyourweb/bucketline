@@ -1,7 +1,7 @@
 class Comment
   include Mongoid::Document
 
-	embedded_in :question
+	belongs_to :question
 
 	field :author
 	field :body

@@ -1,7 +1,7 @@
 class Item
   include Mongoid::Document
 
-	embedded_in :question
+	belongs_to :question
 
 	field :description
 	field :provided?, :type => Boolean, :default => false
