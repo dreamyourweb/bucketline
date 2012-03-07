@@ -4,5 +4,5 @@ class Item
 	embedded_in :question
 
 	field :description
-	field :provided?, :type => Boolean, :default => false
+	field :provided, :type => Boolean, :default => false
 end

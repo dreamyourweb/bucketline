@@ -7,4 +7,5 @@ class Comment
 
 	field :author
 	field :body
+	field :info
 end

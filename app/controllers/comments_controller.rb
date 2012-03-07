@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @comment = Comment.find(params[:id])
+    @comment = @question.comments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    @comment = Comment.find(params[:id])
+    @comment = @question.comments.find(params[:id])
   end
 
   # POST /comments
@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   # PUT /comments/1
   # PUT /comments/1.json
   def update
-    @comment = Comment.find(params[:id])
+    @comment = @question.comments.find(params[:id])
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
@@ -78,11 +78,11 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = @question.comments.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to questions_url }
       format.json { head :no_content }
     end
   end

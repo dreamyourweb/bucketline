@@ -1,23 +1,18 @@
-<div class="hero-unit">
-	<h1>Overvloed Verbinder</h1>
-	<p>Beetje uitleg enzo</p>
-</div>
-
 <div class="row">
 	<div class="span4">
 		<h2>Handjes</h2>
 		<%= render :partial => "question", :collection => @help %>
-		<%= link_to 'Nieuwe vraag om handjes', :controller => :questions, :action => :new, :type => "help" %>
+		<%= link_to 'Plaats nieuwe vraag om handjes', :controller => :questions, :action => :new, :type => "help" %>
 	</div>
 	<div class="span4">
 		<h2>Gereedschappen</h2>
 		<%= render :partial => "question", :collection => @tools %>
-		<%= link_to 'Nieuwe vraag om gereedschappen', :controller => :questions, :action => :new, :type => "tool" %>
+		<%= link_to 'Plaats nieuwe vraag om gereedschappen', :controller => :questions, :action => :new, :type => "tool" %>
 	</div>
 	<div class="span4">
 		<h2>Materialen</h2>
 		<%= render :partial => "question", :collection => @materials %>
-		<%= link_to 'Nieuwe vraag om materiaal', :controller => :questions, :action => :new, :type => "material" %>
+		<%= link_to 'Plaats nieuwe vraag om materiaal', :controller => :questions, :action => :new, :type => "material" %>
 	</div>
 </div>
 
