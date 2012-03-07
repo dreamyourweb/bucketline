@@ -1,7 +1,9 @@
 class Comment
   include Mongoid::Document
 
-	belongs_to :question
+	embedded_in :question
+
+	validates_presence_of :body
 
 	field :author
 	field :body

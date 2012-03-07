@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 	before_filter :get_question
 
 	def get_question
-		@question = Question.find(params[:question])
+		@question = Question.find(params[:question_id])
 	end
 
   # GET /items

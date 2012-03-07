@@ -1,0 +1,5 @@
+module QuestionsHelper
+	def get_question_comments(question)
+		return question.comments.all.entries
+	end
+end
