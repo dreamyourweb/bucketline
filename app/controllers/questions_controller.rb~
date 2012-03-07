@@ -3,9 +3,9 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all
-    @help = Question.where(:type => "help")
-    @tools = Question.where(:type => "tool")
-    @materials = Question.where(:type => "material")
+    @help = Question.where(:type => "help").order_by(:updated_at)
+    @tools = Question.where(:type => "tool").order_by(:updated_at)
+    @materials = Question.where(:type => "material").order_by(:updated_at)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -64,7 +64,7 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to @question, notice: 'De vraag is bijgewerkt' }
+        format.html { redirect_to questions_path, notice: 'De vraag is bijgewerkt' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

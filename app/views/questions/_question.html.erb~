@@ -1,7 +1,7 @@
 <div class="well">
    	<%= link_to question.query, question_items_path(question) %><br><br>
 	<%= link_to 'Reageer', new_question_comment_path(question), :class => "btn" %><br>
-    	<%= link_to 'Bewerken', edit_question_path(question), :type => question.type %> | 
+    	<%= link_to 'Bewerken', edit_question_path(question) + "?type=" + question.type %> | 
   	<%= link_to 'Verwijderen', question, confirm: "Weet je zeker dat je deze vraag wilt verwijderen? Alle bijbehorende reacties worden hierdoor ook verwijderd.", method: :delete %>
 </div>
 <div>

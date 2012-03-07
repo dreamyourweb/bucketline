@@ -14,6 +14,6 @@ class Question
 	field :type
 
 	def get_question_comments
-		self.comments.all.entries
+		self.comments.all.order_by(:updated_at, :desc).entries
 	end
 end

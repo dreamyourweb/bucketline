@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = @question.comments.all
+    @comments = @question.comments.all.order_by(:updated_at)
 
     respond_to do |format|
       format.html # index.html.erb
