@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
 	before_filter :get_question
+	before_filter :authenticate_user!, :except => [:index, :show]
 
 	def get_question
 		@question = Question.find(params[:question_id])

@@ -22,7 +22,7 @@
  	</div>
 
 	<div>
-		<%= f.label 'Extra of contactinformatie (alleen zichtbaar voor de plaatser van de vraag):' %><br />    
+		<%= f.label 'Extra info en/of contactinformatie over jezelf en verwijzingen (alleen zichtbaar voor de vraagsteller):' %><br />    
 		<%= f.text_area :info %>
  	</div>
   <div class="actions">

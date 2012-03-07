@@ -13,4 +13,6 @@
 	</ul>
 </div>
 
-<%= link_to 'Vraag of items bewerken', edit_question_path(@question) + "?type=" + @question.type %>
+<% if user_signed_in? %>
+	<%= link_to 'Vraag of items bewerken', edit_question_path(@question) + "?type=" + @question.type %>
+<% end %>

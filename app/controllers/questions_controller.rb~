@@ -3,9 +3,9 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all
-    @help = Question.where(:type => "help").order_by(:updated_at)
-    @tools = Question.where(:type => "tool").order_by(:updated_at)
-    @materials = Question.where(:type => "material").order_by(:updated_at)
+    @help = Question.where(:type => "help").order_by(:updated_at, :desc)
+    @tools = Question.where(:type => "tool").order_by(:updated_at, :desc)
+    @materials = Question.where(:type => "material").order_by(:updated_at, :desc)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -22,8 +22,8 @@
  	</div>
 
 	<div>
-		<%= f.label 'Extra info of contactinformatie (alleen zichtbaar voor de plaatser van de vraag):' %><br />    
-		<%= f.text_area :info %>
+		<%= f.label 'Extra info en/of contactinformatie over jezelf en verwijzingen (alleen zichtbaar voor de vraagsteller):' %><br />    
+		<%= f.text_area :info, :rows => 6 %>
  	</div>
   <div class="actions">
     <%= f.submit %>
