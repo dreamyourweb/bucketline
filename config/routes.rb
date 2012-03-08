@@ -6,8 +6,8 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :questions do
-	  resources :items
+  resources :questions, :except => [:show] do
+	  resources :items, :except => [:show]
 	  resources :comments
 	end
 

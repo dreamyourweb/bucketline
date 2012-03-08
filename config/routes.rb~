@@ -8,7 +8,7 @@ HvO::Application.routes.draw do
 
   resources :questions do
 	  resources :items
-	  resources :comments, :except => [:index]
+	  resources :comments
 	end
 
 	root :to => "questions#index"

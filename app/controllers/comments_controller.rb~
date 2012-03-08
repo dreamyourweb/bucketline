@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	before_filter :get_question
+	before_filter :authenticate_user!, :except => [:index, :show, :new, :create]
 
 	def get_question
 		@question = Question.find(params[:question_id])
@@ -31,11 +32,7 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = @question.comments.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @comment }
-    end
+		render :layout => false
   end
 
   # GET /comments/1/edit

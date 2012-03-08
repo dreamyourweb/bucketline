@@ -10,8 +10,6 @@ gem "bson_ext", "~> 1.5"
 gem 'mail_form'
 gem 'devise'
 
-gem 'fancybox-rails'
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass'

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-	before_filter :authenticate_user!, :except => [:index, :show]
+	before_filter :authenticate_user!, :except => [:index]
 
   # GET /questions
   # GET /questions.json
@@ -12,17 +12,6 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questions }
-    end
-  end
-
-  # GET /questions/1
-  # GET /questions/1.json
-  def show
-    @question = Question.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @question }
     end
   end
 
