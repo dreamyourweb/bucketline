@@ -17,7 +17,7 @@
  	</blockquote>
 
 	<blockquote>
-		<%= f.label 'Bericht:' %><br />    
+		<%= f.label 'Te plaatsen bericht:' %><br />    
 		<%= f.text_field :body %>
  	</blockquote>
 
@@ -26,6 +26,6 @@
 		<%= f.text_area :info, :rows => 6 %>
  	</blockquote>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Plaats reactie" %>
   </div>
 <% end %>

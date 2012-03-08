@@ -9,4 +9,5 @@ class Comment
 	field :author
 	field :body
 	field :info
+	field :belongs_to_item_id #Een reactie kan ook gerelateerd zijn aan een item, als dit item geleverd wordt. Om mee te mailen over welk item de reactie gaat is het goed om dit even op te slaan.
 end

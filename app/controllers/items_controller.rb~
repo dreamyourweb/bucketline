@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to new_question_comment_path(@question), notice: 'Bedankt dat je wilt meewerken aan de bouw! Hier onder kun je meer informatie kwijt over je gift.' }
+        format.html { redirect_to new_question_comment_path(@question) + "?belongs_to_item_id=" + @item.id.to_s, :notice => 'Bedankt dat je wilt meewerken aan de bouw! Hier onder kun je meer informatie kwijt over je bijdrage.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -49,7 +49,12 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to questions_path, notice: 'Comment was successfully created.' }
+	if !@comment.belongs_to_item_id.empty? #This comment is placed after contribution of an item
+		item = @question.items.find(@comment.belongs_to_item_id)
+		mail = HelpMailer.new(:question_type => @question.type, :question => @question.query, :item_description => item.description, :author => @comment.author, :comment_body => @comment.body, :comment_info => @comment.info)
+		mail.deliver
+	end
+        format.html { redirect_to questions_path, notice: 'Uw reactie is geplaatst.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
@@ -65,7 +70,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment, notice: 'De reactie is aangepast.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
