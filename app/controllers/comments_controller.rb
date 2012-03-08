@@ -32,7 +32,9 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = @question.comments.new
+	if params[:fancybox]
 		render :layout => false
+	end
   end
 
   # GET /comments/1/edit

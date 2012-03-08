@@ -11,20 +11,20 @@
     </div>
   <% end %>
 
-	<div>
+	<blockquote>
 		<%= f.label 'Naam:' %><br />    
 		<%= f.text_field :author %>
- 	</div>
+ 	</blockquote>
 
-	<div>
+	<blockquote>
 		<%= f.label 'Bericht:' %><br />    
 		<%= f.text_field :body %>
- 	</div>
+ 	</blockquote>
 
-	<div>
+	<blockquote>
 		<%= f.label 'Extra info en/of contactinformatie over jezelf en verwijzingen (alleen zichtbaar voor de vraagsteller):' %><br />    
-		<%= f.text_area :info %>
- 	</div>
+		<%= f.text_area :info, :rows => 6 %>
+ 	</blockquote>
   <div class="actions">
     <%= f.submit %>
   </div>

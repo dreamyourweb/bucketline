@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 	before_filter :get_question
-	before_filter :authenticate_user!, :except => [:index, :update]
+	before_filter :authenticate_user!, :except => [:index, :update, :edit]
 
 	def get_question
 		@question = Question.find(params[:question_id])
@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to question_items_path(@question), notice: 'Item is aan de lijst toegevoegd.' }
+        format.html { redirect_to new_question_comment_path(@question), notice: 'Bedankt dat je wilt meewerken aan de bouw! Hier onder kun je meer informatie kwijt over je bijdrage.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

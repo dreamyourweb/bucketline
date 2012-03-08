@@ -1,16 +1,28 @@
-<p><%= @question.query %></p>
+<h2><%= @question.query %></h2>
 
-<h2>Benodigdheden voor deze vraag</h2>
+<p>Benodigdheden voor deze vraag</p>
 
 <div>
 	<ul class="unstyled">
 	<% @items.each do |item| %>
 		<li>
-			<%= item.provided %> 
-			<%= item.description %>
+			<blockquote>
+				<% if item.provided %>
+					<p><%= item.description %></p>
+					<small>Dit item is al gegeven</small>
+				<% else %>
+					<%= form_for [@question, item] do |f| %>
+						<%= f.hidden_field :provided, :value => true %>			
+						<p><%= item.description %></p>
+						<%= f.submit "Dit heb ik!" %>
+					<% end %>
+				<% end %>
+			</blockquote>
 		</li>
 	<% end %>
 	</ul>
 </div>
 
-<%= link_to 'Vraag of items bewerken', edit_question_path(@question) + "?type=" + @question.type %>
+<% if user_signed_in? %>
+	<%= link_to 'Vraag of items bewerken', edit_question_path(@question) + "?type=" + @question.type %>
+<% end %>

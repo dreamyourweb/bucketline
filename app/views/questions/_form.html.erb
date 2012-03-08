@@ -15,6 +15,7 @@
 		<%= f.label 'Vraagstelling:' %> 
 		<%= f.text_field :query %>
  	</div>
+	<hr>
 
   	<%= f.fields_for :items do |builder| %>
 		<%= render "item_fields", :f => builder %>
@@ -25,6 +26,6 @@
 		<%= f.hidden_field :type, :value => params[:type] %>
  	</div>
   <div class="actions">
-    <%= f.submit "Plaats vraag" %>
+    <%= f.submit %>
   </div>
 <% end %>

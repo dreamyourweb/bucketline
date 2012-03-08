@@ -5,4 +5,5 @@ class Item
 
 	field :description
 	field :provided, :type => Boolean, :default => false
+	field :notes
 end

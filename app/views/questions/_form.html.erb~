@@ -15,15 +15,17 @@
 		<%= f.label 'Vraagstelling:' %> 
 		<%= f.text_field :query %>
  	</div>
+	<hr>
 
   	<%= f.fields_for :items do |builder| %>
 		<%= render "item_fields", :f => builder %>
 	<% end %>
+	<p><%= link_to_add_fields "Item toevoegen", f, :items %></p>
 
 	<div>
 		<%= f.hidden_field :type, :value => params[:type] %>
  	</div>
   <div class="actions">
-    <%= f.submit "Plaats vraag" %>
+    <%= f.submit %>
   </div>
 <% end %>
