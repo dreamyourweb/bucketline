@@ -1,5 +1,8 @@
-function toggle(d)
+$(function()
 {
-	var o=document.getElementById(d);
-	o.style.display=(o.style.display=='none')?'block':'none';
-}
+    $(".toggle").click(function() 
+    {  
+        // hides children divs if shown, shows if hidden 
+        $(this).prev().toggle(300); 
+    }); 
+});
