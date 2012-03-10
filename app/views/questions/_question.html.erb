@@ -10,5 +10,10 @@
 <div class="content_hidden" style="display:none">
 	<%= render :partial => 'comment', :collection => question.get_question_comments %> 
 </div>
-<a class="toggle" href="javascript:void(0);">Toon reacties</a>
+<%= link_to "javascript:void(0);", :class => "toggle" do %>
+	<div class="comments-toggle">
+		<i class="icon-chevron-down"></i>
+	</div>	
+<% end %>
 
+<!-- a class="toggle" href="javascript:void(0);">Comments</a -->
