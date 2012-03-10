@@ -7,13 +7,11 @@
 	  	<%= link_to 'Verwijderen', question, confirm: "Weet je zeker dat je deze vraag wilt verwijderen? Alle bijbehorende reacties worden hierdoor ook verwijderd.", method: :delete %>
 	<% end %>
 </div>
-<div class="content_hidden" style="display:none">
+<div class="content_hidden comments" style="display:none">
 	<%= render :partial => 'comment', :collection => question.get_question_comments %> 
 </div>
 <%= link_to "javascript:void(0);", :class => "toggle" do %>
 	<div class="comments-toggle">
-		<i class="icon-chevron-down"></i>
+		<i class="icon-chevron-down arrow"></i>
 	</div>	
 <% end %>
-
-<!-- a class="toggle" href="javascript:void(0);">Comments</a -->
