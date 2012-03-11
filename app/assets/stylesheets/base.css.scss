@@ -9,7 +9,13 @@
 
 .hero-unit {
 	margin-top:20px;
-	border: 1px solid rgba(0, 0, 0, 0.05);	
+	/*background-image:url("HvO.jpg");
+	background-size: 105%;
+	background-position:bottom; */
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	p {
+		font-size:16px;
+	}	
 }
 
 .well {
