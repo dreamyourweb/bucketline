@@ -1,5 +1,5 @@
 class Question
-  	include Mongoid::Document
+  include Mongoid::Document
  	include Mongoid::Timestamps
 	
 	embeds_many :comments
@@ -12,6 +12,7 @@ class Question
 
 	field :query
 	field :type
+	field :location
 
 	def get_question_comments
 		self.comments.all.order_by(:updated_at, :desc).entries

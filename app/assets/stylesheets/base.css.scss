@@ -7,6 +7,10 @@
 	border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+.date-selector select {
+	width:auto;
+}
+
 .hero-unit {
 	margin-top:20px;
 	/*background-image:url("HvO.jpg");
@@ -31,4 +35,8 @@
 blockquote {
 	margin-top:10px;
 	margin-bottom:10px;
+}
+
+.smaller-font p {
+	font-size:13px;
 }

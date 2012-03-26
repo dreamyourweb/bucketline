@@ -16,11 +16,16 @@
 		<%= f.text_field :query %>
  	</div>
 	<hr>
+	<div>
+		<%= f.label 'Locatie:' %> 
+		<%= f.text_field :location %>
+ 	</div>
+	<hr>
 
   	<%= f.fields_for :items do |builder| %>
 		<%= render "item_fields", :f => builder %>
 	<% end %>
-	<p><%= link_to_add_fields "Item toevoegen", f, :items %></p>
+	<p><%= link_to_add_fields "Benodigdheid toevoegen", f, :items %></p>
 
 	<div>
 		<%= f.hidden_field :type, :value => params[:type] %>

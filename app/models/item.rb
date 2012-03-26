@@ -7,4 +7,6 @@ class Item
 	field :description
 	field :provided, :type => Boolean, :default => false
 	field :notes
+	field :start_datetime, :type => DateTime 
+	field :end_datetime, :type => DateTime
 end

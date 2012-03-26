@@ -9,6 +9,8 @@ gem "bson_ext", "~> 1.5"
 
 gem 'mail_form'
 gem 'devise'
+gem 'event-calendar', :require => 'event_calendar'
+#gem "watu_table_builder", :require => "table_builder"
 
 gem 'fancybox-rails'
 

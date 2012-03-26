@@ -1,14 +1,22 @@
-<blockquote class="fields">
+<blockquote class="fields smaller-font">
 	<p>
 		<%= f.label :description, "Benodigdheid:" %>
 		<%= f.text_field :description %><br>
+		<div class="date-selector">
+			<%= f.label 'Begin:' %> 
+			<%= f.datetime_select :start_datetime %>
+	 	</div>
+		<div class="date-selector">
+			<%= f.label 'Einde:' %> 
+			<%= f.datetime_select :end_datetime, :class => "date-selector" %>
+	 	</div>
 		Item door iemand voorzien?
 		<%= f.check_box :provided %><br><br>
-		Aantekeningen:<br>
+		Aantekeningen voor jezelf:<br>
 		<%= f.text_area :notes, :rows => 6 %>
 	</p>
 	<p>
-		<%= link_to_remove_fields "Verwijder item", f %>
+		<%= link_to_remove_fields "Verwijder benodigdheid", f %>
 	</p>
 </blockquote>
 <hr>	
