@@ -51,7 +51,10 @@ class ItemsController < ApplicationController
 
     @shown_month = Date.civil(@year, @month)
 
-    @event_strips = Question.last.items.event_strips_for_month(@shown_month)
+		@first_day_of_week = 1
+		@event_strips = Question.last.items.event_strips_for_month(@shown_month, @first_day_of_week)		
+
+		p @event_strips
 	end
 
   # PUT /items/1

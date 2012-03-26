@@ -1,14 +1,14 @@
 <blockquote class="fields smaller-font">
 	<p>
-		<%= f.label :description, "Benodigdheid:" %>
-		<%= f.text_field :description %><br>
+		<%= f.label :name, "Benodigdheid:" %>
+		<%= f.text_field :name %><br>
 		<div class="date-selector">
 			<%= f.label 'Begin:' %> 
-			<%= f.datetime_select :start_datetime %>
+			<%= f.datetime_select :start_at %>
 	 	</div>
 		<div class="date-selector">
 			<%= f.label 'Einde:' %> 
-			<%= f.datetime_select :end_datetime, :class => "date-selector" %>
+			<%= f.datetime_select :end_at %>
 	 	</div>
 		Item door iemand voorzien?
 		<%= f.check_box :provided %><br><br>

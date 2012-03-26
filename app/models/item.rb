@@ -3,14 +3,16 @@ class Item
 	include EventCalendar
 	has_event_calendar
 
+	attr_accessible :start_at, :end_at, :name, :provided, :notes
+
 	embedded_in :question
 	#has_one :comment
 
-	field :description
+	field :name
 	field :provided, :type => Boolean, :default => false
 	field :notes
-	field :start_datetime, :type => DateTime 
-	field :end_datetime, :type => DateTime
+	field :start_at, :type => DateTime 
+	field :end_at, :type => DateTime
 
 	def self.events_for_date_range(start_d, end_d, find_options = {})
 		# Merging find_options until https://github.com/mongoid/mongoid/issues/829 is fixed

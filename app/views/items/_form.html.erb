@@ -13,8 +13,17 @@
 
 	<div>
 		<%= f.label 'Omschrijving:' %><br />    
-		<%= f.text_field :description %>
+		<%= f.text_field :name %>
  	</div>
+
+	<div class="date-selector">
+		<%= f.label 'Begin:' %> 
+		<%= f.datetime_select :start_at %>
+	</div>
+	<div class="date-selector">
+		<%= f.label 'Einde:' %> 
+		<%= f.datetime_select :end_at %>
+	</div>
 
   <div class="actions">
     <%= f.submit %>
