@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
       if @comment.save
 	if !@comment.belongs_to_item_id.empty? #This comment is placed after contribution of an item
 		item = @question.items.find(@comment.belongs_to_item_id)
-		mail = HelpMailer.new(:question_type => @question.type, :question => @question.query, :item_description => item.description, :author => @comment.author, :comment_body => @comment.body, :comment_info => @comment.info)
+		mail = HelpMailer.new(:question_type => @question.type, :question => @question.query, :item_description => item.name, :author => @comment.author, :comment_body => @comment.body, :comment_info => @comment.info)
 		mail.deliver
 	end
         format.html { redirect_to questions_path, notice: 'Uw reactie is geplaatst.' }

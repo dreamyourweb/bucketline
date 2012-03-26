@@ -3,7 +3,7 @@ class Question
  	include Mongoid::Timestamps
 	
 	embeds_many :comments
-	embeds_many :items
+	has_many :items, :autosave => true
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 

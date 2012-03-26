@@ -9,11 +9,12 @@
 			<blockquote>
 				<% if item.provided %>
 					<p><%= item.name %></p>
-					<small>Dit item is al gegeven</small>
+					<small><%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Dit item is al gegeven</small>
 				<% else %>
 					<%= form_for [@question, item] do |f| %>
 						<%= f.hidden_field :provided, :value => true %>			
 						<p><%= item.name %></p>
+						<small><%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
 						<%= f.submit "Dit wil ik bijdragen!" %>
 					<% end %>
 				<% end %>

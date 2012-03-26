@@ -6,7 +6,7 @@ class Item
 
 	attr_accessible :start_at, :end_at, :name, :provided, :notes
 
-	embedded_in :question
+	belongs_to :question
 	#has_one :comment
 
 	field :name
