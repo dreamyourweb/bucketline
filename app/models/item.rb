@@ -1,5 +1,6 @@
 class Item
   include Mongoid::Document
+	include Mongoid::MultiParameterAttributes
 	include EventCalendar
 	has_event_calendar
 
