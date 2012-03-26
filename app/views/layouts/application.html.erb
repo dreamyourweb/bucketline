@@ -13,7 +13,7 @@
 		<% end %>
 		<div class="hero-unit">
 			<h1>Overwaarde Verbinder</h1>
-			<p>We hebben allemaal best veel spullen, ideeën en toegang tot hulp. Meer dan we zelf nodig hebben en vaak meer dan we gebruiken. Dit noemen we sociale overwaarde. Met het Huis van Overvloed verbinden we al deze spullen, ideeën en vormen van hulp. We bouwen er in Nijmegen letterlijk een huis van. Dit huis wordt een werk- en ontmoetingsplek voor iedereen die werkt aan duurzaamheid of sociale innovatie, of dat nu bedrijven, overheden, studenten of andere mensen zijn die willen bijdragen. Hieronder vond je alle handjes, gereedschappen en materialen die wij nog kunnen gebruiken, bouw je mee?</p>
+			<p>We hebben allemaal best veel spullen, ideeën en toegang tot hulp. Meer dan we zelf nodig hebben en vaak meer dan we gebruiken. Dit noemen we sociale overwaarde. Met het Huis van Overvloed verbinden we al deze spullen, ideeën en vormen van hulp. We bouwen er in Nijmegen letterlijk een huis van. Dit huis wordt een werk- en ontmoetingsplek voor iedereen die werkt aan duurzaamheid of sociale innovatie, of dat nu bedrijven, overheden, studenten of andere mensen zijn die willen bijdragen. Hieronder vind je alles wat wij nog kunnen gebruiken. Bouw je mee?</p>
 		</div>
 
 		<% flash.each do |key, value| %>
@@ -26,6 +26,8 @@
 		<section id="gridSystem">
 			<%= yield %>
 		</section>
+
 	</div>
+	<%= render :partial => "layouts/footer" %>
 </body>
 </html>
