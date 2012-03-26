@@ -12,6 +12,7 @@ HvO::Application.routes.draw do
 	end
 
 	root :to => "questions#index"
+	match '/calendar(/:year(/:month))' => 'items#calendar', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

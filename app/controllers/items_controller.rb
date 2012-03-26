@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-	before_filter :get_question
-	before_filter :authenticate_user!, :except => [:index, :update, :edit]
+	before_filter :get_question, :except => [:calendar]
+	before_filter :authenticate_user!, :except => [:index, :update, :edit, :calendar]
 
 	def get_question
 		@question = Question.find(params[:question_id])
@@ -44,6 +44,15 @@ class ItemsController < ApplicationController
       end
     end
   end
+
+	def calendar
+    @month = (params[:month] || Time.zone.now.month).to_i
+    @year = (params[:year] || Time.zone.now.year).to_i
+
+    @shown_month = Date.civil(@year, @month)
+
+    @event_strips = Question.last.items.event_strips_for_month(@shown_month)
+	end
 
   # PUT /items/1
   # PUT /items/1.json
