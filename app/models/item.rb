@@ -27,7 +27,7 @@ class Item
 		if amount > 0
 			false
 		else
-			amount = 0
+			self.update_attributes(:amount => 0)
 			true
 		end
 	end
