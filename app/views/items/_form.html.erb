@@ -15,7 +15,10 @@
 		<%= f.label 'Omschrijving:' %><br />    
 		<%= f.text_field :name %>
  	</div>
-
+	<div>
+		<%= f.label 'Aantal:' %><br />    
+		<%= f.text_field :amount %>
+ 	</div>
 	<div class="date-selector">
 		<%= f.label 'Begin:' %> 
 		<%= f.datetime_select :start_at %>

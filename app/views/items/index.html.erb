@@ -9,13 +9,14 @@
 			<blockquote <%= if params[:highlight] == item.id.to_s then "class='highlight'" end %> >
 				<% if item.provided %>
 					<p><%= item.name %></p>
-					<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Dit item is al gegeven</small>
+					<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</small>
 				<% else %>
-					<%= form_for [@question, item] do |f| %>
-						<%= f.hidden_field :provided, :value => true %>			
-						<p><%= item.name %></p>
+					<%= form_tag question_item_path(@question, item), :method => "put" do %>
+						<p>Aantal te geven:</p>
+						<%= text_field_tag 'amount_to_give' %>			
+						<p><%= item.name %>, <%= item.amount.to_s %>x</p>
 						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
-						<%= f.submit "Dit wil ik bijdragen!" %>
+						<%= submit_tag "Dit wil ik bijdragen!" %>
 					<% end %>
 				<% end %>
 			</blockquote>

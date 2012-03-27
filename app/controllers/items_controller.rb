@@ -62,6 +62,9 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
+				if params[:amount_to_give]
+					@item.decrease_amount(params[:amount_to_give])
+				end
         format.html { redirect_to new_question_comment_path(@question) + "?belongs_to_item_id=" + @item.id.to_s, :notice => 'Bedankt dat je wilt meewerken aan de bouw! Hier onder kun je meer informatie kwijt over je bijdrage.' }
         format.json { head :no_content }
       else

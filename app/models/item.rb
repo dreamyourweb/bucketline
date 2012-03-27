@@ -4,15 +4,16 @@ class Item
 	include EventCalendar
 	has_event_calendar
 
-	attr_accessible :start_at, :end_at, :name, :provided, :notes, :location
+	attr_accessible :start_at, :end_at, :name, :provided, :notes, :location, :amount
 
 	belongs_to :question
-	#has_one :comment
+
+	validates_numericality_of :amount
 
 	field :name
-	field :provided, :type => Boolean, :default => false
 	field :notes
 	field :location
+	field :amount, :type => Integer, :default => 1
 	field :start_at, :type => DateTime 
 	field :end_at, :type => DateTime
 
@@ -22,4 +23,17 @@ class Item
 		self.start_at_field.to_sym.gt => start_d.to_time.utc)).asc(self.start_at_field)
 	end
 
+	def provided
+		if amount > 0
+			false
+		else
+			amount = 0
+			true
+		end
+	end
+
+	def decrease_amount(number = 1)
+		self.amount = self.amount - number.to_i
+		self.save
+	end
 end
