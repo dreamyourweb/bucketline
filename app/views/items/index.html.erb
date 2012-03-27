@@ -6,7 +6,7 @@
 	<ul class="unstyled">
 	<% @items.each do |item| %>
 		<li>
-			<blockquote>
+			<blockquote <%= if params[:highlight] == item.id.to_s then "class='highlight'" end %> >
 				<% if item.provided %>
 					<p><%= item.name %></p>
 					<small><%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Dit item is al gegeven</small>

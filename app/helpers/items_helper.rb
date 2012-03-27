@@ -11,14 +11,15 @@ module ItemsHelper
       :event_strips => @event_strips,
       :month_name_text => I18n.localize(@shown_month, :format => "%B %Y"),
       :previous_month_text => "<< " + month_link(@shown_month.prev_month),
-      :next_month_text => month_link(@shown_month.next_month) + " >>"
+      :next_month_text => month_link(@shown_month.next_month) + " >>",
+			:first_day_of_week => @first_day_of_week
     }
   end
 
   def event_calendar
     calendar event_calendar_options do |args|
       event = args[:event]
-      %(<a class="fancybox" href="/questions/#{event.question.id.to_s}/items?fancybox=true" title="#{h("Omschrijving: " + event.name + ". Categorie: " + event.question.type + ". Hoort bij vraag: " + event.question.query  + ". Nodig van: " + event.start_at.ctime.to_s + " tot " + event.end_at.ctime.to_s + ".")}">#{h(event.name)}</a>)
+      %(<a class="fancybox" href="/questions/#{event.question.id.to_s}/items?fancybox=true&highlight=#{event.id.to_s}" title="#{h("Omschrijving: " + event.name + ". Categorie: " + event.question.type + ". Hoort bij vraag: " + event.question.query  + ". Nodig van: " + event.start_at.ctime.to_s + " tot " + event.end_at.ctime.to_s + ".")}">#{h(event.name)}</a>)
     end
   end
 end
