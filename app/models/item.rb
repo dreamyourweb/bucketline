@@ -4,7 +4,7 @@ class Item
 	include EventCalendar
 	has_event_calendar
 
-	attr_accessible :start_at, :end_at, :name, :provided, :notes
+	attr_accessible :start_at, :end_at, :name, :provided, :notes, :location
 
 	belongs_to :question
 	#has_one :comment
@@ -12,6 +12,7 @@ class Item
 	field :name
 	field :provided, :type => Boolean, :default => false
 	field :notes
+	field :location
 	field :start_at, :type => DateTime 
 	field :end_at, :type => DateTime
 

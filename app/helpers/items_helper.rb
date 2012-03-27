@@ -19,7 +19,10 @@ module ItemsHelper
   def event_calendar
     calendar event_calendar_options do |args|
       event = args[:event]
-      %(<a class="fancybox" href="/questions/#{event.question.id.to_s}/items?fancybox=true&highlight=#{event.id.to_s}" title="#{h("Omschrijving: " + event.name + ". Categorie: " + event.question.type + ". Hoort bij vraag: " + event.question.query  + ". Nodig van: " + event.start_at.ctime.to_s + " tot " + event.end_at.ctime.to_s + ".")}">#{h(event.name)}</a>)
+			p "bier en tieten"
+			p "event: " + event.id.to_s
+			p "question: " + event.question.id.to_s
+      %(<a class="fancybox" href="/questions/#{event.question.id.to_s}/items?fancybox=true&highlight=#{event.id.to_s}" title="#{h("Omschrijving: " + event.name + ". Categorie: " + event.question.type + ". Hoort bij vraag: " + event.question.query  + ". Nodig van: " + event.start_at.ctime.to_s + " tot " + event.end_at.ctime.to_s + ". Locatie: " + event.location + ".")}">#{h(event.name)}</a>)
     end
   end
 end

@@ -3,7 +3,7 @@ class Question
  	include Mongoid::Timestamps
 	
 	embeds_many :comments
-	has_many :items, :autosave => true
+	has_many :items, :autosave => true, :dependent => :destroy
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
@@ -12,7 +12,6 @@ class Question
 
 	field :query
 	field :type
-	field :location
 
 	def get_question_comments
 		self.comments.all.order_by(:updated_at, :desc).entries
