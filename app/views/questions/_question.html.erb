@@ -8,7 +8,12 @@
 	<% end %>
 </div>
 <div class="content_hidden comments" style="display:none">
-	<%= render :partial => 'comment', :collection => question.get_question_comments %> 
+	<% comments = question.get_question_comments %>
+	<% if comments.empty? %>
+		<blockquote>Nog geen commentaar, wees de eerste!</blockquote>
+	<% else %>
+		<%= render :partial => 'comment', :collection => comments %>
+	<% end %> 
 </div>
 <%= link_to "javascript:void(0);", :class => "toggle" do %>
 	<div class="comments-toggle">

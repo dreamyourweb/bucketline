@@ -14,7 +14,7 @@
 					<%= form_tag question_item_path(@question, item), :method => "put" do %>			
 						<p><%= item.name %>, nog <%= item.amount.to_s %> te gaan</p>
 						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
-						Aantal: <%= text_field_tag 'amount_to_give', 1, :size => 2 %> <%= submit_tag "Dit wil ik bijdragen!" %>
+						Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
 					<% end %>
 				<% end %>
 			</blockquote>
