@@ -1,17 +1,17 @@
-<h2><%= @question.query %></h2>
+<h2><%= @project.query %></h2>
 
-<p>Benodigdheden voor deze vraag</p>
+<p>Benodigdheden voor dit project</p>
 
 <div>
 	<ul class="unstyled">
 	<% @items.each do |item| %>
 		<li>
-			<blockquote <%= if params[:highlight] == item.id.to_s then "class='highlight'" end %> >
+			<blockquote>
 				<% if item.provided %>
 					<p><%= item.name %></p>
 					<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</small>
 				<% else %>
-					<%= form_tag question_item_path(@question, item), :method => "put" do %>			
+					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
 						<p><%= item.name %>, nog <%= item.amount.to_s %> te gaan</p>
 						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
 						Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
@@ -24,5 +24,5 @@
 </div>
 
 <% if user_signed_in? %>
-	<%= link_to 'Vraag of items bewerken', edit_question_path(@question) + "?type=" + @question.type %>
+	<%= link_to 'Project of items bewerken', edit_project_path(@project) %>
 <% end %>

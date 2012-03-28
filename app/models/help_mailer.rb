@@ -1,10 +1,7 @@
 class HelpMailer < MailForm::Base
-	attribute :question_type
-	attribute :question
-	attribute :item_description
-	attribute :author
-	attribute :comment_body
-	attribute :comment_info
+	attribute :project
+	attribute :item
+	attribute :number
 
   def headers
     {

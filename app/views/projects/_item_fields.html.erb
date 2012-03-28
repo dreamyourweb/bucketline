@@ -1,7 +1,13 @@
 <blockquote class="fields smaller-font">
 	<p>
-		<%= f.label :name, "Benodigdheid:" %>
-		<%= f.text_field :name %><br>
+		<div>
+			<%= f.label :name, "Benodigdheid:" %>
+			<%= f.text_field :name %>
+ 		</div>
+		<div>
+			<%= f.label :type, "Type:" %>
+			<%= f.select :type, [['Handjes', 'help'],['Gereedschappen', 'tool'],['Materiaal','material']] %>
+ 		</div>
 		<div>
 			<%= f.label :amount, "Aantal:" %>    
 			<%= f.text_field :amount %>

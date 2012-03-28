@@ -1,0 +1,36 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div>
+		<%= f.label 'Titel van het subproject:' %> 
+		<%= f.text_field :query %>
+ 	</div>
+	<div class="date-selector">
+		<%= f.label 'Begin:' %> 
+		<%= f.datetime_select :start_at %>
+ 	</div>
+	<div class="date-selector">
+		<%= f.label 'Einde:' %> 
+		<%= f.datetime_select :end_at %>
+ 	</div>
+	<hr>
+
+  <%= f.fields_for :items do |builder| %>
+		<%= render "item_fields", :f => builder %>
+	<% end %>
+	<p><%= link_to_add_fields "Benodigdheid toevoegen", f, :items %></p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

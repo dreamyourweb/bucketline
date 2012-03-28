@@ -6,12 +6,11 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :questions, :except => [:show] do
-	  resources :items, :except => [:show]
-	  resources :comments
+  resources :projects, :except => [:show] do
+	  resources :items, :except => [:show, :edit, :new]
 	end
 
-	root :to => "questions#index"
+	root :to => "projects#index"
 	match '/calendar(/:year(/:month))' => 'items#calendar', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
   # The priority is based upon order of creation:
