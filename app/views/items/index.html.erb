@@ -14,7 +14,11 @@
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
 						<p><%= item.translate_type %>: <%= item.name %>, nog <%= item.amount.to_s %> te gaan</p>
 						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
-						Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
+						<% if user_signed_in? %>
+							Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
+						<% else %>
+							Log in of meld je aan om bij te dragen
+						<% end %>
 					<% end %>
 				<% end %>
 			</blockquote>
@@ -23,7 +27,7 @@
 	</ul>
 </div>
 
-<% if user_signed_in? %>
+<% if current_user && current_user.admin %>
 	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
 	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd" %>
 <% end %>

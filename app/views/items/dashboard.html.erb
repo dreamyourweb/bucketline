@@ -7,7 +7,7 @@
 </div>
 <div class="row">
 	<div class="span12">
-		<% if user_signed_in? %>
+		<% if current_user && current_user.admin %>
 			<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>
 		<% end %>
 	</div>

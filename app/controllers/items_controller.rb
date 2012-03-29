@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 	before_filter :get_project, :except => [:dashboard]
 	before_filter :authenticate_admin, :except => [:index, :update, :dashboard]
+	before_filter :authenticate_user!, :except => [:index, :dashboard]
 
 	def get_project
 		@project = Project.find(params[:project_id])
