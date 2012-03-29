@@ -30,4 +30,14 @@ class Item
 		self.amount = self.amount - number.to_i
 		self.save
 	end
+
+	def translate_type
+		if self.type == "help"
+			"Handjes"
+		elsif self.type == "tools"
+			"Gereedschap"
+		else
+			"Materiaal"
+		end
+	end
 end

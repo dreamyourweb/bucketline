@@ -5,7 +5,7 @@ class Project
 	include EventCalendar
 	has_event_calendar
 	
-	has_many :items, :autosave => true, :dependent => :destroy
+	has_many :items, :autosave => true, :dependent => :delete
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
