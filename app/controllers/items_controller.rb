@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-	before_filter :get_project, :except => [:calendar]
-	before_filter :authenticate_user!, :except => [:index, :update, :calendar]
+	before_filter :get_project, :except => [:dashboard]
+	before_filter :authenticate_user!, :except => [:index, :update, :dashboard]
 
 	def get_project
 		@project = Project.find(params[:project_id])
@@ -12,6 +12,17 @@ class ItemsController < ApplicationController
     @items = @project.items.all
 		render :layout => false
   end
+
+	def dashboard
+    @help = Item.where(:type => "help").order_by(:updated_at, :desc)
+    @tools = Item.where(:type => "tool").order_by(:updated_at, :desc)
+    @materials = Item.where(:type => "material").order_by(:updated_at, :desc)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: Item.all.entries }
+    end
+	end
 
   # POST /items
   # POST /items.json
@@ -28,16 +39,6 @@ class ItemsController < ApplicationController
       end
     end
   end
-
-	def calendar
-    @month = (params[:month] || Time.zone.now.month).to_i
-    @year = (params[:year] || Time.zone.now.year).to_i
-
-    @shown_month = Date.civil(@year, @month)
-
-		@first_day_of_week = 1
-		@event_strips = Project.all.event_strips_for_month(@shown_month, @first_day_of_week)
-	end
 
   # PUT /items/1
   # PUT /items/1.json

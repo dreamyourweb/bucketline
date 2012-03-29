@@ -4,15 +4,14 @@ class ProjectsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @projects = Project.all
-    @help = Item.where(:type => "help").order_by(:updated_at, :desc)
-    @tools = Item.where(:type => "tool").order_by(:updated_at, :desc)
-    @materials = Item.where(:type => "material").order_by(:updated_at, :desc)
+    @month = (params[:month] || Time.zone.now.month).to_i
+    @year = (params[:year] || Time.zone.now.year).to_i
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @questions }
-    end
+    @shown_month = Date.civil(@year, @month)
+
+		@first_day_of_week = 1
+		@event_strips = Project.all.event_strips_for_month(@shown_month, @first_day_of_week)
+		p @event_strips
   end
 
   def new

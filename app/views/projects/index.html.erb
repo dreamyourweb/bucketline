@@ -1,22 +1,14 @@
 <div class="row">
 	<div class="span12">
 		<ul class="nav nav-tabs">
-			<li class="active"><%= link_to "Bekijk per project", projects_path %></li>
-			<li><%= link_to "Bekijk over tijd", calendar_path %></li>
-		</ul>	</div>
+			<li><%= link_to "Bekijk overzicht", dashboard_path %></li>
+			<li class="active"><%= link_to "Bekijk over tijd", root_path %></li>
+		</ul>
+	</div>
 </div>
 <div class="row">
-	<div class="span4">
-		<h3>Handjes</h3>
-		<%= render :partial => "item", :collection => @help %>
-	</div>
-	<div class="span4">
-		<h3>Gereedschap</h3>
-		<%= render :partial => "item", :collection => @tools %>
-	</div>
-	<div class="span4">
-		<h3>Materiaal</h3>
-		<%= render :partial => "item", :collection => @materials %>
-	</div>
+	<% if user_signed_in? %>
+		<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>
+	<% end %>
 </div>
-
+<%= raw(event_calendar) %>

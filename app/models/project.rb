@@ -1,6 +1,7 @@
 class Project
   include Mongoid::Document
  	include Mongoid::Timestamps
+	include Mongoid::MultiParameterAttributes
 	include EventCalendar
 	has_event_calendar
 	

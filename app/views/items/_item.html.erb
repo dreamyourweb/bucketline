@@ -1,4 +1,4 @@
-<blockquote>
+<div class="well">
 	<% if item.provided %>
 		<p><%= item.name %></p>
 		<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</small>
@@ -10,7 +10,7 @@
 		<% end %>
 	<% end %>
 	<% if user_signed_in? %>
-		<%= link_to "Item of bijbehorende project bewerken", edit_project_path(item.project) %>
+		<%= link_to "Bijbehorende project bewerken", edit_project_path(item.project) %>
 	<% end %>
-</blockquote>
+</div>
 
