@@ -1,7 +1,7 @@
 <div class="well">
 	<% if item.provided %>
-		<p><%= item.name %></p>
-		<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</small>
+		<h3><%= item.name %></h3>
+		<p class="item-details">- <%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</p>
 	<% else %>
 		<%= form_tag project_item_path(item.project, item), :method => "put", :class=>"item-form" do %>			
 			<h3><%= item.name %>, nog <%= item.amount.to_s %> te gaan</h3>
