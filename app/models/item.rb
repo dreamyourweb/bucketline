@@ -21,13 +21,15 @@ class Item
 		if amount > 0
 			false
 		else
-			self.update_attributes(:amount => 0)
 			true
 		end
 	end
 
 	def decrease_amount(number = 1)
 		self.amount = self.amount - number.to_i
+		if self.amount < 0
+			self.amount = 0
+		end
 		self.save
 	end
 
