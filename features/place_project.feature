@@ -1,26 +1,14 @@
 Feature: Place a new question
 	In order to get things done
-	As a user
-	I want to place a new question
+	As an admin
+	I want to place a new project
 
 	Background:
-		Given I am a user
-		And I am logged in
-
-	Scenario: Receive instructions
-		When I go to the questions page
-		Then I should see "Plaats een zo gedetailleerd mogelijke vraag"
+		Given I am logged in as an admin
 
 	Scenario: Place new question
-		When I go to the questions page
-		And I follow "Nieuwe vraag om materiaal"
-		And I fill in query with "Wie heeft er een fundering over?"
-		And I add an item "Stoeptegels"
-		And I follow "Voeg item toe"
-		And I add an item "Beton"
-		And I press "Plaats deze vraag"
-		Then I should see "De vraag is geplaatst"
-		And I should see "Wie heeft er een fundering over?"
-		And I click on the question
-		And I should see "Stoeptegels"
-		And I should see "Beton" 
+		When I go to the calendar page
+		And I follow "Plaats nieuw project"
+		And I fill in the form with a project and an item
+		And I press "Create Project"
+		Then I should see my project
