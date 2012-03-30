@@ -10,4 +10,14 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
+
+	def get_active(page)
+		if page == "dashboard" && request.path_parameters[:controller] == "items"
+			"active"
+		elsif page == "calendar" && request.path_parameters[:controller] == "projects"
+			"active"
+		else
+			"inactive"
+		end
+	end
 end

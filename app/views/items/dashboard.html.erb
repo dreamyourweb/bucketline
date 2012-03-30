@@ -1,12 +1,5 @@
 <div class="row">
 	<div class="span12">
-		<ul class="nav nav-tabs">
-			<li><%= link_to "Bekijk over tijd", root_path %></li>
-			<li class="active"><%= link_to "Bekijk overzicht", dashboard_path %></li>
-		</ul>	</div>
-</div>
-<div class="row">
-	<div class="span12">
 		<% if current_user && current_user.admin %>
 			<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>
 		<% end %>
