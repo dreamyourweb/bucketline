@@ -7,12 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<%= link_to "Waardeverbinder", root_path, :class => "brand" %>
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
+						<% if user_signed_in? %>
+							<li><%= link_to "Mijn profiel", root_url %></li>
+							<li><%= link_to "Mijn beschikbaarheid", root_url %></li>
+							<li><%= link_to "Uitloggen", root_url + "logout" %></li>
+						<% else %>
+							<li><%= link_to "Inloggen of aanmelden", root_url + "login" %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container main">
-		<% if user_signed_in? %>
-			<p style="text-align:right"><%= link_to "Uitloggen", root_url + "logout" %></p>
-		<% else %>
-			<p style="text-align:right"><%= link_to "Inloggen of aanmelden", root_url + "login" %></p>
-		<% end %>
 		<div class="hero-unit">
 			<h1>Overwaarde Verbinder</h1>
 			<p>We hebben allemaal best veel spullen, ideeën en toegang tot hulp. Meer dan we zelf nodig hebben en vaak meer dan we gebruiken. Dit noemen we sociale overwaarde. Met het Huis van Overvloed verbinden we al deze spullen, ideeën en vormen van hulp. We bouwen er in Nijmegen letterlijk een huis van. Dit huis wordt een werk- en ontmoetingsplek voor iedereen die werkt aan duurzaamheid of sociale innovatie, of dat nu bedrijven, overheden, studenten of andere mensen zijn die willen bijdragen. Hieronder vind je alles wat wij nog kunnen gebruiken. Bouw je mee?</p>
