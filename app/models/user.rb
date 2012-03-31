@@ -5,8 +5,9 @@ class User
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
 
+	embeds_one :profile
+	
 	field :admin, :type => Boolean, :default => false
-	field :name, :type => String  
 
 	## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""

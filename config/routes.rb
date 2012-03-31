@@ -1,5 +1,7 @@
 HvO::Application.routes.draw do
 
+  resources :profiles, :except => [:index]
+
   devise_for :users
 	devise_scope :user do
 		get "login", :to => "devise/sessions#new"
