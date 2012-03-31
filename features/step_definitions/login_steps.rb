@@ -1,7 +1,7 @@
 Given /^I am logged in as an admin$/ do
   @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	@admin.update_attributes(:admin => true, :name => "Admin")
-  login(@admin.email, @admin.password)
+	@admin.update_attributes(:admin => true)
+  login(@admin.email, 'foobar')
 end
 
 Given /^I am a visitor$/ do
@@ -10,8 +10,7 @@ end
 
 Given /^I am logged in as a user$/ do
   @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	@user.update_attributes(:name => "User")
-  login(@user.email, @user.password)
+  login(@user.email, 'foobar')
 end
 
 Given /^(?:I am not authenticated|I log out)$/ do
@@ -36,6 +35,6 @@ end
 def register(email, password)
   fill_in "Email", :with => email
   fill_in "Wachtwoord", :with => password
-  fill_in "Wachtwoord bevestigen", :with => "please"
+  fill_in "Wachtwoord bevestigen", :with => password
   click_button "Registreer"
 end

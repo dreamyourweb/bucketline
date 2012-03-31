@@ -14,7 +14,7 @@
 				<div class="nav-collapse">
 					<ul class="nav pull-right">
 						<% if user_signed_in? %>
-							<li><%= link_to "Mijn profiel", profile_path(current_user.profile) %></li>
+							<li><%= link_to "Mijn profiel", root_url %></li>
 							<li><%= link_to "Mijn beschikbaarheid", root_url %></li>
 							<li><%= link_to "Uitloggen", root_url + "logout" %></li>
 						<% else %>
