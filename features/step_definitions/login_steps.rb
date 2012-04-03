@@ -1,5 +1,9 @@
 Given /^I am logged in as an admin$/ do
   @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	if @admin.profile.nil?
+		@admin.profile = Profile.new(:name => "Admin", :expertise => "Bier drinken")
+		@admin.save
+	end
 	@admin.update_attributes(:admin => true)
   login(@admin.email, 'foobar')
 end
@@ -10,6 +14,10 @@ end
 
 Given /^I am logged in as a user$/ do
   @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	if @user.profile.nil?
+		@user.profile = Profile.new(:name => "User", :expertise => "Hard werken")
+		@user.save
+	end
   login(@user.email, 'foobar')
 end
 
