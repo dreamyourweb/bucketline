@@ -16,6 +16,8 @@ module ApplicationHelper
 			"active"
 		elsif page == "calendar" && request.path_parameters[:controller] == "projects"
 			"active"
+		elsif page == "profile" && request.path_parameters[:controller] == "profiles"
+			"active"
 		else
 			"inactive"
 		end

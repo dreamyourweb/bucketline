@@ -6,10 +6,14 @@
 </p>
 
 <p>
-  <b>Speciality:</b>
-  <%= @profile.speciality %>
+  <b>Expertise:</b>
+  <%= @profile.expertise %>
 </p>
 
+<p>
+  <b>Availability:</b>
+  <%= @profile.availability.to_s %>
+</p>
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

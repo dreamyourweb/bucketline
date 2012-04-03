@@ -5,6 +5,6 @@ class Profile
 	embedded_in :user
 
   field :name, :type => String
-  field :speciality, :type => String
+  field :expertise, :type => String
 	field :availability, :type => DateTime
 end

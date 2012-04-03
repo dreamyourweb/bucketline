@@ -2,13 +2,14 @@ class Item
   include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :start_at, :end_at, :name, :type, :notes, :location, :amount
+	attr_accessible :start_at, :end_at, :name, :type, :notes, :location, :amount, :last_provided_by
 
 	belongs_to :project
 
 	validates_numericality_of :amount
 	#validates_format_of :type, :with => /^help\z|^tool\z|^material\z/
 
+	field :provided_by_last_user_name
 	field :name
 	field :type
 	field :notes
@@ -16,7 +17,7 @@ class Item
 	field :amount, :type => Integer, :default => 1
 	field :start_at, :type => DateTime 
 	field :end_at, :type => DateTime
-
+	
 	def provided
 		if amount > 0
 			false

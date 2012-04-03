@@ -25,9 +25,3 @@ Feature: User offers help
 		And I click on a project
 		And I provide 1 item
 		Then I should see "Gegeven door User"
-
-	@wip
-	Scenario: Announce my availability for a specific date
-		When I go to my profile page
-		And register my availability for a specific date
-		Then I should see my registration

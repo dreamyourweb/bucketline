@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
       if @item.update_attributes(params[:item])
 				if params[:amount_to_give]
 					@item.decrease_amount(params[:amount_to_give])
+					@item.update_attributes(:provided_by_last_user_name => current_user.profile.name)
 				end
         format.html { redirect_to projects_path, :notice => 'Bedankt dat je wilt meewerken aan de bouw!' }
         format.json { head :no_content }
