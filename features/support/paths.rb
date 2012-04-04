@@ -12,8 +12,8 @@ module NavigationHelpers
       dashboard_url
     when /^the calendar page$/
       projects_url
-		when /^my profile page$/
-			user_profile_url(current_user)
+		when /^the home page$/
+			root_url
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

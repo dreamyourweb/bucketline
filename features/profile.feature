@@ -5,14 +5,16 @@ Feature: Update profile
 
 	Background:
 		Given I am logged in as a user
+		And I am on the home page
 
 	Scenario: Announce my availability for a specific date
-		When I go to my profile page
+		When I follow "Mijn profiel"
 		And register my availability for a specific date
 		Then I should see my registration
 
 	Scenario: Edit my expertise
-		When I go to my profile page
+		When I follow "Mijn profiel"
 		And I follow "Mijn profiel bewerken"
-		And change my experise
+		And I change my experise
+		And I press "Update Profile"
 		Then I should see my new expertise
