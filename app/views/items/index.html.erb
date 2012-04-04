@@ -9,11 +9,11 @@
 			<blockquote>
 				<% if item.provided %>
 					<p><%= item.translate_type %>: <%= item.name %></p>
-					<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</small>
+					<small><%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %><br>Deze bijdrage is al voorzien. Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
 						<p><%= item.translate_type %>: <%= item.name %>, nog <%= item.amount.to_s %> te gaan</p>
-						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></small>
+						<small><%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %><br>Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</small>
 						<% if user_signed_in? %>
 							Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
 						<% else %>

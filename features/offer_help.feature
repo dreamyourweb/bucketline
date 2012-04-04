@@ -18,10 +18,12 @@ Feature: User offers help
 	Scenario: Mark item as provided via dashboard
 		When I go to the dashboard page
 		And I provide 1 item
-		Then I should see "Gegeven door User"
+		And I go to the dashboard page
+		Then I should see "Laatst bijgedragen door User"
 
 	Scenario: Mark item as provided via calender
 		When I go to the calendar page
 		And I click on a project
 		And I provide 1 item
-		Then I should see "Gegeven door User"
+		And I click on a project
+		Then I should see "Laatst bijgedragen door User"

@@ -1,11 +1,11 @@
 <div class="well">
 	<% if item.provided %>
 		<h3><%= item.name %></h3>
-		<p class="item-details">- <%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien</p>
+		<p class="item-details">- <%= item.location %>, <%= item.start_at.to_s %> - <%= item.end_at.to_s %> - Deze bijdrage is al voorzien. Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</p>
 	<% else %>
 		<%= form_tag project_item_path(item.project, item), :method => "put", :class=>"item-form" do %>			
 			<h3><%= item.name %>, nog <%= item.amount.to_s %> te gaan</h3>
-			<p class="item-details">- <%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %></p>
+			<p class="item-details">- <%= item.location %>, <%= item.start_at.ctime.to_s %> - <%= item.end_at.ctime.to_s %> - Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</p>
 			<% if user_signed_in? %>
 				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %></p>
 			<% else %>

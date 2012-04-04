@@ -2,14 +2,14 @@ class Item
   include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :start_at, :end_at, :name, :type, :notes, :location, :amount, :last_provided_by
+	attr_accessible :start_at, :end_at, :name, :type, :notes, :location, :amount, :last_provided_by_user_name
 
 	belongs_to :project
 
 	validates_numericality_of :amount
 	#validates_format_of :type, :with => /^help\z|^tool\z|^material\z/
 
-	field :provided_by_last_user_name
+	field :provided_by_last_user_name, :default => "Anoniempje"
 	field :name
 	field :type
 	field :notes
