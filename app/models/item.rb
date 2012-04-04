@@ -26,11 +26,12 @@ class Item
 		end
 	end
 
-	def decrease_amount(number = 1)
+	def decrease_amount(number = 1, current_user_name)
 		self.amount = self.amount - number.to_i
 		if self.amount < 0
 			self.amount = 0
 		end
+		self.provided_by_last_user_name = current_user_name
 		self.save
 	end
 

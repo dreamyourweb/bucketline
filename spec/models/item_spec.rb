@@ -32,5 +32,10 @@ describe Item do
 			@item.decrease_amount(2)
 			@item.amount.should be 0
 		end
+
+		it "should save the user name of the last providing user" do
+			@item.decrease_amount(1, "Hans")
+			@item.provided_by_last_user_name.should == "Hans"
+		end
 	end
 end
