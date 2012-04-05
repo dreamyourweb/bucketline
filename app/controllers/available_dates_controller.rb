@@ -14,7 +14,8 @@ class AvailableDatesController < ApplicationController
     @shown_month = Date.civil(@year, @month)
 
 		@first_day_of_week = 1
-		@event_strips = @available_dates.event_strips_for_month(@shown_month, @first_day_of_week)
+		@event_strips = current_user.profile.available_dates.all.event_strips_for_month(@shown_month, @first_day_of_week)
+		p @event_strips
 
 		respond_to do |format|
       format.html

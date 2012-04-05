@@ -1,7 +1,5 @@
 class Profile
   include Mongoid::Document
-	include EventCalendar
-	has_event_calendar
 
 	embedded_in :user
 	has_many :available_dates, :autosave => true, :dependent => :delete	
