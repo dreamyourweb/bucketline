@@ -8,7 +8,15 @@ class AvailableDatesController < ApplicationController
   def index
     @available_dates = @profile.available_dates.all
 
-    respond_to do |format|
+    @month = (params[:month] || Time.zone.now.month).to_i
+    @year = (params[:year] || Time.zone.now.year).to_i
+
+    @shown_month = Date.civil(@year, @month)
+
+		@first_day_of_week = 1
+		@event_strips = @available_dates.event_strips_for_month(@shown_month, @first_day_of_week)
+
+		respond_to do |format|
       format.html
       format.json { render json: @available_dates }
 		end

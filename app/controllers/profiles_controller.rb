@@ -4,9 +4,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @profile = current_user.profile
-
-    respond_to do |format|
+		respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
     end

@@ -9,7 +9,7 @@ Feature: Update profile
 
 	@wip
 	Scenario: Announce my availability for a specific date
-		When I follow "Mijn profiel"
+		When I follow "Mijn beschikbaarheid"
 		And register my availability for a specific date
 		Then I should see my registration
 

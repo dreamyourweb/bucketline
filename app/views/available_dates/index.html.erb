@@ -1,4 +1,7 @@
-<% @available_dates.each do |date| %>
-	<%= date.start_at %>
-<% end %>
-<%= link_to "Beschikbaarheid bewerken", edit_profile_path(@profile) %>
+<%= raw(availability_event_calendar) %>
+<div class="row">
+	<div class="span12">
+		<%= link_to "Beschikbaarheid bewerken", edit_profile_path(@profile) %>
+	</div>
+</div>
+
