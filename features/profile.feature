@@ -7,6 +7,7 @@ Feature: Update profile
 		Given I am logged in as a user
 		And I am on the home page
 
+	@wip
 	Scenario: Announce my availability for a specific date
 		When I follow "Mijn profiel"
 		And register my availability for a specific date

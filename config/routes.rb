@@ -1,6 +1,8 @@
 HvO::Application.routes.draw do
 
-  resources :profiles, :except => [:index]
+  resources :profiles, :except => [:index] do
+		resources :available_dates, :except => [:show, :edit, :new]
+	end
 
   devise_for :users
 	devise_scope :user do

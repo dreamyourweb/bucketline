@@ -21,6 +21,16 @@ Given /^I am logged in as a user$/ do
   login(@user.email, 'foobar')
 end
 
+Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
+  @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar')
+	if @specialist.profile.nil?
+		@specialist.profile = Profile.new(:name => name, :expertise => expertise)
+		@profile = @specialist.profile
+		@profile.available_dates.create!(:start_at => Time.now, :end_at => Time.now + 1.day)
+		@specialist.save
+	end
+end
+
 Given /^(?:I am not authenticated|I log out)$/ do
  	# Ensure at least:
   visit('/logout')
