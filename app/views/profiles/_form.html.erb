@@ -19,6 +19,12 @@
     <%= f.label :expertise %><br />
     <%= f.text_field :expertise %>
   </div>
+	<h3>Beschikbaarheid</h3>
+  <%= f.fields_for :available_dates do |builder| %>
+		<%= render "available_date_fields", :f => builder %>
+	<% end %>
+	<p><%= link_to_add_fields "Beschikbaarheid toevoegen", f, :available_dates %></p>
+
   <div class="actions">
     <%= f.submit %>
   </div>

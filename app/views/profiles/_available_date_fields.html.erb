@@ -1,0 +1,16 @@
+<blockquote class="fields smaller-font">
+	<p>
+		<div class="date-selector">
+			<%= f.label 'Begin:' %> 
+			<%= f.datetime_select :start_at %>
+	 	</div>
+		<div class="date-selector">
+			<%= f.label 'Einde:' %> 
+			<%= f.datetime_select :end_at %>
+	 	</div>
+	<p>
+		<%= link_to_remove_fields "Verwijder datum", f %>
+	</p>
+</blockquote>
+<hr>	
+
