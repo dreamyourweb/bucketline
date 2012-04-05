@@ -1,21 +1,32 @@
 class AvailableDatesController < ApplicationController
 	before_filter :authenticate_user!, :get_profile
+	before_filter :authenticate_admin, :only => [:availability_dashboard]
+	before_filter :set_calendar, :only => [:index, :availability_dashboard]
 	
 	def get_profile
 		@profile = current_user.profile
 	end
 
-  def index
-    @available_dates = @profile.available_dates.all
-
+	def set_calendar
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
-
     @shown_month = Date.civil(@year, @month)
-
 		@first_day_of_week = 1
+	end
+
+  def index
+    @available_dates = @profile.available_dates.all
 		@event_strips = current_user.profile.available_dates.all.event_strips_for_month(@shown_month, @first_day_of_week)
-		p @event_strips
+
+		respond_to do |format|
+      format.html
+      format.json { render json: @available_dates }
+		end
+  end
+
+  def availability_dashboard
+    @available_dates = AvailableDate.all
+		@event_strips = AvailableDate.all.event_strips_for_month(@shown_month, @first_day_of_week)
 
 		respond_to do |format|
       format.html

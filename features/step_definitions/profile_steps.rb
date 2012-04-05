@@ -8,7 +8,8 @@ end
 
 When /^register my availability for a specific date$/ do
 	click_link "Beschikbaarheid bewerken"
-	press "Update Profile"
+	click_link "Beschikbaarheid toevoegen"
+	click_button "Update Profile"
 end
 
 Then /^I should see my registration$/ do

@@ -11,6 +11,8 @@ Feature: Update profile
 	Scenario: Announce my availability for a specific date
 		When I follow "Mijn beschikbaarheid"
 		And register my availability for a specific date
+		And I follow "Mijn beschikbaarheid"
+		Then show me the page
 		Then I should see my registration
 
 	Scenario: Edit my expertise

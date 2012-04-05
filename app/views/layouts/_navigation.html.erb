@@ -1,11 +1,14 @@
 <nav class="row">
 	<div class="span12">
 		<ul class="nav nav-tabs">
-			<li class=<%= get_active("calendar") %> ><%= link_to "Bekijk over tijd", root_path %></li>
-			<li class=<%= get_active("dashboard") %> ><%= link_to "Bekijk overzicht", dashboard_path %></li>
+			<li class=<%= get_active("calendar") %> ><%= link_to "Bekijk projecten over tijd", root_path %></li>
+			<li class=<%= get_active("dashboard") %> ><%= link_to "Bekijk alle benodigdheden", dashboard_path %></li>
 			<% if user_signed_in? %>
 				<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel", profile_path(@profile) %></li>
 				<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(@profile) %></li>
+				<% if current_user.admin %>
+					<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbaarheid specialisten", profile_availability_dashboard_path(@profile) %></li>
+				<% end %>
 			<% end %>
 			<div class="pull-right">
 				<% if user_signed_in? %>
