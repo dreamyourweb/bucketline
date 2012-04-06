@@ -10,8 +10,7 @@ Feature: view availability of specialists
 
 	@wip
 	Scenario: View calendar
-		When I follow "Bekijk beschikbaarheid van specialisten"
+		When I follow "Beschikbaarheid van specialisten"
 		Then I should see "Frans - Bakker"
 		When I follow "Frans - Bakker"
 		Then I should see "frans@test.com"
-		

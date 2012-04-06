@@ -16,4 +16,9 @@ class AvailableDate
 		where(find_options.merge(self.end_at_field.to_sym.lt => end_d.to_time.utc,
 		self.start_at_field.to_sym.gt => start_d.to_time.utc)).asc(self.start_at_field)
 	end
+
+	def calendar_text
+		@profile = self.profile
+		return @profile.name.to_s + " - " + @profile.expertise.to_s 
+	end
 end

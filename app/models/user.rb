@@ -6,7 +6,7 @@ class User
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
 
-	embeds_one :profile
+	has_one :profile
 	
 	field :admin, :type => Boolean, :default => false
 

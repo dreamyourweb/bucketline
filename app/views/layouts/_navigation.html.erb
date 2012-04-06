@@ -7,7 +7,7 @@
 				<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel", profile_path(@profile) %></li>
 				<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(@profile) %></li>
 				<% if current_user.admin %>
-					<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbaarheid specialisten", profile_availability_dashboard_path(@profile) %></li>
+					<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbaarheid van specialisten", profile_availability_dashboard_path(@profile) %></li>
 				<% end %>
 			<% end %>
 			<div class="pull-right">

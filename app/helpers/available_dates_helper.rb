@@ -2,7 +2,7 @@ module AvailableDatesHelper
   def availability_event_calendar
     calendar event_calendar_options do |args|
       event = args[:event]
-      %(<a class="fancybox" href="#" title="#{h("Van " + event.start_at.to_s + " tot " + event.end_at.to_s)}">#{h("NOG" + " - " + "OPVRAGEN")}</a>)
+      %(<a class="fancybox" href=#{profile_available_date_path(event.profile, event)}?fancybox=true">#{h(event.calendar_text)}</a>)
     end
   end
 end

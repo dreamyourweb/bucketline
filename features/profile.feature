@@ -7,14 +7,6 @@ Feature: Update profile
 		Given I am logged in as a user
 		And I am on the home page
 
-	@wip
-	Scenario: Announce my availability for a specific date
-		When I follow "Mijn beschikbaarheid"
-		And register my availability for a specific date
-		And I follow "Mijn beschikbaarheid"
-		Then show me the page
-		Then I should see my registration
-
 	Scenario: Edit my expertise
 		When I follow "Mijn profiel"
 		And I follow "Mijn profiel bewerken"
