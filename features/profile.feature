@@ -13,3 +13,7 @@ Feature: Update profile
 		And I change my experise
 		And I press "Update Profile"
 		Then I should see my new expertise
+
+	Scenario: Relevant profile fields
+		When I follow "Mijn profiel"
+		Then I should see my relevant profile fields

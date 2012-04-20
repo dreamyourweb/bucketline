@@ -16,10 +16,19 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :expertise, "Expertise in:" %><br />
+    <%= f.label :expertise, "Waar ben je goed in?" %><br />
     <%= f.text_field :expertise %>
   </div>
-	<h3>Beschikbaarheid</h3>
+  <div class="field">
+    <%= f.label :willing_to_help_with, "Ik kan helpen met..." %><br />
+    <%= f.text_area :willing_to_help_with, :rows => 6 %>
+  </div>
+  <div class="field">
+    <%= f.label :tools_and_materials, "Ik kan de volgende gereedschappen en materialen inbrengen..." %><br />
+    <%= f.text_area :tools_and_materials, :rows => 6 %>
+  </div>
+	<hr>
+	<h1>Beschikbaarheid bewerken</h1>
   <%= f.fields_for :available_dates do |builder| %>
 		<%= render "available_date_fields", :f => builder %>
 	<% end %>

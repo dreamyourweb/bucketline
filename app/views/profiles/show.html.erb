@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Naam:</b><br>
   <%= @profile.name %>
 </p>
 
 <p>
-  <b>Expertise:</b>
+  <b>Waar ben je goed in?</b><br>
   <%= @profile.expertise %>
+</p>
+
+<p>
+  <b>Ik kan helpen met...</b><br>
+  <%= @profile.willing_to_help_with %>
+</p>
+
+<p>
+  <b>Ik kan de volgende gereedschappen en materialen inbrengen...</b><br>
+  <%= @profile.tools_and_materials %>
 </p>
 
 <%= link_to 'Mijn profiel bewerken', edit_profile_path(@profile) %>
