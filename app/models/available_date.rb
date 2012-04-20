@@ -12,6 +12,14 @@ class AvailableDate
   field :start_at, :type => DateTime
   field :end_at, :type => DateTime
 
+	validate :valid_dates
+
+  def valid_dates
+    if self.start_at >= self.end_at
+      self.errors.add :start_time, ' has to be after end time'
+    end
+  end
+
 	def self.events_for_date_range(start_d, end_d, find_options = {})
 		where(find_options.merge(self.end_at_field.to_sym.lt => end_d.to_time.utc,
 		self.start_at_field.to_sym.gt => start_d.to_time.utc)).asc(self.start_at_field)

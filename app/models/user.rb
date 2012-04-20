@@ -7,6 +7,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable, :registerable
 
 	has_one :profile
+	before_save :check_or_create_profile
 	
 	field :admin, :type => Boolean, :default => false
 
@@ -44,4 +45,10 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+	def check_or_create_profile
+		if self.profile.nil?
+			self.profile = Profile.create(:name => "Anoniempje")
+		end
+	end
 end
