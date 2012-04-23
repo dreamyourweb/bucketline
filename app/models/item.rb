@@ -38,7 +38,7 @@ class Item
 	def translate_type
 		if self.type == "help"
 			"Handjes"
-		elsif self.type == "tools"
+		elsif self.type == "tool"
 			"Gereedschap"
 		else
 			"Materiaal"
