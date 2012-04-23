@@ -6,7 +6,7 @@ class User
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :registerable
 
-	has_one :profile
+	has_one :profile, :autosave => true, :dependent => :delete
 	before_save :check_or_create_profile
 	
 	field :admin, :type => Boolean, :default => false
