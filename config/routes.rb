@@ -1,5 +1,8 @@
 HvO::Application.routes.draw do
 
+	root :to => "home#index"
+  get "home/index"
+
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
 		get "availability_dashboard", :to => "available_dates#availability_dashboard"
@@ -16,7 +19,6 @@ HvO::Application.routes.draw do
 	end
 	get "dashboard", :to => "items#dashboard"
 
-	root :to => "projects#index"
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
   # The priority is based upon order of creation:

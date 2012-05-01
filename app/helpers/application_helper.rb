@@ -14,6 +14,8 @@ module ApplicationHelper
 	def get_active(page)
 		if page == "dashboard" && request.path_parameters[:controller] == "items"
 			"active"
+		elsif page == "home" && request.path_parameters[:controller] == "home"
+			"active"
 		elsif page == "calendar" && request.path_parameters[:controller] == "projects"
 			"active"
 		elsif page == "availability_dashboard" && request.path_parameters[:controller] == "available_dates" && request.path_parameters[:action] == "availability_dashboard"
