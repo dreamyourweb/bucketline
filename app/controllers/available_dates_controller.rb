@@ -34,11 +34,15 @@ class AvailableDatesController < ApplicationController
 		end
   end
 
-	def show
-		@date = AvailableDate.find(params[:id])
-		@profile = @date.profile
-		@user = @profile.user
+	def edit
+		@available_date = AvailableDate.find(params[:id])
+		#@profile = Profile.find(params[:profile_id])
+		#@user = @profile.user
 		render :layout => false
+	end
+
+	def new
+    @available_date = @profile.available_dates.new
 	end
 
   def create

@@ -1,7 +1,7 @@
 HvO::Application.routes.draw do
 
   resources :profiles, :except => [:index] do
-		resources :available_dates, :except => [:edit, :new]
+		resources :available_dates, :except => [:show]
 		get "availability_dashboard", :to => "available_dates#availability_dashboard"
 	end
 

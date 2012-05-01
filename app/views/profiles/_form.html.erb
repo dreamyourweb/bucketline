@@ -27,12 +27,6 @@
     <%= f.label :tools_and_materials, "Ik kan de volgende gereedschappen en materialen inbrengen..." %><br />
     <%= f.text_area :tools_and_materials, :rows => 6 %>
   </div>
-	<hr>
-	<h1>Beschikbaarheid bewerken</h1>
-  <%= f.fields_for :available_dates do |builder| %>
-		<%= render "available_date_fields", :f => builder %>
-	<% end %>
-	<p><%= link_to_add_fields "Beschikbaarheid toevoegen", f, :available_dates %></p>
 
   <div class="actions">
     <%= f.submit %>

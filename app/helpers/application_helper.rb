@@ -31,16 +31,17 @@ module ApplicationHelper
     link_to(I18n.localize(month_date, :format => "%B"), {:month => month_date.month, :year => month_date.year})
   end
 
-  # custom options for this calendar
   def event_calendar_options
-    { 
+    defaults = { 
       :year => @year,
       :month => @month,
       :event_strips => @event_strips,
       :month_name_text => I18n.localize(@shown_month, :format => "%B %Y"),
       :previous_month_text => "<< " + month_link(@shown_month.prev_month),
       :next_month_text => month_link(@shown_month.next_month) + " >>",
-			:first_day_of_week => @first_day_of_week
-    }
-  end
+			:first_day_of_week => @first_day_of_week,
+			:event_height => 75,
+			:link_to_day_action => "new"
+		}
+	end
 end

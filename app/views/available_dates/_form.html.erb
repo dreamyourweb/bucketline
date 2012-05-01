@@ -1,0 +1,27 @@
+<%= form_for([@profile, @available_date]) do |f| %>
+  <% if @available_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@available_date.errors.count, "error") %> prohibited this date from being saved:</h2>
+
+      <ul>
+      <% @available_date.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="field">
+		<%= f.label "Selecteer dagdelen" %>
+		<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+	</div>
+
+	<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
+  <div>
+    <%= f.hidden_field :date, :value => pre_select_date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Opslaan" %>
+  </div>
+<% end %>
