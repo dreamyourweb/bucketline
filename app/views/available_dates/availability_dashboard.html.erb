@@ -1,9 +1,21 @@
 <h2>Admin overzicht</h2>
 <table>
 	<tr>
-		<td>
-		</td>
-		<td>
-		</td>
+		<th>Datum</th>
+		<th>Dagdelen</th>
+		<th>Naam</th>
+		<th>Expertise</th>		
+		<th>Kan helpen met</th>		
+		<th>Gereedschappen en materialen</th>		
 	</tr>
+	<% @available_dates.each do |date| %>
+		<tr>
+			<td><%= date.date.to_s %></td>
+			<td><%= get_dayparts(date) %></td>
+			<td><%= date.profile.name %></td>
+			<td><%= date.profile.expertise %></td>
+			<td><%= date.profile.willing_to_help_with %></td>
+			<td><%= date.profile.tools_and_materials %></td>
+		</tr>
+	<% end %>	
 </table>
