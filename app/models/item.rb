@@ -2,7 +2,7 @@ class Item
   include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :start_at, :end_at, :name, :type, :notes, :location, :amount, :last_provided_by_user_name
+	attr_accessible :start_at, :end_at, :name, :type, :amount, :last_provided_by_user_name, :daypart
 
 	belongs_to :project
 
@@ -12,11 +12,10 @@ class Item
 	field :provided_by_last_user_name, :default => "Anoniempje"
 	field :name
 	field :type
-	field :notes
-	field :location
 	field :amount, :type => Integer, :default => 1
-	field :start_at, :type => DateTime 
-	field :end_at, :type => DateTime
+	field :start_at, :type => Date
+	field :end_at, :type => Date
+	field :daypart
 	
 	def provided
 		if amount > 0

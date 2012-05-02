@@ -18,6 +18,8 @@ HvO::Application.routes.draw do
 	  resources :items, :except => [:show, :edit, :new]
 	end
 	get "projects/info"
+	get "available_dates/info"
+	get "items/info"
 	get "dashboard", :to => "items#dashboard"
 
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}

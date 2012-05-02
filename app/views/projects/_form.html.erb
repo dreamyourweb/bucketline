@@ -12,16 +12,24 @@
   <% end %>
 
 	<div>
-		<%= f.label 'Titel van het subproject:' %> 
+		<%= f.label 'Titel:' %> 
 		<%= f.text_field :query %>
  	</div>
 	<div class="date-selector">
 		<%= f.label 'Begin:' %> 
-		<%= f.datetime_select :start_at %>
+		<%= f.date_select :start_at %>
  	</div>
 	<div class="date-selector">
 		<%= f.label 'Einde:' %> 
-		<%= f.datetime_select :end_at %>
+		<%= f.date_select :end_at %>
+ 	</div>
+	<div class="field">
+		<%= f.label "Selecteer dagdelen" %>
+		<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+	</div>
+	<div>
+		<%= f.label 'Opmerkingen:' %> 
+		<%= f.text_field :remark %>
  	</div>
 	<hr>
 

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-	before_filter :get_project, :except => [:dashboard]
-	before_filter :authenticate_admin, :except => [:index, :update, :dashboard]
-	before_filter :authenticate_user!, :except => [:index, :dashboard]
+	before_filter :get_project, :except => [:dashboard, :info]
+	before_filter :authenticate_admin, :except => [:index, :update, :dashboard, :info]
+	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
 
 	def get_project
 		@project = Project.find(params[:project_id])
@@ -71,4 +71,8 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def info
+		render :layout => false
+	end
 end

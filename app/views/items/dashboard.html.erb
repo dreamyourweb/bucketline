@@ -1,4 +1,9 @@
 <div class="row">
+	<%= link_to items_info_path, :class => "fancybox" do %>
+		<i class="icon-question-sign pull-right"></i>
+	<% end %>
+</div>
+<div class="row">
 	<div class="span12">
 		<% if current_user && current_user.admin %>
 			<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>

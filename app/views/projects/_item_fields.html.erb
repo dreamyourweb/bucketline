@@ -13,19 +13,17 @@
 			<%= f.text_field :amount %>
  		</div>
 		<div class="date-selector">
-			<%= f.label 'Begin:' %> 
-			<%= f.datetime_select :start_at %>
+			<%= f.label 'Nodig van:' %> 
+			<%= f.date_select :start_at %>
 	 	</div>
 		<div class="date-selector">
-			<%= f.label 'Einde:' %> 
-			<%= f.datetime_select :end_at %>
+			<%= f.label 'Tot en met:' %> 
+			<%= f.date_select :end_at %>
 	 	</div>
-		<div>
-			<%= f.label 'Nodig op locatie:' %> 
-			<%= f.text_field :location %>
-	 	</div>
-		Aantekeningen voor jezelf:<br>
-		<%= f.text_area :notes, :rows => 6 %>
+		<div class="field">
+			<%= f.label "Selecteer dagdelen" %>
+			<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+		</div>
 	</p>
 	<p>
 		<%= link_to_remove_fields "Verwijder benodigdheid", f %>
