@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_filter :authenticate_admin, :except => [:index]
+	before_filter :authenticate_admin, :except => [:index, :info]
 
   # GET /questions
   # GET /questions.json
@@ -12,6 +12,10 @@ class ProjectsController < ApplicationController
 		@first_day_of_week = 1
 		@event_strips = Project.all.event_strips_for_month(@shown_month, @first_day_of_week)
   end
+
+	def info
+		render :layout => false
+	end
 
   def new
     @project = Project.new
