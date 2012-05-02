@@ -46,4 +46,19 @@ module ApplicationHelper
 			:link_to_day_action => "new"
 		}
 	end
+
+	def build_event_text(event)
+		text = ""
+		if !event.daypart.nil?
+			event.daypart.each do |daytext|
+				if daytext != ""
+					text << "#{daytext}, "
+				end
+			end
+		end
+		text << "<br>#{event.query}"
+		if !event.remark.nil?
+			text << "<br>#{event.remark}"
+		end
+	end
 end
