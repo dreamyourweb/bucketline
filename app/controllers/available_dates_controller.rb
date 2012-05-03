@@ -25,7 +25,7 @@ class AvailableDatesController < ApplicationController
   end
 
   def availability_dashboard
-    @available_dates = AvailableDate.all
+    @available_dates = AvailableDate.all.order_by([[:date, :desc]])
 		#@event_strips = AvailableDate.all.event_strips_for_month(@shown_month, @first_day_of_week)
 
 		respond_to do |format|

@@ -13,11 +13,11 @@
 			<blockquote>
 				<% if item.provided %>
 					<p><%= item.translate_type %>: <%= item.name %></p>
-					<small>Nodig van <%= item.start_at.to_s %> tot en met <%= item.end_at.to_s %><%= get_dayparts(item) %><br>Deze bijdrage is al voorzien. Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</small>
+					<small>Nodig van <%= item.start_at.to_s %> tot en met <%= item.end_at.to_s %><%= get_dayparts(item) %><br>Deze bijdrage is al voorzien.</small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
-						<p><%= item.translate_type %>: <%= item.name %>, nog <%= item.amount.to_s %> te gaan</p>
-						<small>Nodig van <%= item.start_at.to_s %> tot en met <%= item.end_at.to_s %><%= get_dayparts(item) %><br>Laatst bijgedragen door <%= item.provided_by_last_user_name %>.</small>
+						<p><%= item.translate_type %>: <%= item.name %>, nog <%= item.items_left.to_s %> te gaan</p>
+						<small>Nodig van <%= item.start_at.to_s %> tot en met <%= item.end_at.to_s %><%= get_dayparts(item) %>.</small>
 						<% if user_signed_in? %>
 							Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
 						<% else %>

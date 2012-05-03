@@ -49,7 +49,9 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update_attributes(params[:item])
 				if params[:amount_to_give]
-					@item.decrease_amount(params[:amount_to_give], current_user.profile.name)
+					@profile = current_user.profile
+					@item.link_to_profile(params[:amount_to_give].to_i, @profile)
+					@profile.link_to_item(params[:amount_to_give].to_i, @item)
 				end
         format.html { redirect_to projects_path, :notice => 'Bedankt dat je wilt meewerken aan de bouw!' }
         format.json { head :no_content }
