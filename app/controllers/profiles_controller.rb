@@ -71,4 +71,8 @@ class ProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def info
+		render :layout => false
+	end
 end

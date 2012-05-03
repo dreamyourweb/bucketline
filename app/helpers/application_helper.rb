@@ -56,7 +56,7 @@ module ApplicationHelper
 				end
 			end
 		end
-		text << "<br>#{event.query}"
+		text << "<br>#{event.query}."
 		if !event.remark.nil?
 			text << "<br>#{event.remark}"
 		end

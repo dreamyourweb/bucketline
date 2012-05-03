@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+	<%= link_to profile_info_path(current_user.profile), :class => "fancybox" do %>
+		<i class="icon-question-sign pull-right"></i>
+	<% end %>
+</div>
 <h2>Mijn gegevens</h2>
 <p>
   <b>Naam:</b><br>
