@@ -1,10 +1,7 @@
 Given /^I am logged in as an admin$/ do
   @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	if @admin.profile.nil?
-		@admin.profile = Profile.new(:name => "Admin", :expertise => "Bier drinken")
-		@admin.save
-	end
 	@admin.update_attributes(:admin => true)
+	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
   login(@admin.email, 'foobar')
 end
 
@@ -39,13 +36,6 @@ def login(email, password)
     fill_in('Password', :with => password)
     click_button('Sign in')
 end
-
-def login_admin(email, password)
-		visit('/admin/login')
-    fill_in('Email', :with => email)
-    fill_in('Wachtwoord', :with => password)
-    click_button('Sign in')
-end	
 
 def register(email, password)
   fill_in "Email", :with => email

@@ -28,7 +28,6 @@ Feature: User offers help
 		And I click on a project
 		Then I should see "Laatst bijgedragen door User"
 
-	@wip
 	Scenario: Retreat help
 		When I go to the dashboard page
 		And I provide 1 item
