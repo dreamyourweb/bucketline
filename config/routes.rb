@@ -6,6 +6,7 @@ HvO::Application.routes.draw do
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
 		get "availability_dashboard", :to => "available_dates#availability_dashboard"
+		get "send_reminder", :to => "profiles#send_reminder_mail"
 	end
 
   devise_for :users
@@ -22,7 +23,6 @@ HvO::Application.routes.draw do
 	get "items/info"
 	get "profiles/:id/info", :to => "profiles#info", :as => "profile_info"
 	get "profiles/:profile_id/item/:id", :to => "profiles#remove_item", :as => "remove_item_from_profile"
-	get "profiles/:id/send_reminder", :to => "profiles#send_reminder_mail", :as => "profile_send_reminder_path"
 	get "dashboard", :to => "items#dashboard"
 
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
