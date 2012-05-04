@@ -6,8 +6,8 @@ module ItemsHelper
 			item.daypart.each do |daypart|
 				if item.daypart.length == 1
 					dayparts << daypart
-				elsif daypart == item.daypart.first
-					dayparts << daypart
+				#elsif daypart == item.daypart
+				#	dayparts << daypart
 				elsif daypart == item.daypart.last(2).first
 					dayparts << daypart
 				elsif daypart == item.daypart.last

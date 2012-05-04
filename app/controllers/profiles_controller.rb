@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+		@items = @profile.items.all.order_by([[:start_at, :asc]])
 		respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }

@@ -13,7 +13,7 @@
 	<% @available_dates.each do |date| %>
 		<tr>
 			<td><%= date.profile.name %></td>
-			<td><%= date.date.to_s %></td>
+			<td><%= pretty_date(date.date) %></td>
 			<td><%= build_daytext(date) %></td>
 			<td><%= date.profile.expertise %></td>
 			<td><%= date.profile.willing_to_help_with %></td>
