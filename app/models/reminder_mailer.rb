@@ -1,4 +1,4 @@
-class ProjectPlacementMailer < MailForm::Base
+class ReminderMailer < MailForm::Base
 	attribute :item_names
 	attribute :email
 
