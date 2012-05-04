@@ -19,7 +19,8 @@ Feature: User offers help
 		When I go to the dashboard page
 		And I provide 1 item
 		And I go to the dashboard page
-		Then I should see "Laatst bijgedragen door User"
+		And show me the user
+		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
 		When I go to the calendar page

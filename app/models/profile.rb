@@ -2,7 +2,7 @@ class Profile
   include Mongoid::Document
 
 	belongs_to :user
-	has_many :available_dates, :autosave => true, :dependent => :delete
+	has_many :available_dates, :autosave => true, :dependent => :destroy
 	has_and_belongs_to_many :items, :dependent => :nullify #All the items that have been contributed by this user	
 
 	accepts_nested_attributes_for :available_dates, :allow_destroy => true

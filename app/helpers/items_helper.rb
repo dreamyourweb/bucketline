@@ -15,4 +15,16 @@ module ItemsHelper
 		end
 		dayparts	
 	end
+
+	def get_contributors(item)
+		contributors = ""
+		if !item.profiles.empty?
+			contributors << " Bijdragers zijn"
+			item.profiles.each do |profile|
+				contributors << ", " + profile.name 
+			end
+			contributors << "."
+		end
+		contributors
+	end
 end

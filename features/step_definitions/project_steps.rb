@@ -1,6 +1,6 @@
 Given /^there is a project with an item$/ do
-	@project = Project.create(:query => "Mijn project", :start_at => Time.now, :end_at => Time.now + 1.day)
-	@item = @project.items.create(:name => "Mijn item", :type => "help", :notes => "", :location => "HvO", :amount => 1, :start_at => Time.now, :end_at => Time.now + 1.day)
+	@project = Project.create(:query => "Mijn project", :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
+	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 end
 
 Then /^I should see all the projects$/ do
@@ -27,7 +27,8 @@ When /^I fill in the form with a project and an item$/ do
   fill_in("project_query", :with => "Mijn project")
   fill_in("project_items_attributes_0_name", :with => "Mijn item")
 	select("Materiaal", :from => "project_items_attributes_0_type")
-  fill_in("project_items_attributes_0_location", :with => "HvO")
+	select("Middag", :from => "project_daypart")
+	select("Middag", :from => "project_items_attributes_0_daypart")
 end
 
 Then /^I should see my project$/ do

@@ -23,4 +23,27 @@
   <%= @profile.tools_and_materials %>
 </p>
 <%= link_to 'Profiel bewerken', edit_profile_path(@profile) %>
+
 <h2>Overzicht van mijn bijdragen</h2>
+<table class="admin-table table table-bordered table-striped">
+	<tr>
+		<th>Project</th>
+		<th>Bijdrage</th>
+		<th>Aantal</th>
+		<th>Begindatum</th>
+		<th>Einddatum</th>		
+		<th>Dagdelen</th>
+		<th></th>		
+	</tr>
+	<% @profile.items.each do |item| %>
+		<tr>
+			<td><%= item.project.query %></td>
+			<td><%= item.name %></td>
+			<td><%= "Nog doen" %></td>
+			<td><%= item.start_at.to_s %></td>
+			<td><%= item.end_at.to_s %></td>
+			<td><%= get_dayparts(item) %></td>
+			<td><%= link_to "bijdrage intrekken", root_path %></td>
+		</tr>
+	<% end %>	
+</table>

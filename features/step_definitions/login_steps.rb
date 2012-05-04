@@ -14,11 +14,12 @@ end
 
 Given /^I am logged in as a user$/ do
   @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	if @user.profile.nil?
-		@user.profile = Profile.new(:name => "User", :expertise => "Hard werken")
-		@user.save
-	end
+	@user.profile.update_attributes(:name => "User", :expertise => "Hard werken")
   login(@user.email, 'foobar')
+end
+
+When /^show me the user$/ do
+  p @user.profile
 end
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
