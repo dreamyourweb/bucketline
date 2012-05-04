@@ -42,9 +42,25 @@ module ApplicationHelper
       :previous_month_text => "<< " + month_link(@shown_month.prev_month),
       :next_month_text => month_link(@shown_month.next_month) + " >>",
 			:first_day_of_week => @first_day_of_week,
-			:event_height => 75,
-			:link_to_day_action => "new"
+			:event_height => get_event_height,
+			:link_to_day_action => get_link_to_day_action
 		}
+	end
+
+	def get_event_height
+		if request.path_parameters[:controller] == "projects"
+			50
+		else
+			75
+		end
+	end
+
+	def get_link_to_day_action
+		if request.path_parameters[:controller] == "projects" && !(current_user && current_user.admin)
+			false
+		else
+			"new"
+		end
 	end
 
 	def build_event_text(event)
