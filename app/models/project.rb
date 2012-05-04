@@ -12,12 +12,17 @@ class Project
 	validates_presence_of :query
 
 	after_create :send_project_placement_mail
+	before_save :trim_daypart
 
 	field :query
 	field :start_at, :type => Date
 	field :end_at, :type => Date
 	field :daypart
 	field :remark, :type => String
+
+	def trim_daypart
+		self.daypart.delete("")
+	end
 
 	def self.events_for_date_range(start_d, end_d, find_options = {})
 		where(find_options.merge(self.end_at_field.to_sym.lt => end_d.to_time.utc,

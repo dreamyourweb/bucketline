@@ -6,7 +6,7 @@ class AvailableDate
 	has_event_calendar
 
 	belongs_to :profile
-	before_save :set_start_and_end_date
+	before_save :set_start_and_end_date, :trim_daypart
 	
 	attr_accessible :date, :daypart
 
@@ -14,6 +14,10 @@ class AvailableDate
 	field :start_at, :type => Date
   field :end_at, :type => Date
 	field :daypart
+
+	def trim_daypart
+		self.daypart.delete("")
+	end
 
 	def set_start_and_end_date
 		self.start_at = self.date

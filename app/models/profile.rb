@@ -18,7 +18,7 @@ class Profile
 		self.items << item
 	end
 
-	def remove_item(amount, item)
+	def remove_item(item)
 		self.items.delete(item)
 	end
 end

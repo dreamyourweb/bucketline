@@ -7,6 +7,8 @@ class Item
 	belongs_to :project
 	has_and_belongs_to_many :profiles, :dependent => :nullify #All the users that have contributed to this item
 
+	before_save :trim_daypart
+
 	validates_numericality_of :amount
 	#validates_format_of :type, :with => /^help\z|^tool\z|^material\z/
 
@@ -18,6 +20,10 @@ class Item
 	field :end_at, :type => Date
 	field :daypart
 	
+	def trim_daypart
+		self.daypart.delete("")
+	end
+
 	def items_left
 		self.amount - self.profiles.count
 	end
@@ -34,7 +40,7 @@ class Item
 		self.profiles << profile
 	end
 
-	def remove_profile(amount, profile)
+	def remove_profile(profile)
 		self.profiles.delete(profile)
 	end
 

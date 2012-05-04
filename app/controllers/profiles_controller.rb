@@ -77,8 +77,8 @@ class ProfilesController < ApplicationController
 		@profile = Profile.find(params[:profile_id])
 		@item = Item.find(params[:id])
 		if @profile == current_user.profile
-			@profile.remove_item(1, @item)
-			@item.remove_profile(1, @profile)
+			@profile.remove_item(@item)
+			@item.remove_profile(@profile)
 			redirect_to profile_path(@profile), :notice => "Bijdrage is ingetrokken."
 		else
 			redirect_to profile_path(@profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."
