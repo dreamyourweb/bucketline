@@ -19,7 +19,6 @@ Feature: User offers help
 		When I go to the dashboard page
 		And I provide 1 item
 		And I go to the dashboard page
-		And show me the user
 		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
@@ -28,3 +27,12 @@ Feature: User offers help
 		And I provide 1 item
 		And I click on a project
 		Then I should see "Laatst bijgedragen door User"
+
+	@wip
+	Scenario: Retreat help
+		When I go to the dashboard page
+		And I provide 1 item
+		And I follow "Mijn profiel"
+		Then I should see "Mijn item"
+		When I follow "bijdrage intrekken"
+		Then I should not see "Mijn item"

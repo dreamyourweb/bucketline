@@ -7,6 +7,7 @@
 		<th>Expertise</th>		
 		<th>Kan helpen met</th>		
 		<th>Gereedschappen en materialen</th>		
+		<th>Email</th>		
 	</tr>
 	<% @available_dates.each do |date| %>
 		<tr>
@@ -16,6 +17,7 @@
 			<td><%= date.profile.expertise %></td>
 			<td><%= date.profile.willing_to_help_with %></td>
 			<td><%= date.profile.tools_and_materials %></td>
+			<td><%= date.profile.user.email %></td>
 		</tr>
 	<% end %>	
 </table>

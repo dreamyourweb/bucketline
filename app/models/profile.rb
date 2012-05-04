@@ -13,8 +13,10 @@ class Profile
   field :tools_and_materials, :type => String
 
 	def link_to_item(amount, item)
-		amount.times do
-			self.items << item
-		end
+		self.items << item
+	end
+
+	def remove_item(amount, item)
+		self.items.delete(item)
 	end
 end

@@ -21,6 +21,7 @@ HvO::Application.routes.draw do
 	get "available_dates/info"
 	get "items/info"
 	get "profile/:id/info", :to => "profiles#info", :as => "profile_info"
+	get "profile/:profile_id/item/:id", :to => "profiles#remove_item", :as => "remove_item_from_profile"
 	get "dashboard", :to => "items#dashboard"
 
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}

@@ -31,9 +31,11 @@ class Item
 	end
 
 	def link_to_profile(amount, profile)
-		amount.times do
-			self.profiles << profile
-		end
+		self.profiles << profile
+	end
+
+	def remove_profile(amount, profile)
+		self.profiles.delete(profile)
 	end
 
 	#def decrease_amount(number = 1, current_user_name)

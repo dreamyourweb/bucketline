@@ -18,10 +18,6 @@ Given /^I am logged in as a user$/ do
   login(@user.email, 'foobar')
 end
 
-When /^show me the user$/ do
-  p @user.profile
-end
-
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
   @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar')
 	if @specialist.profile.nil?
