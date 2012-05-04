@@ -64,17 +64,24 @@ module ApplicationHelper
 	end
 
 	def build_event_text(event)
-		text = ""
-		if !event.daypart.nil?
-			event.daypart.each do |daytext|
-				if daytext != ""
-					text << "#{daytext}, "
-				end
-			end
-		end
+		text = build_daytext(event)
 		text << "<br><b>#{event.query}.</b>"
 		if !event.remark.nil?
 			text << "<br>#{event.remark}"
 		end
+	end
+
+	def build_daytext(event)
+		text = ""
+		if !event.daypart.nil?
+			event.daypart.each do |daytext|
+				if daytext != event.daypart.last
+					text << "#{daytext}, "
+				else
+					text << "#{daytext}"
+				end
+			end
+		end
+		text
 	end
 end

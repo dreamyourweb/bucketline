@@ -53,10 +53,10 @@
 		<tr>
 			<td><%= item.project.query %></td>
 			<td><%= item.name %></td>
-			<td><%= "Nog doen" %></td>
+			<td><%= "Nog doen (1)" %></td>
 			<td><%= item.start_at.to_s %></td>
 			<td><%= item.end_at.to_s %></td>
-			<td><%= get_dayparts(item) %></td>
+			<td><%= build_daytext(item) %></td>
 			<td><%= link_to "bijdrage intrekken", remove_item_from_profile_path(@profile, item) %></td>
 		</tr>
 	<% end %>	
