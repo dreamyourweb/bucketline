@@ -22,6 +22,20 @@
   <b>Ik kan de volgende gereedschappen en materialen inbrengen...</b><br>
   <%= @profile.tools_and_materials %>
 </p>
+
+<p>
+	<b>Herinneringen:</b><br>
+	<% if @profile.send_reminder_mail %>
+		- Eén dag voor een toegezegde bijdrage<br>
+	<% end %>
+	<% if @profile.send_project_placement_mail %>
+		- Als er een project wordt gepland op een dag dat ik beschikbaar ben<br>
+	<% end %>
+	<% if !@profile.send_project_placement_mail && !@profile.send_reminder_mail %>
+		Geen herinneringen ingesteld
+	<% end %>
+</p>
+
 <%= link_to 'Profiel bewerken', edit_profile_path(@profile) %>
 
 <h2>Overzicht van mijn bijdragen</h2>

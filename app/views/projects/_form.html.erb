@@ -15,13 +15,18 @@
 		<%= f.label 'Titel:' %> 
 		<%= f.text_field :query %>
  	</div>
+	<% if params[:year] %>
+		<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
+	<% else %>
+		<% pre_select_date = Date.today %>
+	<% end %>
 	<div class="date-selector">
 		<%= f.label 'Begin:' %> 
-		<%= f.date_select :start_at %>
+		<%= f.date_select :start_at, :default => pre_select_date %>
  	</div>
 	<div class="date-selector">
 		<%= f.label 'Einde:' %> 
-		<%= f.date_select :end_at %>
+		<%= f.date_select :end_at, :default => pre_select_date %>
  	</div>
 	<div class="field">
 		<%= f.label "Selecteer dagdelen" %>

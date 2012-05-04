@@ -27,7 +27,7 @@ class Project
 	def send_project_placement_mail
 		mailing_list = []
 		AvailableDate.all.each do |date|
-			if self.start_at <= date.date && self.end_at >= date.date
+			if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail
 				mailing_list << date.profile.user.email
 			end
 		end

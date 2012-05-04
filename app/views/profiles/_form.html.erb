@@ -27,7 +27,16 @@
     <%= f.label :tools_and_materials, "Ik kan de volgende gereedschappen en materialen inbrengen..." %><br />
     <%= f.text_area :tools_and_materials, :rows => 6 %>
   </div>
-
+	<br>
+  <div class="field">
+    <%= f.check_box :send_reminder_mail %>
+    Stuur mij een herinnerings-email, één dag voor een toegezegde bijdrage.
+  </div>
+  <div class="field">
+    <%= f.check_box :send_project_placement_mail %>
+    Stuur mij een email als er een project gepland wordt, op een dag dat ik beschikbaar ben.
+  </div>
+	<br>
   <div class="actions">
     <%= f.submit %>
   </div>

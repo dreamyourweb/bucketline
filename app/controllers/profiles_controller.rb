@@ -88,13 +88,17 @@ class ProfilesController < ApplicationController
 	def send_reminder_mail #sends a reminder to all the users who will contribute tomorrow
 		@profile = current_user.profile
 		User.all.each do |user|
-			item_names = ""
-			items = user.profile.items.where(:start_at => Date.tomorrow).entries
-			items.each do |item|
-				item_names << item.name + " "	
+			if user.profile.send_reminder_mail
+				item_names = ""
+				items = user.profile.items.where(:start_at => Date.tomorrow).entries
+				items.each do |item|
+					item_names << item.name + " "	
+				end
+				if !item_names.empty?
+					email = ReminderMailer.new(:item_names => item_names, :email => user.email)
+					email.deliver
+				end
 			end
-			email = ReminderMailer.new(:item_names => item_names, :email => user.email)
-			email.deliver
 		end
 		redirect_to profile_availability_dashboard_path(current_user.profile), :notice => "Herinneringen zijn gestuurd."
 	end
