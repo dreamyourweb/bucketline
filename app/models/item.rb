@@ -22,7 +22,9 @@ class Item
 	field :daypart
 
 	def trim_daypart
-		self.daypart.delete("")
+		if !self.daypart.nil?
+			self.daypart.delete("")
+		end
 	end
 
 	def remove_links
