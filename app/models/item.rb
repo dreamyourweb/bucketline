@@ -19,13 +19,18 @@ class Item
 	field :start_at, :type => Date
 	field :end_at, :type => Date
 	field :daypart
-	
+
 	def trim_daypart
 		self.daypart.delete("")
 	end
 
 	def items_left
-		self.amount - self.profiles.count
+		@items_provided = 0
+		@links = Link.where(:item_id => self.id)
+		@links.each do |link|
+			@items_provided += link.amount
+		end
+		self.amount - @items_provided
 	end
 	
 	def provided

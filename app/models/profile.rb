@@ -16,9 +16,12 @@ class Profile
 
 	def link_to_item(amount, item)
 		self.items << item
+		Link.create(:item_id => item.id, :profile_id => self.id, :amount => amount)
 	end
 
 	def remove_item(item)
 		self.items.delete(item)
+		@link = Link.where(:item_id => item.id, :profile_id => self.id)
+		@link.delete
 	end
 end

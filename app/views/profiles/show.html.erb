@@ -53,7 +53,7 @@
 		<tr>
 			<td><%= item.project.query %></td>
 			<td><%= item.name %></td>
-			<td><%= "Nog doen (1)" %></td>
+			<td><%= get_amount(@profile, item) %></td>
 			<td><%= pretty_date(item.start_at) %></td>
 			<td><%= pretty_date(item.end_at) %></td>
 			<td><%= build_daytext(item) %></td>
