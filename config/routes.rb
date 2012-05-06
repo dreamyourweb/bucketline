@@ -18,6 +18,9 @@ HvO::Application.routes.draw do
   resources :projects, :except => [:show] do
 	  resources :items, :except => [:show, :edit, :new]
 	end
+
+	resources :links, :only => [:index]
+
 	get "projects/info"
 	get "available_dates/info"
 	get "items/info"

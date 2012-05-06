@@ -12,7 +12,9 @@ module ApplicationHelper
   end
 
 	def get_active(page)
-		if page == "dashboard" && request.path_parameters[:controller] == "items"
+		if page == "links" && request.path_parameters[:controller] == "links"
+			"active"
+		elsif page == "dashboard" && request.path_parameters[:controller] == "items"
 			"active"
 		elsif page == "home" && request.path_parameters[:controller] == "home"
 			"active"
@@ -72,10 +74,14 @@ module ApplicationHelper
 	end
 
 	def build_daytext(event)
+		build_daypart_daytext(event.daypart)
+	end
+
+	def build_daypart_daytext(daypart)
 		text = ""
-		if !event.daypart.nil?
-			event.daypart.each do |daytext|
-				if daytext != event.daypart.last
+		if !daypart.nil?
+			daypart.each do |daytext|
+				if daytext != daypart.last
 					text << "#{daytext}, "
 				else
 					text << "#{daytext}"

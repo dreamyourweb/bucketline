@@ -1,0 +1,28 @@
+<h2>Overzicht van alle bijdragen</h2>
+<table class="admin-table table table-bordered table-striped">
+	<tr>
+		<th>Project</th>
+		<th>Bijdrage</th>
+		<th>Aantal voorzien</th>
+		<th>Aantal totaal</th>
+		<th>Begin datum</th>
+		<th>Eind datum</th>		
+		<th>Dagdelen</th>		
+		<th>Naam</th>		
+		<th>Email</th>		
+	</tr>
+	<% @links.each do |link| %>
+		<tr>
+			<td><%= link.project_query %></td>
+			<td><%= link.item_name %></td>
+			<td><%= link.amount %></td>
+			<td><%= link.item_total_amount %></td>
+			<td><%= pretty_date(link.item_start_at) %></td>
+			<td><%= pretty_date(link.item_end_at) %></td>
+			<td><%= build_daypart_daytext(link.item_daypart) %></td>
+			<td><%= link.contributor_name %></td>
+			<td><%= link.contributor_email %></td>
+		</tr>
+	<% end %>	
+</table>
+
