@@ -45,4 +45,15 @@ describe Item do
 			@item.items_left.should == 1		
 		end
 	end
+
+	describe ".remove_links" do
+		it "should remove the links to profiles upon deletion of the item" do
+			Link.where(:item_id => @item.id, :profile_id => @profile.id).length.should == 0
+			@item.link_to_profile(1, @profile)
+			@profile.link_to_item(1, @item)
+			Link.where(:item_id => @item.id, :profile_id => @profile.id).length.should == 1
+			@item.destroy
+			Link.where(:item_id => @item.id, :profile_id => @profile.id).length.should == 0
+		end
+	end
 end

@@ -29,6 +29,6 @@ class Profile
 	def remove_item(item)
 		self.items.delete(item)
 		@link = Link.where(:item_id => item.id, :profile_id => self.id)
-		@link.delete
+		@link.destroy
 	end
 end
