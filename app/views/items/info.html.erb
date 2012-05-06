@@ -3,6 +3,6 @@
 	<% if user_signed_in? %>
 		<p>Om iets bij te dragen vul je een aantal in en klik je op "Dit wil ik bijdragen!" In <%= link_to "je profiel", profile_path(current_user.profile) %> vind je een overzicht van alle bijdragen die je hebt geleverd.</p>
 	<% else %>
-		<p>Om bij te dragen moet je <%= link_to "jezelf eerst aanmelden", login_path %>, zodat we alles in goede banen kunnen leiden. Dit duurt ongeveer dertig seconden.</p>
+		<p>Om bij te dragen moet je <%= link_to "jezelf eerst aanmelden", new_user_registration_path %>, zodat we alles in goede banen kunnen leiden. Dit duurt ongeveer dertig seconden.</p>
 	<% end %> 
 </div>
