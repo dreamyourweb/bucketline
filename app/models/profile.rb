@@ -7,6 +7,8 @@ class Profile
 
 	accepts_nested_attributes_for :available_dates, :allow_destroy => true
 
+	before_destroy :remove_links
+
   field :name, :type => String
   field :expertise, :type => String
   field :willing_to_help_with, :type => String
@@ -17,6 +19,11 @@ class Profile
 	def link_to_item(amount, item)
 		self.items << item
 		Link.create(:item_id => item.id, :profile_id => self.id, :amount => amount)
+	end
+
+	def remove_links
+		@links = Link.where(:profile_id => self.id)
+		@links.delete_all
 	end
 
 	def remove_item(item)

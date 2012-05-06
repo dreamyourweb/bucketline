@@ -8,6 +8,7 @@ class Item
 	has_and_belongs_to_many :profiles, :dependent => :nullify #All the users that have contributed to this item
 
 	before_save :trim_daypart
+	before_destroy :remove_links
 
 	validates_numericality_of :amount
 	#validates_format_of :type, :with => /^help\z|^tool\z|^material\z/
@@ -22,6 +23,11 @@ class Item
 
 	def trim_daypart
 		self.daypart.delete("")
+	end
+
+	def remove_links
+		@links = Link.where(:item_id => self.id)
+		@links.delete_all
 	end
 
 	def items_left
