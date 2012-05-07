@@ -90,10 +90,10 @@ class ProfilesController < ApplicationController
 		@profile = current_user.profile
 		User.all.each do |user|
 			if user.profile.send_reminder_mail
-				item_names = ""
+				item_names = []
 				items = user.profile.items.where(:start_at => Date.tomorrow).entries
 				items.each do |item|
-					item_names << item.name + " "	
+					item_names << item.name	
 				end
 				if !item_names.empty?
 					email = ReminderMailer.new(:item_names => item_names.to_sentence, :email => user.email)
