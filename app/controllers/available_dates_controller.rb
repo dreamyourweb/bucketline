@@ -43,6 +43,7 @@ class AvailableDatesController < ApplicationController
 
 	def new
     @available_date = @profile.available_dates.new
+		render :layout => false
 	end
 
   def create

@@ -29,7 +29,6 @@ HvO::Application.routes.draw do
 	get "dashboard", :to => "items#dashboard"
 
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

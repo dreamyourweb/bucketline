@@ -65,6 +65,15 @@ module ApplicationHelper
 		end
 	end
 
+	#Override for event_calendar gem
+  def day_link(text, date, day_action)
+		if request.path_parameters[:controller] == "available_dates"
+    	link_to(text, params.merge(:action => day_action, :year => date.year, :month => date.month, :day => date.day), :class => 'ec-day-link fancybox')
+		else
+    	link_to(text, params.merge(:action => day_action, :year => date.year, :month => date.month, :day => date.day), :class => 'ec-day-link')
+		end
+  end
+
 	def build_event_text(event)
 		text = build_daytext(event)
 		text << "<br><b>#{event.query}.</b>"
