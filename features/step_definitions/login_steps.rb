@@ -34,12 +34,12 @@ def login(email, password)
     visit('/login')
     fill_in('Email', :with => email)
     fill_in('Password', :with => password)
-    click_button('Sign in')
+    click_button('Inloggen')
 end
 
 def register(email, password)
   fill_in "Email", :with => email
   fill_in "Wachtwoord", :with => password
   fill_in "Wachtwoord bevestigen", :with => password
-  click_button "Registreer"
+  click_button "Registreren"
 end
