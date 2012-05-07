@@ -77,7 +77,11 @@ class ProfilesController < ApplicationController
 	def remove_item
 		@profile = Profile.find(params[:profile_id])
 		@item = Item.find(params[:id])
-		if @profile == current_user.profile
+		if current_user.admin
+			@profile.remove_item(@item)
+			@item.remove_profile(@profile)
+			redirect_to links_path(@profile), :notice => "Bijdrage is ingetrokken."
+		elsif @profile == current_user.profile
 			@profile.remove_item(@item)
 			@item.remove_profile(@profile)
 			redirect_to profile_path(@profile), :notice => "Bijdrage is ingetrokken."

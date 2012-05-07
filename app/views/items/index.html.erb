@@ -33,5 +33,5 @@
 
 <% if current_user && current_user.admin %>
 	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
-	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd" %>
+	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd." %>
 <% end %>
