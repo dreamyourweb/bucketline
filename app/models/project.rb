@@ -38,7 +38,7 @@ class Project
 		end
 		mailing_list.uniq!
 		mailing_list.each do |mail|
-			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at.to_s, :project_end_at => self.end_at.to_s, :project_dayparts => self.daypart.to_s)
+			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at.to_formatted_s(:rfc822), :project_end_at => self.end_at.to_formatted_s(:rfc822), :project_dayparts => self.daypart.to_sentence)
 			email.deliver
 		end
 	end

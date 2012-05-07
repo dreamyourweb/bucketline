@@ -96,7 +96,7 @@ class ProfilesController < ApplicationController
 					item_names << item.name + " "	
 				end
 				if !item_names.empty?
-					email = ReminderMailer.new(:item_names => item_names, :email => user.email)
+					email = ReminderMailer.new(:item_names => item_names.to_sentence, :email => user.email)
 					email.deliver
 				end
 			end

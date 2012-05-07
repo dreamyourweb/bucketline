@@ -7,9 +7,9 @@ class ProjectPlacementMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Er is een project aangemaakt op een datum dat je beschikbaar bent",
+      :subject => "Huis van Overvloed - Er is een project aangemaakt op een datum dat je beschikbaar bent",
       :to => %(<#{email}>),
-      :from => "thijsvdlaar@hotmail.com"
+      :from => "no-reply@waardeverbinder.nl"
     }
   end
 end

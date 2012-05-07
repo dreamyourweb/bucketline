@@ -7,7 +7,7 @@ class HelpMailer < MailForm::Base
     {
       :subject => "Iemand heeft aangegeven om iets bij te dragen",
       :to => "thijsvdlaar@hotmail.com",
-      :from => "thijsvdlaar@hotmail.com"
+      :from => "no-reply@waardeverbinder.nl"
     }
   end
 end
