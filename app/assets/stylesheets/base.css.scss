@@ -65,7 +65,7 @@ blockquote {
 }
 
 .item-details {
-	font-style:italic;
+	/*font-style:italic;*/
 	padding-bottom:5px;
 	font-size:11px;
 }
@@ -84,4 +84,10 @@ blockquote {
 
 .providing-calendar {
 	color:#ccccff !important;
+}
+
+.ec-calendar-header thead tr {
+	text-align:top !important;
+	height:35px !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans serif !important;
 }
