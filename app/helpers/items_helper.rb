@@ -22,16 +22,17 @@ module ItemsHelper
 
 	def get_contributors(item)
 		contributors = ""
-		if !item.profiles.empty?
+		profiles = item.profiles.where(:name.ne => "", :name.exists => true)
+		if !profiles.empty?
 			contributors << " Bijdragers zijn "
-			item.profiles.each do |profile|
-				if item.profiles.length == 1
+			profiles.each do |profile|
+				if profiles.length == 1
 					contributors << profile.name
-				elsif profile == item.profiles.first
+				elsif profile == profiles.first
 					contributors << profile.name
-				elsif profile == item.profiles.entries.last(2).first
+				elsif profile == profiles.entries.last(2).first
 					contributors << profile.name
-				elsif profile == item.profiles.last
+				elsif profile == profiles.last
 					contributors << " en " + profile.name
 				else
 					contributors << profile.name + ", "

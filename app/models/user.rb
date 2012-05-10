@@ -48,7 +48,7 @@ class User
 
 	def check_or_create_profile
 		if self.profile.nil?
-			self.profile = Profile.create(:name => "Anoniempje")
+			self.profile = Profile.create #(:name => "Anoniempje")
 		end
 	end
 end
