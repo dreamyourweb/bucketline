@@ -21,7 +21,7 @@
 						<% if user_signed_in? %>
 							Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %>
 						<% else %>
-							Log in of meld je aan om bij te dragen
+							<%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen.
 						<% end %>
 					<% end %>
 				<% end %>
