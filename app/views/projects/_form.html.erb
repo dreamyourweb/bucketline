@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for(@project, :html => {:class => "form-horizontal"}) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,39 +11,49 @@
     </div>
   <% end %>
 
-	<div>
-		<%= f.label 'Titel:' %> 
-		<%= f.text_field :query %>
+	<div class="control-group">
+		<%= f.label 'Titel:', :class => "control-label" %>
+		<div class="controls"> 
+			<%= f.text_field :query %>
+		</div>
  	</div>
 	<% if params[:year] %>
 		<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
 	<% else %>
 		<% pre_select_date = Date.today %>
 	<% end %>
-	<div class="date-selector">
-		<%= f.label 'Begin:' %> 
-		<%= f.date_select :start_at, :default => pre_select_date %>
+	<div class="date-selector control-group">
+		<%= f.label 'Begin:', :class => "control-label" %> 
+		<div class="controls"> 
+			<%= f.date_select :start_at, :default => pre_select_date %>
+		</div>
  	</div>
-	<div class="date-selector">
-		<%= f.label 'Einde:' %> 
-		<%= f.date_select :end_at, :default => pre_select_date %>
+	<div class="date-selector control-group">
+		<%= f.label 'Einde:', :class => "control-label" %> 
+		<div class="controls"> 
+			<%= f.date_select :end_at, :default => pre_select_date %>
+		</div>
  	</div>
-	<div class="field">
-		<%= f.label "Selecteer dagdelen" %>
-		<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+	<div class="field control-group">
+		<%= f.label "Selecteer dagdelen:", :class => "control-label" %>
+		<div class="controls"> 
+			<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+		</div>
 	</div>
-	<div>
-		<%= f.label 'Opmerkingen:' %> 
-		<%= f.text_field :remark %>
+	<div class="control-group">
+		<%= f.label 'Opmerkingen:', :class => "control-label" %> 
+		<div class="controls"> 
+			<%= f.text_field :remark %>
+		</div>
  	</div>
 	<hr>
 
   <%= f.fields_for :items do |builder| %>
 		<%= render "item_fields", :f => builder %>
 	<% end %>
-	<p><%= link_to_add_fields "Benodigdheid toevoegen", f, :items %></p>
+	<p><%= link_to_add_fields "Extra benodigdheid toevoegen", f, :items %></p>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions" style="padding-left:20px;">
+    <%= f.submit "Project en items opslaan", :class => "btn btn-primary" %>
   </div>
 <% end %>

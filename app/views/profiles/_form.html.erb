@@ -1,4 +1,4 @@
-<%= form_for(@profile) do |f| %>
+<%= form_for(@profile, :html => {:class => "form-horizontal"}) do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -11,33 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, "Naam:" %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, "Naam:", :class => "control-label" %>
+		<div class="controls">
+		  <%= f.text_field :name %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :expertise, "Waar ben je goed in?" %><br />
-    <%= f.text_field :expertise %>
+  <div class="control-group">
+    <%= f.label :expertise, "Ik ben goed in:", :class => "control-label" %>
+		<div class="controls">
+	    <%= f.text_field :expertise %>
+		</div>
   </div>
-  <div class="field">
-    <%= f.label :willing_to_help_with, "Ik kan helpen met..." %><br />
-    <%= f.text_area :willing_to_help_with, :rows => 6 %>
-  </div>
-  <div class="field">
-    <%= f.label :tools_and_materials, "Ik kan de volgende gereedschappen en materialen inbrengen..." %><br />
-    <%= f.text_area :tools_and_materials, :rows => 6 %>
+  <div class="control-group">
+    <%= f.label :willing_to_help_with, "Ik kan helpen met:", :class => "control-label" %>
+		<div class="controls">
+	    <%= f.text_area :willing_to_help_with, :rows => 6 %>
+		</div> 
+	</div>
+  <div class="control-group">
+    <%= f.label :tools_and_materials, "Ik kan de volgende gereedschappen en materialen inbrengen:", :class => "control-label" %>
+		<div class="controls">
+	    <%= f.text_area :tools_and_materials, :rows => 6 %>
+		</div>
   </div>
 	<br>
-  <div class="field">
-    <%= f.check_box :send_reminder_mail %>
-    Stuur mij een herinnerings-email, één dag voor een toegezegde bijdrage.
+  <div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+		  	<%= f.check_box :send_reminder_mail %>
+		  	Stuur mij een herinnerings-email, één dag voor een toegezegde bijdrage.
+			</label>
+		</div>
   </div>
-  <div class="field">
-    <%= f.check_box :send_project_placement_mail %>
-    Stuur mij een email als er een project gepland wordt, op een dag dat ik beschikbaar ben.
+  <div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+		    <%= f.check_box :send_project_placement_mail %>
+		    Stuur mij een email als er een project gepland wordt, op een dag dat ik beschikbaar ben.
+			</label>
+		</div>
   </div>
 	<br>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions" style="padding-left:20px;">
+    <%= f.submit "Profiel opslaan", :class => "btn btn-primary" %>
   </div>
 <% end %>

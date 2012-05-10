@@ -1,17 +1,34 @@
 <h2>Inloggen</h2>
 <br>
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %>
-  <%= f.email_field :email %></div>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+  <div class="control-group">
+		<%= f.label :email, :class => "control-label" %>
+		<div class="controls"> 
+		  <%= f.email_field :email %>
+		</div>
+	</div>
 
-  <div><%= f.label "Wachtwoord" %>
-  <%= f.password_field :password %></div>
+  <div class="control-group">
+		<%= f.label "Wachtwoord", :class => "control-label" %>
+		<div class="controls"> 
+		  <%= f.password_field :password %>
+		</div>
+	</div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label "Onthoud mij" %></div>
+    <div class="control-group">
+			<div class="controls">
+				<label class="checkbox">
+					<%= f.check_box :remember_me %> 
+					<%= f.label "Onthoud mij" %>
+				</label>
+			</div>
+		</div>
   <% end -%>
 
-  <div><%= f.submit "Inloggen" %></div>
+  <div class="form-actions">
+		<%= f.submit "Inloggen", :class => "btn btn-primary" %>
+	</div>
 <% end %>
 
 <%= render "links" %>

@@ -1,38 +1,50 @@
 <blockquote class="fields smaller-font">
 	<p>
-		<div>
-			<%= f.label :name, "Benodigdheid:" %>
-			<%= f.text_field :name %>
+		<div class="control-group">
+			<%= f.label :name, "Benodigdheid:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.text_field :name %>
+			</div>
  		</div>
-		<div>
-			<%= f.label :type, "Type:" %>
-			<%= f.select :type, [['Handjes', 'help'],['Gereedschappen', 'tool'],['Materiaal','material']] %>
- 		</div>
-		<div>
-			<%= f.label :amount, "Aantal:" %>    
-			<%= f.text_field :amount %>
+		<div class="control-group">
+			<%= f.label :type, "Type:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.select :type, [['Handjes', 'help'],['Gereedschappen', 'tool'],['Materiaal','material']] %>
+			</div> 
+		</div>
+		<div class="control-group">
+			<%= f.label :amount, "Aantal:", :class => "control-label" %>    
+			<div class="controls"> 
+				<%= f.text_field :amount %>
+			</div>
  		</div>
 		<% if params[:year] %>
 			<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
 		<% else %>
 			<% pre_select_date = Date.today %>
 		<% end %>
-		<div class="date-selector">
-			<%= f.label 'Nodig van:' %> 
-			<%= f.date_select :start_at, :default => pre_select_date %>
+		<div class="date-selector control-group">
+			<%= f.label 'Nodig van:', :class => "control-label" %> 
+			<div class="controls"> 
+				<%= f.date_select :start_at, :default => pre_select_date %>
+			</div>
 	 	</div>
-		<div class="date-selector">
-			<%= f.label 'Tot en met:' %> 
-			<%= f.date_select :end_at, :default => pre_select_date %>
+		<div class="date-selector control-group">
+			<%= f.label 'Tot en met:', :class => "control-label" %> 
+			<div class="controls"> 
+				<%= f.date_select :end_at, :default => pre_select_date %>
+			</div>
 	 	</div>
-		<div class="field">
-			<%= f.label "Selecteer dagdelen" %>
-			<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+		<div class="field control-group">
+			<%= f.label "Selecteer dagdelen", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+			</div>
 		</div>
 	</p>
-	<p>
+	<div class="control-group">
 		<%= link_to_remove_fields "Verwijder benodigdheid", f %>
-	</p>
+	</div>
 </blockquote>
 <hr>	
 
