@@ -25,7 +25,7 @@
 .well {
 	margin-bottom:0px;
 	margin-top:20px;
-	border-radius: 4px 4px 0 0;
+	/*border-radius: 4px 4px 0 0;*/
 }
 
 .comments{
@@ -76,4 +76,12 @@ blockquote {
 
 .admin-table {
 	width:100%;
+}
+
+.providing {
+	background-color:#ccccff;
+}
+
+.providing-calendar {
+	color:#ccccff !important;
 }

@@ -1,4 +1,4 @@
-<div class="well">
+<div class = "well <%= get_item_color_class(item) %>" >
 	<% if item.provided %>
 		<h3><%= item.name %></h3>
 		<p class="item-details">- Project: <%= item.project.query %>.<br>- Item nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>.<br>- Deze bijdrage is al voorzien.<%= get_contributors(item) %>.</p>
