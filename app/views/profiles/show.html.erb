@@ -1,8 +1,6 @@
-<div class="row">
-	<%= link_to profile_info_path(current_user.profile), :class => "fancybox" do %>
-		<i class="icon-question-sign pull-right"></i>
-	<% end %>
-</div>
+<%= link_to profile_info_path(current_user.profile), :class => "fancybox" do %>
+	<%= image_tag "help.png", :class => "help-icon" %>
+<% end %>
 <h2>Mijn gegevens</h2>
 <p>
   <b>Naam:</b><br>
