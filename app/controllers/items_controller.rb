@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
   end
 
 	def dashboard
-    @help = Item.where(:type => "help").order_by(:updated_at, :desc)
-    @tools = Item.where(:type => "tool").order_by(:updated_at, :desc)
-    @materials = Item.where(:type => "material").order_by(:updated_at, :desc)
+    @help = Item.where(:type => "help").order_by(:start_at, :asc)
+    @tools = Item.where(:type => "tool").order_by(:start_at, :asc)
+    @materials = Item.where(:type => "material").order_by(:start_at, :asc)
 
     respond_to do |format|
       format.html # index.html.erb
