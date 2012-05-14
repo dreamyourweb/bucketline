@@ -50,4 +50,14 @@ module ItemsHelper
 		end
 		contributors
 	end
+
+	def get_icon(item)
+		if item.type == 'help'
+			"icon-user"
+		elsif item.type == 'tool'
+			"icon-wrench"
+		else
+			"icon-home"
+		end
+	end
 end
