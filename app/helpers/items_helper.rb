@@ -32,7 +32,7 @@ module ItemsHelper
 		contributors = ""
 		profiles = item.profiles.where(:name.ne => "", :name.exists => true)
 		if !profiles.empty?
-			contributors << " Bijdragers zijn "
+			contributors << " Bijdragers zijn: "
 			profiles.each do |profile|
 				if profiles.length == 1
 					contributors << profile.name
@@ -46,6 +46,7 @@ module ItemsHelper
 					contributors << profile.name + ", "
 				end
 			end
+			contributors << "."
 		end
 		contributors
 	end

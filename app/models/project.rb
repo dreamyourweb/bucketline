@@ -36,9 +36,14 @@ class Project
 				mailing_list << date.profile.user.email
 			end
 		end
-		mailing_list.uniq!
-		mailing_list.each do |mail|
-			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at.to_formatted_s(:rfc822), :project_end_at => self.end_at.to_formatted_s(:rfc822), :project_dayparts => self.daypart.to_sentence)
+		User.all.each do |user|
+			if user.profile.always_send_project_placement_mail
+				mailing_list << user.email
+			end
+		end
+		unique_mailing_list = mailing_list.uniq
+		unique_mailing_list.each do |mail|
+			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => l(self.start_at, :format => '%d %B %Y'), :project_end_at => l(self.end_at, :format => '%d %B %Y'), :project_dayparts => self.daypart.to_sentence)
 			email.deliver
 		end
 	end

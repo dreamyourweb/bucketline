@@ -14,7 +14,8 @@ class Profile
   field :willing_to_help_with, :type => String
   field :tools_and_materials, :type => String
 	field :send_reminder_mail, :type => Boolean, :default => true
-	field :send_project_placement_mail, :type => Boolean, :default => true
+	field :send_project_placement_mail, :type => Boolean, :default => false
+	field :always_send_project_placement_mail, :type => Boolean, :default => true
 
 	def link_to_item(amount, item)
 		self.items << item
