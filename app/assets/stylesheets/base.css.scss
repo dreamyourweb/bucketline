@@ -1,5 +1,12 @@
 @import "bootstrap";
 
+html, body{
+	height:100%;
+}
+
+.container{
+	min-height:80%;
+}
 dt {
 	margin-top:10px;
 }
@@ -51,6 +58,7 @@ blockquote {
 	padding-bottom:20px;
 	background-color:#F5F5F5;
 	border: 1px solid rgba(0, 0, 0, 0.05);
+	height:100px;
 }
 
 .highlight {
