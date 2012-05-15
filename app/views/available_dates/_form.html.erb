@@ -12,7 +12,8 @@
   <% end %>
 
 	<div class="field">
-		<%= f.label "Selecteer dagdelen" %>
+		<h2>Selecteer dagdelen</h2>
+		<p><sub>(Houd ctrl ingedrukt om meerdere te selecteren)</sub></p>
 		<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
 	</div>
 
@@ -24,4 +25,6 @@
   <div class="actions">
     <%= f.submit "Opslaan" %>
   </div>
+
+	<p><sub>Ochtend: 9:00 - 12:00; middag: 12:00 - 17:00;<br>avond: 17:00 - 21:00; nacht: 21:00 - 0:00.</sub></p>
 <% end %>

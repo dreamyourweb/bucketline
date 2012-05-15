@@ -1,8 +1,8 @@
 <div class="row pull-right">
 	<% if user_signed_in? %>
-		<%= link_to "Uitloggen", root_url + "logout" %>
+		<%= link_to "Uitloggen", logout_path %>
 	<% else %>
-		<%= link_to "Inloggen of registreren", root_url + "login" %>
+		<%= link_to "Inloggen", login_path %> of <%= link_to "registreren", new_user_registration_path %>
 	<% end %>
 </div>
 <nav class="row">

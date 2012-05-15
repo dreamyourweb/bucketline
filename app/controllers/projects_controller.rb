@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path, notice: 'De vraag is geplaatst' }
+        format.html { redirect_to projects_path, notice: 'Het project is geplaatst' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

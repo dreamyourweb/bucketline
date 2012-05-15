@@ -23,7 +23,7 @@
     when /\n/
       raw(simple_format(h(value)))
     when Time, DateTime, Date
-      I18n.l(value)
+      I18n.l(value, :format => '%d %B %Y')
     else
       value
     end
