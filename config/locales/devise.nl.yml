@@ -84,9 +84,13 @@ nl:
       send_instructions: "Je ontvangt een e-mail met instructies om je wachtwoord opnieuw in te stellen."
       updated: "Je wachtwoord is veranderd. Je bent nu ingelogd."
     registrations:
-      destroyed: "Tot ziens! Je account is succesvol verwijderd. We hopen je snel terug te zien."
-      signed_up: "Je bent succesvol geregistreerd. Indien geactiveerd, ontvang je een bevestigingsmail."
-      updated: "Je account is succesvol geüpdate."
+      signed_up: 'Welkom! Je bent succesvol aangemeld.'
+      signed_up_but_unconfirmed: 'Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen.'
+      signed_up_but_inactive: 'Je bent succesvol aangemeld. We konden je echter niet inloggen, omdat je registratie nog niet geactiveerd is.'
+      signed_up_but_locked: 'Je bent succesvol aangemeld. We konden je echter niet inloggen, omdat je registratie bevroren is.'
+      updated: 'Je registratie is succesvol aangepast.'
+      update_needs_confirmation: "Je registratie is succesvol aangepast. We moeten echter eerst je e-mail adres bevestigen. Kijk in je inbox voor de e-mail met je bevestigingslink."
+      destroyed: 'Je registratie is succesvol verwijderd. Doei!'
     sessions:
       new:
         alpha_software: "Je staat op het punt om alpha software te gebruiken."
