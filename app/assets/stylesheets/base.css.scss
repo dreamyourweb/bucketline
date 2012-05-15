@@ -58,7 +58,7 @@ blockquote {
 	padding-bottom:20px;
 	background-color:#F5F5F5;
 	border: 1px solid rgba(0, 0, 0, 0.05);
-	height:100px;
+	height:80px;
 }
 
 .highlight {
@@ -104,6 +104,11 @@ blockquote {
 	text-align:top !important;
 	height:35px !important;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans serif !important;
+}
+
+.ec-day-link {
+	color:#0088cc !important;
+	text-decoration:underline;
 }
 
 .help-icon {
