@@ -24,7 +24,7 @@ class Profile
 
 	def remove_links
 		@links = Link.where(:profile_id => self.id)
-		@links.delete_all
+		@links.destroy
 	end
 
 	def remove_item(item)

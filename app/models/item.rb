@@ -29,7 +29,7 @@ class Item
 
 	def remove_links
 		@links = Link.where(:item_id => self.id)
-		@links.delete_all
+		@links.destroy
 	end
 
 	def items_left
