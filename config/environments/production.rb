@@ -63,5 +63,5 @@ HvO::Application.configure do
   config.active_support.deprecation = :notify
 
 	#TODO change to actual hostname
-  config.action_mailer.default_url_options = { :host => 'http://waardeverbinder.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'waardeverbinder.herokuapp.com' }
 end
