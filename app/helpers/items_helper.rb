@@ -55,7 +55,7 @@ module ItemsHelper
 		if item.type == 'help'
 			"icon-user"
 		elsif item.type == 'tool'
-			"icon-wrench"
+			"icon-cog"
 		else
 			"icon-home"
 		end

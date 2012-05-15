@@ -2,42 +2,30 @@
 	<%= image_tag "help.png", :class => "help-icon" %>
 <% end %>
 <h2>Mijn gegevens</h2>
-<p>
-  <b>Naam:</b><br>
-  <%= @profile.name %>
-</p>
-<p>
-  <b>Waar ben je goed in?</b><br>
-  <%= @profile.expertise %>
-</p>
-
-<p>
-  <b>Ik kan helpen met...</b><br>
-  <%= @profile.willing_to_help_with %>
-</p>
-
-<p>
-  <b>Ik kan de volgende gereedschappen en materialen inbrengen...</b><br>
-  <%= @profile.tools_and_materials %>
-</p>
-
-<p>
-	<b>Herinneringen:</b><br>
+<dl>
+	<dt>Naam</dt>
+	<dd><%= @profile.name %></dd>
+	<dt>Ik ben goed in</dt>
+	<dd><%= @profile.expertise %></dd>
+	<dt>Ik kan helpen met</dt>
+	<dd><%= @profile.willing_to_help_with %></dd>
+	<dt>Ik kan de volgende gereedschappen en materialen inbrengen</dt>
+	<dd><%= @profile.tools_and_materials %></dd>
+	<dt>Herinneringen per mail</dt>
 	<% if @profile.send_reminder_mail %>
-		- Eén dag voor een toegezegde bijdrage<br>
+		<dd>Eén dag voor een toegezegde bijdrage</dd>
 	<% end %>
 	<% if @profile.always_send_project_placement_mail %>
-		- Als er een nieuw project wordt gepland<br>
+		<dd>Als er een nieuw project wordt gepland</dd>
 	<% end %>
 	<% if @profile.send_project_placement_mail %>
-		- Als er een project wordt gepland op een dag dat ik beschikbaar ben<br>
+		<dd>Als er een project wordt gepland op een dag dat ik beschikbaar ben</dd>
 	<% end %>
 	<% if !@profile.send_project_placement_mail && !@profile.send_reminder_mail %>
-		Geen herinneringen ingesteld
+		<dd>Geen herinneringen ingesteld</dd>
 	<% end %>
-</p>
-
-<%= link_to 'Profiel bewerken', edit_profile_path(@profile) %>
+</dl>
+<p><%= link_to 'Profiel bewerken', edit_profile_path(@profile) %></p><br>
 
 <h2>Overzicht van mijn bijdragen</h2>
 <table class="admin-table table table-bordered table-striped">

@@ -6,7 +6,7 @@
 			<p>Project: <%= item.project.query %>.<br>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>.<%= get_contributors(item) %></p>
 
 			<% if user_signed_in? %>
-				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %></p>
+				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>
 			<% else %>
 				<p><%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen</p>
 			<% end %>
