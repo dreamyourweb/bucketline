@@ -1,5 +1,6 @@
 <p>Welkom <%= @resource.email %>!</p>
 
+<p>Ontzettend tof dat je wilt meehelpen aan de bouw van het Huis van Overvloed!</p>
 <p>Je kunt je aanmelding bevestigen door op de onderstaande link te klikken:</p>
 
 <p><%= link_to 'Bevestig mijn aanmelding', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

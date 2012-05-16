@@ -6,7 +6,7 @@ HvO::Application.routes.draw do
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
 		get "availability_dashboard", :to => "available_dates#availability_dashboard"
-		get "send_reminder", :to => "profiles#send_reminder_mail"
+		#get "send_reminder", :to => "profiles#send_reminder_mail"
 	end
 
   devise_for :users

@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
 	before_filter :authenticate_user!
-	before_filter :authenticate_admin, :only => [:send_reminder_mail]
 
   # GET /profiles/1
   # GET /profiles/1.json
@@ -88,24 +87,6 @@ class ProfilesController < ApplicationController
 		else
 			redirect_to profile_path(@profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."
 		end
-	end
-
-	def send_reminder_mail #sends a reminder to all the users who will contribute tomorrow
-		@profile = current_user.profile
-		User.all.each do |user|
-			if user.profile.send_reminder_mail
-				item_names = []
-				items = user.profile.items.where(:start_at => Date.tomorrow).entries
-				items.each do |item|
-					item_names << item.name	
-				end
-				if !item_names.empty?
-					email = ReminderMailer.new(:item_names => item_names.to_sentence, :email => user.email)
-					email.deliver
-				end
-			end
-		end
-		redirect_to profile_availability_dashboard_path(current_user.profile), :notice => "Herinneringen zijn gestuurd."
 	end
 
 	def info
