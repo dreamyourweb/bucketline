@@ -8,6 +8,7 @@ class User
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	before_save :check_or_create_profile
+	after_create :send_user_created_mail
 	
 	field :admin, :type => Boolean, :default => false
 
@@ -49,6 +50,13 @@ class User
 	def check_or_create_profile
 		if self.profile.nil?
 			self.profile = Profile.create #(:name => "Anoniempje")
+		end
+	end
+
+	def send_user_created_mail
+		User.where(:admin => true).each do |admin|
+			mail = UserCreatedMailer.new(:email => admin.email, :user_email => self.email)
+			mail.deliver
 		end
 	end
 end
