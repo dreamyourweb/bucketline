@@ -32,6 +32,7 @@ Given /^(?:I am not authenticated|I log out)$/ do
 end
 
 When /^a new user is registered$/ do
+  visit('/logout')
 	visit new_user_registration_path
 	register("random_new_user@test.com", "foobar")
 end

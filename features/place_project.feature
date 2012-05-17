@@ -10,5 +10,5 @@ Feature: Place a new project
 		When I go to the calendar page
 		And I follow "Plaats nieuw project"
 		And I fill in the form with a project and an item
-		And I press "Create Project"
+		And I press "Project en items opslaan"
 		Then I should see my project

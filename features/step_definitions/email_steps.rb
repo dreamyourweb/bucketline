@@ -21,9 +21,8 @@ Given /^I am available for tomorrow$/ do
 end
 
 When /^the admin plans a project for tomorrow$/ do
-  @admin = User.find_or_create_by(:email => "admin@test.com", :password => 'foobar', :password_confirmation => 'foobar')
-	@admin.update_attributes(:admin => true)
-	login("admin@test.com", "foobar")
+	%("Given I am logged out")
+	%("Given I am logged in as an admin")
 	click_link('Project kalender')
 	click_link('Plaats nieuw project')
   fill_in("project_query", :with => "Mijn project")
