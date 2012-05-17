@@ -11,7 +11,7 @@ Feature: Update profile
 		When I follow "Mijn profiel"
 		And I follow "Profiel bewerken"
 		And I change my experise
-		And I press "Update Profile"
+		And I press "Profiel opslaan"
 		Then I should see my new expertise
 
 	Scenario: Relevant profile fields

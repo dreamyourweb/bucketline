@@ -1,6 +1,6 @@
 Given /^I am logged in as an admin$/ do
   @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	@admin.update_attributes(:admin => true)
+	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
   login(@admin.email, 'foobar')
 end
@@ -11,6 +11,7 @@ end
 
 Given /^I am logged in as a user$/ do
   @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	@user.update_attributes(:confirmed_at => Time.now)
 	@user.profile.update_attributes(:name => "User", :expertise => "Hard werken")
   login(@user.email, 'foobar')
 end
@@ -30,16 +31,21 @@ Given /^(?:I am not authenticated|I log out)$/ do
   visit('/logout')
 end
 
+When /^a new user is registered$/ do
+	visit new_user_registration_path
+	register("random_new_user@test.com", "foobar")
+end
+
 def login(email, password)
     visit('/login')
-    fill_in('Email', :with => email)
-    fill_in('Password', :with => password)
+    fill_in('user_email', :with => email)
+    fill_in('user_password', :with => password)
     click_button('Inloggen')
 end
 
 def register(email, password)
-  fill_in "Email", :with => email
-  fill_in "Wachtwoord", :with => password
-  fill_in "Wachtwoord bevestigen", :with => password
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  fill_in "user_password_confirmation", :with => password
   click_button "Registreren"
 end
