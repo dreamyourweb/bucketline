@@ -5,7 +5,9 @@ describe Link do
 		before(:each) do
 			@project = Project.create(:query => "Mijn project", :start_at => Date.today, :end_at => Date.today, :daypart => ["Avond"])
 			@item = @project.items.create(:name => "Mijn item", :start_at => Date.today, :end_at => Date.today, :daypart => ["Avond"], :type => "help", :amount => 2)
-			@profile = Profile.create(:name => "Piet")
+			@user = User.create(:email => "test@dreamyourweb.nl", :password => "foobar", :password_confirmation => "foobar")
+			@user.profile.update_attributes(:name => "Piet")
+			@profile = @user.profile
 		end
 
 		it "should add amounts of dublicate links together upon creation" do
