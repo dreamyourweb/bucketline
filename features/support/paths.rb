@@ -12,6 +12,8 @@ module NavigationHelpers
       dashboard_url
     when /^the calendar page$/
       projects_url
+		when /^the admin contributions dashboard$/
+			links_url
 		when /^the home page$/
 			root_url
 

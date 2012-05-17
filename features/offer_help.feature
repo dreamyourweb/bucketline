@@ -34,4 +34,4 @@ Feature: User offers help
 		And I follow "Mijn profiel"
 		Then I should see "Mijn item"
 		When I follow "bijdrage intrekken"
-		Then I should not see "Mijn item"
+		Then I should not see "Mijn item"		

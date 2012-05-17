@@ -36,6 +36,7 @@ group :test do
   gem "database_cleaner"
   gem 'mongoid-rspec'
   gem 'guard-rspec'
+	gem 'email_spec'
 end
 
 group :production do

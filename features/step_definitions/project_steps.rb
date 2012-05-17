@@ -31,6 +31,11 @@ When /^I fill in the form with a project and an item$/ do
 	select("Middag", :from => "project_items_attributes_0_daypart")
 end
 
+When /^I delete the project$/ do
+	@project = Project.last
+	@project.delete
+end
+
 Then /^I should see my project$/ do
   page.should have_content("Mijn project")
 end
