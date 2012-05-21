@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+		@admins = User.where(:admin => true).all
     item = @project.items.build
 
     respond_to do |format|
@@ -33,7 +34,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
-		@project.owner = current_user
 
     respond_to do |format|
       if @project.save

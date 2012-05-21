@@ -40,6 +40,12 @@
 			<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
 		</div>
 	</div>
+	<div class="field control-group">
+		<%= f.label "Contactpersoon:", :class => "control-label" %>
+		<div class="controls"> 
+			<%= collection_select(:project, :owner_id, @admins, :id, :email) %>
+		</div>
+	</div>
 	<div class="control-group">
 		<%= f.label 'Opmerkingen:', :class => "control-label" %> 
 		<div class="controls"> 
