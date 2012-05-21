@@ -11,7 +11,7 @@ class Project
 
 	validates_presence_of :query
 
-	after_create :send_project_placement_mail
+	#after_create :send_project_placement_mail
 	before_save :trim_daypart
 	before_destroy :remove_links
 
@@ -43,8 +43,10 @@ class Project
 		self.start_at_field.to_sym.gt => start_d.to_time.utc)).asc(self.start_at_field)
 	end
 
+	#Items are created after project is created, so if this method is called by an after_create hook, project.items is still empty when the mail is sent. That's why it is called by the controller.
 	def send_project_placement_mail
 		mailing_list = []
+		item_list = self.build_items_for_mailer
 		AvailableDate.all.each do |date|
 			if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail
 				mailing_list << date.profile.user.email
@@ -57,8 +59,16 @@ class Project
 		end
 		unique_mailing_list = mailing_list.uniq
 		unique_mailing_list.each do |mail|
-			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence)
+			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list)
 			email.deliver
 		end
+	end
+
+	def build_items_for_mailer
+		item_list = []
+		self.items.all.each do |item|
+			item_list << item.amount.to_s + " " + item.name
+		end
+		item_list.to_sentence
 	end
 end

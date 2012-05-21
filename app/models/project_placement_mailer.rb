@@ -3,6 +3,7 @@ class ProjectPlacementMailer < MailForm::Base
 	attribute :project_start_at
 	attribute :project_end_at
 	attribute :project_dayparts
+	attribute :items
 	attribute :email
 
   def headers

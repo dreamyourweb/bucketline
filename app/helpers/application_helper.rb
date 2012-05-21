@@ -89,13 +89,7 @@ module ApplicationHelper
 	def build_daypart_daytext(daypart)
 		text = ""
 		if !daypart.nil?
-			daypart.each do |daytext|
-				if daytext != daypart.last
-					text << "#{daytext}, "
-				else
-					text << "#{daytext}"
-				end
-			end
+			text = daypart.to_sentence
 		end
 		text
 	end

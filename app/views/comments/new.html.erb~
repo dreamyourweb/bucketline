@@ -1,3 +1,0 @@
-<h1>Nieuwe reactie</h1>
-
-<%= render 'form' %>
