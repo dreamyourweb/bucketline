@@ -6,12 +6,12 @@ class Project
 	has_event_calendar
 	
 	has_many :items, :autosave => true, :dependent => :delete
+	belongs_to :owner, :class_name => "User", :inverse_of => :owned_projects
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
 	validates_presence_of :query
 
-	#after_create :send_project_placement_mail
 	before_save :trim_daypart
 	before_destroy :remove_links
 

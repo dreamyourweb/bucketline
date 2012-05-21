@@ -7,6 +7,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable
 
 	has_one :profile, :autosave => true, :dependent => :destroy
+	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
+
 	before_save :check_or_create_profile
 	after_create :send_user_created_mail
 	
