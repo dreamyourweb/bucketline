@@ -11,6 +11,10 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = @project.items.all
+		@owner = @project.owner
+		if !@owner.nil?
+			@owner_profile = @owner.profile
+		end
 		render :layout => false
   end
 

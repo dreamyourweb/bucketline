@@ -1,7 +1,12 @@
 <div>
 	<h2>Project: <%= @project.query %></h2>
 	Project loopt van: <%= pretty_date(@project.start_at) %> tot en met <%= pretty_date(@project.end_at) %><%= get_dayparts(@project) %>.<br>
-	Opmerkingen: <%= @project.remark %>
+	<% if current_user && !@owner_profile.nil? %>
+		Contactpersoon: <%= @owner_profile.name %> (<%= @owner.email %>)<br>
+	<% end %>
+	<% if !@project.remark.empty? %>
+		Opmerkingen: <%= @project.remark %>
+	<% end %>
 </div><br>
 
 <strong>Benodigdheden voor dit project:</strong>
