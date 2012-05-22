@@ -1,24 +1,36 @@
 <h2>Admin overzicht</h2>
-<table class="admin-table table table-bordered table-striped">
-	<tr>
-		<th>Naam</th>
-		<th>Datum</th>
-		<th>Dagdelen</th>
-		<th>Expertise</th>		
-		<th>Kan helpen met</th>		
-		<th>Gereedschappen en materialen</th>		
-		<th>Email</th>		
-	</tr>
-	<% @available_dates.each do |date| %>
-		<tr>
-			<td><%= date.profile.name %></td>
-			<td><%= pretty_date(date.date) %></td>
-			<td><%= build_daytext(date) %></td>
-			<td><%= date.profile.expertise %></td>
-			<td><%= date.profile.willing_to_help_with %></td>
-			<td><%= date.profile.tools_and_materials %></td>
-			<td><%= date.profile.user.email %></td>
-		</tr>
-	<% end %>	
-</table>
+<p>Overzicht van vandaag en verder</p>
+<div id="accordion2" class="accordion">
+	<% @dates.each do |date| %>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" href=<%= "#" + date.to_s %> data-parent="#accordion2" data-toggle="collapse"><%= pretty_date(date) %> (<%=@available_dates.where(:date => date).count %>)</a>
+			</div>
+			<div id=<%= date.to_s %> class="accordion-body collapse" style="height: 0px;">
+				<div class="accordion-inner">
+					<table class="admin-table table table-bordered table-striped">
+						<tr>
+							<th>Naam</th>
+							<th>Dagdelen</th>
+							<th>Expertise</th>		
+							<th>Kan helpen met</th>		
+							<th>Gereedschappen en materialen</th>		
+							<th>Email</th>		
+						</tr>
+						<% @available_dates.where(:date => date).each do |available_date| %>
+							<tr>
+								<td><%= available_date.profile.name %></td>
+								<td><%= build_daytext(available_date) %></td>
+								<td><%= available_date.profile.expertise %></td>
+								<td><%= available_date.profile.willing_to_help_with %></td>
+								<td><%= available_date.profile.tools_and_materials %></td>
+								<td><%= available_date.profile.user.email %></td>
+							</tr>
+						<% end %>	
+					</table>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
 
