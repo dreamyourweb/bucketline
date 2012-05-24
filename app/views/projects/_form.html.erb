@@ -52,6 +52,15 @@
 			<%= f.text_field :remark %>
 		</div>
  	</div>
+  <div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+		    <%= f.check_box :success %>
+		    Project is succesvol afgerond.
+			</label>
+		</div>
+  </div>
+
 	<hr>
 
   <%= f.fields_for :items do |builder| %>

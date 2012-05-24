@@ -1,7 +1,7 @@
 <div class = "well <%= get_item_color_class(item) %>" >
 	<% if !item.provided %>
 		<%= form_tag project_item_path(item.project, item), :method => "put", :class=>"item-form" do %>			
-			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
+			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>
 			<h3><%= item.name %></h3>
 			<p>Project: <%= item.project.query %>.<br>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>.<%= get_contributors(item) %></p>
 

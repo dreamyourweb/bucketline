@@ -24,7 +24,9 @@ module ApplicationHelper
 			"active"
 		elsif page == "availability" && request.path_parameters[:controller] == "available_dates" && request.path_parameters[:action] != "availability_dashboard"
 			"active"
-		elsif page == "profile" && request.path_parameters[:controller] == "profiles"
+		elsif page == "profiles" && request.path_parameters[:controller] == "profiles" && request.path_parameters[:action] == "index"
+			"active"
+		elsif page == "profile" && request.path_parameters[:controller] == "profiles" && request.path_parameters[:action] != "index"
 			"active"
 		else
 			"inactive"

@@ -1,5 +1,10 @@
 class ProfilesController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :authenticate_admin, :only => [:index]
+
+	def index
+		@users = User.all.entries
+	end
 
   # GET /profiles/1
   # GET /profiles/1.json

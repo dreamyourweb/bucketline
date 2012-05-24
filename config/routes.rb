@@ -3,7 +3,7 @@ HvO::Application.routes.draw do
 	root :to => "home#index"
   get "home/index"
 
-  resources :profiles, :except => [:index] do
+  resources :profiles do
 		resources :available_dates, :except => [:show]
 		get "availability_dashboard", :to => "available_dates#availability_dashboard"
 		#get "send_reminder", :to => "profiles#send_reminder_mail"

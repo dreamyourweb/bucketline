@@ -21,6 +21,7 @@ class Project
 	field :end_at, :type => Date
 	field :daypart
 	field :remark, :type => String
+	field :success, :type => Boolean, :default => false
 
 	def remove_links
 		@links = []

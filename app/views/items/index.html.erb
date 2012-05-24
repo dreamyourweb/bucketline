@@ -1,5 +1,5 @@
 <div>
-	<h2>Project: <%= @project.query %></h2>
+	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
 	Project loopt van: <%= pretty_date(@project.start_at) %> tot en met <%= pretty_date(@project.end_at) %><%= get_dayparts(@project) %>.<br>
 	<% if current_user && !@owner_profile.nil? %>
 		Contactpersoon: <%= @owner_profile.name %> (<%= @owner.email %>)<br>
@@ -23,13 +23,17 @@
 					<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
-						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
+						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
 						<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
-						<% if user_signed_in? %>
-							Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %>
+						<% if @project.success %>
+							Dit project is al afgerond, het is niet meer mogelijk om bij te dragen.
 						<% else %>
-							<%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen.
+							<% if user_signed_in? %>
+								Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %>
+							<% else %>
+								<%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen.
+							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>

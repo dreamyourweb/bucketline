@@ -1,0 +1,24 @@
+<h2>Overzicht van alle gebruikers</h2>
+<p>Sociaal kapitaal beschikbaar voor Huis van Overvloed</p>
+
+<table class="admin-table table table-bordered table-striped">
+	<tr>
+		<th>Naam</th>
+		<th>Expertise</th>		
+		<th>Kan helpen met</th>		
+		<th>Gereedschappen en materialen</th>		
+		<th>Email</th>		
+		<th>Admin</th>		
+	</tr>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.profile.name %></td>
+			<td><%= user.profile.expertise %></td>
+			<td><%= user.profile.willing_to_help_with %></td>
+			<td><%= user.profile.tools_and_materials %></td>
+			<td><%= user.email %></td>
+			<td><%= "\u2713" if user.admin %></td>
+		</tr>
+	<% end %>	
+</table>
+

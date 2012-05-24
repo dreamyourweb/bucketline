@@ -8,7 +8,9 @@ module ProjectsHelper
 
 	def get_project_color_class(project)
 		class_name = ""
-		if user_signed_in?
+		if project.success
+			class_name = "success-calendar"
+		elsif user_signed_in?
 			project.items.each do |item|
 				if item.profile_ids.include?(current_user.profile.id)
 					class_name = "providing-calendar"

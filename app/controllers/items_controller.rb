@@ -19,9 +19,24 @@ class ItemsController < ApplicationController
   end
 
 	def dashboard
-    @help = Item.where(:type => "help").order_by(:start_at, :asc)
-    @tools = Item.where(:type => "tool").order_by(:start_at, :asc)
-    @materials = Item.where(:type => "material").order_by(:start_at, :asc)
+		@projects = Project.excludes(:success => true).order_by(:start_at, :asc) #find all unfinished projects
+		@help = []
+		@tools = []
+		@materials = []
+		@projects.each do |project|
+			project.items.each do |item|
+				if item.type == "help"
+					@help << item
+				elsif item.type == "tool"
+					@tools << item
+				else
+					@materials << item
+				end
+			end
+		end
+    #@help = Item.where(:type => "help").order_by(:start_at, :asc)
+    #@tools = Item.where(:type => "tool").order_by(:start_at, :asc)
+    #@materials = Item.where(:type => "material").order_by(:start_at, :asc)
 
     respond_to do |format|
       format.html # index.html.erb
