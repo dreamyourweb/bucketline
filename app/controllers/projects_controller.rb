@@ -30,6 +30,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+		@admins = User.where(:admin => true).all
   end
 
   def create

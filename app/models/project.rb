@@ -11,6 +11,7 @@ class Project
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
 	validates_presence_of :query
+	validates_uniqueness_of :query
 
 	before_save :trim_daypart
 	before_destroy :remove_links
@@ -24,7 +25,7 @@ class Project
 	def remove_links
 		@links = []
 		self.items.all.each do |item|
-			@item_links = Link.where(:item_id => item.id).all.entries
+			@item_links = Link.where(:item_id => item.id)
 			@item_links.each do |item_link|
 				@links << item_link
 			end
