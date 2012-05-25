@@ -2,7 +2,11 @@ class LinksController < ApplicationController
 	before_filter :authenticate_admin
 
 	def index
-		@links = Link.where(:item_end_at.gte => Date.today)
+		if params[:show] == "all"
+			@links = Link.all
+		else	
+			@links = Link.where(:item_end_at.gte => Date.today)
+		end
 		@projects = []
 		@links.each do |link|
 			@projects << link.project_query

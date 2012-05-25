@@ -25,7 +25,11 @@ class AvailableDatesController < ApplicationController
   end
 
   def availability_dashboard
-    @available_dates = AvailableDate.where(:date.gte => Date.today).order_by([[:date, :asc]])
+		if params[:show] == "all"
+    	@available_dates = AvailableDate.all.order_by([[:date, :asc]])
+		else
+    	@available_dates = AvailableDate.where(:date.gte => Date.today).order_by([[:date, :asc]])
+		end		
 		@dates = []
 		@available_dates.each do |available_date|
 			@dates << available_date.date

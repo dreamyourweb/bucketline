@@ -1,5 +1,5 @@
 <h2>Overzicht alle beschikbaarheid</h2>
-<p>Beschikbare specialisten geordend per datum</p>
+<p>Beschikbare specialisten geordend per datum, voor vandaag en verder. <%= link_to "Toon ook beschikbaarheid van voor vandaag.", :controller => "available_dates", :action => "availability_dashboard", :show => "all" %></p>
 <div id="accordion2" class="accordion">
 	<% @dates.each do |date| %>
 		<div class="accordion-group">
