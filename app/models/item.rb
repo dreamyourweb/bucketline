@@ -75,4 +75,12 @@ class Item
 			"Materiaal"
 		end
 	end
+
+	def providing_user(user) #checks if user is providing this item
+		providing = false
+		if self.profile_ids.include?(user.profile.id)
+			providing = true
+		end
+		providing
+	end
 end

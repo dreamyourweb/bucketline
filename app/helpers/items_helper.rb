@@ -7,14 +7,6 @@ module ItemsHelper
 		dayparts	
 	end
 
-	def get_item_color_class(item)
-		class_name = ""
-		if user_signed_in? && item.profile_ids.include?(current_user.profile.id)
-			class_name = "providing"
-		end
-		class_name
-	end
-
 	def get_contributors(item)
 		contributores = ""
 		profiles = item.profiles.where(:name.ne => "", :name.exists => true)

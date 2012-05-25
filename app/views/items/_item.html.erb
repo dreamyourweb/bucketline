@@ -1,4 +1,7 @@
-<div class = "well <%= get_item_color_class(item) %>" >
+<div class = "well" >
+	<% if current_user && item.providing_user(current_user) %>
+		<i class="icon-gift pull-right gift-margin"></i>
+	<% end %>
 	<% if !item.provided %>
 		<%= form_tag project_item_path(item.project, item), :method => "put", :class=>"item-form" do %>			
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>

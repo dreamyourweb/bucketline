@@ -77,7 +77,14 @@ module ApplicationHelper
   end
 
 	def build_event_text(event)
-		text = build_daytext(event)
+		text = ""
+		if event.success
+			text << "<i class='icon-ok-circle pull-right'></i>"		
+		end
+		if current_user && event.providing_user(current_user)
+			text << "<i class='icon-gift pull-right'></i>"
+		end
+		text << build_daytext(event)
 		text << "<br><b>#{event.query}.</b>"
 		if !event.remark.nil?
 			text << "<br>#{event.remark}"

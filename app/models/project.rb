@@ -73,4 +73,14 @@ class Project
 		end
 		item_list.to_sentence
 	end
+
+	def providing_user(user) #checks if user is providing something for this project
+		providing = false
+		self.items.each do |item|
+			if item.profile_ids.include?(user.profile.id)
+				providing = true
+			end
+		end
+		providing
+	end
 end

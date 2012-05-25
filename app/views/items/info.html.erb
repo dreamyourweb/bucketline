@@ -4,7 +4,7 @@
 	<p>Bij alle benodigdheden wordt aangegeven welke dagdelen ze nodig zijn. Als je een benodigdheid bijdraagt, dan houdt dit in dat je bijdrage al deze dagdelen beschikbaar is. De ochtend loopt van 9:00-13:00; middag van 13:00-17:00, avond van 18:00-22:00 en de nacht van 22:00-laat.</p>
 	<% if user_signed_in? %>
 		<p>Om iets bij te dragen vul je een aantal in en klik je op "Dit wil ik bijdragen!" In <%= link_to "je profiel", profile_path(current_user.profile) %> vind je een overzicht van alle bijdragen die je hebt geleverd.</p>
-		<p>Als je aan een benodigdheid hebt bijgedragen, krijgt deze een andere kleur. Zo kun je snel zien wat je al hebt toegezegd. Als toch blijkt dat je je bijdrage niet kunt nakomen, dan kun je deze in je profiel weer intrekken.</p>
+		<p>Als je aan een benodigdheid hebt bijgedragen, komt er een cadeautje bij te staan. Zo kun je snel zien wat je al hebt toegezegd. Als toch blijkt dat je je bijdrage niet kunt nakomen, dan kun je deze in je profiel weer intrekken.</p>
 	<% else %>
 		<p>Om bij te dragen moet je <%= link_to "jezelf eerst registreren", new_user_registration_path %>, zodat we alles in goede banen kunnen leiden. Dit duurt ongeveer dertig seconden.</p>
 	<% end %> 
