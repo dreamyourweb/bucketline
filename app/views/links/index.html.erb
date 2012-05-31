@@ -28,7 +28,7 @@
 								<td><%= build_daypart_daytext(link.item_daypart) %></td>
 								<td><%= link.contributor_name %></td>
 								<td><%= link.contributor_email %></td>
-								<td><%= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id), :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen." %></td>
+								<td><%= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen." %></td>
 							</tr>
 						<% end %>	
 					</table>
