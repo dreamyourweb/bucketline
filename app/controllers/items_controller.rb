@@ -72,8 +72,13 @@ class ItemsController < ApplicationController
 					@item.link_to_profile(params[:amount_to_give].to_i, @profile)
 					@profile.link_to_item(params[:amount_to_give].to_i, @item)
 				end
-        format.html { redirect_to projects_path, :notice => 'Bedankt dat je wilt meewerken aan de bouw!' }
-        format.json { head :no_content }
+				if params[:redirect_to_dashboard]
+        	format.html { redirect_to dashboard_path, :notice => 'Bedankt voor je bijdrage!' }
+        	format.json { head :no_content }
+				else
+        	format.html { redirect_to projects_path, :notice => 'Bedankt voor je bijdrage!' }
+        	format.json { head :no_content }
+				end
       else
         format.html { render action: "edit" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
