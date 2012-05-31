@@ -18,6 +18,13 @@
 			</div>
 		<% end %>
 
+		<% if current_user %>
+			<div class="feedback">
+				<%= link_to feedback_path, :class => "fancybox" do %>
+					<%= image_tag "feedback_tab.png" %>
+				<% end %>
+			</div>
+		<% end %>
 		<section id="gridSystem">
 			<%= render :partial => "layouts/navigation" %>
 			<%= yield %>
