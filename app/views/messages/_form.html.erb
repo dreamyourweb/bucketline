@@ -1,0 +1,23 @@
+<%= form_for(@message) do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %>:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+		<div class="controls">
+	    <%= f.text_area :body, :rows => 6, :style => "width:400px;" %>
+		</div>
+  </div>
+	<%= f.hidden_field :sender, :value => current_user.email %>
+  <div class="form-actions">
+    <%= f.submit "Versturen", :class => "btn btn-primary" %>
+  </div>
+<% end %>
