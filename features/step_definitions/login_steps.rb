@@ -18,12 +18,13 @@ end
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
   @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar')
+	@specialist.update_attributes(:confirmed_at => Time.now)
 	if @specialist.profile.nil?
 		@specialist.profile = Profile.new(:name => name, :expertise => expertise)
-		@profile = @specialist.profile
-		@profile.available_dates.create!(:start_at => Time.now, :end_at => Time.now + 1.day)
-		@specialist.save
 	end
+	@profile = @specialist.profile
+	@available_date = @profile.available_dates.create!(:date => Date.today, :daypart => ["Middag"])
+	@available_date.save
 end
 
 Given /^(?:I am not authenticated|I log out)$/ do

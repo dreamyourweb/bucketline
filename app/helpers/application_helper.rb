@@ -91,6 +91,7 @@ module ApplicationHelper
 		if !event.remark.nil?
 			text << "<br>#{event.remark}"
 		end
+		text
 	end
 
 	def build_daytext(event)

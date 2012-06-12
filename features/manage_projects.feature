@@ -21,9 +21,12 @@ Feature: Place a new project
 		And I follow "Mijn profiel"
 		Then I should not see "Mijn item"
 
+	@wip
 	Scenario: Admin refuses contribution
 		Given there is a project with an item
 		When I go to the admin contributions dashboard
+		Then show me the page
+		When I follow the project link
 		Then I should see "Mijn item"		
 		When I follow "Bijdrage weigeren"
 		Then I should not see "Mijn item"		

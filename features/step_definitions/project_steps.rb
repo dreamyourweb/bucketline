@@ -3,6 +3,10 @@ Given /^there is a project with an item$/ do
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 end
 
+When /^I follow the project link$/ do
+  click_link @project.query
+end
+
 Then /^I should see all the projects$/ do
   page.should have_content("Mijn project")
 end

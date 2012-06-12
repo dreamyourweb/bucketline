@@ -4,7 +4,7 @@
 	<% if current_user && !@owner_profile.nil? %>
 		Contactpersoon: <%= @owner_profile.name %> (<%= @owner.email %>)<br>
 	<% end %>
-	<% if !@project.remark.empty? %>
+	<% if !@project.remark.nil? && !@project.remark.empty? %>
 		Opmerkingen: <%= @project.remark %>
 	<% end %>
 </div><br>

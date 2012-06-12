@@ -9,7 +9,6 @@ Feature: view availability of specialists
 		And a specialist "Frans" with email "frans@test.com" and expertise "Bakker" who provided his availability 
 
 	Scenario: View calendar
-		When I follow "Beschikbaarheid specialisten"
-		Then I should see "Frans"
-		And I should see "Bakker"
-		And I should see "frans@test.com"
+		When I follow "Admin"
+		And I follow "Beschikbare specialisten"
+		Then I should see "frans@test.com"

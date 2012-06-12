@@ -26,7 +26,7 @@ Feature: User offers help
 		And I click on a project
 		And I provide 1 item
 		And I click on a project
-		Then I should see "Laatst bijgedragen door User"
+		Then I should see "Bijdragers zijn: User"
 
 	Scenario: Retreat help
 		When I go to the dashboard page
