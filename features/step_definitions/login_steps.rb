@@ -9,6 +9,11 @@ Given /^I am a visitor$/ do
   step %(I am not authenticated)
 end
 
+Given /^an admin with email "([^"]*)"$/ do |arg1|
+  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
+	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
+end
+
 Given /^I am logged in as a user$/ do
   @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
 	@user.update_attributes(:confirmed_at => Time.now)
@@ -33,16 +38,15 @@ Given /^(?:I am not authenticated|I log out)$/ do
 end
 
 When /^a new user is registered$/ do
-  visit('/logout')
 	visit new_user_registration_path
 	register("random_new_user@test.com", "foobar")
 end
 
 def login(email, password)
-    visit('/login')
-    fill_in('user_email', :with => email)
-    fill_in('user_password', :with => password)
-    click_button('Inloggen')
+  visit('/login')
+  fill_in('user_email', :with => email)
+  fill_in('user_password', :with => password)
+  click_button('Inloggen')
 end
 
 def register(email, password)
