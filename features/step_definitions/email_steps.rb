@@ -13,16 +13,18 @@ Given /^I am available for tomorrow$/ do
 end
 
 When /^the admin plans a project for tomorrow$/ do
-	%("Given I am logged out")
-	%("Given I am logged in as an admin")
 	click_link('Project kalender')
 	click_link('Plaats nieuw project')
-  fill_in("project_query", :with => "Mijn project")
+	fill_in("project_query", :with => "Mijn project")
 	select("Middag", :from => "project_daypart")
-	select_date(Date.tomorrow.to_s, :from => "project_Begin", :order => [:year, :month, :day])
-	select_date(Date.tomorrow.to_s, :from => "project_Einde", :order => [:year, :month, :day])
-	click_button("Create Project")
-	click_link('logout')	
+	select(Date.tomorrow.day.to_s, :from => "project_start_at_3i")
+	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_start_at_2i")
+	select(Date.tomorrow.year.to_s, :from => "project_start_at_1i")
+	select(Date.tomorrow.day.to_s, :from => "project_end_at_3i")
+	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_end_at_2i")
+	select(Date.tomorrow.year.to_s, :from => "project_end_at_1i")
+	click_button("Project en items opslaan")
+	visit("/logout")
 end
 
 Given /^(?:a clear email queue|no emails have been sent)$/ do

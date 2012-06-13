@@ -4,10 +4,12 @@ Feature: get email notifications
 	I want to receive email notifications on critical moments
 
 	Scenario: receive notification when a project is placed on one of my available dates
-		Given a clear email queue
-		And I am logged in as a user
+		Given I am logged in as a user
 		And I am available for tomorrow
-		When the admin plans a project for tomorrow
+		And no emails have been sent
+		When I log out
+		And the admin logs in
+		And the admin plans a project for tomorrow
 		Then "user@test.com" should receive 1 email
 
 	Scenario: receive notification when a new user is registered
