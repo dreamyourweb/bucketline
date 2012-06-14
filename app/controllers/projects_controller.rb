@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+		@admins = User.where(:admin => true).all
 
     respond_to do |format|
       if @project.save
