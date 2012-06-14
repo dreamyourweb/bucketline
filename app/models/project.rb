@@ -50,20 +50,18 @@ class Project
 		mailing_list = []
 		item_list = self.build_items_for_mailer
 		AvailableDate.all.each do |date|
-			if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail
+			if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail && self.owner.email != date.profile.user.email #Get all the to-be-reminded-users that are not the owner of this project
 				mailing_list << date.profile.user.email
 			end
 		end
 		User.all.each do |user|
-			if user.profile.always_send_project_placement_mail
+			if user.profile.always_send_project_placement_mail && user.email != self.owner.email #Get all the to-be-reminded-users that are not the owner of this project
 				mailing_list << user.email
 			end
 		end
 		unique_mailing_list = mailing_list.uniq
-		unique_mailing_list.each do |mail|
-			email = ProjectPlacementMailer.new(:email => mail, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list)
-			email.deliver
-		end
+		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list)
+		email.deliver
 	end
 
 	def build_items_for_mailer

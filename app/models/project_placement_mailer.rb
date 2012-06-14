@@ -4,12 +4,14 @@ class ProjectPlacementMailer < MailForm::Base
 	attribute :project_end_at
 	attribute :project_dayparts
 	attribute :items
-	attribute :email
+	attribute :admin_email
+	attribute :recipients
 
   def headers
     {
       :subject => "Huis van Overvloed - Er is een nieuw project geplaatst",
-      :to => %(<#{email}>),
+      :to => %(<#{admin_email}>),
+			:bcc => %(<#{recipients}>),
       :from => "no-reply@waardeverbinder.nl"
     }
   end

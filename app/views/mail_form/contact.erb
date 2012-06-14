@@ -1,7 +1,7 @@
 <h3><%= message.subject %></h3>
 
 <% @resource.attributes.each do |attribute, value|
-  next if value.blank? || attribute == 'email' %>
+  next if value.blank? || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
 
 	<p><b><%= case attribute
 		when 'project_query'
