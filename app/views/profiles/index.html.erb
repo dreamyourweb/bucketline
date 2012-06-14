@@ -24,3 +24,8 @@
 	<% end %>	
 </table>
 
+<div class="well">
+	<p>Kopiëerbare lijst met alle adressen:</p>
+	<%= text_field_tag "emails", build_emails_for_copy(@users), :style => "width:99%;" %>
+	<p><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email. (Anders weet iedereen elkaars email!)</p>
+</div>
