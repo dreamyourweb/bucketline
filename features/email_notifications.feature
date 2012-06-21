@@ -12,7 +12,6 @@ Feature: get email notifications
 		And the admin logs out
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
-	@wip
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I am logged in as a user
 		And there is a project that belongs to an admin with an item 
@@ -20,8 +19,8 @@ Feature: get email notifications
 		And I provide 1 item
 		And I log out
 		Given no emails have been sent
-		And the admin logs in via the login screen
-		When the admin cancels the project
+		When the admin logs in via the login screen
+		And the admin cancels the project
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a new user is registered
