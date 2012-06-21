@@ -20,9 +20,6 @@
 	<% if @profile.always_send_project_placement_mail %>
 		<dd>Als er een nieuw project wordt gepland</dd>
 	<% end %>
-	<% if @profile.send_project_placement_mail %>
-		<dd>Als er een project wordt gepland op een dag dat ik beschikbaar ben</dd>
-	<% end %>
 	<% if !@profile.send_project_placement_mail && !@profile.send_reminder_mail %>
 		<dd>Geen herinneringen ingesteld</dd>
 	<% end %>

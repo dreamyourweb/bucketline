@@ -49,11 +49,11 @@ class Project
 	def send_project_placement_mail
 		mailing_list = []
 		item_list = self.build_items_for_mailer
-		AvailableDate.all.each do |date|
-			if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail && self.owner.email != date.profile.user.email #Get all the to-be-reminded-users that are not the owner of this project
-				mailing_list << date.profile.user.email
-			end
-		end
+		#AvailableDate.all.each do |date|
+		#	if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail && self.owner.email != date.profile.user.email #Get all the to-be-reminded-users that are not the owner of this project
+		#		mailing_list << date.profile.user.email
+		#	end
+		#end
 		User.all.each do |user|
 			if user.profile.always_send_project_placement_mail && user.email != self.owner.email #Get all the to-be-reminded-users that are not the owner of this project
 				mailing_list << user.email
