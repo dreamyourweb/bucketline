@@ -103,6 +103,6 @@ class Project
 				users << profile.user
 			end
 		end
-		users
+		unique_users = users.uniq
 	end
 end
