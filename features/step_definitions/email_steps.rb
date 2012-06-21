@@ -35,3 +35,8 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
 
+Then /^"([^']*?)" should receive (\d+) emails? from "([^']*?)"$/ do |address, n, sender|
+  unread_emails_for(address).size.should == n.to_i
+	unread_emails_for(address).first.should be_delivered_from(sender)
+end
+
