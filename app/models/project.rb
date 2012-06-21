@@ -14,7 +14,7 @@ class Project
 	validates_uniqueness_of :query
 
 	before_save :trim_daypart
-	before_destroy :remove_links
+	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
 	field :start_at, :type => Date
@@ -45,15 +45,16 @@ class Project
 		self.start_at_field.to_sym.gt => start_d.to_time.utc)).asc(self.start_at_field)
 	end
 
+	def send_project_cancellation_mail
+		mailing_list = self.contributor_emails
+		email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+		email.deliver
+	end
+
 	#Items are created after project is created, so if this method is called by an after_create hook, project.items is still empty when the mail is sent. That's why it is called by the controller.
 	def send_project_placement_mail
 		mailing_list = []
 		item_list = self.build_items_for_mailer
-		#AvailableDate.all.each do |date|
-		#	if self.start_at <= date.date && self.end_at >= date.date && date.profile.send_project_placement_mail && self.owner.email != date.profile.user.email #Get all the to-be-reminded-users that are not the owner of this project
-		#		mailing_list << date.profile.user.email
-		#	end
-		#end
 		User.all.each do |user|
 			if user.profile.always_send_project_placement_mail && user.email != self.owner.email #Get all the to-be-reminded-users that are not the owner of this project
 				mailing_list << user.email
@@ -80,5 +81,15 @@ class Project
 			end
 		end
 		providing
+	end
+
+	def contributor_emails
+		mailing_list = []
+		self.items.all.each do |item|
+			item.profiles.all.each do |profile|
+				mailing_list << profile.user.email
+			end
+		end
+		unique_mailing_list = mailing_list.uniq
 	end
 end

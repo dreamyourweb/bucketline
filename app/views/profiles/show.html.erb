@@ -20,7 +20,10 @@
 	<% if @profile.always_send_project_placement_mail %>
 		<dd>Als er een nieuw project wordt gepland</dd>
 	<% end %>
-	<% if !@profile.send_project_placement_mail && !@profile.send_reminder_mail %>
+	<% if @profile.send_project_cancellation_mail %>
+		<dd>Als er een project waaraan ik bijdraag wordt geannuleerd.</dd>
+	<% end %>
+	<% if !@profile.always_send_project_placement_mail && !@profile.send_reminder_mail && !@profile.send_project_cancellation_mail %>
 		<dd>Geen herinneringen ingesteld</dd>
 	<% end %>
 </dl>

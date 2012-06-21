@@ -12,6 +12,10 @@ When /^the admin logs in$/ do
   login(@admin.email, 'foobar')
 end
 
+When /^the admin logs out$/ do
+	visit("/logout")
+end
+
 Given /^I am a visitor$/ do
   step %(I am not authenticated)
 end
@@ -47,6 +51,10 @@ end
 When /^a new user is registered$/ do
 	visit new_user_registration_path
 	register("random_new_user@test.com", "foobar")
+end
+
+When /^the admin logs in via the login screen$/ do
+	login("admin@test.com", "foobar")
 end
 
 def login(email, password)

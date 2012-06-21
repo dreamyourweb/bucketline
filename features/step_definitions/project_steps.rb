@@ -3,8 +3,37 @@ Given /^there is a project with an item$/ do
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 end
 
+Given /^there is a project that belongs to an admin with an item$/ do
+  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
+	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
+	@project = @admin.owned_projects.create(:query => "Mijn project", :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
+	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
+end
+
 When /^I follow the project link$/ do
   click_link @project.query
+end
+
+When /^the admin plans a project for tomorrow$/ do
+	click_link('Project kalender')
+	click_link('Plaats nieuw project')
+	fill_in("project_query", :with => "Mijn project")
+	select("Middag", :from => "project_daypart")
+	select(Date.tomorrow.day.to_s, :from => "project_start_at_3i")
+	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_start_at_2i")
+	select(Date.tomorrow.year.to_s, :from => "project_start_at_1i")
+	select(Date.tomorrow.day.to_s, :from => "project_end_at_3i")
+	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_end_at_2i")
+	select(Date.tomorrow.year.to_s, :from => "project_end_at_1i")
+	click_button("Project en items opslaan")
+end
+
+When /^the admin cancels the project$/ do
+	visit "/projects"
+  click_link "Mijn project"
+  click_link "Project verwijderen"
+	#confirm javascript popup box	
 end
 
 Then /^I should see all the projects$/ do
