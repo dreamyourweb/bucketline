@@ -48,4 +48,10 @@
 <% if current_user && current_user.admin %>
 	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
 	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd." %>
+	<hr>
+	<div>
+		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
+		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
+		<%= text_field_tag "emails", build_emails_for_copy(@contributing_users), :style => "width:98%;" %>
+	</div>
 <% end %>

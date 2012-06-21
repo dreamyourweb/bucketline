@@ -46,7 +46,7 @@ class Project
 	end
 
 	def send_project_cancellation_mail
-		mailing_list = self.contributor_emails
+		mailing_list = self.contributor_emails_for_cancellation
 		email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
 		email.deliver
 	end
@@ -83,13 +83,25 @@ class Project
 		providing
 	end
 
-	def contributor_emails
+	def contributor_emails_for_cancellation
 		mailing_list = []
 		self.items.all.each do |item|
 			item.profiles.all.each do |profile|
-				mailing_list << profile.user.email
+				if profile.send_project_cancellation_mail && self.owner != profile.user
+					mailing_list << profile.user.email
+				end
 			end
 		end
 		unique_mailing_list = mailing_list.uniq
+	end
+
+	def contributing_users
+		users = []
+		self.items.all.each do |item|
+			item.profiles.all.each do |profile|
+				users << profile.user
+			end
+		end
+		users
 	end
 end
