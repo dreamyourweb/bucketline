@@ -9,10 +9,11 @@ class LinksController < ApplicationController
 		end
 		@projects = []
 		@links.each do |link|
-			@projects << link.project_query
+			if !link.project_id.nil?
+				@projects << Project.find(link.project_id)
+			end
 		end
 		@projects = @projects.uniq
-
 	end
 end
 
