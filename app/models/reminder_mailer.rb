@@ -1,6 +1,7 @@
 class ReminderMailer < MailForm::Base
 	attribute :item_names
 	attribute :email
+	attribute :sender
 
   def headers
     {

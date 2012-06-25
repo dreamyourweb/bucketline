@@ -1,5 +1,5 @@
-desc "This task is called by the Heroku cron add-on"
-task :cron => :environment do
+desc "This task is called by the Heroku scheduler add-on"
+task :send_reminders => :environment do
 	puts "Sending reminders..."
 	User.all.each do |user|
 		if user.profile.send_reminder_mail
