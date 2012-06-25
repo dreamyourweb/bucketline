@@ -25,13 +25,13 @@
 	<div class="date-selector control-group">
 		<%= f.label 'Begin:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select :start_at, :default => pre_select_date %>
+			<%= f.date_select(:start_at, {:default => pre_select_date}, {:class => "project_date_start"})%>
 		</div>
  	</div>
 	<div class="date-selector control-group">
 		<%= f.label 'Einde:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select :end_at, :default => pre_select_date %>
+			<%= f.date_select(:end_at, {:default => pre_select_date}, {:class => "project_date_end"}) %>
 		</div>
  	</div>
 	<div class="field control-group">
@@ -66,6 +66,7 @@
   <%= f.fields_for :items do |builder| %>
 		<%= render "item_fields", :f => builder %>
 	<% end %>
+
 	<p><%= link_to_add_fields "Extra benodigdheid toevoegen", f, :items %></p>
 
   <div class="form-actions" style="padding-left:20px;">
