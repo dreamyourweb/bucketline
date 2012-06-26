@@ -24,8 +24,8 @@ $(function(){
 		var end_date_2i = $("#project_end_at_2i").val();
 		var end_date_1i = $("#project_end_at_1i").val();
 		$(".item_date_end").children(":first").val(end_date_3i);
-		$(".item_date_end").children(":nth-child(2)").next().val(end_date_2i);
-		$(".item_date_end").children(":nth-child(3)").next().next().val(end_date_1i);
+		$(".item_date_end").children(":nth-child(2)").val(end_date_2i);
+		$(".item_date_end").children(":nth-child(3)").val(end_date_1i);
 	});
 });
 
