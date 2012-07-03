@@ -5,7 +5,7 @@
 		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
 	<% end %>
 	<% if !@project.location.nil? && !@project.location.empty? %>
-		<strong>Locatie:</strong> <%= @project.location %><br>
+		<strong>Verzamel locatie:</strong> <%= @project.location %><br>
 	<% end %>
 	<% if !@project.remark.nil? && !@project.remark.empty? %>
 		<strong>Opmerkingen:</strong> <%= @project.remark %>
