@@ -48,7 +48,7 @@ class Project
 
 	def send_project_cancellation_mail
 		mailing_list = self.contributor_emails_for_cancellation
-		email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => "email: "+self.owner.email+", "+"tel: "+self.owner.profile.phone, :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+		email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
 		email.deliver
 	end
 
@@ -62,7 +62,7 @@ class Project
 			end
 		end
 		unique_mailing_list = mailing_list.uniq.join(">,<")
-		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => "email: "+self.owner.email+", "+"tel: "+self.owner.profile.phone, :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list, :project_remark => self.remark)
+		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
 

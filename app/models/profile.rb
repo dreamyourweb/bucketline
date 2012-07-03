@@ -10,7 +10,7 @@ class Profile
 	before_destroy :remove_links
 
   field :name, :type => String
-  field :phone, :type => String
+  field :phone, :type => String, :default => ""
   field :expertise, :type => String
   field :willing_to_help_with, :type => String
   field :tools_and_materials, :type => String
