@@ -109,4 +109,12 @@ module ApplicationHelper
 	def pretty_date(date)
 		l(date, :format => '%d %B %Y')
 	end
+
+	def date_text_for_display(start_date, end_date)
+		if start_date == end_date
+			" op " + pretty_date(start_date)
+		else
+			" van " + pretty_date(start_date) + " tot en met " + pretty_date(end_date)
+		end
+	end
 end

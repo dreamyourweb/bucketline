@@ -1,6 +1,6 @@
 <div>
 	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
-	<strong>Project loopt van:</strong> <%= pretty_date(@project.start_at) %> tot en met <%= pretty_date(@project.end_at) %><%= get_dayparts(@project) %>.<br>
+	<strong>Project datum:</strong><%= date_text_for_display(@project.start_at, @project.end_at) %><%= get_dayparts(@project) %>.<br>
 	<% if current_user && !@owner_profile.nil? %>
 		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
 	<% end %>
@@ -23,12 +23,12 @@
 				<% if item.provided %>
 					<span class="label label-inverse pull-right">Voorzien</span>
 					<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
-					<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
+					<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
 						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
-						<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
+						<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 						<% if @project.success %>
 							Dit project is al afgerond, het is niet meer mogelijk om bij te dragen.
 						<% else %>
