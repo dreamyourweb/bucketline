@@ -5,7 +5,9 @@ class ProjectPlacementMailer < MailForm::Base
 	attribute :project_dayparts
 	attribute :project_remark
 	attribute :items
+	attribute :location
 	attribute :admin_email
+	attribute :admin_contact
 	attribute :recipients
 
   def headers

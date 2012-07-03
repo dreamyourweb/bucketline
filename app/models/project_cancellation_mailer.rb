@@ -2,7 +2,9 @@ class ProjectCancellationMailer < MailForm::Base
 	attribute :project_query
 	attribute :project_start_at
 	attribute :project_end_at
+	attribute :email
 	attribute :admin_email
+	attribute :admin_contact
 	attribute :recipients
 
   def headers
