@@ -49,13 +49,13 @@
 	<div class="field control-group">
 		<%= f.label "Contactpersoon:", :class => "control-label" %>
 		<div class="controls"> 
-			<%= collection_select(:project, :owner_id, @admins, :id, :email) %>
+			<%= collection_select(:project, :owner_id, @admins, :id, :email, { :selected => "juul.martin@gmail.com" }) %>
 		</div>
 	</div>
 	<div class="control-group">
 		<%= f.label 'Opmerkingen:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.text_field :remark %>
+			<%= f.text_area :remark, :rows => 4 %>
 		</div>
  	</div>
   <div class="control-group">
