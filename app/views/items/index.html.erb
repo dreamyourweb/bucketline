@@ -26,7 +26,7 @@
 					<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
-						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>
+						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
 						<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 						<% if @project.success %>
