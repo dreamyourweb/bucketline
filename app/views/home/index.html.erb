@@ -1,13 +1,36 @@
 <% if current_user && current_user.sign_in_count == 1 %>
 	<div class="alert">
 	<a class="close" data-dismiss="alert">×</a>
-		Welkom bij de sociale overwaarde verbinder! We raden je aan om eerst <%= link_to "je profiel", profile_path(current_user.profile) %> in te stellen als je dat nog niet gedaan hebt.
+		Welkom bij de sociale overwaarde verbinder! We raden je aan om eerst <%= link_to "je profiel", profile_path(current_user.profile) %> in te stellen.
 	</div>
 <% end %>
 <div class="hero-unit">
 	<h1>Huis van Overvloed</h1>
-	<p>Welkom bij de Waardeverbinder van het Huis van Overvloed. Met deze toepassing kunnen we jouw hulp verbinden aan de bouw van het huis. Dat doen we per project. Een project is bijvoorbeeld 'dak maken' of 'hout verplaatsen'. Nadat je jezelf hebt aangemeld kun je 'gereedschap' uitlenen, 'materialen' geven of je 'handjes' laten wapperen.</p>
-	<p>Wij plannen onze projecten op basis van je beschikbaarheid en waar je goed in bent. Dit kun je via deze toepassing allemaal doorgeven. <% if !current_user %>Je kunt jezelf <%= link_to "hier registreren", new_user_registration_path %>.<% end %> We gaan uiteraard zorgvuldig om met je gegevens en hopen je snel te zien op het bouwterrein van het Huis van Overvloed!</p> 
-	<%= link_to "Neem een kijkje in onze agenda", projects_path, :class => "btn btn-primary btn-large pull-right" %>
+</div>
+
+<div class="row">
+	<div class="span4">
+		<h2>Sociale Overwaarde</h2>
+<p>We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. Deze overvloed noemen we sociale overwaarde. Er zijn al verschillende initiatieven om sociale overwaarde te verbinden.</p> 
+	</div>
+	<div class="span4">
+		<h2>Huis van Overvloed</h2>
+<p>Als je alle spullen en hulp die over zijn bij elkaar brengt, dan kun je daar vast een huis van bouwen. Het Huis van Overvloed is het eerste project in zijn soort, en wordt een werk- en ontmoetingsplek in Nijmegen, zonder ook maar een cent uit te geven. Alle spullen en hulp komt van mensen die dit over hebben. Meer informatie en contactgegevens zijn te vinden op de algemene site van het Huis van Overvloed zelf.</p>
+	</div>
+	<div class="span4">
+		<h2>De Waardeverbinder</h2>
+			<p>Met deze site, de waardeverbinder, kunnen we jouw hulp verbinden aan de bouw van het Huis van Overvloed. De bouw van het huis wordt opgedeeld in allemaal kleinere projecten. Op basis van je beschikbaarheid, gereedschappen en materialen plannen we deze projecten. In onze agenda kun je alle projecten bekijken, en meteen je beschikbaarheid of hulp doorgeven. <% if !current_user %>Om bij te dragen kun je jezelf <%= link_to "hier aanmelden", new_user_registration_path %>.<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="span4">
+		<%= link_to "Lees meer over sociale overwaarde", "http://www.socialeoverwaarde.nl/", :class => "btn btn-large", :target => "_blank" %>
+	</div>
+	<div class="span4">
+		<%= link_to "Lees meer over het huis", "http://www.huisvanovervloed.nl/", :class => "btn btn-large", :target => "_blank" %>
+	</div>
+	<div class="span4">
+		<%= link_to "Neem een kijkje in onze agenda", projects_path, :class => "btn btn-primary btn-large" %>
+	</div>
 </div>
 
