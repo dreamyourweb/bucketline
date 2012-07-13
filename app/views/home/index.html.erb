@@ -4,25 +4,35 @@
 		Welkom bij de sociale overwaarde verbinder! We raden je aan om eerst <%= link_to "je profiel", profile_path(current_user.profile) %> in te stellen.
 	</div>
 <% end %>
-<div class="hero-unit">
-	<h1>Huis van Overvloed</h1>
+<div class="row">
+	<div id="splash" class="span12">
+		<h1>Huis van Overvloed</h1>
+	</div>
 </div>
-
+<hr>
+<div class="row">
+	<div class="span4">
+		<p class="what-is">Wat is...<p>
+	</div>
+	<div class="span1 arrow"></div>
+	<div class="span4"><p></p></div>
+	<div class="span1 arrow last"></div>
+</div>
 <div class="row">
 	<div class="span4 justify">
 		<h2>Sociale Overwaarde</h2>
-<p>We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. Deze overvloed noemen we sociale overwaarde. Er zijn al verschillende initiatieven om sociale overwaarde te verbinden.</p> 
+<p>We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. Deze overvloed noemen we sociale overwaarde. Door onze sociale overwaarde nieuw leven in te blazen, kunnen we grote dingen realiseren, en dragen we bij aan een afname van onze wegwerpcultuur.</p> 
 	</div>
 	<div class="span4 justify">
-		<h2>Huis van Overvloed</h2>
-<p>Als je alle spullen en hulp die over zijn bij elkaar brengt, dan kun je daar vast een huis van bouwen. Het Huis van Overvloed is het eerste project in zijn soort, en wordt een werk- en ontmoetingsplek in Nijmegen. Gebouwd zonder ook maar een cent uit te geven. Alle spullen en hulp komt van mensen die dit over hebben. Meer informatie en contactgegevens voor het huis zelf zijn te vinden op de algemene site van het Huis van Overvloed.</p>
+		<h2>Het Huis van Overvloed</h2>
+<p>Als je sociale overwaarde uit verschillende hoeken bij elkaar brengt, dan kun je daar vast een huis van bouwen. Dat is de gedachte achter het Huis van Overvloed. Dit huis is het eerste project in zijn soort, en wordt een werk- en ontmoetingsplek in Nijmegen. Gebouwd zonder ook maar een cent uit te geven. Alle spullen en hulp komt van mensen die dit kunnen missen. Meer informatie en contactgegevens voor het huis zelf zijn te vinden op de algemene site van het Huis van Overvloed.</p>
 	</div>
 	<div class="span4 justify">
 		<h2>De Waardeverbinder</h2>
-			<p>De kunst is om alle hulp in goede banen te leiden. Met deze site, de waardeverbinder, kunnen we jouw hulp verbinden aan de bouw van het Huis van Overvloed. Je kunt het zien als een interactieve agenda. De bouw van het huis wordt opgedeeld in allemaal kleinere projecten, zoals bijvoorbeeld dakpannen leggen, of een gat graven. Op basis van jouw beschikbaarheid, gereedschappen en materialen plannen we deze projecten. In onze agenda kun je alle projecten bekijken, en meteen je beschikbaarheid of hulp doorgeven. <% if !current_user %>Om bij te dragen kun je jezelf <%= link_to "hier registreren", new_user_registration_path %>.<% end %>
+			<p>De kunst is om alle hulp in goede banen te leiden. Met deze site, de waardeverbinder, kunnen we jouw hulp verbinden aan de bouw van het Huis van Overvloed. Je kunt het zien als een interactieve agenda. De bouw van het huis wordt opgedeeld in allemaal kleinere projecten, zoals bijvoorbeeld dakpannen leggen, of een gat graven. Op basis van jouw beschikbaarheid, gereedschappen en materialen plannen we deze projecten in. In onze agenda kun je alle projecten bekijken, en meteen je beschikbaarheid of hulp aanbieden. <% if !current_user %>Om bij te dragen kun je jezelf <%= link_to "hier registreren", new_user_registration_path %>.<% end %>
 	</div>
 </div>
-<div class="row">
+<div class="row calls-to-action">
 	<div class="span4 right-align">
 		<%= link_to "Lees meer over sociale overwaarde", "http://www.socialeoverwaarde.nl/", :class => "btn btn-large", :target => "_blank" %>
 	</div>
