@@ -8,6 +8,8 @@ class User
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
+	#Facebook
+	has_many :authentications, :dependent => :destroy
 
 	before_save :check_or_create_profile
 	after_create :send_user_created_mail
@@ -60,5 +62,15 @@ class User
 			mail = UserCreatedMailer.new(:email => admin.email, :user_email => self.email)
 			mail.deliver
 		end
+	end
+
+	def apply_omniauth(auth)
+		# In previous omniauth, 'user_info' was used in place of 'raw_info'
+		self.email = auth['extra']['raw_info']['email']
+		#Automatically confirm
+		self.confirmed_at = Time.now
+		# Again, saving token is optional. If you haven't created the column in authentications table, this will fail
+		auth = self.authentications.build(:provider => auth['provider'], :uid => auth['uid'], :token => auth['credentials']['token'])
+		auth.save
 	end
 end

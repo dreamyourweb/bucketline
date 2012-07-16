@@ -3,6 +3,9 @@ HvO::Application.routes.draw do
 	root :to => "home#index"
   get "home/index"
 
+	#Facebook login
+	match '/auth/:provider/callback' => 'authentications#create'
+
   resources :messages, :except => [:edit, :show]
 	match "feedback" => "messages#new"
 
