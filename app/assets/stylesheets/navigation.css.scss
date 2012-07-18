@@ -1,0 +1,19 @@
+.navbar .logo{
+	height: 59px;
+	width: 500px;
+	h1{
+		padding-top: 10px;
+		color: white;
+	}
+}
+
+.nav{
+	li.active a{
+		background: url(background-clean.jpg);
+		background-position: center top;
+	}
+}
+
+.nav.nav-tabs{
+	border: none;
+}

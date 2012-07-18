@@ -1,0 +1,22 @@
+#footer {
+	//margin-top:20px;
+	padding-top:20px;
+	color:#F5F5F5;
+	background-color: black;
+	height:120px;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+
+#footer .container{
+	height: 100%;
+	position: relative;
+}
+
+#footer sub{
+	position: absolute;
+	bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
