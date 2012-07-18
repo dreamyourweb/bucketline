@@ -1,6 +1,7 @@
 <div class="row pull-right">
 	<% if user_signed_in? %>
-		<%= link_to "Uitloggen", logout_path %>
+		<%= link_to current_user.email, profile_path(@profile) %>
+		<%= link_to "Uitloggen", logout_path, :class => "btn" %>
 	<% else %>
 		<%= form_for("user", :url => user_session_path, :html => {:class => "form-inline"}) do |f| %>
 	    	<fieldset>
