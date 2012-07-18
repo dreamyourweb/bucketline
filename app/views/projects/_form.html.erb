@@ -49,7 +49,7 @@
 	<div class="field control-group">
 		<%= f.label "Contactpersoon:", :class => "control-label" %>
 		<div class="controls"> 
-			<%= collection_select(:project, :owner_id, @admins, :id, :email, { :selected => "mail@juulmartin.nl" }) %>
+			<%= collection_select(:project, :owner_id, @admins, :id, :email, {:selected => current_user.id}) %>
 		</div>
 	</div>
 	<div class="control-group">
