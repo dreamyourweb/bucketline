@@ -2,7 +2,16 @@
 	<% if user_signed_in? %>
 		<%= link_to "Uitloggen", logout_path %>
 	<% else %>
-		<%= link_to "Inloggen", login_path %> of <%= link_to "registreren", new_user_registration_path %>
+		<%= form_for("user", :url => user_session_path, :html => {:class => "form-inline"}) do |f| %>
+	    	<fieldset>
+	        	<%= f.text_field :email, :class => "input-small", :placeholder => "Email" %>
+	        	<%= f.password_field :password, :class => "input-small", :placeholder => "Wachtwoord" %>
+	        	<%= f.label :remember_me, :class => "checkbox"  do |cb|  %>
+	        	<%= f.check_box :remember_me %><%=t 'devise.sessions.new.remember_me' %>
+	        	<% end %>
+				<%= f.submit t('devise.sessions.new.sign_in'), :class => "btn" %>
+	 		</fieldset>
+    	<% end %>
 	<% end %>
 </div>
 
@@ -26,3 +35,5 @@
 		<% end %>
 	<% end %>
 </ul>	
+
+
