@@ -1,12 +1,13 @@
 <h2>Overzicht van alle bijdragen</h2>
+<p>Vanwege een revisie in de manier waarop deze lijst wordt opgevraagd, komen bijdragen van voor 22-6-2012 niet in deze lijst voor.</p>
 <p>Voor bijdragen van vandaag of later, geordend per project. <%= link_to "Toon ook projecten en bijdragen van voor vandaag.", :controller => "links", :action => "index", :show => "all" %></p>
 <div id="accordion3" class="accordion">
 	<% @projects.each do |project| %>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" href=<%= "#" + project %> data-parent="#accordion3" data-toggle="collapse"><%= project %></a>
+				<a class="accordion-toggle" href=<%= "#" + project.id.to_s %> data-parent="#accordion3" data-toggle="collapse"><%= project.query %></a>
 			</div>
-			<div id=<%= project %> class="accordion-body collapse" style="height: 0px;">
+			<div id=<%= project.id.to_s %> class="accordion-body collapse" style="height: 0px;">
 				<div class="accordion-inner">
 					<table class="admin-table table table-bordered table-striped">
 						<tr>
@@ -19,7 +20,7 @@
 							<th>Email</th>
 							<th></th>		
 						</tr>
-						<% @links.where(:project_query => project).each do |link| %>
+						<% @links.where(:project_id => project.id).each do |link| %>
 							<tr>
 								<td><%= link.item_name %></td>
 								<td><%= link.amount %> van <%= link.item_total_amount %></td>

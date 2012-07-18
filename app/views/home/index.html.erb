@@ -1,7 +1,7 @@
 <% if current_user && current_user.sign_in_count == 1 %>
 	<div class="alert">
 	<a class="close" data-dismiss="alert">×</a>
-		Welkom bij de sociale overwaarde verbinder! We raden je aan om eerst <%= link_to "je profiel", profile_path(current_user.profile) %> in te stellen als je dat nog niet gedaan hebt.
+		Welkom bij de sociale overwaarde verbinder! We raden je aan om eerst <%= link_to "je profiel", profile_path(current_user.profile) %> in te stellen.
 	</div>
 <% end %>
 <div class="hero-unit" style="display: none;">
@@ -13,19 +13,26 @@
 
 <div class="row features ">
 	<div class="span4">
-		<h3>Overvloed</h3>
-		<p>Welkom bij de Waardeverbinder van het Huis van Overvloed. Met deze toepassing kunnen we jouw hulp verbinden aan de bouw van het huis. Dat doen we per project. Een project is bijvoorbeeld 'dak maken' of 'hout verplaatsen'. Nadat je jezelf hebt aangemeld kun je 'gereedschap' uitlenen, 'materialen' geven of je 'handjes' laten wapperen.</p>
-		<%= link_to "Bla bla bla", projects_path, :class => "btn-metal pull-right" %>
+		<h3>Sociale Overwaarde</h3>
+		<p>We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. Deze overvloed noemen we sociale overwaarde. Door onze sociale overwaarde nieuw leven in te blazen, kunnen we grote dingen realiseren, en dragen we bij aan een afname van onze wegwerpcultuur.</p> 
 	</div>
 	<div class="span4">
-		<h3>Huis van Overvloed</h3>
-		<p>Welkom bij de Waardeverbinder van het Huis van Overvloed. Met deze toepassing kunnen we jouw hulp verbinden aan de bouw van het huis. Dat doen we per project. Een project is bijvoorbeeld 'dak maken' of 'hout verplaatsen'. Nadat je jezelf hebt aangemeld kun je 'gereedschap' uitlenen, 'materialen' geven of je 'handjes' laten wapperen.</p>
-		<%= link_to "Bla bla bla", projects_path, :class => "btn-metal pull-right" %>
+		<h3>Het Huis van Overvloed</h3>
+		<p>Als je sociale overwaarde uit verschillende hoeken bij elkaar brengt, dan kun je daar vast een huis van bouwen. Dat is de gedachte achter het Huis van Overvloed. Dit huis is het eerste project in zijn soort, en wordt een werk- en ontmoetingsplek in Nijmegen. Gebouwd zonder ook maar een cent uit te geven. Alle spullen en hulp komt van mensen die dit kunnen missen. Meer informatie en contactgegevens voor het huis zelf zijn te vinden op de algemene site van het Huis van Overvloed.</p>
 	</div>
 	<div class="span4">
-		<h3>Waardeverbinder</h3>
-		<p>Welkom bij de Waardeverbinder van het Huis van Overvloed. Met deze toepassing kunnen we jouw hulp verbinden aan de bouw van het huis. Dat doen we per project. Een project is bijvoorbeeld 'dak maken' of 'hout verplaatsen'. Nadat je jezelf hebt aangemeld kun je 'gereedschap' uitlenen, 'materialen' geven of je 'handjes' laten wapperen.</p>
-		<%= link_to "Bla bla bla", projects_path, :class => "btn-metal pull-right" %>
+		<h3>De Waardeverbinder</h3>
+		<p>De kunst is om alle hulp in goede banen te leiden. Met deze site, de waardeverbinder, kunnen we jouw hulp verbinden aan de bouw van het Huis van Overvloed. Je kunt het zien als een interactieve agenda. De bouw van het huis wordt opgedeeld in allemaal kleinere projecten, zoals bijvoorbeeld dakpannen leggen, of een gat graven. Op basis van jouw beschikbaarheid, gereedschappen en materialen plannen we deze projecten in. In onze agenda kun je alle projecten bekijken, en meteen je beschikbaarheid of hulp aanbieden. <% if !current_user %>Om bij te dragen kun je jezelf <%= link_to "hier registreren", new_user_registration_path %>.<% end %></p>
 	</div>
 </div>
-
+<div class="row">
+	<div class="span4">
+		<%= link_to "Lees meer", "http://www.socialeoverwaarde.nl/", :class => "btn-metal pull-right", :target => "_blank" %>
+	</div>
+	<div class="span4">
+		<%= link_to "Lees meer", "http://www.huisvanovervloed.nl/", :class => "btn-metal pull-right", :target => "_blank" %>
+	</div>
+	<div class="span4">
+		<%= link_to "Bekijk agenda", projects_path, :class => "btn-metal pull-right" %>
+	</div>
+</div>

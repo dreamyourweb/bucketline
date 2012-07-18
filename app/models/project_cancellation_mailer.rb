@@ -1,18 +1,15 @@
-class ProjectPlacementMailer < MailForm::Base
+class ProjectCancellationMailer < MailForm::Base
 	attribute :project_query
 	attribute :project_start_at
 	attribute :project_end_at
-	attribute :project_dayparts
-	attribute :project_remark
-	attribute :items
-	attribute :location
+	attribute :email
 	attribute :admin_email
 	attribute :admin_contact
 	attribute :recipients
 
   def headers
     {
-      :subject => "Huis van Overvloed - Er is een nieuw project geplaatst",
+      :subject => "Huis van Overvloed - Een project waaraan je bijdraagt is geannuleerd",
       :to => %(<#{admin_email}>),
 			:bcc => %(<#{recipients}>),
 			:from => %(<#{admin_email}>)

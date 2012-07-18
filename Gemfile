@@ -12,6 +12,11 @@ gem 'devise'
 gem 'event-calendar', :require => 'event_calendar'
 #gem "watu_table_builder", :require => "table_builder"
 
+#Facebook login
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'oauth2'
+
 gem 'fancybox-rails'
 
 group :assets do

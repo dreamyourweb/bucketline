@@ -1,15 +1,18 @@
 <div>
 	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
-	Project loopt van: <%= pretty_date(@project.start_at) %> tot en met <%= pretty_date(@project.end_at) %><%= get_dayparts(@project) %>.<br>
+	<strong>Project datum:</strong><%= date_text_for_display(@project.start_at, @project.end_at) %><%= get_dayparts(@project) %>.<br>
 	<% if current_user && !@owner_profile.nil? %>
-		Contactpersoon: <%= @owner_profile.name %> (<%= @owner.email %>)<br>
+		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
+	<% end %>
+	<% if !@project.location.nil? && !@project.location.empty? %>
+		<strong>Verzamel locatie:</strong> <%= @project.location %><br>
 	<% end %>
 	<% if !@project.remark.nil? && !@project.remark.empty? %>
-		Opmerkingen: <%= @project.remark %>
+		<strong>Opmerkingen:</strong> <%= @project.remark %>
 	<% end %>
 </div><br>
 
-<strong>Benodigdheden voor dit project:</strong>
+<h4>Benodigdheden voor dit project:</h4>
 
 <div>
 	<ul class="unstyled">
@@ -20,12 +23,12 @@
 				<% if item.provided %>
 					<span class="label label-inverse pull-right">Voorzien</span>
 					<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
-					<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
+					<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 				<% else %>
 					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
-						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %>/<%= item.amount %> nodig</span>
+						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
-						<small>Nodig van <%= pretty_date(item.start_at) %> tot en met <%= pretty_date(item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
+						<small>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>. <%= get_contributors(item) %></small>
 						<% if @project.success %>
 							Dit project is al afgerond, het is niet meer mogelijk om bij te dragen.
 						<% else %>
@@ -47,5 +50,11 @@
 
 <% if current_user && current_user.admin %>
 	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
-	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd." %>
+	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %>
+	<hr>
+	<div>
+		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
+		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
+		<%= text_field_tag "emails", build_emails_for_copy(@contributing_users), :style => "width:95%;" %>
+	</div>
 <% end %>

@@ -6,6 +6,7 @@ class Link
 	field :item_id
 	field :profile_id
 	field :amount
+	field :project_id
 
 	field :project_query
 	field :item_name
@@ -30,6 +31,7 @@ class Link
 		@item = Item.find(self.item_id)
 		@profile = Profile.find(self.profile_id)
 		self.project_query = @item.project.query
+		self.project_id = @item.project.id
 		self.item_name = @item.name
 		self.item_total_amount = @item.amount
 		self.item_start_at = @item.start_at

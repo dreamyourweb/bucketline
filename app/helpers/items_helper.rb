@@ -8,7 +8,7 @@ module ItemsHelper
 	end
 
 	def get_contributors(item)
-		contributores = ""
+		contributors = ""
 		profiles = item.profiles.where(:name.ne => "", :name.exists => true)
 		if !profiles.empty?
 			contributors = []

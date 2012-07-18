@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   def index
     @items = @project.items.all
 		@owner = @project.owner
+		@contributing_users = @project.contributing_users
 		if !@owner.nil?
 			@owner_profile = @owner.profile
 		end

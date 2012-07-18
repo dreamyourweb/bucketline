@@ -10,12 +10,12 @@ class Profile
 	before_destroy :remove_links
 
   field :name, :type => String
-  field :phone, :type => String
+  field :phone, :type => String, :default => ""
   field :expertise, :type => String
   field :willing_to_help_with, :type => String
   field :tools_and_materials, :type => String
 	field :send_reminder_mail, :type => Boolean, :default => true
-	field :send_project_placement_mail, :type => Boolean, :default => false
+	field :send_project_cancellation_mail, :type => Boolean, :default => true
 	field :always_send_project_placement_mail, :type => Boolean, :default => true
 
 	def link_to_item(amount, item)

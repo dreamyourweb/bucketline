@@ -25,20 +25,20 @@
 		<% end %>
 		<div class="date-selector control-group">
 			<%= f.label 'Nodig van:', :class => "control-label" %> 
-			<div class="controls"> 
+			<div class="controls item_date_start"> 
 				<%= f.date_select :start_at, :default => pre_select_date %>
 			</div>
 	 	</div>
 		<div class="date-selector control-group">
 			<%= f.label 'Tot en met:', :class => "control-label" %> 
-			<div class="controls"> 
+			<div class="controls item_date_end"> 
 				<%= f.date_select :end_at, :default => pre_select_date %>
 			</div>
 	 	</div>
 		<div class="field control-group">
 			<%= f.label "Selecteer dagdelen", :class => "control-label" %>
 			<div class="controls"> 
-				<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+				<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true, :class => "item_daypart"}) %>
 			</div>
 		</div>
 	</p>
