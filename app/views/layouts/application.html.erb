@@ -17,13 +17,9 @@
 		</div>
 	</div>
 	<div class="container main">
-		<% flash.each do |key, value| %>
-			<div class="alert">
-			<a class="close" data-dismiss="alert">×</a>
-				<%= content_tag(:div, value, :class => "site-flash #{key}") %>
-			</div>
-		<% end %>
-
+		<div id="flashmessages">
+  			<%= render 'layouts/flashmessages' %>	
+		</div>
 		<% if current_user %>
 			<div class="feedback">
 				<%= link_to feedback_path, :class => "fancybox" do %>
