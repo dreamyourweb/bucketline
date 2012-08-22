@@ -71,7 +71,8 @@ class ItemsController < ApplicationController
 					@profile = current_user.profile
 					@link = Link.where(:profile_id => @profile.id, :item_id => @item.id).first
 					if @link
-						@link.update_attributes(:amount => @link.amount + params[:amount_to_give].to_i)
+						@link.amount += params[:amount_to_give].to_i
+						@link.save
 					else
 						@link = @item.links.create(:amount => params[:amount_to_give].to_i, :profile_id => @profile.id)
 						@profile.links << @link
