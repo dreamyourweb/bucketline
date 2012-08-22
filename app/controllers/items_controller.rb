@@ -69,9 +69,14 @@ class ItemsController < ApplicationController
       if @item.update_attributes(params[:item])
 				if params[:amount_to_give]
 					@profile = current_user.profile
-					@link = @item.links.create(:amount => params[:amount_to_give], :profile_id => @profile.id)
-					@profile.links << @link
-					@profile.save
+					@link = Link.where(:profile_id => @profile.id, :item_id => @item.id).first
+					if @link
+						@link.update_attributes(:amount => @link.amount + params[:amount_to_give].to_i)
+					else
+						@link = @item.links.create(:amount => params[:amount_to_give].to_i, :profile_id => @profile.id)
+						@profile.links << @link
+						@profile.save
+					end
 				end
 				if params[:redirect_to_dashboard]
         	format.html { redirect_to dashboard_path, :notice => 'Bedankt voor je bijdrage!' }

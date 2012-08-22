@@ -51,4 +51,11 @@ class Item
 			"Materiaal"
 		end
 	end
+	def providing_user(user) #checks if user is providing this item
+		providing = false
+		if Link.where(:profile_id => user.profile.id, :item_id => self.id).count > 0
+			providing = true
+		end
+		providing
+	end
 end
