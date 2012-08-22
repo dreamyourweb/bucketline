@@ -8,14 +8,16 @@ module ItemsHelper
 	end
 
 	def get_contributors(item)
-		contributors = ""
-		profiles = item.profiles.where(:name.ne => "", :name.exists => true)
-		if !profiles.empty?
-			contributors = []
-			profiles.each do |profile|
-				contributors << profile.name
+		contributors = []
+		item.links.all.each do |link|
+			if link.profile.name			
+				contributors << link.profile.name
 			end
+		end
+		if !contributors.empty?
 			contributors = " Bijdragers zijn: " + contributors.to_sentence + "."
+		else
+			contributors = ""
 		end
 		contributors
 	end

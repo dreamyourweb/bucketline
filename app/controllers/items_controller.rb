@@ -65,13 +65,13 @@ class ItemsController < ApplicationController
   # PUT /items/1.json
   def update
     @item = @project.items.find(params[:id])
-
     respond_to do |format|
       if @item.update_attributes(params[:item])
 				if params[:amount_to_give]
 					@profile = current_user.profile
-					@item.link_to_profile(params[:amount_to_give].to_i, @profile)
-					@profile.link_to_item(params[:amount_to_give].to_i, @item)
+					@link = @item.links.create(:amount => params[:amount_to_give], :profile_id => @profile.id)
+					@profile.links << @link
+					@profile.save
 				end
 				if params[:redirect_to_dashboard]
         	format.html { redirect_to dashboard_path, :notice => 'Bedankt voor je bijdrage!' }

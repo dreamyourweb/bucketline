@@ -9,7 +9,11 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-		@items = @profile.items.all.order_by([[:start_at, :asc]])
+		@items = []
+		@profile.links.all.each do |link| 
+			@items << link.item
+		end
+		#items.order_by([[:start_at, :asc]])
 		respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
@@ -79,15 +83,12 @@ class ProfilesController < ApplicationController
   end
 
 	def remove_item
-		@profile = Profile.find(params[:profile_id])
-		@item = Item.find(params[:id])
+		@link = Link.where(:profile_id => params[:profile_id], :item_id => params[:id]).first
 		if params[:redirect_to_links]
-			@profile.remove_item(@item)
-			@item.remove_profile(@profile)
+			@link.destroy
 			redirect_to links_path, :notice => "Bijdrage is ingetrokken."
 		elsif @profile == current_user.profile
-			@profile.remove_item(@item)
-			@item.remove_profile(@profile)
+			@link.destroy
 			redirect_to profile_path(@profile), :notice => "Bijdrage is ingetrokken."
 		else
 			redirect_to profile_path(@profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."

@@ -1,19 +1,21 @@
 class LinksController < ApplicationController
-	before_filter :authenticate_admin
+	before_filter :authenticate_admin, :only => [:index]
+	before_filter :authenticate_user, :only => [:create]
 
 	def index
 		if params[:show] == "all"
-			@links = Link.all
+			@projects = Project.all
 		else	
-			@links = Link.where(:item_end_at.gte => Date.today)
+			@projects = Project.where(:end_at.gte => Date.today)
 		end
-		@projects = []
-		@links.each do |link|
-			if !link.project_id.nil?
-				@projects << Project.find(link.project_id)
-			end
-		end
-		@projects = @projects.uniq
 	end
+
+	#def create
+	#	@item = Item.find(params[:id])
+	#	@link = @item.links.create(:amount => params[:amount])
+	#	@profile = current_user.profile
+	#	@profile.build(@link)
+	#	@profile.save
+	#end
 end
 

@@ -79,7 +79,7 @@ class Project
 	def providing_user(user) #checks if user is providing something for this project
 		providing = false
 		self.items.each do |item|
-			if item.profile_ids.include?(user.profile.id)
+			if Link.where(:profile_id => user.profile.id, :item_id => item.id).count > 0
 				providing = true
 			end
 		end
@@ -89,9 +89,9 @@ class Project
 	def contributor_emails_for_cancellation
 		mailing_list = []
 		self.items.all.each do |item|
-			item.profiles.all.each do |profile|
+			item.links.all.each do |link|
 				if profile.send_project_cancellation_mail && self.owner != profile.user
-					mailing_list << profile.user.email
+					mailing_list << link.profile.user.email
 				end
 			end
 		end
@@ -102,8 +102,8 @@ class Project
 	def contributing_users
 		users = []
 		self.items.all.each do |item|
-			item.profiles.all.each do |profile|
-				users << profile.user
+			item.links.all.each do |link|
+				users << link.profile.user
 			end
 		end
 		unique_users = users.uniq
