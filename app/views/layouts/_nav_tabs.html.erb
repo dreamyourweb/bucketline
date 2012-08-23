@@ -4,13 +4,13 @@
 		<li class=<%= get_active("calendar") %> ><%= link_to "Project kalender", initiative_projects_path(@initiative) %></li>
 		<li class=<%= get_active("dashboard") %> ><%= link_to "Alle benodigdheden", initiative_dashboard_path(@initiative) %></li>
 		<% if user_signed_in? %>
-			<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel en bijdragen", profile_path(@profile) %></li>
-			<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(@profile) %></li>
+			<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel en bijdragen", profile_path(current_user.profile) %></li>
+			<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile) %></li>
 			<% if current_user.admin %>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbare specialisten", profile_availability_dashboard_path(@profile) %></li>
+						<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbare specialisten", profile_availability_dashboard_path(current_user.profile) %></li>
 						<li class=<%= get_active("links") %> ><%= link_to "Alle bijdragen", links_path %></li>
 						<li class=<%= get_active("profiles") %> ><%= link_to "Alle gebruikers", profiles_path %></li>
 						<li class=<%= get_active("messages") %> ><%= link_to "Feedback berichten", messages_path %></li>

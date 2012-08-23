@@ -16,7 +16,7 @@ module ApplicationHelper
 			"active"
 		elsif page == "dashboard" && request.path_parameters[:controller] == "items"
 			"active"
-		elsif page == "home" && request.path_parameters[:controller] == "home"
+		elsif page == "home" && request.path_parameters[:controller] == "initiatives" && request.path_parameters[:action] == "show"
 			"active"
 		elsif page == "messages" && request.path_parameters[:controller] == "messages"
 			"active"
