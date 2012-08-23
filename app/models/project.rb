@@ -14,7 +14,7 @@ class Project
 	validates_uniqueness_of :query
 
 	before_save :trim_daypart
-	before_destroy :remove_links, :send_project_cancellation_mail
+	before_destroy :send_project_cancellation_mail
 
 	field :query
 	field :start_at, :type => Date
@@ -23,19 +23,6 @@ class Project
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
 	field :success, :type => Boolean, :default => false
-
-	def remove_links
-		@links = []
-		self.items.all.each do |item|
-			@item_links = Link.where(:item_id => item.id)
-			@item_links.each do |item_link|
-				@links << item_link
-			end
-		end
-		@links.each do |link|
-			Link.find(link.id).destroy
-		end
-	end
 
 	def trim_daypart
 		self.daypart.delete("")
@@ -88,15 +75,17 @@ class Project
 
 	def contributor_emails_for_cancellation
 		mailing_list = []
-		self.items.all.each do |item|
-			item.links.all.each do |link|
-				if profile.send_project_cancellation_mail && self.owner != profile.user
-					mailing_list << link.profile.user.email
+		self.items.each do |item|
+			links = item.links.all.entries
+			if !links.empty?
+				links.each do |link|
+					if link.profile.send_project_cancellation_mail && self.owner != link.profile.user
+						mailing_list << link.profile.user.email
+					end
 				end
 			end
 		end
 		unique_mailing_list = mailing_list.uniq.join(">,<")
-		p unique_mailing_list
 	end
 
 	def contributing_users
