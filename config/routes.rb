@@ -20,7 +20,7 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :initiatives do
+  resources :initiatives, :except => [:show] do
 		match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 		get "dashboard", :to => "items#dashboard"
 		resources :projects, :except => [:show] do

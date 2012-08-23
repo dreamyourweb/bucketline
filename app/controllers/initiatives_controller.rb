@@ -12,15 +12,15 @@ class InitiativesController < ApplicationController
 
   # GET /initiatives/1
   # GET /initiatives/1.json
-  def show
-    @initiative = Initiative.find(params[:id])
-		session[:initiative_id] = params[:id]
+  #def show
+  #  @initiative = Initiative.find(params[:id])
+	#	session[:initiative_id] = params[:id]
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @initiative }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # show.html.erb
+  #    format.json { render json: @initiative }
+  #  end
+  #end
 
   # GET /initiatives/new
   # GET /initiatives/new.json

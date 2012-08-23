@@ -1,6 +1,5 @@
 <% if @initiative %>
 	<ul class="nav nav-tabs">
-		<li class=<%= get_active("home") %> ><%= link_to "Home", initiative_path(@initiative) %></li>
 		<li class=<%= get_active("calendar") %> ><%= link_to "Project kalender", initiative_projects_path(@initiative) %></li>
 		<li class=<%= get_active("dashboard") %> ><%= link_to "Alle benodigdheden", initiative_dashboard_path(@initiative) %></li>
 		<% if user_signed_in? %>

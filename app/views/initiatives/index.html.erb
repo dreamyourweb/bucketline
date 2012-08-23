@@ -1,27 +1,56 @@
-<h1>Listing initiatives</h1>
+<div class="row uvp">
+	<div class="span6">
+		<h2>Bouw nu mee</h2><h2>aan een van onze</h2><h2>Huizen van Overvloed</h2>
+	</div>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+	<table>
+		<tr>
+		  <th>Initiatief</th>
+		  <th>Locatie</th>
+		  <th>Omschrijving</th>
+		  <th></th>
+		  <th></th>
+		  <th></th>
+		</tr>
 
-<% @initiatives.each do |initiative| %>
-  <tr>
-    <td><%= initiative.name %></td>
-    <td><%= initiative.location %></td>
-    <td><%= initiative.description %></td>
-    <td><%= link_to 'Bekijk initiatief', initiative_path(initiative) %></td>
-    <td><%= link_to 'Bewerken', edit_initiative_path(initiative) %></td>
-    <td><%= link_to 'Verwijderen', initiative, confirm: 'Weet je het zeker?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+	<% @initiatives.each do |initiative| %>
+		<tr>
+		  <td><%= initiative.name %></td>
+		  <td><%= initiative.location %></td>
+		  <td><%= initiative.description %></td>
+		  <td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
+		  <td><%= link_to 'Bewerken', edit_initiative_path(initiative) %></td>
+		  <td><%= link_to 'Verwijderen', initiative, confirm: 'Weet je het zeker?', method: :delete %></td>
+		</tr>
+	<% end %>
+	</table>
 
-<br />
+	<%= link_to 'New Initiative', new_initiative_path %>
+</div>
 
-<%= link_to 'New Initiative', new_initiative_path %>
+<div class="row features ">
+	<div class="span4">
+		<h3>Sociale Overwaarde</h3>
+		<p>We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. Deze overvloed noemen we sociale overwaarde. Door onze sociale overwaarde nieuw leven in te blazen, kunnen we grote dingen realiseren, en dragen we bij aan een afname van onze wegwerpcultuur.</p> 
+	</div>
+	<div class="span4">
+		<h3>Het Huis van Overvloed</h3>
+		<p>Als je sociale overwaarde uit verschillende hoeken bij elkaar brengt, dan kun je daar vast een huis van bouwen. Dat is de gedachte achter het Huis van Overvloed. Dit huis is het eerste project in zijn soort, en wordt een werk- en ontmoetingsplek in Nijmegen. Gebouwd zonder ook maar een cent uit te geven. Alle spullen en hulp komt van mensen die dit kunnen missen. Meer informatie en contactgegevens voor het huis zelf zijn te vinden op de algemene site van het Huis van Overvloed.</p>
+	</div>
+	<div class="span4">
+		<h3>De Waardeverbinder</h3>
+		<p>De kunst is om alle hulp in goede banen te leiden. Met deze site, de waardeverbinder, kunnen we jouw hulp verbinden aan de bouw van het Huis van Overvloed. Je kunt het zien als een interactieve agenda. De bouw van het huis wordt opgedeeld in allemaal kleinere projecten, zoals bijvoorbeeld dakpannen leggen, of een gat graven. Op basis van jouw beschikbaarheid, gereedschappen en materialen plannen we deze projecten in. In onze agenda kun je alle projecten bekijken, en meteen je beschikbaarheid of hulp aanbieden. <% if !current_user %>Om bij te dragen kun je jezelf <%= link_to "hier registreren", new_user_registration_path %>.<% end %></p>
+	</div>
+</div>
+<div class="row">
+	<div class="span4">
+		<%= link_to "Lees meer", "http://www.socialeoverwaarde.nl/", :class => "btn-metal pull-right", :target => "_blank" %>
+	</div>
+	<div class="span4">
+		<%= link_to "Lees meer", "http://www.huisvanovervloed.nl/", :class => "btn-metal pull-right", :target => "_blank" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>
