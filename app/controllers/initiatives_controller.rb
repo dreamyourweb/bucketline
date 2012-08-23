@@ -1,5 +1,5 @@
 class InitiativesController < ApplicationController
-	layout 'initiatives'
+	layout :choose_layout
 
   # GET /initiatives
   # GET /initiatives.json
@@ -82,4 +82,14 @@ class InitiativesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	private
+	
+	def choose_layout
+		if ['show'].include? action_name
+			'application'
+		else
+			'initiatives'
+		end
+	end
 end

@@ -7,7 +7,7 @@
 <div class="hero-unit" style="display: none;">
 	<h1><%= @initiative.name %> - <%= @initiative.location %></h1>
 	<p><%= @initiative.description %></p> 
-	<%= link_to "Neem een kijkje in onze agenda", projects_path, :class => "btn btn-primary btn-large pull-right" %>
+	<%= link_to "Neem een kijkje in onze agenda", initiative_projects_path(@initiative), :class => "btn btn-primary btn-large pull-right" %>
 </div>
 <div class="row uvp">
 	<div class="span6">
@@ -36,6 +36,6 @@
 		<%= link_to "Lees meer", "http://www.huisvanovervloed.nl/", :class => "btn-metal pull-right", :target => "_blank" %>
 	</div>
 	<div class="span4">
-		<%= link_to "Bekijk agenda", projects_path, :class => "btn-metal pull-right" %>
+		<%= link_to "Bekijk agenda", initiative_projects_path(@initiative), :class => "btn-metal pull-right" %>
 	</div>
 </div>
