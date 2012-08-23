@@ -1,7 +1,6 @@
 HvO::Application.routes.draw do
 
-	root :to => "home#index"
-  get "home/index"
+	root :to => "initiatives#index"
 
 	#Facebook login
 	match '/auth/:provider/callback' => 'authentications#create'
@@ -21,8 +20,10 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :projects, :except => [:show] do
-	  resources :items, :except => [:show, :edit, :new]
+  resources :initiatives do
+		resources :projects, :except => [:show] do
+			resources :items, :except => [:show, :edit, :new]
+		end
 	end
 
 	resources :links, :only => [:index]

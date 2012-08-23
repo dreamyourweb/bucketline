@@ -1,5 +1,10 @@
 class ProjectsController < ApplicationController
 	before_filter :authenticate_admin, :except => [:index, :info]
+	before_filter :get_initiative
+
+	def get_initiative
+		@initiative = Initiative.find(params[:initiative_id])
+	end
 
   # GET /questions
   # GET /questions.json
@@ -10,7 +15,7 @@ class ProjectsController < ApplicationController
     @shown_month = Date.civil(@year, @month)
 
 		@first_day_of_week = 1
-		@event_strips = Project.all.event_strips_for_month(@shown_month, @first_day_of_week)
+		@event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
   end
 
 	def info
@@ -18,7 +23,7 @@ class ProjectsController < ApplicationController
 	end
 
   def new
-    @project = Project.new
+    @project = @initiative.projects.new
 		@admins = User.where(:admin => true).all
     item = @project.items.build
 
@@ -34,7 +39,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params[:project])
+    @project = @initiative.projects.new(params[:project])
 		@admins = User.where(:admin => true).all
 
     respond_to do |format|
