@@ -21,7 +21,7 @@
 			<p>Project: <%= item.project.query %>.<br><%= get_contributors(item) %></p>
 	<% end %>
 	<% if current_user && current_user.admin %>
-		<%= link_to "Bijbehorende project bewerken", edit_project_path(item.project) %>
+		<%= link_to "Bijbehorende project bewerken", edit_initiative_project_path(@initiative, item.project) %>
 	<% end %>
 </div>
 

@@ -1,6 +1,4 @@
 class InitiativesController < ApplicationController
-	layout :choose_layout
-
   # GET /initiatives
   # GET /initiatives.json
   def index
@@ -16,6 +14,7 @@ class InitiativesController < ApplicationController
   # GET /initiatives/1.json
   def show
     @initiative = Initiative.find(params[:id])
+		session[:initiative_id] = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -82,14 +81,4 @@ class InitiativesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-	private
-	
-	def choose_layout
-		if ['show'].include? action_name
-			'application'
-		else
-			'initiatives'
-		end
-	end
 end

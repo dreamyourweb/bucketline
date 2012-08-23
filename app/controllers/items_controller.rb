@@ -1,7 +1,12 @@
 class ItemsController < ApplicationController
 	before_filter :get_project, :except => [:dashboard, :info]
+	before_filter :get_initiative
 	before_filter :authenticate_admin, :except => [:index, :update, :dashboard, :info]
 	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
+
+	def get_initiative
+		@initiative = Initiative.find(session[:initiative_id])
+	end
 
 	def get_project
 		@project = Project.find(params[:project_id])

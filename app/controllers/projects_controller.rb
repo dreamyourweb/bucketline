@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_filter :get_initiative
 
 	def get_initiative
-		@initiative = Initiative.find(params[:initiative_id])
+		@initiative = Initiative.find(session[:initiative_id])
 	end
 
   # GET /questions
