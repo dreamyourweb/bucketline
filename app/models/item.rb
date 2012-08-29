@@ -2,12 +2,11 @@ class Item
   include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :start_at, :end_at, :name, :type, :amount, :daypart
+	attr_accessible :name, :type, :amount
 
 	belongs_to :project
 	has_and_belongs_to_many :profiles, :dependent => :nullify #All the users that have contributed to this item
 
-	before_save :trim_daypart
 	before_destroy :remove_links
 
 	validates_numericality_of :amount
@@ -17,15 +16,6 @@ class Item
 	field :name
 	field :type
 	field :amount, :type => Integer, :default => 1
-	field :start_at, :type => Date
-	field :end_at, :type => Date
-	field :daypart
-
-	def trim_daypart
-		if !self.daypart.nil?
-			self.daypart.delete("")
-		end
-	end
 
 	def remove_links
 		@links = Link.where(:item_id => self.id)

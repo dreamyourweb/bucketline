@@ -13,34 +13,11 @@
 			</div> 
 		</div>
 		<div class="control-group">
-			<%= f.label :amount, "Aantal:", :class => "control-label" %>    
+			<%= f.label :amount, "Aantal:", :class => "control-label" %>
 			<div class="controls"> 
 				<%= f.text_field :amount %>
 			</div>
  		</div>
-		<% if params[:year] %>
-			<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
-		<% else %>
-			<% pre_select_date = Date.today %>
-		<% end %>
-		<div class="date-selector control-group">
-			<%= f.label 'Nodig van:', :class => "control-label" %> 
-			<div class="controls item_date_start"> 
-				<%= f.date_select :start_at, :default => pre_select_date %>
-			</div>
-	 	</div>
-		<div class="date-selector control-group">
-			<%= f.label 'Tot en met:', :class => "control-label" %> 
-			<div class="controls item_date_end"> 
-				<%= f.date_select :end_at, :default => pre_select_date %>
-			</div>
-	 	</div>
-		<div class="field control-group">
-			<%= f.label "Selecteer dagdelen", :class => "control-label" %>
-			<div class="controls"> 
-				<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true, :class => "item_daypart"}) %>
-			</div>
-		</div>
 	</p>
 	<div class="control-group">
 		<%= link_to_remove_fields "Verwijder benodigdheid", f %>

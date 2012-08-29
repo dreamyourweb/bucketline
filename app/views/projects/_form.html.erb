@@ -25,21 +25,21 @@
 	<div class="date-selector control-group">
 		<%= f.label 'Begin:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select(:start_at, {:default => pre_select_date}, {:class => "project_date_start"})%>
+			<%= f.date_select(:date, {:default => pre_select_date}, {:class => "project_date"})%>
 		</div>
  	</div>
-	<div class="date-selector control-group">
-		<%= f.label 'Einde:', :class => "control-label" %> 
+	<div class="time-selector control-group">
+		<%= f.label 'Begintijd:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select(:end_at, {:default => pre_select_date}, {:class => "project_date_end"}) %>
+			<%= f.time_select(:start_time, :minute_step => 15) %>
 		</div>
  	</div>
-	<div class="field control-group">
-		<%= f.label "Selecteer dagdelen:", :class => "control-label" %>
+	<div class="time-selector control-group">
+		<%= f.label 'Eindtijd:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+			<%= f.time_select(:end_time, :minute_step => 15) %>
 		</div>
-	</div>
+ 	</div>
 	<div class="field control-group">
 		<%= f.label "Verzamel locatie:", :class => "control-label" %>
 		<div class="controls"> 

@@ -11,15 +11,13 @@ class Project
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
 	validates_presence_of :query
-	validates_uniqueness_of :query
 
-	before_save :trim_daypart
 	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
-	field :start_at, :type => Date
-	field :end_at, :type => Date
-	field :daypart
+	field :date, :type => Date
+	field :start_time, :type => Time
+	field :end_time, :type => Time
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
 	field :success, :type => Boolean, :default => false
@@ -35,10 +33,6 @@ class Project
 		@links.each do |link|
 			Link.find(link.id).destroy
 		end
-	end
-
-	def trim_daypart
-		self.daypart.delete("")
 	end
 
 	def self.events_for_date_range(start_d, end_d, find_options = {})

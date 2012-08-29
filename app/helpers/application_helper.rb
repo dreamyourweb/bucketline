@@ -110,6 +110,10 @@ module ApplicationHelper
 		l(date, :format => '%d %B %Y')
 	end
 
+	def pretty_time(time)
+		time.to_formatted_s(:time)
+	end
+
 	def date_text_for_display(start_date, end_date)
 		if start_date == end_date
 			" op " + pretty_date(start_date)
