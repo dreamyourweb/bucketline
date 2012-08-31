@@ -23,21 +23,21 @@
 		<% pre_select_date = Date.today %>
 	<% end %>
 	<div class="date-selector control-group">
+		<%= f.label 'Datum:', :class => "control-label" %> 
+		<div class="controls"> 
+			<%= f.date_select(:input_date, {:default => pre_select_date}, {:class => "project_date"})%>
+		</div>
+ 	</div>
+	<div class="time-selector control-group">
 		<%= f.label 'Begin:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select(:date, {:default => pre_select_date}, {:class => "project_date"})%>
+			<%= f.time_select(:input_start_at, :minute_step => 15) %>
 		</div>
  	</div>
 	<div class="time-selector control-group">
-		<%= f.label 'Begintijd:', :class => "control-label" %> 
+		<%= f.label 'Einde:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.time_select(:start_time, :minute_step => 15) %>
-		</div>
- 	</div>
-	<div class="time-selector control-group">
-		<%= f.label 'Eindtijd:', :class => "control-label" %> 
-		<div class="controls"> 
-			<%= f.time_select(:end_time, :minute_step => 15) %>
+			<%= f.time_select(:input_end_at, :minute_step => 15) %>
 		</div>
  	</div>
 	<div class="field control-group">

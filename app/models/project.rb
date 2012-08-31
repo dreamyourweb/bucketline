@@ -12,15 +12,23 @@ class Project
 
 	validates_presence_of :query
 
+	before_save :set_dates
 	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
-	field :date, :type => Date
-	field :start_time, :type => Time
-	field :end_time, :type => Time
+	field :input_date, :type => Date
+	field :input_start_at, :type => Time
+	field :input_end_at, :type => Time
+	field :start_at, :type => DateTime
+	field :end_at, :type => DateTime
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
 	field :success, :type => Boolean, :default => false
+
+	def set_dates
+		self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.minute)
+		self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.minute)
+	end
 
 	def remove_links
 		@links = []
@@ -58,7 +66,7 @@ class Project
 			end
 		end
 		unique_mailing_list = mailing_list.uniq.join(">,<")
-		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list, :project_remark => self.remark)
+		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
 
