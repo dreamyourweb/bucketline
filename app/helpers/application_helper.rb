@@ -87,9 +87,9 @@ module ApplicationHelper
 			text << "<i class='icon-gift pull-right'></i>"
 		end
 		text << build_timetext(event)
-		text << "<br><b>#{event.query}.</b>"
+		text << "<br><b>#{truncate(event.query, :length => 23)}.</b>"
 		if !event.remark.nil?
-			text << "<br>#{event.remark}"
+			text << "<br>#{truncate(event.remark, :length => 23)}"
 		end
 		text
 	end

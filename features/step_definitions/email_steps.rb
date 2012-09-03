@@ -24,6 +24,15 @@ When /^I open the email$/ do
   open_email(current_email_address)
 end
 
+When /^the system does it's automated tasks$/ do    
+  require "rake"
+  @rake = Rake::Application.new
+  Rake.application = @rake
+  Rake.application.rake_require "tasks/scheduler"
+  Rake::Task.define_task(:environment)
+  @rake['send_reminders'].invoke   
+end
+
 Then /^"([^']*?)" should receive (\d+) emails? from "([^']*?)"$/ do |address, n, sender|
   unread_emails_for(address).size.should == n.to_i
 	unread_emails_for(address).first.should be_delivered_from(sender)

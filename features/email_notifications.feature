@@ -28,3 +28,12 @@ Feature: get email notifications
 		And a clear email queue
 		When a new user is registered
 		Then "admin@test.com" should receive 1 email
+
+	Scenario: send reminders
+		Given I am logged in as a user
+		And there is a project with an item
+		And a clear email queue
+ 		When I go to the dashboard page
+		And I provide 1 item
+		When the system does it's automated tasks
+		Then "user@test.com" should receive 1 email 
