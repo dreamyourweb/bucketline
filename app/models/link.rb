@@ -11,9 +11,8 @@ class Link
 	field :project_query
 	field :item_name
 	field :item_total_amount
-	field :item_start_at, :type => Date
-	field :item_end_at, :type => Date
-	field :item_daypart
+	field :start_at, :type => DateTime
+	field :end_at, :type => DateTime
 	field :contributor_name
 	field :contributor_email
 
@@ -34,9 +33,8 @@ class Link
 		self.project_id = @item.project.id
 		self.item_name = @item.name
 		self.item_total_amount = @item.amount
-		self.item_start_at = @item.start_at
-		self.item_end_at = @item.end_at
-		self.item_daypart = @item.daypart
+		self.start_at = @item.project.start_at
+		self.end_at = @item.project.end_at
 		self.contributor_name = @profile.name
 		self.contributor_email = @profile.user.email
 	end

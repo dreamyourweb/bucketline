@@ -20,7 +20,7 @@
 						<% @available_dates.where(:date => date).each do |available_date| %>
 							<tr>
 								<td><%= available_date.profile.name %></td>
-								<td><%= build_daytext(available_date) %></td>
+								<td><%= build_dayparttext(available_date) %></td>
 								<td><%= available_date.profile.expertise %></td>
 								<td><%= available_date.profile.willing_to_help_with %></td>
 								<td><%= available_date.profile.tools_and_materials %></td>

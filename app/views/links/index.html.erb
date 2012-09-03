@@ -1,5 +1,4 @@
 <h2>Overzicht van alle bijdragen</h2>
-<p>Vanwege een revisie in de manier waarop deze lijst wordt opgevraagd, komen bijdragen van voor 22-6-2012 niet in deze lijst voor.</p>
 <p>Voor bijdragen van vandaag of later, geordend per project. <%= link_to "Toon ook projecten en bijdragen van voor vandaag.", :controller => "links", :action => "index", :show => "all" %></p>
 <div id="accordion3" class="accordion">
 	<% @projects.each do |project| %>
@@ -13,9 +12,9 @@
 						<tr>
 							<th>Bijdrage</th>
 							<th>Aantal voorzien</th>
-							<th>Begin datum</th>
-							<th>Eind datum</th>		
-							<th>Dagdelen</th>		
+							<th>Datum</th>
+							<th>Begintijd</th>		
+							<th>Eindtijd</th>		
 							<th>Naam</th>		
 							<th>Email</th>
 							<th></th>		
@@ -24,9 +23,9 @@
 							<tr>
 								<td><%= link.item_name %></td>
 								<td><%= link.amount %> van <%= link.item_total_amount %></td>
-								<td><%= pretty_date(link.item_start_at) %></td>
-								<td><%= pretty_date(link.item_end_at) %></td>
-								<td><%= build_daypart_daytext(link.item_daypart) %></td>
+								<td><%= pretty_date(link.start_at) %></td>
+								<td><%= pretty_time(link.start_at) %></td>
+								<td><%= pretty_time(link.end_at) %></td>
 								<td><%= link.contributor_name %></td>
 								<td><%= link.contributor_email %></td>
 								<td><%= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen." %></td>

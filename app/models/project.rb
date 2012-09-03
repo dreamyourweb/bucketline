@@ -10,7 +10,8 @@ class Project
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
-	validates_presence_of :query
+	validates_presence_of :query, :input_date, :input_start_at, :input_end_at
+	validate :input_end_at_greater_than_input_start_at
 
 	before_save :set_dates
 	before_destroy :remove_links, :send_project_cancellation_mail
@@ -24,10 +25,18 @@ class Project
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
 	field :success, :type => Boolean, :default => false
+ 
+	def input_end_at_greater_than_input_start_at
+	 unless self.input_end_at.to_i > self.input_start_at.to_i
+	   errors.add :input_end_at, "moet groter zijn dan begintijd"
+	   return false
+	 end
+	 true
+	end
 
 	def set_dates
-		self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.minute)
-		self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.minute)
+		self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.min)
+		self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.min)
 	end
 
 	def remove_links

@@ -86,7 +86,7 @@ module ApplicationHelper
 		if current_user && event.providing_user(current_user)
 			text << "<i class='icon-gift pull-right'></i>"
 		end
-		text << build_daytext(event)
+		text << build_timetext(event)
 		text << "<br><b>#{event.query}.</b>"
 		if !event.remark.nil?
 			text << "<br>#{event.remark}"
@@ -94,16 +94,8 @@ module ApplicationHelper
 		text
 	end
 
-	def build_daytext(event)
-		build_daypart_daytext(event.daypart)
-	end
-
-	def build_daypart_daytext(daypart)
-		text = ""
-		if !daypart.nil?
-			text = daypart.to_sentence
-		end
-		text
+	def build_timetext(event)
+		pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
 	end
 
 	def pretty_date(date)
@@ -112,13 +104,5 @@ module ApplicationHelper
 
 	def pretty_time(time)
 		time.to_formatted_s(:time)
-	end
-
-	def date_text_for_display(start_date, end_date)
-		if start_date == end_date
-			" op " + pretty_date(start_date)
-		else
-			" van " + pretty_date(start_date) + " tot en met " + pretty_date(end_date)
-		end
 	end
 end
