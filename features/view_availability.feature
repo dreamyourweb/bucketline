@@ -5,10 +5,11 @@ Feature: view availability of specialists
 
 	Background:
 		Given I am logged in as an admin
-		And I am on the home page
 		And a specialist "Frans" with email "frans@test.com" and expertise "Bakker" who provided his availability 
+		And I am on the initiatives page
+		And I follow the first initiative
 
-	Scenario: View calendar
+	Scenario: View available specialists
 		When I follow "Admin"
 		And I follow "Beschikbare specialisten"
 		Then I should see "frans@test.com"

@@ -8,12 +8,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 		
-    when /^the dashboard page$/
-      dashboard_url
-    when /^the calendar page$/
-      projects_url
-		when /^the admin contributions dashboard$/
-			links_url
+		when /^the initiatives page$/
+			initiatives_url
 		when /^the home page$/
 			root_url
 

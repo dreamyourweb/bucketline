@@ -1,1 +1,1 @@
-This application is an extension of the waardeverbinder application that was originally created for the 'Huis van Overvloed'. This version of the repo will be designed explicitly for whitelabeling and sublicencing. It should support multiple clients with multiple projects.
+This application is an extension of the waardeverbinder application that was originally created for the 'Huis van Overvloed'. This version of the repo will be designed explicitly for bucketline. It should support multiple clients with multiple projects.

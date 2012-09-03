@@ -15,7 +15,7 @@ Feature: get email notifications
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I am logged in as a user
 		And there is a project that belongs to an admin with an item 
-		When I go to the dashboard page
+		When I go to the dashboard
 		And I provide 1 item
 		And I log out
 		Given no emails have been sent

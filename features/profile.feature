@@ -5,7 +5,9 @@ Feature: Update profile
 
 	Background:
 		Given I am logged in as a user
-		And I am on the home page
+		And I am on the initiatives page
+		And I am on the initiatives page
+		And I follow the first initiative
 
 	@wip
 	Scenario: Edit my expertise
