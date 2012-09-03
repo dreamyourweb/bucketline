@@ -95,10 +95,10 @@ module ApplicationHelper
 	end
 
 	def build_timetext(event)
-		if !event.fields.include?("daypart")
-			"van " + pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
-		else
+		if event.input_date.nil? #does this project instance still work with dayparts?
 			event.daypart.to_sentence
+		else
+			"van " + pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
 		end
 	end
 

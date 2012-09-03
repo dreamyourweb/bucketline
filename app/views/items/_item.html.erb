@@ -7,7 +7,6 @@
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 			<h3><%= item.name %></h3>
 			<p>Project: <%= item.project.query %></p>
-
 			<% if user_signed_in? %>
 				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>
 				<%= hidden_field_tag :redirect_to_dashboard, true %>
