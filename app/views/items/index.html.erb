@@ -1,6 +1,6 @@
 <div>
 	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
-	<strong>Project datum: </strong><%= pretty_date(@project.start_at) %> van <%= build_timetext(@project) %><br>
+	<strong>Project datum: </strong><%= pretty_date(@project.start_at) %> <%= build_timetext(@project) %><br>
 	<% if current_user && !@owner_profile.nil? %>
 		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
 	<% end %>

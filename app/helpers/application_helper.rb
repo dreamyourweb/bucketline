@@ -95,7 +95,11 @@ module ApplicationHelper
 	end
 
 	def build_timetext(event)
-		pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
+		if !event.methods.include?(:daypart)
+			"van " + pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
+		else
+			event.daypart.to_sentence
+		end
 	end
 
 	def pretty_date(date)
