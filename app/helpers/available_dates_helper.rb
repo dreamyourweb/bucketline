@@ -15,4 +15,8 @@ module AvailableDatesHelper
 			html = %(<a class="fancybox" href=#{edit_profile_available_date_path(@profile, event)}?fancybox=true&year=#{event.date.year.to_s}&month=#{event.date.month.to_s}&day=#{event.date.day.to_s}">#{text}</a>)
     end
   end
+
+	def build_dayparttext(available_date)
+		available_date.daypart.to_sentence
+	end
 end

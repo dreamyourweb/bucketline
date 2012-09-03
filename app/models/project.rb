@@ -11,22 +11,33 @@ class Project
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
-	validates_presence_of :query
-	validates_uniqueness_of :query
+	validates_presence_of :query, :input_date, :input_start_at, :input_end_at
+	validate :input_end_at_greater_than_input_start_at
 
 	before_save :trim_daypart
 	before_destroy :send_project_cancellation_mail
 
 	field :query
-	field :start_at, :type => Date
-	field :end_at, :type => Date
-	field :daypart
+	field :input_date, :type => Date
+	field :input_start_at, :type => Time
+	field :input_end_at, :type => Time
+	field :start_at, :type => DateTime
+	field :end_at, :type => DateTime
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
 	field :success, :type => Boolean, :default => false
+ 
+	def input_end_at_greater_than_input_start_at
+	 unless self.input_end_at.to_i > self.input_start_at.to_i
+	   errors.add :input_end_at, "moet groter zijn dan begintijd"
+	   return false
+	 end
+	 true
+	end
 
-	def trim_daypart
-		self.daypart.delete("")
+	def set_dates
+		self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.min)
+		self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.min)
 	end
 
 	def self.events_for_date_range(start_d, end_d, find_options = {})
@@ -52,7 +63,7 @@ class Project
 			end
 		end
 		unique_mailing_list = mailing_list.uniq.join(">,<")
-		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :project_dayparts => self.daypart.to_sentence, :items => item_list, :project_remark => self.remark)
+		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
 

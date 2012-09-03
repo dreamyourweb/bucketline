@@ -86,35 +86,27 @@ module ApplicationHelper
 		if current_user && event.providing_user(current_user)
 			text << "<i class='icon-gift pull-right'></i>"
 		end
-		text << build_daytext(event)
-		text << "<br><b>#{event.query}.</b>"
+		text << build_timetext(event)
+		text << "<br><b>#{truncate(event.query, :length => 23)}.</b>"
 		if !event.remark.nil?
-			text << "<br>#{event.remark}"
+			text << "<br>#{truncate(event.remark, :length => 23)}"
 		end
 		text
 	end
 
-	def build_daytext(event)
-		build_daypart_daytext(event.daypart)
-	end
-
-	def build_daypart_daytext(daypart)
-		text = ""
-		if !daypart.nil?
-			text = daypart.to_sentence
+	def build_timetext(event)
+		if !event.methods.include?(:daypart)
+			"van " + pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
+		else
+			event.daypart.to_sentence
 		end
-		text
 	end
 
 	def pretty_date(date)
 		l(date, :format => '%d %B %Y')
 	end
 
-	def date_text_for_display(start_date, end_date)
-		if start_date == end_date
-			" op " + pretty_date(start_date)
-		else
-			" van " + pretty_date(start_date) + " tot en met " + pretty_date(end_date)
-		end
+	def pretty_time(time)
+		time.to_formatted_s(:time)
 	end
 end

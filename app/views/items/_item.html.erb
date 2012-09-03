@@ -6,7 +6,7 @@
 		<%= form_tag initiative_project_item_path(@initiative, item.project, item), :method => "put", :class=>"item-form" do %>			
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 			<h3><%= item.name %></h3>
-			<p>Project: <%= item.project.query %>.<br>Nodig<%= date_text_for_display(item.start_at, item.end_at) %><%= get_dayparts(item) %>.<%= get_contributors(item) %></p>
+			<p>Project: <%= item.project.query %></p>
 
 			<% if user_signed_in? %>
 				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>

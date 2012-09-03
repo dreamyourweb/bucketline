@@ -5,7 +5,7 @@ task :send_reminders => :environment do
 		if user.profile.send_reminder_mail
 			item_names = []
 			links = user.profile.links.each do |link|
-				if link.item.start_at == Date.tomorrow
+				if link.item.project.input_date == Date.tomorrow
 					item_names << link.item.name	
 				end
 			end
