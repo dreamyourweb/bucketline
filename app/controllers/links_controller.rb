@@ -5,7 +5,7 @@ class LinksController < ApplicationController
 		if params[:show] == "all"
 			@links = Link.all
 		else	
-			@links = Link.where(:item_end_at.gte => Date.today)
+			@links = Link.where(:end_at.gte => Time.now)
 		end
 		@projects = []
 		@links.each do |link|

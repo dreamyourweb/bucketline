@@ -59,6 +59,10 @@ end
 When /^I fill in the form with a project and an item$/ do
   fill_in("project_query", :with => "Mijn project")
   fill_in("project_items_attributes_0_name", :with => "Mijn item")
+	select("10", :from => "project_input_start_at_4i")
+	select("00", :from => "project_input_start_at_5i")
+	select("12", :from => "project_input_end_at_4i")
+	select("00", :from => "project_input_end_at_5i")
 	select("Materiaal", :from => "project_items_attributes_0_type")
 end
 
