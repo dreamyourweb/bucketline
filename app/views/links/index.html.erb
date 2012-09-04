@@ -23,9 +23,9 @@
 							<tr>
 								<td><%= link.item_name %></td>
 								<td><%= link.amount %> van <%= link.item_total_amount %></td>
-								<td><%= pretty_date(link.start_at) %></td>
-								<td><%= pretty_time(link.start_at) %></td>
-								<td><%= pretty_time(link.end_at) %></td>
+								<td><%= pretty_date(Item.find(link.item_id).project.start_at) %></td>
+								<td><%= pretty_time(Item.find(link.item_id).project.start_at) %></td>
+								<td><%= pretty_time(Item.find(link.item_id).project.end_at) %></td>
 								<td><%= link.contributor_name %></td>
 								<td><%= link.contributor_email %></td>
 								<td><%= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen." %></td>
