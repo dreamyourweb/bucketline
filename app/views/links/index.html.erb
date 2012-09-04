@@ -36,4 +36,33 @@
 			</div>
 		</div>
 	<% end %>
+
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" href=<%= "#no-project" %> data-parent="#accordion3" data-toggle="collapse">Bijdragen aan verlanglijstje</a>
+		</div>
+		<div id="no-project" class="accordion-body collapse" style="height: 0px;">
+			<div class="accordion-inner">
+				<table class="admin-table table table-bordered table-striped">
+					<tr>
+						<th>Bijdrage</th>
+						<th>Aantal voorzien</th>
+						<th>Naam</th>		
+						<th>Email</th>
+						<th></th>		
+					</tr>
+					<% @loose_links.each do |link| %>
+						<tr>
+							<td><%= link.item_name %></td>
+							<td><%= link.amount %> van <%= link.item_total_amount %></td>
+							<td><%= link.contributor_name %></td>
+							<td><%= link.contributor_email %></td>
+							<td><%= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen." %></td>
+						</tr>
+					<% end %>	
+				</table>
+			</div>
+		</div>
+	</div>
+
 </div>

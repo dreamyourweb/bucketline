@@ -15,7 +15,8 @@ Feature: Place a new project
 
 	Scenario: Deleting the project also removes contributions
 		Given there is a project with an item
-		When I go to the dashboard page
+		When I go to the calendar page
+		And I click on a project
 		And I provide 1 item
 		And I delete the project
 		And I follow "Mijn profiel"
@@ -23,7 +24,8 @@ Feature: Place a new project
 
 	Scenario: Admin refuses contribution
 		Given there is a project with an item
-		When I go to the dashboard page
+		When I go to the calendar page
+		And I click on a project
 		And I provide 1 item
 		And I go to the admin contributions dashboard
 		And I follow the project link

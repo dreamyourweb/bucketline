@@ -1,15 +1,19 @@
 class ItemsController < ApplicationController
-	before_filter :get_project, :except => [:dashboard, :info]
 	before_filter :authenticate_admin, :except => [:index, :update, :dashboard, :info]
 	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
 
-	def get_project
-		@project = Project.find(params[:project_id])
+	def new
+		@item = Item.new
+	end
+	
+	def edit
+		@item = Item.find(params[:id])
 	end
 
   # GET /items
   # GET /items.json
   def index
+		@project = Project.find(params[:project_id])
     @items = @project.items.all
 		@owner = @project.owner
 		@contributing_users = @project.contributing_users
@@ -20,19 +24,18 @@ class ItemsController < ApplicationController
   end
 
 	def dashboard
-		@projects = Project.excludes(:success => true).order_by(:start_at, :asc) #find all unfinished projects
+		#@projects = Project.excludes(:success => true).order_by(:start_at, :asc) #find all unfinished projects
 		@help = []
 		@tools = []
 		@materials = []
-		@projects.each do |project|
-			project.items.each do |item|
-				if item.type == "help"
-					@help << item
-				elsif item.type == "tool"
-					@tools << item
-				else
-					@materials << item
-				end
+		@items = Item.where(:project_id => nil).all
+		@items.each do |item|
+			if item.type == "help"
+				@help << item
+			elsif item.type == "tool"
+				@tools << item
+			else
+				@materials << item
 			end
 		end
     #@help = Item.where(:type => "help").order_by(:start_at, :asc)
@@ -48,11 +51,13 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = @project.items.new(params[:item])
+		#@project = Item.find(params[:id]).project
+    #@item = @project.items.new(params[:item])
+		@item = Item.new(params[:item])
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to project_items_path(@project), notice: 'Item was successfully created.' }
+        format.html { redirect_to dashboard_path, notice: 'Item is geplaatst' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
@@ -64,7 +69,8 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = @project.items.find(params[:id])
+    @item = Item.find(params[:id])
+		#@project = @item.project
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
@@ -73,11 +79,14 @@ class ItemsController < ApplicationController
 					@item.link_to_profile(params[:amount_to_give].to_i, @profile)
 					@profile.link_to_item(params[:amount_to_give].to_i, @item)
 				end
-				if params[:redirect_to_dashboard]
+				if params[:redirect_to_dashboard] && params[:amount_to_give]
         	format.html { redirect_to dashboard_path, :notice => 'Bedankt voor je bijdrage!' }
         	format.json { head :no_content }
-				else
+				elsif params[:amount_to_give]
         	format.html { redirect_to projects_path, :notice => 'Bedankt voor je bijdrage!' }
+        	format.json { head :no_content }
+				else
+        	format.html { redirect_to dashboard_path, :notice => 'Item is bijgewerkt' }
         	format.json { head :no_content }
 				end
       else
@@ -90,11 +99,12 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = @project.items.find(params[:id])
+    @item = Items.find(params[:id])
+		#@project = @item.project
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_items_url(@project) }
+      format.html { redirect_to dashboard_path }
       format.json { head :no_content }
     end
   end

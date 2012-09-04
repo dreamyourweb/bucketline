@@ -3,10 +3,9 @@
 		<i class="icon-gift pull-right gift-margin"></i>
 	<% end %>
 	<% if !item.provided %>
-		<%= form_tag project_item_path(item.project, item), :method => "put", :class=>"item-form" do %>			
+		<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 			<h3><%= item.name %></h3>
-			<p>Project: <%= item.project.query %></p>
 			<% if user_signed_in? %>
 				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>
 				<%= hidden_field_tag :redirect_to_dashboard, true %>
@@ -17,10 +16,9 @@
 	<% else %>
 			<span class="label label-inverse pull-right">Voorzien</span>
 			<h3><%= item.name %></h3>
-			<p>Project: <%= item.project.query %>.<br><%= get_contributors(item) %></p>
 	<% end %>
 	<% if current_user && current_user.admin %>
-		<%= link_to "Bijbehorende project bewerken", edit_project_path(item.project) %>
+		<%= link_to "Item bewerken", edit_item_path(item) %>
 	<% end %>
 </div>
 

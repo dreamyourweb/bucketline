@@ -24,7 +24,7 @@
 <ul class="nav nav-tabs">
 	<li class=<%= get_active("home") %> ><%= link_to "Home", root_path %></li>
 	<li class=<%= get_active("calendar") %> ><%= link_to "Project kalender", projects_path %></li>
-	<li class=<%= get_active("dashboard") %> ><%= link_to "Alle benodigdheden", dashboard_path %></li>
+	<li class=<%= get_active("dashboard") %> ><%= link_to "Ons verlanglijstje", dashboard_path %></li>
 	<% if user_signed_in? %>
 		<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel en bijdragen", profile_path(@profile) %></li>
 		<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(@profile) %></li>

@@ -22,8 +22,9 @@ HvO::Application.routes.draw do
 	end
 
   resources :projects, :except => [:show] do
-	  resources :items, :except => [:show, :edit, :new]
+	  resources :items, :only => [:index]
 	end
+  resources :items, :except => [:show, :index]
 
 	resources :links, :only => [:index]
 

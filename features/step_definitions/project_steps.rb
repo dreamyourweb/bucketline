@@ -40,10 +40,6 @@ Then /^I should see all the projects$/ do
   page.should have_content("Mijn project")
 end
 
-Then /^I should see all the items$/ do
-  page.should have_content("Mijn item")
-end
-
 When /^I click on an item$/ do
   click_link "Mijn item"
 end

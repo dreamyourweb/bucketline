@@ -29,13 +29,15 @@ class Link
 	def populate_properties #populate properties on creation, so admin dashboard loads faster
 		@item = Item.find(self.item_id)
 		@profile = Profile.find(self.profile_id)
-		self.project_query = @item.project.query
-		self.project_id = @item.project.id
 		self.item_name = @item.name
 		self.item_total_amount = @item.amount
-		self.start_at = @item.project.start_at
-		self.end_at = @item.project.end_at
 		self.contributor_name = @profile.name
 		self.contributor_email = @profile.user.email
+		if self.project_id #item belongs to a project
+			self.project_id = @item.project.id
+			self.project_query = @item.project.query
+			self.start_at = @item.project.start_at
+			self.end_at = @item.project.end_at
+		end
 	end
 end

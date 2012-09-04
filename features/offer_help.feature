@@ -11,14 +11,12 @@ Feature: User offers help
 		When I go to the calendar page
 		Then I should see all the projects
 
-	Scenario: View all the items
-		When I go to the dashboard page
-		Then I should see all the items
-
-	Scenario: Mark item as provided via dashboard
-		When I go to the dashboard page
+	Scenario: Mark item as provided via wishlist dashboard
+		When I go to the calendar page
+		And I click on a project
 		And I provide 1 item
-		And I go to the dashboard page
+		When I go to the calendar page
+		And I click on a project
 		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
@@ -29,9 +27,10 @@ Feature: User offers help
 		Then I should see "Bijdragers zijn: User"
 
 	Scenario: Retreat help
-		When I go to the dashboard page
+		When I go to the calendar page
+		And I click on a project
 		And I provide 1 item
 		And I follow "Mijn profiel"
 		Then I should see "Mijn item"
 		When I follow "bijdrage intrekken"
-		Then I should not see "Mijn item"		
+		Then I should not see "Mijn item"
