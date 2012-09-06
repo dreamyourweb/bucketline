@@ -7,7 +7,7 @@ class LinksController < ApplicationController
 		else	
 			@links = Link.where(:end_at.gte => Time.now)
 		end
-		@loose_links = Link.where(:project_id => nil)
+		@loose_links = Link.where(:project_id => nil, :project_query => nil)
 
 		@projects = []
 		@links.each do |link|
