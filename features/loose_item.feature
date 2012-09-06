@@ -13,6 +13,9 @@ Feature: loose items for wishlist dashboard
 
 	Scenario: Place loose item
 		Given I am logged in as an admin
-		When I follow "Plaats nieuw item op verlanglijstje"
+		When I go to the dashboard page
+		And I follow "Plaats nieuw item op verlanglijstje"
 		And I fill the form with a loose item
-		Then I should see my new loose item 	 
+		Then I should see my new loose item
+
+	Scenario: Loose items show up in admin dashboard 	 
