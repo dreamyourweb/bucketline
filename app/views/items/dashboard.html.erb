@@ -1,10 +1,15 @@
 <%= link_to items_info_path, :class => "fancybox" do %>
 	<%= image_tag "help.png", :class => "help-icon" %>
 <% end %>
+<div class="row">
+	<div class="span12">
+		<p>Op deze pagina vind je ons verlanglijstje. Dit is een lijst van benodigdheden die niet bij een specifiek project op een bepaalde datum horen, maar die we juist doorlopend nodig hebben.</p>
+	</div>
+</div>
 <% if current_user && current_user.admin %>
 	<div class="row">
 		<div class="span12">
-			<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>
+			<%= link_to 'Plaats nieuw item op verlanglijstje', :controller => :items, :action => :new %>
 		</div>
 	</div>
 <% end %>

@@ -2,7 +2,7 @@ class Item
   include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :name, :type, :amount
+	attr_accessible :name, :type, :amount, :description
 
 	belongs_to :project
 	has_many :links, :dependent => :destroy #All the users that have contributed to this item
@@ -12,6 +12,7 @@ class Item
 
 	#field :provided_by_last_user_name, :default => "Anoniempje"
 	field :name
+	field :description
 	field :type
 	field :amount, :type => Integer, :default => 1
 

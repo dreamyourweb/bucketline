@@ -1,0 +1,43 @@
+<%= form_for(@item, :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation" class="alert">
+      <h2><%= pluralize(@item.errors.count, "error") %>:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<p>
+		<div class="control-group">
+			<%= f.label :name, "Benodigdheid:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.text_field :name %>
+			</div>
+ 		</div>
+		<div class="control-group">
+			<%= f.label :description, "Korte toelichting:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.text_field :description %>
+			</div>
+ 		</div>
+		<div class="control-group">
+			<%= f.label :type, "Type:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.select :type, [['Handjes', 'help'],['Gereedschappen', 'tool'],['Materiaal','material']] %>
+			</div> 
+		</div>
+		<div class="control-group">
+			<%= f.label :amount, "Aantal:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= f.text_field :amount %>
+			</div>
+ 		</div>
+		<div class="form-actions" style="padding-left:20px;">
+		  <%= f.submit "Item plaatsen", :class => "btn btn-primary" %>
+		</div>
+	</p>
+<% end %>

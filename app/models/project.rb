@@ -18,6 +18,7 @@ class Project
 	before_destroy :send_project_cancellation_mail
 
 	field :query
+	field :daypart #depricated
 	field :input_date, :type => Date
 	field :input_start_at, :type => Time
 	field :input_end_at, :type => Time
