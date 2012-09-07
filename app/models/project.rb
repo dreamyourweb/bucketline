@@ -36,8 +36,10 @@ class Project
 	end
 
 	def set_dates
-		self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.min)
-		self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.min)
+		unless input_date.nil? || input_start_at.nil? || input_end_at.nil?
+			self.start_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_start_at.hour, input_start_at.min)
+			self.end_at = DateTime.new(input_date.year, input_date.month, input_date.day, input_end_at.hour, input_end_at.min)
+		end
 	end
 
 	def remove_links
