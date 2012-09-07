@@ -21,9 +21,9 @@ Then /^I should see my relevant profile fields$/ do
 end
 
 Then /^the user should be purged from the system$/ do
-  pending # express the regexp above with the code you wish you had
+	User.where(:name => "User").all.count.should == 0
 end
 
 Then /^the admin should be purged from the system$/ do
-  pending # express the regexp above with the code you wish you had
+	User.where(:name => "Admin").all.count.should == 0
 end
