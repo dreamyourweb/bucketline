@@ -11,27 +11,23 @@ Feature: User offers help
 		And I follow the first initiative
 
 	Scenario: View all the projects
-		When I go to the calendar
 		Then I should see all the projects
 
 	Scenario: Mark item as provided via wishlist dashboard
-		When I go to the calendar page
-		And I click on a project
+		When I click on a project
 		And I provide 1 item
 		When I go to the calendar page
 		And I click on a project
 		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
-		When I go to the calendar
-		And I click on a project
+		When I click on a project
 		And I provide 1 item
 		And I click on a project
 		Then I should see "Bijdragers zijn: User"
 
 	Scenario: Retreat help
-		When I go to the calendar page
-		And I click on a project
+		When I click on a project
 		And I provide 1 item
 		And I follow "Mijn profiel"
 		Then I should see "Mijn item"
