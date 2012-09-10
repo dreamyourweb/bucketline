@@ -1,14 +1,13 @@
 class ProjectsController < ApplicationController
 	before_filter :authenticate_admin, :except => [:index, :info]
-	before_filter :get_initiative
-
-	def get_initiative
-		@initiative = Initiative.find(session[:initiative_id])
-	end
+	before_filter :get_initiative, :except => [:index]
 
   # GET /questions
   # GET /questions.json
   def index
+		session[:initiative_id] = params[:initiative_id]
+		@initiative = Initiative.find(params[:initiative_id])
+
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
 
@@ -25,11 +24,11 @@ class ProjectsController < ApplicationController
   def new
     @project = @initiative.projects.new
 		@admins = User.where(:admin => true).all
-    item = @project.items.build
+    #item = @project.items.build
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @question }
+      format.json { render json: @project }
     end
   end
 

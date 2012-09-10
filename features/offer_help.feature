@@ -5,7 +5,8 @@ Feature: User offers help
 
 	Background:
 		Given I am logged in as a user
-		And there is an initiative with a project and an item
+		And there is an initiative
+		And there is a project with an item
 		And I am on the initiatives page
 		And I follow the first initiative
 

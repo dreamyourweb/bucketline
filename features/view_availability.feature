@@ -6,6 +6,7 @@ Feature: view availability of specialists
 	Background:
 		Given I am logged in as an admin
 		And a specialist "Frans" with email "frans@test.com" and expertise "Bakker" who provided his availability 
+		And there is an initiative
 		And I am on the initiatives page
 		And I follow the first initiative
 

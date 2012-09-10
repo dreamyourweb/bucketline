@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :authenticate_admin, :only => [:index]
+	before_filter :get_initiative
 
 	def index
 		@users = User.all.entries

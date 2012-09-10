@@ -3,10 +3,6 @@ class ItemsController < ApplicationController
 	before_filter :authenticate_admin, :except => [:index, :update, :dashboard, :info]
 	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
 
-	def get_initiative
-		@initiative = Initiative.find(session[:initiative_id])
-	end
-
 	def new
 		@item = Item.new
 	end

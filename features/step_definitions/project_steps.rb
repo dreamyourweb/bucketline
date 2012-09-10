@@ -1,6 +1,7 @@
 Given /^there is a project with an item$/ do
-	@project = Project.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
-	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.today, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
+	@initiative = Initiative.last
+	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
+	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
 end
 
 Given /^there is a project that belongs to an admin with an item$/ do

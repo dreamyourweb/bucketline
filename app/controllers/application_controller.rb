@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
 			@profile = current_user.profile
 		end
 	end
+
+	def get_initiative
+		@initiative = Initiative.find(session[:initiative_id])
+	end
 end

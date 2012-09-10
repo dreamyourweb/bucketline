@@ -14,7 +14,6 @@ class Project
 	validates_presence_of :query, :input_date, :input_start_at, :input_end_at
 	validate :input_end_at_greater_than_input_start_at
 
-	before_save :trim_daypart
 	before_destroy :send_project_cancellation_mail
 
 	field :query
