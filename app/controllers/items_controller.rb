@@ -89,7 +89,7 @@ class ItemsController < ApplicationController
         	format.html { redirect_to initiative_dashboard_path(@initiative), :notice => 'Bedankt voor je bijdrage!' }
         	format.json { head :no_content }
 				elsif params[:amount_to_give]
-        	format.html { redirect_to projects_path, :notice => 'Bedankt voor je bijdrage!' }
+        	format.html { redirect_to initiative_projects_path(@initiative), :notice => 'Bedankt voor je bijdrage!' }
         	format.json { head :no_content }
 				else
         	format.html { redirect_to initiative_dashboard_path(@initiative), :notice => 'Item is bijgewerkt' }

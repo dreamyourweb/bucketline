@@ -30,7 +30,7 @@
 					<% end %>
 
 				<% else %>
-					<%= form_tag initiative_item_path(@initiative, item), :method => "put" do %>			
+					<%= form_tag item_path(item), :method => "put" do %>			
 						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
 
