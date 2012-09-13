@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
 		@first_day_of_week = 1
 		#TODO: werkt nog niet!
-		@event_strips = Project.where(:initiative_id => params[:initiative_id]).event_strips_for_month(@shown_month, @first_day_of_week)
+		@event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
   end
 
 	def info

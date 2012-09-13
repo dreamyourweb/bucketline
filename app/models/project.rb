@@ -8,6 +8,7 @@ class Project
 	has_many :items, :autosave => true, :dependent => :delete
 	belongs_to :owner, :class_name => "User", :inverse_of => :owned_projects
 	belongs_to :initiative
+	before_save :set_dates
 	
 	accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
@@ -28,7 +29,7 @@ class Project
 	field :success, :type => Boolean, :default => false
  
 	def input_end_at_greater_than_input_start_at
-	 unless self.input_end_at.to_i > self.input_start_at.to_i
+	 unless self.input_end_at.to_i >= self.input_start_at.to_i
 	   errors.add :input_end_at, "moet groter zijn dan begintijd"
 	   return false
 	 end
