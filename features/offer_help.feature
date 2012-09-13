@@ -14,10 +14,8 @@ Feature: User offers help
 		Then I should see all the projects
 
 	Scenario: Mark item as provided via wishlist dashboard
-		When I click on a project
+		When I follow "Verlanglijstje"
 		And I provide 1 item
-		When I go to the calendar page
-		And I click on a project
 		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
