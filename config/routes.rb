@@ -22,10 +22,10 @@ HvO::Application.routes.draw do
 
   resources :initiatives, :except => [:show] do #store initiative in session variable
 	  resources :projects, :only => [:index]
+		get "dashboard", :to => "items#dashboard"
 	end
 
 	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-	get "dashboard", :to => "items#dashboard"
   resources :projects, :except => [:show, :index] do
 	  resources :items, :only => [:index]
 	end

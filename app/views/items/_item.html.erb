@@ -3,7 +3,7 @@
 		<i class="icon-gift pull-right gift-margin"></i>
 	<% end %>
 	<% if !item.provided %>
-		<%= form_tag initiative_item_path(@initiative, item), :method => "put", :class=>"item-form" do %>			
+		<%= form_tag item_path(@initiative, item), :method => "put", :class=>"item-form" do %>			
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 			<h3><%= item.name %></h3>
 			<p><%= item.description %></p>
@@ -29,7 +29,7 @@
 			<% end %>
 	<% end %>
 	<% if current_user && current_user.admin %>
-		<%= link_to "Item bewerken", edit_initiative_item_path(@initiative, item) %>
+		<%= link_to "Item bewerken", edit_item_path(@initiative, item) %>
 	<% end %>
 </div>
 
