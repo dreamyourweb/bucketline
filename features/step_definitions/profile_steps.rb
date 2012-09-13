@@ -3,7 +3,6 @@ When /^I change my experise$/ do
 end
 
 Then /^I should see my new expertise$/ do
-	save_and_open_page
 	page.should have_content("Taarten bakken")
 end
 

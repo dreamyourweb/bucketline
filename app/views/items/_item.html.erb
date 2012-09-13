@@ -3,7 +3,7 @@
 		<i class="icon-gift pull-right gift-margin"></i>
 	<% end %>
 	<% if !item.provided %>
-		<%= form_tag item_path(@initiative, item), :method => "put", :class=>"item-form" do %>			
+		<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
 			<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 			<h3><%= item.name %></h3>
 			<p><%= item.description %></p>

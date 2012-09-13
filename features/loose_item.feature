@@ -3,6 +3,9 @@ Feature: loose items for wishlist dashboard
 	As an admin
 	I want to manage a wishlist
 
+	Background:
+		Given there is an initiative
+
 	Scenario: Mark item as provided via wishlist dashboard
 		Given there is a loose item
 		And I am logged in as a user

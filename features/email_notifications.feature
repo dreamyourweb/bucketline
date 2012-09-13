@@ -3,6 +3,9 @@ Feature: get email notifications
 	As a person related to the project
 	I want to receive email notifications on critical moments
 
+	Background:
+		Given there is an initiative
+
 	Scenario: receive notification when a project is placed
 		Given I am logged in as a user
 		And no emails have been sent
@@ -15,7 +18,7 @@ Feature: get email notifications
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I am logged in as a user
 		And there is a project that belongs to an admin with an item 
- 		When I go to the calendar page
+		When I follow the first initiative
 		And I click on a project
 		And I provide 1 item
 		And I log out
@@ -34,8 +37,8 @@ Feature: get email notifications
 		Given I am logged in as a user
 		And there is a project with an item
 		And a clear email queue
- 		When I go to the calendar page
+ 		When I follow the first initiative
 		And I click on a project
 		And I provide 1 item
-		When the system does it's automated tasks
+		And the system does it's automated tasks
 		Then "user@test.com" should receive 1 email 
