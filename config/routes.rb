@@ -20,15 +20,14 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :initiatives, :except => [:show] do #store initiative in session variable
-	  resources :projects, :only => [:index]
+  resources :initiatives, :except => [:show] do #perhaps store initiative in session variable
+		match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+	  resources :projects, :except => [:show] do
+		  resources :items, :only => [:index]
+		end
 		get "dashboard", :to => "items#dashboard"
 	end
 
-	match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-  resources :projects, :except => [:show, :index] do
-	  resources :items, :only => [:index]
-	end
   resources :items, :except => [:show, :index]
 	resources :links, :only => [:index]
 

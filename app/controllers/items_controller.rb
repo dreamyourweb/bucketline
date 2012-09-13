@@ -58,7 +58,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to dashboard_path, notice: 'Item is geplaatst' }
+        format.html { redirect_to initiative_dashboard_path(@initiative), notice: 'Item is geplaatst' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
@@ -86,13 +86,13 @@ class ItemsController < ApplicationController
 					end
 				end
 				if params[:redirect_to_dashboard] && params[:amount_to_give]
-        	format.html { redirect_to dashboard_path, :notice => 'Bedankt voor je bijdrage!' }
+        	format.html { redirect_to initiative_dashboard_path(@initiative), :notice => 'Bedankt voor je bijdrage!' }
         	format.json { head :no_content }
 				elsif params[:amount_to_give]
         	format.html { redirect_to projects_path, :notice => 'Bedankt voor je bijdrage!' }
         	format.json { head :no_content }
 				else
-        	format.html { redirect_to dashboard_path, :notice => 'Item is bijgewerkt' }
+        	format.html { redirect_to initiative_dashboard_path(@initiative), :notice => 'Item is bijgewerkt' }
         	format.json { head :no_content }
 				end
       else
@@ -110,7 +110,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path }
+      format.html { redirect_to initiative_dashboard_path(@initiative) }
       format.json { head :no_content }
     end
   end

@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 	end
 
 	def get_initiative
-		@initiative = Initiative.find(session[:initiative_id])
+		if params[:initiative_id]
+			@initiative = Initiative.find(params[:initiative_id])
+		else
+			@initiative = Initiative.find(session[:initiative_id])
+		end
 	end
 end
