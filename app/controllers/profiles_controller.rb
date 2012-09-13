@@ -85,6 +85,7 @@ class ProfilesController < ApplicationController
   end
 
 	def remove_item
+		@profile = Profile.find(params[:profile_id])
 		@link = Link.where(:profile_id => params[:profile_id], :item_id => params[:id]).first
 		if params[:redirect_to_links]
 			@link.destroy

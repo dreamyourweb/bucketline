@@ -10,9 +10,7 @@ module ItemsHelper
 	def get_contributors(item)
 		contributors = []
 		item.links.all.each do |link|
-			if link.profile.name			
-				contributors << link.profile.name
-			end
+			contributors << link.profile.user.name
 		end
 		if !contributors.empty?
 			contributors = " Bijdragers zijn: " + contributors.to_sentence + "."
