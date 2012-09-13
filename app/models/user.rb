@@ -16,6 +16,8 @@ class User
 	
 	field :admin, :type => Boolean, :default => false
 
+  field :name, :type => String, :null => false
+
 	## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""
@@ -53,7 +55,7 @@ class User
 
 	def check_or_create_profile
 		if self.profile.nil?
-			self.profile = Profile.create #(:name => "Anoniempje")
+			self.profile = Profile.create
 		end
 	end
 

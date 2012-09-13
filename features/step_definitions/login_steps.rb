@@ -1,12 +1,12 @@
 Given /^I am logged in as an admin$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
   login(@admin.email, 'foobar')
 end
 
 When /^the admin logs in$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
   login(@admin.email, 'foobar')
@@ -21,22 +21,22 @@ Given /^I am a visitor$/ do
 end
 
 Given /^an admin with email "([^"]*)"$/ do |arg1|
-  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
+  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 end
 
 Given /^I am logged in as a user$/ do
-  @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+  @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
 	@user.update_attributes(:confirmed_at => Time.now)
-	@user.profile.update_attributes(:name => "User", :expertise => "Hard werken")
+	@user.profile.update_attributes(:expertise => "Hard werken")
   login(@user.email, 'foobar')
 end
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
-  @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar')
+  @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar', :name => name)
 	@specialist.update_attributes(:confirmed_at => Time.now)
 	if @specialist.profile.nil?
-		@specialist.profile = Profile.new(:name => name, :expertise => expertise)
+		@specialist.profile = Profile.new(:expertise => expertise)
 	end
 	@profile = @specialist.profile
 	@available_date = @profile.available_dates.create!(:date => Date.today, :daypart => ["Middag"])
@@ -50,7 +50,7 @@ end
 
 When /^a new user is registered$/ do
 	visit new_user_registration_path
-	register("random_new_user@test.com", "foobar")
+	register("random_new_user@test.com", "foobar", "Random User")
 end
 
 When /^the admin logs in via the login screen$/ do
@@ -64,7 +64,8 @@ def login(email, password)
   click_button('Inloggen')
 end
 
-def register(email, password)
+def register(email, password, name)
+  fill_in "name", :with => name
   fill_in "user_email", :with => email
   fill_in "user_password", :with => password
   fill_in "user_password_confirmation", :with => password

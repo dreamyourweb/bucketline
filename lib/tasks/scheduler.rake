@@ -18,3 +18,15 @@ task :send_reminders => :environment do
 	end
 	puts "done."
 end
+
+task :update_project_status => :environment do
+	puts "Updating project status..."
+	projects = Project.where(:success => false).all
+	projects.each do |project|
+		if project.end_at && project.end_at < Time.now
+			p project.query
+			project.update_attributes(:success => true)
+		end
+	end
+	puts "done."
+end

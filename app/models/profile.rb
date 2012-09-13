@@ -8,7 +8,6 @@ class Profile
 
 	accepts_nested_attributes_for :available_dates, :allow_destroy => true
 
-  field :name, :type => String
   field :phone, :type => String, :default => ""
   field :expertise, :type => String
   field :willing_to_help_with, :type => String

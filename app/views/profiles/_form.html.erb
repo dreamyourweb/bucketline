@@ -12,12 +12,6 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :name, "Naam:", :class => "control-label" %>
-		<div class="controls">
-		  <%= f.text_field :name, :class => "input-xlarge" %>
-		</div>
-  </div>
-  <div class="control-group">
     <%= f.label :phone, "Telefoon:", :class => "control-label" %>
 		<div class="controls">
 		  <%= f.text_field :phone, :class => "input-xlarge" %>
@@ -66,12 +60,8 @@
 			</label>
 		</div>
   </div>
-	<br>
-  
-  <div class="control-group">
-	<div class="controls">
-  		<%= f.submit "Profiel opslaan", :class => "btn-metal" %>
+		<div class="form-actions" style="padding-left:20px;">
+  		<%= f.submit "Profiel opslaan", :class => "btn btn-primary" %>
   	</div>
-  </div>
   
 <% end %>
