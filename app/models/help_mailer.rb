@@ -6,8 +6,8 @@ class HelpMailer < MailForm::Base
   def headers
     {
       :subject => "Iemand heeft aangegeven om iets bij te dragen",
-      :to => "thijsvdlaar@hotmail.com",
-      :from => "no-reply@waardeverbinder.nl"
+      :to => "thijs@dreamyourweb.nl",
+      :from => "no-reply@bucketline.nl"
     }
   end
 end

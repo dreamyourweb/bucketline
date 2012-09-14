@@ -4,9 +4,9 @@ class UserCreatedMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Huis van Overvloed - Er is een nieuwe gebruiker aangemaakt",
+      :subject => "Bucketline - Er is een nieuwe gebruiker aangemaakt",
       :to => %(<#{email}>),
-      :from => "no-reply@waardeverbinder.nl"
+      :from => "no-reply@bucketline.nl"
     }
   end
 end
