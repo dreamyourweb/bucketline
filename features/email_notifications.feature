@@ -19,6 +19,7 @@ Feature: get email notifications
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I am logged in as a user
 		And there is a project that belongs to an admin with an item 
+		And I am on the initiatives page
 		When I follow the first initiative
 		And I click on a project
 		And I provide 1 item

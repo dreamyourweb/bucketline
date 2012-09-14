@@ -13,7 +13,7 @@ module NavigationHelpers
 		when /^the home page$/
 			root_url
 		when /^the admin contributions dashboard$/
-			links_url
+			initiative_links_url(@initiative)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -1,5 +1,5 @@
 Given /^there is a loose item$/ do
-	Item.create(:name => "Mijn los item", :type => "help", :amount => 1)
+	Initiative.first.items.create(:name => "Mijn los item", :type => "help", :amount => 1)
 end
 
 When /^I fill the form with a loose item$/ do

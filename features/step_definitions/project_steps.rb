@@ -10,7 +10,8 @@ Given /^there is a project that belongs to an admin with an item$/ do
   @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
-	@project = @admin.owned_projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
+	@initiative = Initiative.last
+	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute, :owner_id => @admin.id)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
 	#reload the page
   visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
@@ -36,7 +37,7 @@ When /^the admin plans a project for tomorrow$/ do
 end
 
 When /^the admin cancels the project$/ do
-	visit "/projects"
+	click_link "Bekijk initiatief"
   click_link "Mijn project"
   click_link "Project verwijderen"
 	#confirm javascript popup box	

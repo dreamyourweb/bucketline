@@ -89,7 +89,7 @@ class ProfilesController < ApplicationController
 		@link = Link.where(:profile_id => params[:profile_id], :item_id => params[:id]).first
 		if params[:redirect_to_links]
 			@link.destroy
-			redirect_to links_path, :notice => "Bijdrage is ingetrokken."
+			redirect_to initiative_links_path(@initiative), :notice => "Bijdrage is ingetrokken."
 		elsif @profile == current_user.profile
 			@link.destroy
 			redirect_to profile_path(@profile), :notice => "Bijdrage is ingetrokken."
