@@ -9,7 +9,7 @@
 <% if current_user && current_user.admin %>
 	<div class="row">
 		<div class="span12">
-			<%= link_to 'Plaats nieuw item op verlanglijstje', :controller => :items, :action => :new %>
+			<%= link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative) %>
 		</div>
 	</div>
 <% end %>

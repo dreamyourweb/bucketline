@@ -7,4 +7,5 @@ class Initiative
   field :description, :type => String
 
 	has_many :projects
+	has_many :items #loose items
 end

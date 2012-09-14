@@ -6,6 +6,7 @@ Feature: Update profile
 	Background:
 		Given I am logged in as a user
 		And there is an initiative
+		And I am on the initiatives page
 		When I follow the first initiative
 		And I follow "Mijn profiel"
 

@@ -1,4 +1,4 @@
-<%= form_for(@item, :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for([@initiative, @item], :html => {:class => "form-horizontal"}) do |f| %>
   <% if @item.errors.any? %>
     <div id="error_explanation" class="alert">
       <h2><%= pluralize(@item.errors.count, "error") %>:</h2>

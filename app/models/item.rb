@@ -4,6 +4,7 @@ class Item
 
 	attr_accessible :name, :type, :amount, :description
 
+	belongs_to :initiative #loose items for wishlist
 	belongs_to :project
 	has_many :links, :dependent => :destroy #All the users that have contributed to this item
 

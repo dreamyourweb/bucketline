@@ -14,7 +14,6 @@ class ProjectsController < ApplicationController
     @shown_month = Date.civil(@year, @month)
 
 		@first_day_of_week = 1
-		#TODO: werkt nog niet!
 		@event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
   end
 
@@ -25,7 +24,7 @@ class ProjectsController < ApplicationController
   def new
     @project = @initiative.projects.new
 		@admins = User.where(:admin => true).all
-    #item = @project.items.build
+    item = @project.items.build #appends an empty item to the form
 
     respond_to do |format|
       format.html # new.html.erb

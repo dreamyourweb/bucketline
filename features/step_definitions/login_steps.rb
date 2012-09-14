@@ -65,7 +65,7 @@ def login(email, password)
 end
 
 def register(email, password, name)
-  fill_in "name", :with => name
+  fill_in "user_name", :with => name
   fill_in "user_email", :with => email
   fill_in "user_password", :with => password
   fill_in "user_password_confirmation", :with => password

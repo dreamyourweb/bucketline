@@ -13,11 +13,6 @@ Feature: User offers help
 	Scenario: View all the projects
 		Then I should see all the projects
 
-	Scenario: Mark item as provided via wishlist dashboard
-		When I follow "Verlanglijstje"
-		And I provide 1 item
-		Then I should see "User"
-
 	Scenario: Mark item as provided via calender
 		When I click on a project
 		And I provide 1 item

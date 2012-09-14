@@ -25,11 +25,10 @@ HvO::Application.routes.draw do
 	  resources :projects, :except => [:show] do
 		  resources :items, :only => [:index]
 		end
+		resources :items, :except => [:index, :show]
 		get "dashboard", :to => "items#dashboard"
+		resources :links, :only => [:index]
 	end
-
-  resources :items, :except => [:show, :index]
-	resources :links, :only => [:index]
 
 	get "projects/info"
 	get "available_dates/info"

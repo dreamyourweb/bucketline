@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
 
 	def new
-		@item = Item.new
+		@item = @initiative.items.new
 	end
 	
 	def edit
@@ -18,9 +18,6 @@ class ItemsController < ApplicationController
     @items = @project.items.all
 		@owner = @project.owner
 		@contributing_users = @project.contributing_users
-		if !@owner.nil?
-			@owner_profile = @owner.profile
-		end
 		render :layout => false
   end
 
@@ -29,7 +26,7 @@ class ItemsController < ApplicationController
 		@help = []
 		@tools = []
 		@materials = []
-		@items = Item.where(:project_id => nil).all
+		@items = @initiative.items.all
 		@items.each do |item|
 			if item.type == "help"
 				@help << item
@@ -54,7 +51,7 @@ class ItemsController < ApplicationController
   def create
 		#@project = Item.find(params[:id]).project
     #@item = @project.items.new(params[:item])
-		@item = Item.new(params[:item])
+		@item = @initiative.items.new(params[:item])
 
     respond_to do |format|
       if @item.save

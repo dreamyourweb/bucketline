@@ -2,6 +2,8 @@ Given /^there is a project with an item$/ do
 	@initiative = Initiative.last
 	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
+	#reload the page
+  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
 end
 
 Given /^there is a project that belongs to an admin with an item$/ do
@@ -10,6 +12,8 @@ Given /^there is a project that belongs to an admin with an item$/ do
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
 	@project = @admin.owned_projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
+	#reload the page
+  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
 end
 
 When /^I follow the project link$/ do
@@ -17,7 +21,8 @@ When /^I follow the project link$/ do
 end
 
 When /^the admin plans a project for tomorrow$/ do
-	click_link('Project kalender')
+	click_link('Bekijk initiatief')
+	click_link('Kalender')
 	click_link('Plaats nieuw project')
 	fill_in("project_query", :with => "Mijn project")
 	select(Date.tomorrow.day.to_s, :from => "project_input_date_3i")

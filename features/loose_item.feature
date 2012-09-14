@@ -5,6 +5,7 @@ Feature: loose items for wishlist dashboard
 
 	Background:
 		Given there is an initiative
+		And I am on the initiatives page
 
 	Scenario: Mark item as provided via wishlist dashboard
 		Given there is a loose item
