@@ -67,6 +67,7 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
+		@project = Project.find(params[:project_id])
     @item = Item.find(params[:id])
     respond_to do |format|
       if @item.update_attributes(params[:item])
