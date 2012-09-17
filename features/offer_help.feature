@@ -12,25 +12,25 @@ Feature: User offers help
 		Then I should see all the projects
 
 	Scenario: Mark item as provided via wishlist dashboard
-		When I go to the calendar page
-		And I click on a project
-		And I provide 1 item
-		When I go to the calendar page
+		When I provide an item via the calendar page
+		And I go to the calendar page
 		And I click on a project
 		Then I should see "User"
 
 	Scenario: Mark item as provided via calender
-		When I go to the calendar page
-		And I click on a project
-		And I provide 1 item
+		When I provide an item via the calendar page
 		And I click on a project
 		Then I should see "Bijdragers zijn: User"
 
-	Scenario: Retreat help
-		When I go to the calendar page
-		And I click on a project
-		And I provide 1 item
+	Scenario: Retreat help via profile
+		When I provide an item via the calendar page
 		And I follow "Mijn profiel"
 		Then I should see "Mijn item"
-		When I follow "bijdrage intrekken"
+		When I retreat my contribution
 		Then I should not see "Mijn item"
+
+	Scenario: Retreat help via calendar
+		When I provide an item via the calendar page
+		And I click on a project
+		And I retreat my contribution
+		Then I should not see "Bijdragers zijn: User"
