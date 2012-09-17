@@ -13,15 +13,15 @@ Feature: get email notifications
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a project I provided for is cancelled
-		Given I am logged in as a user
-		And there is a project that belongs to an admin with an item 
- 		When I go to the calendar page
-		And I click on a project
-		And I provide 1 item
-		And I log out
-		Given no emails have been sent
+		Given I have contributed to a project
 		When the admin logs in via the login screen
 		And the admin cancels the project
+		Then "user@test.com" should receive 1 email from "admin@test.com"
+
+	Scenario: receive notification when a project I provided for is edited
+		Given I have contributed to a project
+		When the admin logs in via the login screen
+		And the admin edits the project
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a new user is registered
@@ -34,8 +34,6 @@ Feature: get email notifications
 		Given I am logged in as a user
 		And there is a project with an item
 		And a clear email queue
- 		When I go to the calendar page
-		And I click on a project
-		And I provide 1 item
-		When the system does it's automated tasks
+ 		When I provide an item via the calendar page
+		And the system does it's automated tasks
 		Then "user@test.com" should receive 1 email 

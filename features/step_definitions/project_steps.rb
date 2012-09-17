@@ -4,7 +4,7 @@ Given /^there is a project with an item$/ do
 end
 
 Given /^there is a project that belongs to an admin with an item$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	@admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
 	@project = @admin.owned_projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
@@ -31,9 +31,18 @@ end
 
 When /^the admin cancels the project$/ do
 	visit "/projects"
-  click_link "Mijn project"
-  click_link "Project verwijderen"
+	click_link "Mijn project"
+	click_link "Project verwijderen"
 	#confirm javascript popup box	
+end
+
+When /^the admin edits the project$/ do
+	visit "/projects"
+	click_link "Mijn project"
+	click_link "Project of items bewerken"
+	save_and_open_page
+	fill_in("project_query", :with => "Mijn bewerkte project")
+	click_button("Project en items opslaan")
 end
 
 Then /^I should see all the projects$/ do
@@ -69,4 +78,12 @@ end
 
 Then /^I should see my project$/ do
   page.should have_content("Mijn project")
+end
+
+Given /^I have contributed to a project$/ do
+	step %{I am logged in as a user}
+	step %{there is a project that belongs to an admin with an item} 
+	step %{I provide an item via the calendar page}
+	step %{I log out}
+	step %{no emails have been sent}
 end

@@ -1,6 +1,10 @@
 <h3><%= message.subject %></h3>
 
 <% @resource.attributes.each do |attribute, value|
+  if attribute == "update_notice" && value == "true"
+    <p>Hieronder vind je de nieuwste gegevens.</p>
+  end
+
   next if value.blank? || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
 
 	<p><b><%= case attribute

@@ -14,6 +14,7 @@ class Project
 	validate :input_end_at_greater_than_input_start_at
 
 	before_save :set_dates
+	after_update :send_project_update_mail
 	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
@@ -61,9 +62,17 @@ class Project
 	end
 
 	def send_project_cancellation_mail
-		mailing_list = self.contributor_emails_for_cancellation
+		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
 			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+			email.deliver
+		end
+	end
+
+	def send_project_update_mail
+		mailing_list = self.contributor_emails
+		if !mailing_list.empty?
+			email = ProjectUpdateMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true)
 			email.deliver
 		end
 	end
@@ -100,7 +109,7 @@ class Project
 		providing
 	end
 
-	def contributor_emails_for_cancellation
+	def contributor_emails
 		mailing_list = []
 		self.items.all.each do |item|
 			item.profiles.all.each do |profile|

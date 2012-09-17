@@ -20,5 +20,5 @@ When /^I provide an item via the calendar page$/ do
 end
 
 When /^I retreat my contribution$/ do
-	click_link "ntrekken" #/[B|b]ijdrage [I|i]ntrekken/i
+	click_link "intrekken" #/[B|b]ijdrage intrekken/i
 end
