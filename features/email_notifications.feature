@@ -12,14 +12,20 @@ Feature: get email notifications
 		And the admin logs out
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
+	Scenario: receive notification when a contribution is made
+		Given I have contributed to a project
+		Then "admin@test.com" should receive 1 email
+
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I have contributed to a project
+		And no emails have been sent
 		When the admin logs in via the login screen
 		And the admin cancels the project
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a project I provided for is edited
 		Given I have contributed to a project
+		And no emails have been sent
 		When the admin logs in via the login screen
 		And the admin edits the project
 		Then "user@test.com" should receive 1 email from "admin@test.com"

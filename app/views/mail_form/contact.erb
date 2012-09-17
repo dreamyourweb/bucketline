@@ -1,11 +1,11 @@
 <h3><%= message.subject %></h3>
 
-<% @resource.attributes.each do |attribute, value|
-  if attribute == "update_notice" && value == "true"
+<% @resource.attributes.each do |attribute, value| %>
+  <% if attribute == "update_notice" && value == "true" %>
     <p>Hieronder vind je de nieuwste gegevens.</p>
-  end
+  <% end %>
 
-  next if value.blank? || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
+  <% next if value.blank? || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
 
 	<p><b><%= case attribute
 		when 'project_query'
@@ -24,11 +24,19 @@
 			"Extra opmerkingen:"
 		when 'item_names'
 			"Bijdragen:"
+    when 'item_name'
+      "Bijdrage:"
+    when 'amount'
+      "Aantal:"
 		when 'items'
 			"Benodigdheden voor dit project:"
 		when 'user_email'
 			"Email nieuwe gebruiker:"
-   	else 
+   	when 'contributor_name'
+      "Naam bijdrager:"
+    when 'contributor_email'
+      "Email bijdrager:"
+    else 
 			@resource.class.human_attribute_name(attribute)
 		end
 	%></b><br>

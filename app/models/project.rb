@@ -119,7 +119,6 @@ class Project
 			end
 		end
 		unique_mailing_list = mailing_list.uniq.join(">,<")
-		p unique_mailing_list
 	end
 
 	def contributing_users
