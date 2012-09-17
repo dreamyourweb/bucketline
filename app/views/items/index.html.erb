@@ -20,6 +20,9 @@
 	<% @items.each do |item| %>
 		<li>
 			<blockquote>
+				<% if current_user && item.providing_user(current_user) %>
+					<i class="icon-gift pull-right gift-margin"></i>
+				<% end %>
 				<% if item.provided %>
 					<span class="label label-inverse pull-right">Voorzien</span>
 					<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
@@ -49,6 +52,9 @@
 							<% end %>
 						<% end %>
 					<% end %>
+				<% end %>
+				<% if current_user && item.providing_user(current_user) %>
+					<%= link_to "Bijdrage Intrekken", remove_item_from_profile_path(@profile, item)  + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?" %>
 				<% end %>
 			</blockquote>
 			<hr>

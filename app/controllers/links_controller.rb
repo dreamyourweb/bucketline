@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-	before_filter :authenticate_admin
+	before_filter :authenticate_admin, :get_initiative
 
 	def index
 		if params[:show] == "all"

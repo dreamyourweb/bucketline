@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
 		@project = Project.find(params[:project_id])
     @items = @project.items.all
 		@owner = @project.owner
+    @profile = current_user.profile
 		@contributing_users = @project.contributing_users
 		if !@owner.nil?
 			@owner_profile = @owner.profile

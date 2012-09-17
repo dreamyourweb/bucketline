@@ -85,6 +85,14 @@ class ProfilesController < ApplicationController
 			@profile.remove_item(@item)
 			@item.remove_profile(@profile)
 			redirect_to links_path, :notice => "Bijdrage is ingetrokken."
+    elsif params[:redirect_to_calendar]
+      @profile.remove_item(@item)
+      @item.remove_profile(@profile)
+      redirect_to calendar_path, :notice => "Bijdrage is ingetrokken."
+    elsif params[:redirect_to_wishlist]
+      @profile.remove_item(@item)
+      @item.remove_profile(@profile)
+      redirect_to dashboard_path, :notice => "Bijdrage is ingetrokken."
 		elsif @profile == current_user.profile
 			@profile.remove_item(@item)
 			@item.remove_profile(@profile)
