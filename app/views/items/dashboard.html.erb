@@ -9,7 +9,8 @@
 <% if current_user && current_user.admin %>
 	<div class="row">
 		<div class="span12">
-			<%= link_to 'Plaats nieuw item op verlanglijstje', :controller => :items, :action => :new %>
+			<%= link_to 'Plaats nieuw item op verlanglijstje', :controller => :items, :action => :new %><br>
+			<%= link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true" %> 
 		</div>
 	</div>
 <% end %>

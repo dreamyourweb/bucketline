@@ -8,6 +8,7 @@ class User
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
+  has_many :owned_items, :class_name => "Item", :inverse_of => :owner
 	#Facebook
 	has_many :authentications, :dependent => :destroy
 

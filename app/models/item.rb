@@ -1,10 +1,11 @@
 class Item
-  include Mongoid::Document
+	include Mongoid::Document
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :name, :type, :amount, :description
+	attr_accessible :name, :type, :amount, :description, :owner_id, :success
 
 	belongs_to :project
+	belongs_to :owner, :class_name => "User", :inverse_of => :owned_items #Owner of loose item
 	has_and_belongs_to_many :profiles, :dependent => :nullify #All the users that have contributed to this item
 
 	before_destroy :remove_links
@@ -17,6 +18,7 @@ class Item
 	field :description
 	field :type
 	field :amount, :type => Integer, :default => 1
+	field :success, :type => Boolean, :default => false
 
 	def remove_links
 		@links = Link.where(:item_id => self.id)

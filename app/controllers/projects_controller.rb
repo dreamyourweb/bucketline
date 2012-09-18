@@ -51,6 +51,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+    @admins = User.where(:admin => true).all
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

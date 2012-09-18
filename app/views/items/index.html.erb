@@ -2,7 +2,7 @@
 	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
 	<strong>Project datum: </strong><%= pretty_date(@project.start_at) %> <%= build_timetext(@project) %><br>
 	<% if current_user && !@owner_profile.nil? %>
-		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
+		<strong>Contactpersoon:</strong> <%= @owner_profile.name %> (email: <%= @owner.email %>, tel: <%= @owner_profile.phone %>)<br>
 	<% end %>
 	<% if !@project.location.nil? && !@project.location.empty? %>
 		<strong>Verzamel locatie:</strong> <%= @project.location %><br>

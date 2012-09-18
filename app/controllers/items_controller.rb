@@ -4,10 +4,12 @@ class ItemsController < ApplicationController
 
 	def new
 		@item = Item.new
+    @admins = User.where(:admin => true).all
 	end
 	
 	def edit
 		@item = Item.find(params[:id])
+    @admins = User.where(:admin => true).all
 	end
 
   # GET /items
@@ -16,7 +18,9 @@ class ItemsController < ApplicationController
 		@project = Project.find(params[:project_id])
     @items = @project.items.all
 		@owner = @project.owner
-    @profile = current_user.profile
+    if current_user
+      @profile = current_user.profile
+    end
 		@contributing_users = @project.contributing_users
 		if !@owner.nil?
 			@owner_profile = @owner.profile
@@ -29,7 +33,11 @@ class ItemsController < ApplicationController
 		@help = []
 		@tools = []
 		@materials = []
-		@items = Item.where(:project_id => nil).all
+    if params[:show_all_items]
+      @items = Item.where(:project_id => nil).all
+		else
+      @items = Item.where(:project_id => nil, :success => false).all
+    end
 		@items.each do |item|
 			if item.type == "help"
 				@help << item
@@ -55,6 +63,7 @@ class ItemsController < ApplicationController
 		#@project = Item.find(params[:id]).project
     #@item = @project.items.new(params[:item])
 		@item = Item.new(params[:item])
+    @admins = User.where(:admin => true).all
 
     respond_to do |format|
       if @item.save
@@ -71,6 +80,7 @@ class ItemsController < ApplicationController
   # PUT /items/1.json
   def update
     @item = Item.find(params[:id])
+    @admins = User.where(:admin => true).all
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
@@ -99,12 +109,12 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = Items.find(params[:id])
+    @item = Item.find(params[:id])
 		#@project = @item.project
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path }
+      format.html { redirect_to dashboard_path, :notice => "Item is verwijderd" }
       format.json { head :no_content }
     end
   end
