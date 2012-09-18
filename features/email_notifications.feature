@@ -12,6 +12,15 @@ Feature: get email notifications
 		And the admin logs out
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
+	Scenario: receive notification when a loose item is placed
+		Given I am logged in as a user
+		And no emails have been sent
+		When I log out
+		And the admin logs in
+		And the admin places a loose item
+		And the admin logs out
+		Then "user@test.com" should receive 1 email from "admin@test.com"
+
 	Scenario: receive notification when a contribution is made
 		Given I have contributed to a project
 		Then "admin@test.com" should receive 1 email
@@ -21,6 +30,13 @@ Feature: get email notifications
 		And no emails have been sent
 		When the admin logs in via the login screen
 		And the admin cancels the project
+		Then "user@test.com" should receive 1 email from "admin@test.com"
+
+	Scenario: receive notification when a loose item I provided for is cancelled
+		Given I have contributed to a loose item
+		And no emails have been sent
+		When the admin logs in via the login screen
+		And the admin cancels the item
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a project I provided for is edited

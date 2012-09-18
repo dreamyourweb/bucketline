@@ -1,13 +1,11 @@
 class ProjectCancellationMailer < MailForm::Base
-	attribute :project_query
-	attribute :project_start_at
-	attribute :project_end_at
+	attribute :item_name
 	attribute :admin_contact
 	attribute :recipients
 
   def headers
     {
-      :subject => "Huis van Overvloed - Een project waaraan je bijdraagt is geannuleerd",
+      :subject => "Huis van Overvloed - Een item waaraan je bijdraagt is geannuleerd",
       :to => %(<#{admin_email}>),
 			:bcc => %(<#{recipients}>),
 			:from => %(<#{admin_email}>)

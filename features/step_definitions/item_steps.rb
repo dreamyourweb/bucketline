@@ -19,6 +19,12 @@ When /^I provide an item via the calendar page$/ do
 	step %{I provide 1 item}
 end
 
+When /^the admin places a loose item$/ do
+	click_link('Ons verlanglijstje')
+	click_link('Plaats nieuw item op verlanglijstje')
+	step %(I fill the form with a loose item)
+end
+
 When /^I retreat my contribution$/ do
 	click_link "intrekken" #/[B|b]ijdrage intrekken/i
 end

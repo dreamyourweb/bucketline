@@ -1,6 +1,7 @@
 class ItemPlacementMailer < MailForm::Base
 	attribute :item_name
-	attribute :item_description
+	attribute :remark
+	attribute :amount
 	attribute :admin_email
 	attribute :admin_contact
 	attribute :recipients

@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-				@project.send_project_placement_mail
+				#@project.send_project_placement_mail
         format.html { redirect_to projects_path, notice: 'Het project is geplaatst' }
         format.json { render json: @project, status: :created, location: @project }
       else

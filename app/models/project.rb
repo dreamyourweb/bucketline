@@ -15,6 +15,7 @@ class Project
 
 	before_save :set_dates
 	after_update :send_project_update_mail
+	after_create :send_project_placement_mail
 	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
@@ -64,7 +65,7 @@ class Project
 	def send_project_cancellation_mail
 		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
-			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
 			email.deliver
 		end
 	end

@@ -30,7 +30,7 @@
 
 	<% if current_user && current_user.admin %>
 		<br><%= link_to "Item bewerken", edit_item_path(item) %>
-		<%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen van het verlanglijstje?", :class => "pull-right" %>
+		<%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
 	<% end %>
 </div>
 
