@@ -2,6 +2,14 @@ Given /^there is a loose item$/ do
 	Item.create(:name => "Mijn los item", :type => "help", :amount => 1)
 end
 
+Given /^I have contributed to a loose item$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^the admin cancels the item$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
 When /^I fill the form with a loose item$/ do
   fill_in('item_name', :with => "Mijn los item")
   fill_in('item_description', :with => "Een korte toelichting")
