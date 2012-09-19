@@ -25,6 +25,12 @@ Feature: get email notifications
 		Given I have contributed to a project
 		Then "admin@test.com" should receive 1 email
 
+	Scenario: receive notification when a contribution is cancelled
+		Given I have contributed to a project
+		And no emails have been sent
+		When I retreat my contribution
+		Then "admin@test.com" should receive 1 email
+
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I have contributed to a project
 		And no emails have been sent

@@ -18,6 +18,7 @@ class Link
 
 	before_save :consolidate_links, :populate_properties
 	after_save :send_contribution_mail
+	before_destroy :send_retreat_contribution_mail
 
 	def consolidate_links #add all duplicate links together
 		@duplicate_link = Link.where(:item_id => self.item_id, :profile_id => self.profile_id).first
@@ -51,6 +52,19 @@ class Link
 		elsif item.owner #There is an item owner to send this email to
 			admin_email = item.owner.email #Get owner email
 			email = ItemContributionMailer.new(:admin_email => admin_email, :item_name => self.item_name, :amount => self.amount, :contributor_email => self.contributor_email, :contributor_name => self.contributor_name)
+			email.deliver		
+		end
+	end
+
+	def send_retreat_contribution_mail
+		item = Item.find(self.item_id)
+		if self.project_id #There is a project owner to send this email to
+			admin_email = Project.find(self.project_id).owner.email #Get owner email
+			email = ItemRetreatContributionMailer.new(:admin_email => admin_email, :item_name => self.item_name, :amount => self.amount, :project_query => self.project_query, :contributor_email => self.contributor_email, :contributor_name => self.contributor_name)
+			email.deliver		
+		elsif item.owner #There is an item owner to send this email to
+			admin_email = item.owner.email #Get owner email
+			email = ItemRetreatContributionMailer.new(:admin_email => admin_email, :item_name => self.item_name, :amount => self.amount, :contributor_email => self.contributor_email, :contributor_name => self.contributor_name)
 			email.deliver		
 		end
 	end
