@@ -8,7 +8,7 @@ class ItemContributionMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Huis van Overvloed - Er is een nieuwe bijdrage aan een van je projecten",
+      :subject => "Huis van Overvloed - Er is een nieuwe bijdrage aan een van je projecten of benodigdheden",
       :to => %(<#{admin_email}>),
       :from => "no-reply@waardeverbinder.nl"
     }

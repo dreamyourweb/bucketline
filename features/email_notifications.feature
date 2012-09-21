@@ -49,7 +49,6 @@ Feature: get email notifications
 		And the admin cancels the item
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
-	@wip
 	Scenario: receive notification when a project I provided for is edited
 		Given I have contributed to a project
 		And no emails have been sent
@@ -64,6 +63,7 @@ Feature: get email notifications
 		When a new user is registered
 		Then "admin@test.com" should receive 1 email
 
+	@wip
 	Scenario: send reminders
 		Given I am logged in as a user
 		And there is a project with an item

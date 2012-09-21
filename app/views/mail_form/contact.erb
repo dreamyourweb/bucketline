@@ -5,7 +5,7 @@
     <p>Hieronder vind je de nieuwste gegevens.</p>
   <% end %>
 
-  <% next if value.blank? || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
+  <% next if value.blank? || attribute == 'update_notice' || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
 
 	<p><b><%= case attribute
 		when 'project_query'
@@ -38,6 +38,8 @@
       "Naam bijdrager:"
     when 'contributor_email'
       "Email bijdrager:"
+    when 'project_completion'
+      "Project status:"
     else 
 			@resource.class.human_attribute_name(attribute)
 		end

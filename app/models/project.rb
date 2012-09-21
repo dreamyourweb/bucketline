@@ -30,7 +30,7 @@ class Project
 	field :success, :type => Boolean, :default => false
  
 	def input_end_at_greater_than_input_start_at
-	 unless self.input_end_at.to_i > self.input_start_at.to_i
+	 unless self.input_end_at.to_i >= self.input_start_at.to_i
 	   errors.add :input_end_at, "moet groter zijn dan begintijd"
 	   return false
 	 end
@@ -74,7 +74,7 @@ class Project
 	def send_project_update_mail
 		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
-			email = ProjectUpdateMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true)
+			email = ProjectUpdateMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true, :project_completion => (if self.success then "Afgerond" else "Onafgerond" end))
 			email.deliver
 		end
 	end
