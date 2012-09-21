@@ -1,5 +1,6 @@
 class Item
 	include Mongoid::Document
+ 	include Mongoid::Timestamps
 	include Mongoid::MultiParameterAttributes
 
 	attr_accessible :name, :type, :amount, :description, :owner_id, :success
@@ -9,12 +10,11 @@ class Item
 	has_and_belongs_to_many :profiles, :dependent => :nullify #All the users that have contributed to this item
 
 	before_destroy :remove_links, :send_item_cancellation_mail
-	after_create :send_item_placement_mail
+	#The creation of new items is checked every hour by a cronjob. A bulk email is then sent for all new items at once.
 
 	validates_numericality_of :amount
 	#validates_format_of :type, :with => /^help\z|^tool\z|^material\z/
 
-	#field :provided_by_last_user_name, :default => "Anoniempje"
 	field :name
 	field :description
 	field :type
@@ -76,18 +76,6 @@ class Item
 			providing = true
 		end
 		providing
-	end
-
-	def send_item_placement_mail
-		mailing_list = []
-		User.all.each do |user|
-			if user.profile.always_send_project_placement_mail && user.email != self.owner.email #Get all the to-be-reminded-users that are not the owner of this project
-				mailing_list << user.email
-			end
-		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
-		email = ItemPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :item_name => self.name, :amount => self.amount, :remark => self.description)
-		email.deliver
 	end
 
 	def send_item_cancellation_mail

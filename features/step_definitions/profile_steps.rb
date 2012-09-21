@@ -16,8 +16,8 @@ Then /^I should see my relevant profile fields$/ do
 	page.should have_content("Ik kan helpen met")
 	page.should have_content("Ik kan de volgende gereedschappen en materialen inbrengen")
 	page.should have_content("Stuur mij een herinnerings-email")
-	page.should have_content("Stuur mij een email als er een nieuw project gepland wordt")
-	page.should have_content("Stuur mij een email als een project waaraan ik bijdraag wordt geannuleerd")
+	page.should have_content("Stuur mij een email als er een nieuw project of item geplaatst wordt")
+	page.should have_content("Stuur mij een email als een project of item waaraan ik bijdraag wordt geannuleerd of gewijzigd")
 end
 
 Then /^the user should be purged from the system$/ do

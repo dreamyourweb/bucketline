@@ -1,4 +1,4 @@
-class ItemContributionMailer < MailForm::Base
+class ItemRetreatContributionMailer < MailForm::Base
 	attribute :project_query
 	attribute :item_name
 	attribute :amount

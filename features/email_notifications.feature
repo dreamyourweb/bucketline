@@ -19,7 +19,8 @@ Feature: get email notifications
 		And the admin logs in
 		And the admin places a loose item
 		And the admin logs out
-		Then "user@test.com" should receive 1 email from "admin@test.com"
+		And the system does it's automated tasks
+		Then "user@test.com" should receive 1 email from "no-reply@waardeverbinder.nl"
 
 	Scenario: receive notification when a contribution is made
 		Given I have contributed to a project

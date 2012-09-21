@@ -14,8 +14,8 @@ class Project
 	validate :input_end_at_greater_than_input_start_at
 
 	before_save :set_dates
-	after_update :send_project_update_mail
-	after_create :send_project_placement_mail
+	#after_update :send_project_update_mail
+	#after_create :send_project_placement_mail
 	before_destroy :remove_links, :send_project_cancellation_mail
 
 	field :query
@@ -70,6 +70,7 @@ class Project
 		end
 	end
 
+	#Items are updated after project is updated, so if this method is called by an after_create hook, project.items is old when the mail is sent. That's why it is called by the controller.
 	def send_project_update_mail
 		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
@@ -87,7 +88,7 @@ class Project
 				mailing_list << user.email
 			end
 		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
+		unique_mailing_list = "<" + mailing_list.uniq.join(">,<") + ">"
 		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end

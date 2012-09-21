@@ -1,17 +1,13 @@
 class ItemPlacementMailer < MailForm::Base
-	attribute :item_name
-	attribute :remark
-	attribute :amount
-	attribute :admin_email
-	attribute :admin_contact
+	attribute :item_sentence
 	attribute :recipients
 
   	def headers
 	    {
-		    :subject => "Huis van Overvloed - Er is een nieuwe benodigdheid geplaatst",
-		    :to => %(<#{admin_email}>),
+		    :subject => "Huis van Overvloed - Er zijn nieuwe benodigdheden geplaatst",
+		    :to => "no-reply@waardeverbinder.nl",
 			:bcc => %(<#{recipients}>),
-			:from => %(<#{admin_email}>)
+			:from => "no-reply@waardeverbinder.nl"
 	    }
   	end
 end
