@@ -1,6 +1,7 @@
-class ProjectCancellationMailer < MailForm::Base
+class ItemCancellationMailer < MailForm::Base
 	attribute :item_name
 	attribute :admin_contact
+  attribute :admin_email
 	attribute :recipients
 
   def headers

@@ -1,8 +1,5 @@
 Given /^I am logged in as an admin$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
-	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
-  login(@admin.email, 'foobar')
+	step %{the admin logs in}
 end
 
 When /^the admin logs in$/ do

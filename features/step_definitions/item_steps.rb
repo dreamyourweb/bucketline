@@ -3,11 +3,19 @@ Given /^there is a loose item$/ do
 end
 
 Given /^I have contributed to a loose item$/ do
-  pending # express the regexp above with the code you wish you had
+  step %{I am logged in as an admin}
+  click_link "Ons verlanglijstje"
+  click_link "Plaats nieuw item op verlanglijstje"
+  step %{I fill the form with a loose item}
+  step %{I log out}
+  step %{I am logged in as a user}  
+  click_link "Ons verlanglijstje"
+  click_button "Dit wil ik bijdragen!"
 end
 
 When /^the admin cancels the item$/ do
-  pending # express the regexp above with the code you wish you had
+  click_link "Ons verlanglijstje"
+  click_link "Item verwijderen"
 end
 
 When /^I fill the form with a loose item$/ do
