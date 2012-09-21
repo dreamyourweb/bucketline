@@ -6,7 +6,7 @@ task :send_reminders => :environment do
 			item_names = []
 			items = user.profile.items.all.entries
 			items.each do |item|
-				if item.project.input_date == Date.tomorrow
+				if !item.project_id.nil? && item.project.input_date == Date.tomorrow
 					item_names << item.name	
 				end
 			end
