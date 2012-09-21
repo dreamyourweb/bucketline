@@ -4,6 +4,10 @@ end
 
 Given /^there is a project that belongs to an admin with an item$/ do
 	@admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+	if @admin.profile.nil?
+		@admin.profile = Profile.create #(:name => "Anoniempje")
+	end
+	@admin.save
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
 	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
 	@project = @admin.owned_projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
@@ -84,5 +88,5 @@ Given /^I have contributed to a project$/ do
 	step %{there is a project that belongs to an admin with an item} 
 	step %{no emails have been sent} 
 	step %{I provide an item via the calendar page}
-	step %{I log out}
+	#step %{I log out}
 end
