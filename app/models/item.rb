@@ -67,11 +67,12 @@ class Item
 
 	def contributor_emails
 		mailing_list = []
-		self.profiles.all.each do |profile|
+		self.links.all.each do |link|
+			profile = link.profile
 			if profile.send_project_cancellation_mail && self.owner != profile.user
 				mailing_list << profile.user.email
 			end
 		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
+		unique_mailing_list = "<" + mailing_list.uniq.join(">,<") + ">"
 	end
 end

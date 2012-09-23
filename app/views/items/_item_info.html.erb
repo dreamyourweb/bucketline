@@ -8,7 +8,7 @@
 	<% if user_signed_in? %>
 		<% item_owner = item.owner %>
 		<% if item_owner %>
-			Contactpersoon: <%= item_owner.profile.name %> (email: <%= item_owner.email %>, tel: <%= item_owner.profile.phone %>)
+			Contactpersoon: <%= item_owner.name %> (email: <%= item_owner.email %>, tel: <%= item_owner.profile.phone %>)
 		<% end %>
 	<% end %>
 </p>

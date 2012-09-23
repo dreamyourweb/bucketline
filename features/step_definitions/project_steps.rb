@@ -45,7 +45,9 @@ When /^the admin cancels the project$/ do
 end
 
 When /^the admin edits the project$/ do
-	visit "/projects"
+	visit "/initiatives"
+	click_link('Bekijk initiatief')
+	click_link('Kalender')
 	click_link "Mijn project"
 	click_link "Project of items bewerken"
 	fill_in("project_query", :with => "Mijn bewerkte project")

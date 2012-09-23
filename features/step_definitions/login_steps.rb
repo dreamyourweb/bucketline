@@ -3,9 +3,10 @@ Given /^I am logged in as an admin$/ do
 end
 
 When /^the admin logs in$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
+  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
 	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
-	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
+	#@admin.profile.update_attributes(:expertise => "Bier drinken")
+	save_and_open_page
   login(@admin.email, 'foobar')
 end
 

@@ -17,15 +17,15 @@
 <div class="row">
 	<div class="span4">
 		<h2>Handjes</h2>
-		<%= render :partial => "item", :collection => @help %>
+		<%= render :partial => "item", :collection => @help, :locals => {:initiative => @initiative, :profile => @profile} %>
 	</div>
 	<div class="span4">
 		<h2>Gereedschap</h2>
-		<%= render :partial => "item", :collection => @tools %>
+		<%= render :partial => "item", :collection => @tools, :locals => {:initiative => @initiative, :profile => @profile} %>
 	</div>
 	<div class="span4">
 		<h2>Materiaal</h2>
-		<%= render :partial => "item", :collection => @materials %>
+		<%= render :partial => "item", :collection => @materials, :locals => {:initiative => @initiative, :profile => @profile} %>
 	</div>
 </div>
 

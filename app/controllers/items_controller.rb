@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
 		@help = []
 		@tools = []
 		@materials = []
+    @profile = current_user.profile
     if params[:show_all_items]
       @items = @initiative.items.where(:project_id => nil).all
 		else
