@@ -38,15 +38,9 @@ When /^the admin plans a project for tomorrow$/ do
 end
 
 When /^the admin cancels the project$/ do
-<<<<<<< HEAD
 	click_link "Bekijk initiatief"
-  click_link "Mijn project"
-  click_link "Project verwijderen"
-=======
-	visit "/projects"
 	click_link "Mijn project"
-	click_link "Project verwijderen"
->>>>>>> upstream/master
+ 	click_link "Project verwijderen"
 	#confirm javascript popup box	
 end
 
