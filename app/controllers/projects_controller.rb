@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        #Items are created after project is created, so if this method is called by an after_create hook, project.items is still empty when the mail is sent. That's why it is called by the controller.
 				@project.send_project_placement_mail
         format.html { redirect_to initiative_projects_path(@initiative), notice: 'Het project is geplaatst' }
         format.json { render json: @project, status: :created, location: @project }
@@ -55,9 +56,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
+    @admins = User.where(:admin => true).all
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        #Items are updated after project is updated, so if this method is called by an after_create hook, project.items is old when the mail is sent. That's why it is called by the controller.
+        @project.send_project_update_mail
         format.html { redirect_to initiative_projects_path(@initiative), notice: 'Het project is bijgewerkt' }
         format.json { head :no_content }
       else

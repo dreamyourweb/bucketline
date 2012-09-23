@@ -49,9 +49,18 @@ class Project
 	end
 
 	def send_project_cancellation_mail
-		mailing_list = self.contributor_emails_for_cancellation
+		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
-			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+			email.deliver
+		end
+	end
+
+	#Items are updated after project is updated, so if this method is called by an after_create hook, project.items is old when the mail is sent. That's why it is called by the controller.
+	def send_project_update_mail
+		mailing_list = self.contributor_emails
+		if !mailing_list.empty?
+			email = ProjectUpdateMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true, :project_completion => (if self.success then "Afgerond" else "Onafgerond" end))
 			email.deliver
 		end
 	end
@@ -65,7 +74,7 @@ class Project
 				mailing_list << user.email
 			end
 		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
+		unique_mailing_list = "<" + mailing_list.uniq.join(">,<") + ">"
 		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
@@ -88,7 +97,7 @@ class Project
 		providing
 	end
 
-	def contributor_emails_for_cancellation
+	def contributor_emails
 		mailing_list = []
 		self.items.each do |item|
 			links = item.links.all.entries

@@ -1,0 +1,14 @@
+<h3><%= item.name %></h3>
+<p><%= item.description %></p>
+<p class="dashboard-small">
+	<% contributors = get_contributors(item) %>
+	<% if !contributors.empty? %>
+		<%= contributors %></br>
+	<% end %>
+	<% if user_signed_in? %>
+		<% item_owner = item.owner %>
+		<% if item_owner %>
+			Contactpersoon: <%= item_owner.profile.name %> (email: <%= item_owner.email %>, tel: <%= item_owner.profile.phone %>)
+		<% end %>
+	<% end %>
+</p>

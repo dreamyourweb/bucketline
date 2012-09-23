@@ -9,7 +9,8 @@
 <% if current_user && current_user.admin %>
 	<div class="row">
 		<div class="span12">
-			<%= link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative) %>
+			<%= link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative) %><br>
+			<%= link_to 'Toon ook de afgeronde items', initiative_dashboard_path(@initiative) + "?show_all_items=true" %> 
 		</div>
 	</div>
 <% end %>

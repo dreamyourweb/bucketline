@@ -1,17 +1,18 @@
 Given /^there is a project with an item$/ do
-	@initiative = Initiative.last
-	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
-	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
-	#reload the page
-  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
+	step %{there is a project that belongs to an admin with an item}
 end
 
 Given /^there is a project that belongs to an admin with an item$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
-	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
-	@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
+	if @admin.nil?
+		@admin = User.create(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+		@admin.profile = Profile.create #(:name => "Anoniempje")
+		@admin.save
+		@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
+		@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
+	end
 	@initiative = Initiative.last
-	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute, :owner_id => @admin.id)
+	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
+	@project.update_attributes(:owner_id => @admin.id)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
 	#reload the page
   visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
@@ -37,10 +38,24 @@ When /^the admin plans a project for tomorrow$/ do
 end
 
 When /^the admin cancels the project$/ do
+<<<<<<< HEAD
 	click_link "Bekijk initiatief"
   click_link "Mijn project"
   click_link "Project verwijderen"
+=======
+	visit "/projects"
+	click_link "Mijn project"
+	click_link "Project verwijderen"
+>>>>>>> upstream/master
 	#confirm javascript popup box	
+end
+
+When /^the admin edits the project$/ do
+	visit "/projects"
+	click_link "Mijn project"
+	click_link "Project of items bewerken"
+	fill_in("project_query", :with => "Mijn bewerkte project")
+	click_button("Project en items opslaan")
 end
 
 Then /^I should see all the projects$/ do
@@ -76,4 +91,12 @@ end
 
 Then /^I should see my project$/ do
   page.should have_content("Mijn project")
+end
+
+Given /^I have contributed to a project$/ do
+	step %{I am logged in as a user}
+	step %{there is a project that belongs to an admin with an item} 
+	step %{no emails have been sent} 
+	step %{I provide an item via the calendar page}
+	#step %{I log out}
 end

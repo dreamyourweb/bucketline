@@ -36,6 +36,21 @@
 				<%= f.text_field :amount %>
 			</div>
  		</div>
+ 		<div class="field control-group">
+			<%= f.label "Contactpersoon:", :class => "control-label" %>
+			<div class="controls"> 
+				<%= collection_select(:item, :owner_id, @admins, :id, :email, {:selected => current_user.id}) %>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<label class="checkbox">
+			    <%= f.check_box :success %>
+			    Item is geleverd
+				</label>
+			</div>
+		</div>
+
 		<div class="form-actions" style="padding-left:20px;">
 		  <%= f.submit "Item plaatsen", :class => "btn btn-primary" %>
 		</div>

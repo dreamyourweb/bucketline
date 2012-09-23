@@ -16,17 +16,49 @@ Feature: get email notifications
 		And the admin logs out
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
-	Scenario: receive notification when a project I provided for is cancelled
+	Scenario: receive notification when a loose item is placed
 		Given I am logged in as a user
-		And there is a project that belongs to an admin with an item 
-		And I am on the initiatives page
-		When I follow the first initiative
-		And I click on a project
-		And I provide 1 item
-		And I log out
-		Given no emails have been sent
-		When the admin logs in via the login screen
+		And no emails have been sent
+		When I log out
+		And the admin logs in
+		And the admin places a loose item
+		And the admin logs out
+		And the system sends the item placement mail
+		Then "user@test.com" should receive 1 email
+
+	Scenario: receive notification when a contribution is made
+		Given I have contributed to a project
+		Then "admin@test.com" should receive 1 email
+
+	Scenario: receive notification when a contribution is cancelled
+		Given I have contributed to a project
+		And no emails have been sent
+		When I follow "Mijn project"
+		And I retreat my contribution
+		Then "admin@test.com" should receive 1 email
+
+	Scenario: receive notification when a project I provided for is cancelled
+		Given I have contributed to a project
+		And no emails have been sent
+		When I log out
+		And the admin logs in via the login screen
 		And the admin cancels the project
+		Then "user@test.com" should receive 1 email from "admin@test.com"
+
+	Scenario: receive notification when a loose item I provided for is cancelled
+		Given I have contributed to a loose item
+		And no emails have been sent
+		When I log out
+		And the admin logs in via the login screen
+		And the admin cancels the item
+		Then "user@test.com" should receive 1 email from "admin@test.com"
+
+	Scenario: receive notification when a project I provided for is edited
+		Given I have contributed to a project
+		And no emails have been sent
+		When I log out
+		And the admin logs in via the login screen
+		And the admin edits the project
 		Then "user@test.com" should receive 1 email from "admin@test.com"
 
 	Scenario: receive notification when a new user is registered
@@ -35,12 +67,18 @@ Feature: get email notifications
 		When a new user is registered
 		Then "admin@test.com" should receive 1 email
 
+	@wip
 	Scenario: send reminders
 		Given I am logged in as a user
 		And there is a project with an item
 		And a clear email queue
+<<<<<<< HEAD
  		When I follow the first initiative
 		And I click on a project
 		And I provide 1 item
 		And the system does it's automated tasks
+=======
+ 		When I provide an item via the calendar page
+		And the system sends the reminders
+>>>>>>> upstream/master
 		Then "user@test.com" should receive 1 email 

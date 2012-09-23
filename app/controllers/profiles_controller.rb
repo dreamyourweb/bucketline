@@ -87,14 +87,22 @@ class ProfilesController < ApplicationController
 	def remove_item
 		@profile = Profile.find(params[:profile_id])
 		@link = Link.where(:profile_id => params[:profile_id], :item_id => params[:id]).first
-		if params[:redirect_to_links]
-			@link.destroy
-			redirect_to initiative_links_path(@initiative), :notice => "Bijdrage is ingetrokken."
-		elsif @profile == current_user.profile
-			@link.destroy
-			redirect_to profile_path(@profile), :notice => "Bijdrage is ingetrokken."
+    if @profile == current_user.profile
+  		if params[:redirect_to_links]
+        @link.destroy
+  			redirect_to initiative_links_path(@initiative), :notice => "Bijdrage is ingetrokken."
+      elsif params[:redirect_to_calendar]
+        @link.destroy
+        redirect_to initiative_calendar_path(@initiative), :notice => "Bijdrage is ingetrokken."
+      elsif params[:redirect_to_wishlist]
+        @link.destroy
+        redirect_to initiative_dashboard_path(@initiative), :notice => "Bijdrage is ingetrokken."
+  		else
+  			@link.destroy
+  			redirect_to profile_path(current_user.profile), :notice => "Bijdrage is ingetrokken."
+      end
 		else
-			redirect_to profile_path(@profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."
+			redirect_to profile_path(current_user.profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."
 		end
 	end
 

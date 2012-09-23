@@ -5,7 +5,7 @@ task :send_reminders => :environment do
 		if user.profile.send_reminder_mail
 			item_names = []
 			links = user.profile.links.each do |link|
-				if link.item.project.input_date == Date.tomorrow
+				if !link.item.project_id.nil? && link.item.project.input_date == Date.tomorrow
 					item_names << link.item.name	
 				end
 			end
@@ -28,5 +28,37 @@ task :update_project_status => :environment do
 			project.update_attributes(:success => true)
 		end
 	end
+	puts "done."
+end
+
+task :send_item_placement_mail => :environment do
+	#Build item list
+	items = Item.where(:created_at.gt => Time.now.utc - 1.hour, :project_id => nil).all #Get all items that were created less than an hour ago
+
+	unless items.empty?
+		puts "Building item placement mail..."
+
+		#Build mailinglist
+		mailing_list = []
+		User.all.each do |user|
+			if user.profile.always_send_project_placement_mail #Get all the to-be-reminded-users
+				mailing_list << user.email
+			end
+		end
+		joined_mailing_list = "<" + mailing_list.join(">,<") + ">"
+
+		#Build sentence
+		item_sentence = ""
+		items.each do |item|
+			item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + "<br>"
+		end	
+
+		email = ItemPlacementMailer.new(:recipients => joined_mailing_list, :item_sentence => item_sentence)
+		puts "sending emails..."
+		puts email.recipients
+		puts email.item_sentence
+		email.deliver
+	end
+
 	puts "done."
 end
