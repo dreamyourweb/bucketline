@@ -27,7 +27,8 @@ Feature: get email notifications
 		Then "user@test.com" should receive 1 email
 
 	Scenario: receive notification when a contribution is made
-		Given I have contributed to a project
+		Given no emails have been sent
+		And I have contributed to a project
 		Then "admin@test.com" should receive 1 email
 
 	Scenario: receive notification when a contribution is cancelled
