@@ -1,5 +1,9 @@
 Given /^I am logged in as (?:|a )super admin$/ do
-	step %{the super admin logs in}
+  #Must be preceded by declaring an initiative in an earlier step
+  @super_admin = User.find_or_create_by(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
+  @super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
+  @admin.profile.update_attributes(:expertise => "Bier brouwen")
+  login(@super_admin.email, 'foobar')
 end
 
 Given /^I am logged in as (?:|an )initiative user$/ do
@@ -20,14 +24,14 @@ Given /^I am logged in as (?:|an )initiative admin$/ do
 end
 
 When /^the super admin logs in$/ do
-  #Must be preceded by declaring an initiative in an earlier step
-  @super_admin = User.find_or_create_by(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
-	@super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
-	@admin.profile.update_attributes(:expertise => "Bier brouwen")
-  login(@super_admin.email, 'foobar')
+  step %{I am logged in as a super admin}
 end
 
-When /^the admin logs out$/ do
+When /^the initiative admin logs in$/ do
+  step %{I am logged in as an initiative admin}
+end
+
+When /^the (initiative admin|super admin|initiative user) logs out$/ do
 	visit("/logout")
 end
 
@@ -64,11 +68,11 @@ When /^a new user is registered$/ do
 end
 
 When /^the super admin logs in via the login screen$/ do
-	login("superadmin@test.com", "foobar")
+	login("super_admin@test.com", "foobar")
 end
 
-When /^the admin logs in via the login screen$/ do
-  login("admin@test.com", "foobar")
+When /^the initiative admin logs in via the login screen$/ do
+  login("initiative_admin@test.com", "foobar")
 end
 
 def login(email, password)

@@ -1,5 +1,5 @@
 Given /^there is a project with an item$/ do
-	step %{there is a project that belongs to an admin with an item}
+	step %{there is a project that belongs to an initiative admin with an item}
 end
 
 Given /^there is a project that belongs to an initiative admin with an item$/ do

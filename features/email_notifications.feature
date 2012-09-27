@@ -8,7 +8,7 @@ Feature: get email notifications
 		And I am on the initiatives page
 
 	Scenario: receive notification when a project is placed
-		Given I am logged in as a user
+		Given I am logged in as an initiative user
 		And no emails have been sent
 		When I log out
 		And the initiative admin logs in
@@ -17,7 +17,7 @@ Feature: get email notifications
 		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a loose item is placed
-		Given I am logged in as a user
+		Given I am logged in as an initiative user
 		And no emails have been sent
 		When I log out
 		And the initiative admin logs in
@@ -63,17 +63,17 @@ Feature: get email notifications
 		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a new user is registered
-		Given an initiative admin with email "initiative_admin@test.com"
+		Given I am logged in as an initiative admin
 		And a clear email queue
 		When a new user is registered on the initiative
 		Then "initiative_admin@test.com" should receive 1 email
 
 	@wip
 	Scenario: send reminders
-		Given I am logged in as a user
+		Given I am logged in as an initiative user
 		And there is a project with an item
 		And a clear email queue
  		When I follow the first initiative
  		And I provide an item via the calendar page
 		And the system sends the reminders
-		Then "user@test.com" should receive 1 email 
+		Then "initiative_user@test.com" should receive 1 email 
