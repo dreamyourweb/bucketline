@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate_admin_for_initiative
-		redirect_to login_url unless current_user && (current_user.user_role.find(@initiative).admin || current_user.super_admin)
+		redirect_to login_url unless current_user && (current_user.user_roles.where(:initiative_id => @initiative.id).last.admin || current_user.super_admin)
 	end
 
 	def authenticate_user_for_initiative
-		redirect_to login_url unless current_user && (current_user.user_role.find(@initiative) || current_user.super_admin)
+		redirect_to login_url unless current_user && (current_user.user_roles.where(:initiative_id => @initiative.id).last || current_user.super_admin)
 	end
 
 	def get_profile

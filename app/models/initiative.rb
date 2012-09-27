@@ -10,4 +10,14 @@ class Initiative
 
 	has_many :projects, :dependent => :destroy
 	has_many :items, :dependent => :destroy #loose items
+
+	def admins
+		user_roles = UserRole.where(:initiative_id => self.id, :admin => true)
+		admins = []
+		user_roles.each do |user_role|
+			admins << user_role.user
+		end
+		admins
+	end
+
 end

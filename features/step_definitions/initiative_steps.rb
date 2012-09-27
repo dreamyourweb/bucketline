@@ -7,5 +7,7 @@ Given /^I follow the first initiative$/ do
 end
 
 When /^a new user is registered on the initiative$/ do
-	@user.user_roles.create(:initiative_id => @initiative.id)
+	@new_user = User.create(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
+	@new_user.update_attributes(:confirmed_at => Time.now)
+	@new_user.user_roles.create(:initiative_id => @initiative.id)
 end

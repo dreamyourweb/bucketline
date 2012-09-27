@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = @initiative.projects.new
-		@admins = User.where(:admin => true).all
+		@admins = @initiative.admins
     item = @project.items.build #appends an empty item to the form
 
     respond_to do |format|
@@ -34,12 +34,12 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-		@admins = User.where(:admin => true).all
+		@admins = @initiative.admins
   end
 
   def create
     @project = @initiative.projects.new(params[:project])
-		@admins = User.where(:admin => true).all
+		@admins = @initiative.admins
 
     respond_to do |format|
       if @project.save
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @admins = User.where(:admin => true).all
+    @admins = @initiative.admins
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

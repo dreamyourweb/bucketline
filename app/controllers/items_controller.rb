@@ -6,13 +6,13 @@ class ItemsController < ApplicationController
 	def new
 		@item = @initiative.items.new
     #TODO admin scope over initiative
-    @admins = User.where(:admin => true).all
+    @admins = @initiative.admins
 	end
 	
 	def edit
 		@item = Item.find(params[:id])
     #TODO admin scope over initiative
-    @admins = User.where(:admin => true).all
+    @admins = @initiative.admins
 	end
 
   # GET /items
@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
 		@item = @initiative.items.new(params[:item])
 
     #TODO admin scope over initiative
-    @admins = User.where(:admin => true).all
+    @admins = @initiative.admins
 
     respond_to do |format|
       if @item.save
@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     #TODO admin scope over initiative
-    @admins = User.where(:admin => true).all
+    @admins = @initiative.admins
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
