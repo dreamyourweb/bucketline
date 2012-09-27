@@ -62,7 +62,7 @@ module ApplicationHelper
 	end
 
 	def get_link_to_day_action
-		if request.path_parameters[:controller] == "projects" && !(current_user && current_user.admin)
+		if request.path_parameters[:controller] == "projects" && !(current_user && current_user.initiative_admin(@initiative))
 			false
 		else
 			"new"

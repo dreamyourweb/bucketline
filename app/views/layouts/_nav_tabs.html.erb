@@ -5,7 +5,7 @@
 		<% if user_signed_in? %>
 			<li class=<%= get_active("profile") %> ><%= link_to "Mijn profiel en bijdragen", profile_path(current_user.profile) %></li>
 			<li class=<%= get_active("availability") %> ><%= link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile) %></li>
-			<% if current_user.admin %>
+			<% if current_user.initiative_admin(@initiative) %>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<b class="caret"></b></a>
 					<ul class="dropdown-menu">

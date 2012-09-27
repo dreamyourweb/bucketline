@@ -6,7 +6,7 @@
 		<p>Op deze pagina vind je ons verlanglijstje. Dit is een lijst van benodigdheden die niet bij een specifiek project op een bepaalde datum horen, maar die we juist doorlopend nodig hebben.</p>
 	</div>
 </div>
-<% if current_user && current_user.admin %>
+<% if current_user && current_user.initiative_admin(@initiative) %>
 	<div class="row">
 		<div class="span12">
 			<%= link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative) %><br>

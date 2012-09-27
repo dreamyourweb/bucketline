@@ -1,6 +1,6 @@
 Given /^I am an initiative user with email "([^"]*)"$/ do |arg1|
   @user = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
-  @user.user_role.create(:initiative_id => @initiative.id)
+  @user.user_roles.create(:initiative_id => @initiative.id)
 	@user.profile.update_attributes(:name => "Karel")
 end
 

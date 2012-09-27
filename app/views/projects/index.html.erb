@@ -1,7 +1,7 @@
 <%= link_to projects_info_path, :class => "fancybox" do %>
 	<%= image_tag "help.png", :class => "help-icon" %>
 <% end %>
-<% if current_user && current_user.admin %>
+<% if current_user && current_user.initiative_admin(@initiative) %>
 	<div class="row">
 		<div class="span12">
 			<%= link_to 'Plaats nieuw project', :controller => :projects, :action => :new %>

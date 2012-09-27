@@ -68,4 +68,8 @@ class User
 		auth = self.authentications.build(:provider => auth['provider'], :uid => auth['uid'], :token => auth['credentials']['token'])
 		auth.save
 	end
+
+  def initiative_admin(initiative) #Is the user an admin for this initiative?
+    UserRole.where(:initiative_id => initiative.id, :user_id => self.id).last.admin
+  end
 end

@@ -19,7 +19,7 @@
 			<td><%= user.profile.tools_and_materials %></td>
 			<td><%= user.profile.phone %></td>
 			<td><%= user.email %></td>
-			<td><%= "\u2713" if user.admin %></td>
+			<td><%= "\u2713" if user.initiative_admin(@initiative) %></td>
 		</tr>
 	<% end %>	
 </table>

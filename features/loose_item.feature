@@ -5,11 +5,11 @@ Feature: loose items for wishlist dashboard
 
 	Background:
 		Given there is an initiative
-		And I am on the initiatives page
 
 	Scenario: Mark item as provided via wishlist dashboard
 		Given there is a loose item
 		And I am logged in as an initiative user
+		And I am on the initiatives page
 		When I follow the first initiative
 		And I follow "Verlanglijstje"
 		And I provide 1 item
@@ -18,6 +18,7 @@ Feature: loose items for wishlist dashboard
 
 	Scenario: Place loose item
 		Given I am logged in as an initiative admin
+		And I am on the initiatives page
 		When I follow the first initiative
 		And I follow "Verlanglijstje"
 		And I follow "Plaats nieuw item op verlanglijstje"

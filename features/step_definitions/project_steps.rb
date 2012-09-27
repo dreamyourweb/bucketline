@@ -11,7 +11,7 @@ Given /^there is a project that belongs to an initiative admin with an item$/ do
 		@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
 	end
 	@initiative = Initiative.last
-	@admin.user_role.create(:initiative_id => @initiative.id, :admin => true)
+	@admin.user_roles.create(:initiative_id => @initiative.id, :admin => true)
 	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
 	@project.update_attributes(:owner_id => @admin.id)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)

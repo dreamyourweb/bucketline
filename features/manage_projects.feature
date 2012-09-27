@@ -4,8 +4,8 @@ Feature: Place a new project
 	I want to manage the projects
 
 	Background:
-		Given I am logged in as an initiative admin
-		And there is an initiative
+		Given there is an initiative
+		And I am logged in as an initiative admin
 		And I am on the initiatives page
 		And I follow the first initiative
 
