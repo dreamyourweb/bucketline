@@ -1,5 +1,4 @@
 HvO::Application.routes.draw do
-
 	root :to => "initiatives#index"
 
 	#Facebook login
@@ -21,7 +20,8 @@ HvO::Application.routes.draw do
 	end
 
   resources :initiatives, :except => [:show] do #perhaps store initiative in session variable
-		match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+    resources :user_roles, :except => [:show] 
+    match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 	  resources :projects, :except => [:show] do
 		  resources :items, :only => [:index, :update] #items belonging to projects
 		end

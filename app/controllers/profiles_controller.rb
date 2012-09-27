@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
+  before_filter :get_initiative
 	before_filter :authenticate_user!
-	before_filter :authenticate_admin, :only => [:index]
-	before_filter :get_initiative
+	before_filter :authenticate_admin_for_initiative(@initiative), :only => [:index]
 
 	def index
-		@users = User.all.entries
+		@users = UserRole.includes(:users).find(@initiative).users.all
 	end
 
   # GET /profiles/1

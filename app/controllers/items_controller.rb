@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 	before_filter :get_initiative
-	before_filter :authenticate_admin, :except => [:index, :update, :dashboard, :info]
-	before_filter :authenticate_user!, :except => [:index, :dashboard, :info]
+	before_filter :authenticate_admin_for_initiative(@initiative), :except => [:index, :update, :dashboard, :info]
+	before_filter :authenticate_user_for_initiative(@initiative), :except => [:index, :dashboard, :info]
 
 	def new
 		@item = @initiative.items.new

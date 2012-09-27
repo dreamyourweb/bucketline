@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-	before_filter :authenticate_admin, :except => [:index, :info]
-	before_filter :get_initiative, :except => [:index]
+  before_filter :get_initiative, :except => [:index]
+	before_filter :authenticate_admin_for_initiative(@initiative), :except => [:index, :info]
 
   # GET /questions
   # GET /questions.json

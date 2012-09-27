@@ -1,4 +1,5 @@
 class InitiativesController < ApplicationController
+  before_filter :authenticate_super_admin, :except => [:index]
   # GET /initiatives
   # GET /initiatives.json
   def index

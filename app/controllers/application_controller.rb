@@ -1,8 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-	def authenticate_admin
-		redirect_to login_url unless current_user && current_user.admin
+	def authenticate_super_admin
+		redirect_to login_url unless current_user && current_user.super_admin
+	end
+
+	def authenticate_admin_for_initiative(initiative)
+		redirect_to login_url unless current_user && (current_user.user_role.find(initiative).admin || current_user.super_admin)
+	end
+
+	def authenticate_user_for_initiative(initiative)
+		redirect_to login_url unless current_user && (current_user.user_role.find(initiative) || current_user.super_admin)
 	end
 
 	def get_profile
