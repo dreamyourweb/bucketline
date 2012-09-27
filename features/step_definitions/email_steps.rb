@@ -1,10 +1,11 @@
-Given /^I am a user with email "([^"]*)"$/ do |arg1|
+Given /^I am an initiative user with email "([^"]*)"$/ do |arg1|
   @user = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
+  @user.user_role.create(:initiative_id => @initiative.id)
 	@user.profile.update_attributes(:name => "Karel")
 end
 
 Given /^I provided an item for tomorrow$/ do
-	@project = Project.create(:query => "Mijn project", :start_at => Date.tomorrow, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
+	@project = Project.find_or_create_by(:query => "Mijn project", :start_at => Date.tomorrow, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.tomorrow, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 end
 

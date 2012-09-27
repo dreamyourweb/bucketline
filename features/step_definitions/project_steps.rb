@@ -2,15 +2,16 @@ Given /^there is a project with an item$/ do
 	step %{there is a project that belongs to an admin with an item}
 end
 
-Given /^there is a project that belongs to an admin with an item$/ do
+Given /^there is a project that belongs to an initiative admin with an item$/ do
 	if @admin.nil?
-		@admin = User.create(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+		@admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
 		@admin.profile = Profile.create #(:name => "Anoniempje")
 		@admin.save
-		@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
+		@admin.update_attributes(:confirmed_at => Time.now)
 		@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
 	end
 	@initiative = Initiative.last
+	@admin.user_role.create(:initiative_id => @initiative.id, :admin => true)
 	@project = @initiative.projects.create(:query => "Mijn project", :input_date => Date.tomorrow, :input_start_at => Time.now, :input_end_at => Time.now + 1.minute)
 	@project.update_attributes(:owner_id => @admin.id)
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1)
@@ -22,7 +23,7 @@ When /^I follow the project link$/ do
   click_link @project.query
 end
 
-When /^the admin plans a project for tomorrow$/ do
+When /^the initiative admin plans a project for tomorrow$/ do
 	click_link('Bekijk initiatief')
 	click_link('Kalender')
 	click_link('Plaats nieuw project')
@@ -37,14 +38,14 @@ When /^the admin plans a project for tomorrow$/ do
 	click_button("Project en items opslaan")
 end
 
-When /^the admin cancels the project$/ do
+When /^the initiative admin cancels the project$/ do
 	click_link "Bekijk initiatief"
 	click_link "Mijn project"
  	click_link "Project verwijderen"
 	#confirm javascript popup box	
 end
 
-When /^the admin edits the project$/ do
+When /^the initiative admin edits the project$/ do
 	visit "/initiatives"
 	click_link('Bekijk initiatief')
 	click_link('Kalender')
@@ -90,8 +91,8 @@ Then /^I should see my project$/ do
 end
 
 Given /^I have contributed to a project$/ do
-	step %{I am logged in as a user}
-	step %{there is a project that belongs to an admin with an item} 
+	step %{I am logged in as an initiative user}
+	step %{there is a project that belongs to an initiative admin with an item} 
 	step %{no emails have been sent} 
 	step %{I provide an item via the calendar page}
 	#step %{I log out}

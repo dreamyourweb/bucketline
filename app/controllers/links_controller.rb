@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
 	before_filter :get_initiative
-	before_filter :authenticate_admin_for_initiative(@initiative), :only => [:index]
+	before_filter :authenticate_admin_for_initiative, :only => [:index]
 	#before_filter :authenticate_user, :only => [:create]
 
 	def index

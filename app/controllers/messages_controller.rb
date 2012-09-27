@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_filter :get_initiative
-	before_filter :authenticate_user_for_initiative(@initiative)
-	before_filter :authenticate_admin_for_initiative(@initiative), :except => [:new, :create]
+	before_filter :authenticate_user_for_initiative
+	before_filter :authenticate_admin_for_initiative, :except => [:new, :create]
 
   # GET /messages
   # GET /messages.json

@@ -1,7 +1,7 @@
 class AvailableDatesController < ApplicationController
   before_filter :get_initiative
-	before_filter :authenticate_user_for_initiative(@initiative), :get_profile
-	before_filter :authenticate_admin_for_initiative(@initiative), :only => [:availability_dashboard]
+	before_filter :authenticate_user_for_initiative, :get_profile
+	before_filter :authenticate_admin_for_initiative, :only => [:availability_dashboard]
 	before_filter :set_calendar, :only => [:index, :availability_dashboard]
 	
 	def get_profile

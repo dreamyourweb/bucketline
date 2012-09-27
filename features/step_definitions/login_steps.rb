@@ -1,12 +1,30 @@
-Given /^I am logged in as an admin$/ do
-	step %{the admin logs in}
+Given /^I am logged in as (?:|a )super admin$/ do
+	step %{the super admin logs in}
 end
 
-When /^the admin logs in$/ do
-  @admin = User.find_or_create_by(:email => 'admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
-	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
-	#@admin.profile.update_attributes(:expertise => "Bier drinken")
+Given /^I am logged in as (?:|an )initiative user$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  @user = User.find_or_create_by(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
+  @user.update_attributes(:confirmed_at => Time.now)
+  @admin.user_role.create(:initiative_id => @initiative.id)
+  @user.profile.update_attributes(:expertise => "Hard werken")
+  login(@user.email, 'foobar')
+end
+
+Given /^I am logged in as (?:|an )initiative admin$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  @admin = User.find_or_create_by(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
+  @admin.user_role.create(:initiative_id => @initiative.id, :admin => true)
+	@admin.profile.update_attributes(:expertise => "Bier drinken")
   login(@admin.email, 'foobar')
+end
+
+When /^the super admin logs in$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  @super_admin = User.find_or_create_by(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
+	@super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
+	@admin.profile.update_attributes(:expertise => "Bier brouwen")
+  login(@super_admin.email, 'foobar')
 end
 
 When /^the admin logs out$/ do
@@ -17,20 +35,15 @@ Given /^I am a visitor$/ do
   step %(I am not authenticated)
 end
 
-Given /^an admin with email "([^"]*)"$/ do |arg1|
-  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
-	@admin.update_attributes(:admin => true, :confirmed_at => Time.now)
-end
-
-Given /^I am logged in as a user$/ do
-  @user = User.find_or_create_by(:email => 'user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
-	@user.update_attributes(:confirmed_at => Time.now)
-	@user.profile.update_attributes(:expertise => "Hard werken")
-  login(@user.email, 'foobar')
-end
+#Given /^a super admin with email "([^"]*)"$/ do |arg1|
+#  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
+#	@admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
+#end
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
+  #Must be preceded by declaring an initiative in an earlier step
   @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar', :name => name)
+  @specialist.user_role.create(:initiative_id => @initiative.id)
 	@specialist.update_attributes(:confirmed_at => Time.now)
 	if @specialist.profile.nil?
 		@specialist.profile = Profile.new(:expertise => expertise)
@@ -50,8 +63,12 @@ When /^a new user is registered$/ do
 	register("random_new_user@test.com", "foobar", "Random User")
 end
 
+When /^the super admin logs in via the login screen$/ do
+	login("superadmin@test.com", "foobar")
+end
+
 When /^the admin logs in via the login screen$/ do
-	login("admin@test.com", "foobar")
+  login("admin@test.com", "foobar")
 end
 
 def login(email, password)

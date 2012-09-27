@@ -4,7 +4,7 @@ Feature: Place a new project
 	I want to manage the projects
 
 	Background:
-		Given I am logged in as an admin
+		Given I am logged in as an initiative admin
 		And there is an initiative
 		And I am on the initiatives page
 		And I follow the first initiative
@@ -27,7 +27,7 @@ Feature: Place a new project
 		Given there is a project with an item
 		When I click on a project
 		And I provide 1 item
-		And I go to the admin contributions dashboard
+		And I go to the initiative admin contributions dashboard
 		And I follow the project link
 		Then I should see "Mijn item"		
 		When I follow "bijdrage weigeren"

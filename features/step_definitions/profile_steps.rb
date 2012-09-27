@@ -19,10 +19,10 @@ Then /^I should see my relevant profile fields$/ do
 	page.should have_content("Stuur mij een email als een project of item waaraan ik bijdraag wordt geannuleerd of gewijzigd")
 end
 
-Then /^the user should be purged from the system$/ do
+Then /^the initiative user should be purged from the system$/ do
 	User.where(:name => "User").all.count.should == 0
 end
 
-Then /^the admin should be purged from the system$/ do
+Then /^the initiative admin should be purged from the system$/ do
 	User.where(:name => "Admin").all.count.should == 0
 end

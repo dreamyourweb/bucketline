@@ -11,62 +11,62 @@ Feature: get email notifications
 		Given I am logged in as a user
 		And no emails have been sent
 		When I log out
-		And the admin logs in
-		And the admin plans a project for tomorrow
-		And the admin logs out
-		Then "user@test.com" should receive 1 email from "admin@test.com"
+		And the initiative admin logs in
+		And the initiative admin plans a project for tomorrow
+		And the initiative admin logs out
+		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a loose item is placed
 		Given I am logged in as a user
 		And no emails have been sent
 		When I log out
-		And the admin logs in
-		And the admin places a loose item
-		And the admin logs out
+		And the initiative admin logs in
+		And the initiative admin places a loose item
+		And the initiative admin logs out
 		And the system sends the item placement mail
 		Then "user@test.com" should receive 1 email
 
 	Scenario: receive notification when a contribution is made
 		Given no emails have been sent
 		And I have contributed to a project
-		Then "admin@test.com" should receive 1 email
+		Then "initiative_admin@test.com" should receive 1 email
 
 	Scenario: receive notification when a contribution is cancelled
 		Given I have contributed to a project
 		And no emails have been sent
 		When I follow "Mijn project"
 		And I retreat my contribution
-		Then "admin@test.com" should receive 1 email
+		Then "initiative_admin@test.com" should receive 1 email
 
 	Scenario: receive notification when a project I provided for is cancelled
 		Given I have contributed to a project
 		And no emails have been sent
 		When I log out
-		And the admin logs in via the login screen
-		And the admin cancels the project
-		Then "user@test.com" should receive 1 email from "admin@test.com"
+		And the initiative admin logs in via the login screen
+		And the initiative admin cancels the project
+		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a loose item I provided for is cancelled
 		Given I have contributed to a loose item
 		And no emails have been sent
 		When I log out
-		And the admin logs in via the login screen
-		And the admin cancels the item
-		Then "user@test.com" should receive 1 email from "admin@test.com"
+		And the initiative admin logs in via the login screen
+		And the initiative admin cancels the item
+		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a project I provided for is edited
 		Given I have contributed to a project
 		And no emails have been sent
 		When I log out
-		And the admin logs in via the login screen
-		And the admin edits the project
-		Then "user@test.com" should receive 1 email from "admin@test.com"
+		And the initiative admin logs in via the login screen
+		And the initiative admin edits the project
+		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a new user is registered
-		Given an admin with email "admin@test.com"
+		Given an initiative admin with email "initiative_admin@test.com"
 		And a clear email queue
-		When a new user is registered
-		Then "admin@test.com" should receive 1 email
+		When a new user is registered on the initiative
+		Then "initiative_admin@test.com" should receive 1 email
 
 	@wip
 	Scenario: send reminders

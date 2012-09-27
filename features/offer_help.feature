@@ -4,9 +4,9 @@ Feature: User offers help
 	I want to be able to help
 
 	Background:
-		Given I am logged in as a user
-		And there is an initiative
+		Given there is an initiative
 		And there is a project with an item
+		And I am logged in as an initiative user
 
 	Scenario: View all the projects
 		Given I am on the initiatives page
