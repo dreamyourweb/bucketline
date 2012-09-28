@@ -28,6 +28,8 @@ module ApplicationHelper
 			"active"
 		elsif page == "profiles" && request.path_parameters[:controller] == "profiles" && request.path_parameters[:action] == "index"
 			"active"
+		elsif page == "all" && request.path_parameters[:controller] == "profiles" && request.path_parameters[:action] == "all"
+			"active"
 		elsif page == "profile" && request.path_parameters[:controller] == "profiles" && request.path_parameters[:action] != "index"
 			"active"
 		else

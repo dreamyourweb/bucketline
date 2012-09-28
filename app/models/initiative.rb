@@ -6,6 +6,8 @@ class Initiative
   field :location, :type => String
   field :description, :type => String
 
+  validates_presence_of :name
+
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
 
 	has_many :projects, :dependent => :destroy

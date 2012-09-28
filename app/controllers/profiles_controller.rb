@@ -1,11 +1,16 @@
 class ProfilesController < ApplicationController
-  before_filter :get_initiative
+  before_filter :get_initiative, :except => [:super_admin_index]
 	before_filter :authenticate_user!
 	before_filter :authenticate_admin_for_initiative, :only => [:index]
+  before_filter :authenticate_super_admin, :only => [:super_admin_index]
 
 	def index
-		@users = @initiative.users
+    @users = @initiative.users
 	end
+
+  def super_admin_index #Show all the users
+    @users = User.all
+  end
 
   # GET /profiles/1
   # GET /profiles/1.json

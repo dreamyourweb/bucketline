@@ -11,11 +11,26 @@
 					<ul class="dropdown-menu">
 						<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbare specialisten", profile_availability_dashboard_path(current_user.profile) %></li>
 						<li class=<%= get_active("links") %> ><%= link_to "Alle bijdragen", initiative_links_path(@initiative) %></li>
-						<li class=<%= get_active("profiles") %> ><%= link_to "Alle gebruikers", profiles_path %></li>
-						<li class=<%= get_active("messages") %> ><%= link_to "Feedback berichten", messages_path %></li>
+						<li class=<%= get_active("profiles") %> ><%= link_to "Deelnemers aan initiatief", profiles_path %></li>
+						<% if current_user.super_admin %>
+							<li class=<%= get_active("messages") %> ><%= link_to "Feedback berichten", messages_path %></li>
+							<li class=<%= get_active("all_profiles") %> ><%= link_to "Alle gebruikers", all_profiles_path %></li>
+						<% end %>	
 					</ul>
 				</li>
 			<% end %>
 		<% end %>
 	</ul>
+<% else %>
+	<% if current_user && current_user.super_admin %>
+		<ul class="nav nav-tabs">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+						<li class=<%= get_active("messages") %> ><%= link_to "Feedback berichten", messages_path %></li>
+						<li class=<%= get_active("all_profiles") %> ><%= link_to "Alle gebruikers", all_profiles_path %></li>
+				</ul>
+			</li>
+		</ul>
+	<% end %>	
 <% end %>

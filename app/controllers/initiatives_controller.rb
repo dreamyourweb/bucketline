@@ -11,7 +11,7 @@ class InitiativesController < ApplicationController
       end
     end
 
-    if @initiatives.count == 1
+    if @initiatives && @initiatives.count == 1
       redirect_to initiative_projects_path(@initiatives.first) #Only one initiative, so redirect directly to this initiative
     else
       respond_to do |format|

@@ -1,9 +1,10 @@
-<h2>Overzicht van alle gebruikers</h2>
-<p>Beschikbare sociaal kapitaal voor <% @initiative.name %></p>
+<h2>Super admin overzicht van alle applicatiegebruikers</h2>
+<p>Totaal beschikbare sociale kapitaal</p>
 
 <table class="admin-table table table-bordered table-striped">
 	<tr>
 		<th>Naam</th>
+		<th>Bucketline</th>
 		<th>Expertise</th>		
 		<th>Kan helpen met</th>		
 		<th>Gereedschappen en materialen</th>		
@@ -14,18 +15,15 @@
 	<% @users.each do |user| %>
 		<tr>
 			<td><%= user.name %></td>
+			<td><%= initiatives_to_sentence(user.initiatives) %></td>
 			<td><%= user.profile.expertise %></td>
 			<td><%= user.profile.willing_to_help_with %></td>
 			<td><%= user.profile.tools_and_materials %></td>
 			<td><%= user.profile.phone %></td>
 			<td><%= user.email %></td>
-			<td><%= "\u2713" if user.initiative_admin(@initiative) || user.super_admin %></td>
+			<td><%= "\u2713" if user.initiative_admin(user.initiatives) || user.super_admin %></td>
 		</tr>
 	<% end %>	
 </table>
 
-<div class="well">
-	<p>Kopiëerbare lijst met alle adressen:</p>
-	<%= text_field_tag "emails", build_emails_for_copy(@users), :style => "width:99%;" %>
-	<p><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email. (Anders weet iedereen elkaars email!)</p>
-</div>
+
