@@ -20,4 +20,13 @@ class Initiative
 		admins
 	end
 
+	def users
+		user_roles = UserRole.where(:initiative_id => self.id)
+		users = []
+		user_roles.each do |user_role|
+			users << user_role.user
+		end
+		users
+	end
+
 end

@@ -5,9 +5,9 @@ class LinksController < ApplicationController
 
 	def index
 		if params[:show] == "all"
-			@projects = Project.all
+			@projects = @initiative.projects.all
 		else	
-			@projects = Project.where(:end_at.gte => Date.today)
+			@projects = @initiative.projects.where(:end_at.gte => Date.today)
 		end
 		@loose_items = @initiative.items
 	end
