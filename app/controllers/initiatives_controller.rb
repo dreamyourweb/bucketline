@@ -11,8 +11,8 @@ class InitiativesController < ApplicationController
       end
     end
 
-    if @initiatives && @initiatives.count == 1
-      redirect_to initiative_projects_path(@initiatives.first) #Only one initiative, so redirect directly to this initiative
+    if (@initiatives && @initiatives.count == 1) && !params[:no_redirect]
+      redirect_to initiative_projects_path(@initiatives.first) #Only one initiative, so redirect directly to this initiative if not stated otherwise
     else
       respond_to do |format|
         format.html # index.html.erb
@@ -56,7 +56,8 @@ class InitiativesController < ApplicationController
 
     respond_to do |format|
       if @initiative.save
-        format.html { redirect_to @initiative, notice: 'Je nieuwe initiatief is aangemaakt.' }
+        @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
+        format.html { redirect_to initiatives_url + "?no_redirect=true", notice: 'Je nieuwe initiatief is aangemaakt.' }
         format.json { render json: @initiative, status: :created, location: @initiative }
       else
         format.html { render action: "new" }
@@ -88,7 +89,7 @@ class InitiativesController < ApplicationController
     @initiative.destroy
 
     respond_to do |format|
-      format.html { redirect_to initiatives_url }
+      format.html { redirect_to initiatives_url + "?no_redirect=true" }
       format.json { head :no_content }
     end
   end

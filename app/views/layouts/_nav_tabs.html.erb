@@ -1,4 +1,4 @@
-<% if @initiative %>
+<% if @initiative && request.path_parameters[:controller] != "initiatives" %>
 	<ul class="nav nav-tabs">
 		<li class=<%= get_active("calendar") %> ><%= link_to "Kalender", initiative_projects_path(@initiative) %></li>
 		<li class=<%= get_active("dashboard") %> ><%= link_to "Verlanglijstje", initiative_dashboard_path(@initiative) %></li>
