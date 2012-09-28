@@ -3,6 +3,7 @@ Given /^there is a loose item$/ do
 end
 
 Given /^I have contributed to a loose item$/ do
+  step %{I log out}
   step %{I am logged in as an initiative admin}
   click_link "Bekijk initiatief"
   click_link "Verlanglijstje"
@@ -43,7 +44,7 @@ When /^the initiative admin places a loose item$/ do
   click_link('Bekijk initiatief')
 	click_link('Verlanglijstje')
 	click_link('Plaats nieuw item op verlanglijstje')
-	step %(I fill the form with a loose item)
+	step %{I fill the form with a loose item}
 end
 
 When /^I retreat my contribution$/ do

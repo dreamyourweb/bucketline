@@ -12,7 +12,7 @@ module NavigationHelpers
 			initiatives_url
 		when /^the home page$/
 			root_url
-		when /^the admin contributions dashboard$/
+		when /^the initiative admin contributions dashboard$/
 			initiative_links_url(@initiative)
 
     # Add more mappings here.

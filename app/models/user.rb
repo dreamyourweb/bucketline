@@ -69,7 +69,22 @@ class User
 		auth.save
 	end
 
-  def initiative_admin(initiative) #Is the user an admin for this initiative?
-    UserRole.where(:initiative_id => initiative.id, :user_id => self.id).last.admin
+  def initiative_admin(initiative) #Is the user super admin or normal admin for this initiative?
+    initiative_admin_role = false
+    if self.super_admin
+      initiative_admin_role = true
+    else
+      initiative_admin_role = UserRole.where(:initiative_id => initiative.id, :user_id => self.id).last.admin
+    end
+    initiative_admin_role
+  end
+
+  def initiatives #the initiatives in which the user has a role
+    user_roles = UserRole.where(:user_id => self.id).all
+    initiatives = []
+    user_roles.each do |user_role|
+      initiatives << user_role.initiative
+    end
+    initiatives
   end
 end

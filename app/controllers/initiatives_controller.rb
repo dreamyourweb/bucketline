@@ -3,7 +3,13 @@ class InitiativesController < ApplicationController
   # GET /initiatives
   # GET /initiatives.json
   def index
-    @initiatives = Initiative.all
+    if current_user
+      if current_user.super_admin
+        @initiatives = Initiative.all
+      else
+        @initiatives = current_user.initiatives
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb

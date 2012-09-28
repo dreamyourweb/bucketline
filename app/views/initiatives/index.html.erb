@@ -5,39 +5,43 @@
 </div>
 
 <% if current_user %>
-	<p>Mijn bucketlines (waar lid van)</p>
-	<div class="row">
-		<table>
-			<tr>
-				<th>Initiatief</th>
-				<th>Locatie</th>
-				<th>Omschrijving</th>
-				<th>Mijn rol</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
+	<% if !@initiatives.empty? %>
+		<p>Mijn bucketlines (waar lid van)</p>
+		<div class="row">
+			<table>
+				<tr>
+					<th>Initiatief</th>
+					<th>Locatie</th>
+					<th>Omschrijving</th>
+					<th>Mijn rol</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
 
-		<% @initiatives.each do |initiative| %>
-			<tr>
-				<td><%= initiative.name %></td>
-				<td><%= initiative.location %></td>
-				<td><%= initiative.description %></td>
-				<% user_role = UserRole.where(:user_id => current_user.id, :initiative_id => initiative.id).last %>
-				<td><%= if user_role.admin then 'admin' else 'bijdrager' end %></td>
-				<td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
-				<% if user_role.admin %>
-					<td><%= link_to 'Bewerken', edit_initiative_path(initiative) %></td>
-					<td><%= link_to 'Verwijderen', initiative, confirm: 'Weet je het zeker?', method: :delete %></td>
-				<% end %>
-			</tr>
-		<% end %>
-		</table>
+			<% @initiatives.each do |initiative| %>
+				<tr>
+					<td><%= initiative.name %></td>
+					<td><%= initiative.location %></td>
+					<td><%= initiative.description %></td>
+					<% user_admin_role = current_user.initiative_admin(initiative) %>
+					<td><%= if user_admin_role then 'admin' else 'bijdrager' end %></td>
+					<td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
+					<% if user_admin_role %>
+						<td><%= link_to 'Bewerken', edit_initiative_path(initiative) %></td>
+						<td><%= link_to 'Verwijderen', initiative, confirm: 'Weet je het zeker?', method: :delete %></td>
+					<% end %>
+				</tr>
+			<% end %>
+			</table>
 
-		<% if current_user.super_admin %>
-			<%= link_to 'New Initiative', new_initiative_path %>
-		<% end %>
-	</div>
+			<% if current_user.super_admin %>
+				<%= link_to 'New Initiative', new_initiative_path %>
+			<% end %>
+		</div>
+	<% else %>
+		<p>Je bent nog geen lid van een bucketline, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+	<% end %>
 <% end %>
 
 <div class="row">

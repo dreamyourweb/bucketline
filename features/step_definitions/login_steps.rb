@@ -1,15 +1,19 @@
 Given /^I am logged in as (?:|a )super admin$/ do
   #Must be preceded by declaring an initiative in an earlier step
-  @super_admin = User.create(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
-  @super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
+  if !@super_admin
+    @super_admin = User.create(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
+    @super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
+  end
   @super_admin.profile.update_attributes(:expertise => "Bier brouwen")
   login(@super_admin.email, 'foobar')
 end
 
 Given /^I am logged in as (?:|an )initiative user$/ do
   #Must be preceded by declaring an initiative in an earlier step
-  @user = User.create(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
-  @user.update_attributes(:confirmed_at => Time.now)
+  if !@user 
+    @user = User.find_or_create_by(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
+    @user.update_attributes(:confirmed_at => Time.now)
+  end
   @user.user_roles.create(:initiative_id => @initiative.id)
   @user.profile.update_attributes(:expertise => "Hard werken")
   login(@user.email, 'foobar')
@@ -17,9 +21,12 @@ end
 
 Given /^I am logged in as (?:|an )initiative admin$/ do
   #Must be preceded by declaring an initiative in an earlier step
-  @admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
+  if !@admin 
+    @admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
+    @admin.update_attributes(:confirmed_at => Time.now)
+  end
   @admin.user_roles.create(:initiative_id => @initiative.id, :admin => true)
-	@admin.profile.update_attributes(:expertise => "Bier drinken")
+  @admin.profile.update_attributes(:expertise => "Bier drinken")
   login(@admin.email, 'foobar')
 end
 
@@ -46,7 +53,7 @@ end
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
   #Must be preceded by declaring an initiative in an earlier step
-  @specialist = User.find_or_create_by(:email => email, :password => 'foobar', :password_confirmation => 'foobar', :name => name)
+  @specialist = User.create(:email => email, :password => 'foobar', :password_confirmation => 'foobar', :name => name)
   @specialist.user_roles.create(:initiative_id => @initiative.id)
 	@specialist.update_attributes(:confirmed_at => Time.now)
 	if @specialist.profile.nil?
