@@ -4,7 +4,7 @@ class ReminderMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Bucketline - Herinnering: je bijdrage voor morgen",
+      :subject => "Bucket Line - Herinnering: je bijdrage voor morgen",
       :to => %(<#{email}>),
       :from => "no-reply@bucketline.nl"
     }

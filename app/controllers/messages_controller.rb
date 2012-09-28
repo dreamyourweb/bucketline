@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-	before_filter :authenticate_user_for_initiative
+	before_filter :authenticate_user!
 	before_filter :authenticate_super_admin, :except => [:new, :create]
 
   # GET /messages

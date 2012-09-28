@@ -6,7 +6,7 @@ class ItemCancellationMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Huis van Overvloed - Een item waaraan je bijdraagt is geannuleerd",
+      :subject => "Bucket Line - Een item waaraan je bijdraagt is geannuleerd",
       :to => %(<#{admin_email}>),
 			:bcc => %(<#{recipients}>),
 			:from => %(<#{admin_email}>)

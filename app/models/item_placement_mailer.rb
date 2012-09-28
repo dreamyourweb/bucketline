@@ -4,10 +4,10 @@ class ItemPlacementMailer < MailForm::Base
 
   	def headers
 	    {
-		    :subject => "Huis van Overvloed - Er zijn nieuwe benodigdheden geplaatst",
-		    :to => "no-reply@waardeverbinder.nl",
+		    :subject => "Bucket Line - Er zijn nieuwe benodigdheden geplaatst",
+		    :to => "no-reply@bucketline.nl",
 			:bcc => %(<#{recipients}>),
-			:from => "no-reply@waardeverbinder.nl"
+			:from => "no-reply@bucketline.nl"
 	    }
   	end
 end

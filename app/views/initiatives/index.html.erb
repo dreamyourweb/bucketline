@@ -5,7 +5,7 @@
 </div>
 <div class="row">
 	<div class="span4">
-		<h3>Bucketline</h3>
+		<h3>Bucket Line</h3>
 		<p>Gedetailleerdere uitleg, wie, wat, waarom.</p> 
 		<% if !current_user %>
 			<p><%= link_to 'Log in', login_path %> of <%= link_to 'meld je aan', new_user_registration_path %>.</p> 
@@ -15,7 +15,7 @@
 
 <% if current_user %>
 	<% if !@initiatives.empty? %>
-		<h3>Mijn bucketlines</h3>
+		<h3>Mijn bucket Lines</h3>
 		<div class="row">
 			<div class="span12">
 				<table class="table table-bordered table-striped">
@@ -46,11 +46,11 @@
 				</table>
 
 				<% if current_user.super_admin %>
-					<%= link_to 'Nieuwe bucketline aanmaken', new_initiative_path %>
+					<%= link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path %>
 				<% end %>
 			</div>
 		</div>
 	<% else %>
-		<p>Je bent nog geen lid van een bucketline, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+		<p>Je bent nog geen lid van een Bucket Line, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
 	<% end %>
 <% end %>

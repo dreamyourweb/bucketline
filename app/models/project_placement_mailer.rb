@@ -12,7 +12,7 @@ class ProjectPlacementMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Bucketline - Er is een nieuw project geplaatst",
+      :subject => "Bucket Line - Er is een nieuw project geplaatst",
       :to => %(<#{admin_email}>),
 			:bcc => %(<#{recipients}>),
 			:from => %(<#{admin_email}>)

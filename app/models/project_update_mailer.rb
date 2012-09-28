@@ -11,7 +11,7 @@ class ProjectUpdateMailer < MailForm::Base
 
   def headers
     {
-     	:subject => "Huis van Overvloed - Een project waaraan je bijdraagt is bijgewerkt",
+     	:subject => "Bucket Line - Een project waaraan je bijdraagt is bijgewerkt",
      	:to => %(<#{admin_email}>),
 		:bcc => %(<#{recipients}>),
 		:from => %(<#{admin_email}>)

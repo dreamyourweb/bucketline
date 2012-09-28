@@ -8,7 +8,7 @@ class ProjectCancellationMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Bucketline - Een project waaraan je bijdraagt is geannuleerd",
+      :subject => "Bucket Line - Een project waaraan je bijdraagt is geannuleerd",
       :to => %(<#{admin_email}>),
 			:bcc => %(<#{recipients}>),
 			:from => %(<#{admin_email}>)

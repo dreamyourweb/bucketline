@@ -9,7 +9,7 @@ class ItemRetreatContributionMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Huis van Overvloed - Een bijdrage aan een van je projecten of benodigdheden is ingetrokken",
+      :subject => "Bucket Line - Een bijdrage aan een van je projecten of benodigdheden is ingetrokken",
       :to => %(<#{admin_email}>),
       :from => "no-reply@waardeverbinder.nl"
     }
