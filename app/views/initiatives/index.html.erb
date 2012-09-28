@@ -3,54 +3,54 @@
 		<h1>UVP</h1>
 	</div>
 </div>
+<div class="row">
+	<div class="span4">
+		<h3>Bucketline</h3>
+		<p>Gedetailleerdere uitleg, wie, wat, waarom.</p> 
+		<% if !current_user %>
+			<p><%= link_to 'Log in', login_path %> of <%= link_to 'meld je aan', new_user_registration_path %>.</p> 
+		<% end %>
+	</div>
+</div>
 
 <% if current_user %>
 	<% if !@initiatives.empty? %>
-		<p>Mijn bucketlines (waar lid van)</p>
+		<h3>Mijn bucketlines</h3>
 		<div class="row">
-			<table>
-				<tr>
-					<th>Initiatief</th>
-					<th>Locatie</th>
-					<th>Omschrijving</th>
-					<th>Mijn rol</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
+			<div class="span12">
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th>Initiatief</th>
+						<th>Locatie</th>
+						<th>Omschrijving</th>
+						<th>Mijn rol</th>
+						<th></th>
+						<th></th>
+					</tr>
 
-			<% @initiatives.each do |initiative| %>
-				<tr>
-					<td><%= initiative.name %></td>
-					<td><%= initiative.location %></td>
-					<td><%= initiative.description %></td>
-					<% user_admin_role = current_user.initiative_admin(initiative) %>
-					<td><%= if user_admin_role then 'admin' else 'bijdrager' end %></td>
-					<td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
-					<% if user_admin_role %>
-						<td><%= link_to 'Bewerken', edit_initiative_path(initiative) %></td>
-						<td><%= link_to 'Verwijderen', initiative, confirm: 'Weet je het zeker?', method: :delete %></td>
+					<% @initiatives.each do |initiative| %>
+						<tr>
+							<td><%= initiative.name %></td>
+							<td><%= initiative.location %></td>
+							<td><%= initiative.description %></td>
+							<% user_admin_role = current_user.initiative_admin(initiative) %>
+							<td><%= if user_admin_role then 'admin' else 'bijdrager' end %></td>
+							<td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
+							<td>
+								<% if user_admin_role %>
+									<%= link_to 'Bewerken', edit_initiative_path(initiative) %> | <%= link_to 'Verwijderen', initiative, confirm: 'Het initiatief wordt verwijderd inclusief alle projecten en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete %>
+								<% end %>
+							</td>
+						</tr>
 					<% end %>
-				</tr>
-			<% end %>
-			</table>
+				</table>
 
-			<% if current_user.super_admin %>
-				<%= link_to 'New Initiative', new_initiative_path %>
-			<% end %>
+				<% if current_user.super_admin %>
+					<%= link_to 'Nieuwe bucketline aanmaken', new_initiative_path %>
+				<% end %>
+			</div>
 		</div>
 	<% else %>
 		<p>Je bent nog geen lid van een bucketline, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
 	<% end %>
 <% end %>
-
-<div class="row">
-	<div class="span4">
-		<h3>Bucketline</h3>
-		<p>Gedetailleerdere uitleg, wie, wat, waarom, <%= link_to 'Log in', login_path %> of <%= link_to 'meld je aan', new_user_registration_path %>.</p> 
-	</div>
-</div>
-<div class="row">
-	<div class="span4">
-	</div>
-</div>
