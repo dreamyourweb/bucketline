@@ -6,8 +6,7 @@ Feature: Place a new project
 	Background:
 		Given there is an initiative
 		And I am logged in as an initiative admin
-		And I am on the initiatives page
-		And I follow the first initiative
+		And I am on the only initiatives' projects page
 
 	Scenario: Place new project
 		And I follow "Plaats nieuw project"

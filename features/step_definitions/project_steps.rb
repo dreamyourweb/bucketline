@@ -24,7 +24,7 @@ When /^I follow the project link$/ do
 end
 
 When /^the initiative admin plans a project for tomorrow$/ do
-	click_link('Bekijk initiatief')
+	#click_link('Bekijk initiatief')
 	click_link('Kalender')
 	click_link('Plaats nieuw project')
 	fill_in("project_query", :with => "Mijn project")
@@ -39,7 +39,7 @@ When /^the initiative admin plans a project for tomorrow$/ do
 end
 
 When /^the initiative admin cancels the project$/ do
-	click_link "Bekijk initiatief"
+	#click_link "Bekijk initiatief"
 	click_link "Mijn project"
  	click_link "Project verwijderen"
 	#confirm javascript popup box	
@@ -47,7 +47,7 @@ end
 
 When /^the initiative admin edits the project$/ do
 	visit "/initiatives"
-	click_link('Bekijk initiatief')
+	#click_link('Bekijk initiatief')
 	click_link('Kalender')
 	click_link "Mijn project"
 	click_link "Project of items bewerken"

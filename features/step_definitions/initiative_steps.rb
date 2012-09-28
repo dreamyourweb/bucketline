@@ -3,7 +3,7 @@ Given /^there is an initiative$/ do
 end
 
 Given /^I follow the first initiative$/ do
-	click_link('Bekijk initiatief')
+	click_link('Bekijk initiatief') #Use only if there are multiple initiatives
 end
 
 When /^a new user is registered on the initiative$/ do

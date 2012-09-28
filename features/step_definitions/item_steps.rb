@@ -5,19 +5,18 @@ end
 Given /^I have contributed to a loose item$/ do
   step %{I log out}
   step %{I am logged in as an initiative admin}
-  click_link "Bekijk initiatief"
   click_link "Verlanglijstje"
   click_link "Plaats nieuw item op verlanglijstje"
   step %{I fill the form with a loose item}
   step %{I log out}
   step %{I am logged in as an initiative user}  
-  click_link "Bekijk initiatief"
+  #click_link "Bekijk initiatief"
   click_link "Verlanglijstje"
   click_button "Dit wil ik bijdragen!"
 end
 
 When /^the initiative admin cancels the item$/ do
-  click_link "Bekijk initiatief"
+  #click_link "Bekijk initiatief"
   click_link "Verlanglijstje"
   click_link "Item verwijderen"
 end
@@ -34,14 +33,13 @@ Then /^I should see my new loose item$/ do
 end
 
 When /^I provide an item via the calendar page$/ do
-	step %{I go to the initiatives page}
-  click_link("Bekijk initiatief")
+  step %{I am on the only initiatives' projects page}
 	step %{I click on a project}
 	step %{I provide 1 item}
 end
 
 When /^the initiative admin places a loose item$/ do
-  click_link('Bekijk initiatief')
+  #click_link('Bekijk initiatief')
 	click_link('Verlanglijstje')
 	click_link('Plaats nieuw item op verlanglijstje')
 	step %{I fill the form with a loose item}

@@ -7,8 +7,7 @@ Feature: view availability of specialists
 		Given there is an initiative
 		And I am logged in as an initiative admin
 		And a specialist "Frans" with email "frans@test.com" and expertise "Bakker" who provided his availability 
-		And I am on the initiatives page
-		And I follow the first initiative
+		And I am on the only initiatives' projects page
 
 	Scenario: View available specialists
 		When I follow "Admin"

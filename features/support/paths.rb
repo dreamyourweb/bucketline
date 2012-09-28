@@ -10,6 +10,8 @@ module NavigationHelpers
 		
 		when /^the initiatives page$/
 			initiatives_url
+    when /^the only initiatives' projects page$/
+      initiatives_url #Is redirected to the projects if there is only one initiative
 		when /^the home page$/
 			root_url
 		when /^the initiative admin contributions dashboard$/

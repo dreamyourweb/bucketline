@@ -38,7 +38,7 @@ When /^the initiative admin logs in$/ do
   step %{I am logged in as an initiative admin}
 end
 
-When /^the (initiative admin|super admin|initiative user) logs out$/ do
+When /^the (?:initiative admin|super admin|initiative user) logs out$/ do
 	visit("/logout")
 end
 

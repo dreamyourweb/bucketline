@@ -5,7 +5,7 @@ Feature: get email notifications
 
 	Background:
 		Given there is an initiative
-		And I am on the initiatives page
+		And I am on the only initiatives' projects page
 
 	Scenario: receive notification when a project is placed
 		Given I am logged in as an initiative user
@@ -73,7 +73,7 @@ Feature: get email notifications
 		Given I am logged in as an initiative user
 		And there is a project with an item
 		And a clear email queue
- 		When I follow the first initiative
- 		And I provide an item via the calendar page
+		And I am on the only initiatives' projects page
+ 		When I provide an item via the calendar page
 		And the system sends the reminders
 		Then "initiative_user@test.com" should receive 1 email 

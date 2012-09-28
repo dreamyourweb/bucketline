@@ -9,8 +9,7 @@ Feature: User offers help
 		And there is a project with an item
 
 	Scenario: View all the projects
-		Given I am on the initiatives page
-		When I follow the first initiative
+		Given I am on the only initiatives' projects page
 		Then I should see all the projects
 
 	Scenario: Mark item as provided via wishlist dashboard
