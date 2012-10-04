@@ -97,7 +97,7 @@ end
 Given /^I have contributed to a project$/ do
 	step %{I am logged in as an initiative user}
 	step %{there is a project that belongs to an initiative admin with an item} 
-	step %{no emails have been sent} 
+	step %{no emails have been sent}
 	step %{I provide an item via the calendar page}
 	#step %{I log out}
 end

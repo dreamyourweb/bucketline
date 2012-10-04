@@ -1,9 +1,3 @@
-Given /^I am an initiative user with email "([^"]*)"$/ do |arg1|
-  @user = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
-  @user.user_roles.create(:initiative_id => @initiative.id)
-	@user.profile.update_attributes(:name => "Karel")
-end
-
 Given /^I provided an item for tomorrow$/ do
 	@project = Project.find_or_create_by(:query => "Mijn project", :start_at => Date.tomorrow, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
 	@item = @project.items.create(:name => "Mijn item", :type => "help", :amount => 1, :start_at => Date.tomorrow, :end_at => Date.tomorrow, :daypart => ["Middag", "Avond"])
@@ -46,5 +40,11 @@ end
 Then /^"([^']*?)" should receive (\d+) emails? from "([^']*?)"$/ do |address, n, sender|
   unread_emails_for(address).size.should == n.to_i
 	unread_emails_for(address).first.should be_delivered_from(sender)
+end
+
+Given /^I am an initiative user with email "([^"]*)"$/ do |arg1|
+  @user = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar')
+  @user.user_roles.create(:initiative_id => @initiative.id)
+  @user.profile.update_attributes(:name => "Karel")
 end
 

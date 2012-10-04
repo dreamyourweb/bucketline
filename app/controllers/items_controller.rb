@@ -102,6 +102,8 @@ class ItemsController < ApplicationController
 						@link = @item.links.create(:amount => params[:amount_to_give].to_i, :profile_id => @profile.id)
 						@profile.links << @link
 						@profile.save
+            #Contribution mail is sent from controller, because if it is sent by an after_create hook, for some mysterious reason it is sent twice
+            @link.send_contribution_mail
 					end
 				end
 				if params[:redirect_to_dashboard] && params[:amount_to_give]

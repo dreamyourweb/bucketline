@@ -73,6 +73,6 @@ class Item
 				mailing_list << profile.user.email
 			end
 		end
-		unique_mailing_list = "<" + mailing_list.uniq.join(">,<") + ">"
+		unique_mailing_list = mailing_list.uniq.join(">,<")
 	end
 end

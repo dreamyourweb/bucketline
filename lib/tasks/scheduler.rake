@@ -45,7 +45,7 @@ task :send_item_placement_mail => :environment do
 				mailing_list << user.email
 			end
 		end
-		joined_mailing_list = "<" + mailing_list.join(">,<") + ">"
+		joined_mailing_list = mailing_list.join(">,<")
 
 		#Build sentence
 		item_sentence = ""

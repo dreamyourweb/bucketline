@@ -1,4 +1,5 @@
 class UserCreatedMailer < MailForm::Base
+	attribute :initiative
 	attribute :user_email
 	attribute :email
 

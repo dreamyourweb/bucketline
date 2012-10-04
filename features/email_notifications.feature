@@ -14,7 +14,7 @@ Feature: get email notifications
 		And the initiative admin logs in
 		And the initiative admin plans a project for tomorrow
 		And the initiative admin logs out
-		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
+		Then "initiative_user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a loose item is placed
 		Given I am logged in as an initiative user
@@ -24,7 +24,7 @@ Feature: get email notifications
 		And the initiative admin places a loose item
 		And the initiative admin logs out
 		And the system sends the item placement mail
-		Then "user@test.com" should receive 1 email
+		Then "initiative_user@test.com" should receive 1 email
 
 	Scenario: receive notification when a contribution is made
 		Given no emails have been sent
@@ -44,7 +44,7 @@ Feature: get email notifications
 		When I log out
 		And the initiative admin logs in via the login screen
 		And the initiative admin cancels the project
-		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
+		Then "initiative_user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a loose item I provided for is cancelled
 		Given I have contributed to a loose item
@@ -52,7 +52,7 @@ Feature: get email notifications
 		When I log out
 		And the initiative admin logs in via the login screen
 		And the initiative admin cancels the item
-		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
+		Then "initiative_user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a project I provided for is edited
 		Given I have contributed to a project
@@ -60,7 +60,7 @@ Feature: get email notifications
 		When I log out
 		And the initiative admin logs in via the login screen
 		And the initiative admin edits the project
-		Then "user@test.com" should receive 1 email from "initiative_admin@test.com"
+		Then "initiative_user@test.com" should receive 1 email from "initiative_admin@test.com"
 
 	Scenario: receive notification when a new user is registered
 		Given I am logged in as an initiative admin

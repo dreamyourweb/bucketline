@@ -44,18 +44,10 @@ class User
   # field :authentication_token, :type => String
 
   before_save :check_or_create_profile
-  after_create :send_user_created_mail
 
 	def check_or_create_profile
 		if self.profile.nil?
 			self.profile = Profile.create
-		end
-	end
-
-	def send_user_created_mail
-		User.where(:admin => true).each do |admin|
-			mail = UserCreatedMailer.new(:email => admin.email, :user_email => self.email)
-			mail.deliver
 		end
 	end
 
