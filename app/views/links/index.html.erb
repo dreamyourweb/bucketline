@@ -1,4 +1,4 @@
-<h2>Overzicht van alle bijdragen</h2>
+<h2>Overzicht van alle bijdragen aan <%= @initiative.name %></h2>
 <p>Voor bijdragen van vandaag of later, geordend per project. <%= link_to "Toon ook projecten en bijdragen van voor vandaag.", :controller => "links", :action => "index", :show => "all" %></p>
 <div id="accordion3" class="accordion">
 	<% @projects.each do |project| %>
