@@ -1,38 +1,72 @@
-Given /^I am logged in as (?:|a )super admin$/ do
-  #Must be preceded by declaring an initiative in an earlier step
+#Declaring all the different roles
+
+Given /^I am a visitor$/ do
+  step %(I am not authenticated)
+end
+
+Given /^there is a user$/ do
+  if !@user 
+    @user = User.find_or_create_by(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
+    @user.update_attributes(:confirmed_at => Time.now)
+  end
+  @user.profile.update_attributes(:expertise => "Hard werken")
+end
+
+Given /^there is an admin$/ do
+  if !@admin 
+    @admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
+    @admin.update_attributes(:confirmed_at => Time.now)
+  end
+  @admin.profile.update_attributes(:expertise => "Bier drinken")
+end
+
+Given /^there is a super admin$/ do
   if !@super_admin
     @super_admin = User.create(:email => 'super_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Super Admin")
     @super_admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
   end
   @super_admin.profile.update_attributes(:expertise => "Bier brouwen")
-  login(@super_admin.email, 'foobar')
 end
+
+#Coupling roles to initiatives
 
 Given /^I am logged in as (?:|an )initiative user$/ do
   #Must be preceded by declaring an initiative in an earlier step
-  if !@user 
-    @user = User.find_or_create_by(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
-    @user.update_attributes(:confirmed_at => Time.now)
-  end
+  step %{there is a user}
   @user.user_roles.create(:initiative_id => @initiative.id)
-  @user.profile.update_attributes(:expertise => "Hard werken")
   login(@user.email, 'foobar')
 end
 
+Given /^I am logged in as an initiative user for both initiatives$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  step %{there is a user}
+  @user.user_roles.create(:initiative_id => @first_initiative.id)
+  @user.user_roles.create(:initiative_id => @second_initiative.id)
+  login(@user.email, 'foobar')
+end
+
+Given /^I am logged in as an initiative user for only one of the two initiatives$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  step %{there is a user}
+  @user.user_roles.create(:initiative_id => @first_initiative.id)
+  login(@user.email, 'foobar')
+end
+
+
 Given /^I am logged in as (?:|an )initiative admin$/ do
   #Must be preceded by declaring an initiative in an earlier step
-  if !@admin 
-    @admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
-    @admin.update_attributes(:confirmed_at => Time.now)
-  end
+  step %{there is an admin}
   @admin.user_roles.create(:initiative_id => @initiative.id, :admin => true)
-  @admin.profile.update_attributes(:expertise => "Bier drinken")
   login(@admin.email, 'foobar')
 end
 
-When /^the super admin logs in$/ do
-  step %{I am logged in as a super admin}
+Given /^I am logged in as (?:|a )super admin$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  step %{there is a super admin}
+  login(@super_admin.email, 'foobar')
 end
+
+#Canonical steps
 
 When /^the initiative admin logs in$/ do
   step %{I am logged in as an initiative admin}
@@ -42,14 +76,16 @@ When /^the (?:initiative admin|super admin|initiative user) logs out$/ do
 	visit("/logout")
 end
 
-Given /^I am a visitor$/ do
-  step %(I am not authenticated)
+When /^the super admin logs in$/ do
+  step %{I am logged in as a super admin}
 end
 
-#Given /^a super admin with email "([^"]*)"$/ do |arg1|
-#  @admin = User.find_or_create_by(:email => arg1, :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
-#	@admin.update_attributes(:super_admin => true, :confirmed_at => Time.now)
-#end
+Given /^(?:I am not authenticated|I log out)$/ do
+  # Ensure at least:
+  visit('/logout')
+end
+
+#Specific step for specialist
 
 Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who provided his availability$/ do |name, email, expertise|
   #Must be preceded by declaring an initiative in an earlier step
@@ -64,10 +100,7 @@ Given /^a specialist "([^"]*)" with email "([^"]*)" and expertise "([^"]*)" who 
 	@available_date.save
 end
 
-Given /^(?:I am not authenticated|I log out)$/ do
- 	# Ensure at least:
-  visit('/logout')
-end
+#Registration and login steps
 
 When /^a new user is registered$/ do
 	visit new_user_registration_path

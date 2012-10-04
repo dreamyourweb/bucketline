@@ -51,7 +51,7 @@ class Project
 	def send_project_cancellation_mail
 		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
-			email = ProjectCancellationMailer.new(:recipients => mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
+			email = ProjectCancellationMailer.new(:initiative => self.initiative.name, :recipients => mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at)
 			email.deliver
 		end
 	end
@@ -59,8 +59,9 @@ class Project
 	#Items are updated after project is updated, so if this method is called by an after_create hook, project.items is old when the mail is sent. That's why it is called by the controller.
 	def send_project_update_mail
 		mailing_list = self.contributor_emails
+		item_list = self.build_items_for_mailer
 		if !mailing_list.empty?
-			email = ProjectUpdateMailer.new(:recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true, :project_completion => (if self.success then "Afgerond" else "Onafgerond" end))
+			email = ProjectUpdateMailer.new(:initiative => self.initiative.name, :recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email, :project_query => self.query, :items => item_list, :project_start_at => self.start_at, :project_end_at => self.end_at, :update_notice => true, :project_completion => (if self.success then "Afgerond" else "Onafgerond" end))
 			email.deliver
 		end
 	end
@@ -75,7 +76,7 @@ class Project
 			end
 		end
 		unique_mailing_list = "<" + mailing_list.uniq.join(">,<") + ">"
-		email = ProjectPlacementMailer.new(:recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
+		email = ProjectPlacementMailer.new(:initiative => self.initiative.name, :recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
 

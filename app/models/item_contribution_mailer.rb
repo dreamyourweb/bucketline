@@ -1,4 +1,5 @@
 class ItemContributionMailer < MailForm::Base
+  attribute :initiative
 	attribute :project_query
   attribute :project_date
 	attribute :item_name

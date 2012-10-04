@@ -1,4 +1,5 @@
 class ItemCancellationMailer < MailForm::Base
+  attribute :initiative
 	attribute :item_name
 	attribute :admin_contact
   attribute :admin_email

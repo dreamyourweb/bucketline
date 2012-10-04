@@ -8,6 +8,8 @@
   <% next if value.blank? || attribute == 'update_notice' || attribute == 'email' || attribute == 'admin_email' || attribute == 'recipients' %>
 
 	<p><b><%= case attribute
+    when 'initiative'
+      "Bucket Line:"
 		when 'project_query'
 			"Project omschrijving:"
 		when 'project_start_at'

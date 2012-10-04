@@ -1,4 +1,5 @@
 class ProjectCancellationMailer < MailForm::Base
+	attribute :initiative
 	attribute :project_query
 	attribute :project_start_at
 	attribute :project_end_at

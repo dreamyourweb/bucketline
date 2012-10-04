@@ -60,7 +60,7 @@ class Item
 	def send_item_cancellation_mail
 		mailing_list = self.contributor_emails
 		if !mailing_list.empty?
-			email = ItemCancellationMailer.new(:item_name => self.name, :recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email)
+			email = ItemCancellationMailer.new(:initiative => self.initiative.name, :item_name => self.name, :recipients => mailing_list, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :admin_email => self.owner.email)
 			email.deliver
 		end
 	end

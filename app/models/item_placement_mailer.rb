@@ -1,4 +1,5 @@
 class ItemPlacementMailer < MailForm::Base
+  attribute :initiative
 	attribute :item_sentence
 	attribute :recipients
 

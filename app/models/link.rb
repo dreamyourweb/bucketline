@@ -18,11 +18,11 @@ class Link
 		contributor = self.profile.user
 		if project && project.owner #There is a project owner to send this email to
 			admin_email = project.owner.email #Get owner email
-			email = ItemContributionMailer.new(:admin_email => admin_email, :item_name => item.name, :amount => self.amount, :project_query => project.query, :project_date => project.start_at.to_date, :contributor_email => contributor.email, :contributor_name => contributor.name)
+			email = ItemContributionMailer.new(:initiative => self.initiative.name, :admin_email => admin_email, :item_name => item.name, :amount => self.amount, :project_query => project.query, :project_date => project.start_at.to_date, :contributor_email => contributor.email, :contributor_name => contributor.name)
 			email.deliver		
 		elsif item.owner #There is an item owner to send this email to
 			admin_email = item.owner.email #Get owner email
-			email = ItemContributionMailer.new(:admin_email => admin_email, :item_name => item.name, :amount => self.amount, :contributor_email => contributor.email, :contributor_name => contributor.name)
+			email = ItemContributionMailer.new(:initiative => self.initiative.name, :admin_email => admin_email, :item_name => item.name, :amount => self.amount, :contributor_email => contributor.email, :contributor_name => contributor.name)
 			email.deliver		
 		end
 	end
@@ -33,11 +33,11 @@ class Link
 		contributor = self.profile.user
 		if project && project.owner #There is a project owner to send this email to
 			admin_email = project.owner.email #Get owner email
-			email = ItemRetreatContributionMailer.new(:admin_email => admin_email, :item_name => item.name, :amount => self.amount, :project_query => project.query, :project_date => project.start_at.to_date, :contributor_email => contributor.email, :contributor_name => contributor.name)
+			email = ItemRetreatContributionMailer.new(:initiative => self.initiative.name, :admin_email => admin_email, :item_name => item.name, :amount => self.amount, :project_query => project.query, :project_date => project.start_at.to_date, :contributor_email => contributor.email, :contributor_name => contributor.name)
 			email.deliver		
 		elsif item.owner #There is an item owner to send this email to
 			admin_email = item.owner.email #Get owner email
-			email = ItemRetreatContributionMailer.new(:admin_email => admin_email, :item_name => item.name, :amount => self.amount, :contributor_email => contributor.email, :contributor_name => contributor.name)
+			email = ItemRetreatContributionMailer.new(:initiative => self.initiative.name, :admin_email => admin_email, :item_name => item.name, :amount => self.amount, :contributor_email => contributor.email, :contributor_name => contributor.name)
 			email.deliver		
 		end
 	end

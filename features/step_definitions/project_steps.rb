@@ -23,6 +23,10 @@ When /^I follow the project link$/ do
   click_link @project.query
 end
 
+Then /^I should be redirected directly to the project page$/ do
+  current_url.include?("projects")
+end
+
 When /^the initiative admin plans a project for tomorrow$/ do
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')

@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
 		
 		when /^the initiatives page$/
-			initiatives_url
+			initiatives_url + "?no_redirect=true"
     when /^the only initiatives' projects page$/
       initiatives_url #Is redirected to the projects if there is only one initiative
 		when /^the home page$/

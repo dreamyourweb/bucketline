@@ -1,5 +1,7 @@
 class ProjectUpdateMailer < MailForm::Base
+	attribute :initiative
 	attribute :project_query
+	attribute :items
 	attribute :project_start_at
 	attribute :project_end_at
 	attribute :update_notice
