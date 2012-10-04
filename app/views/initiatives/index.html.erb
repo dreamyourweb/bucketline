@@ -44,13 +44,12 @@
 						</tr>
 					<% end %>
 				</table>
-
-				<% if current_user.super_admin %>
-					<%= link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path %>
-				<% end %>
 			</div>
 		</div>
 	<% else %>
 		<p>Je bent nog geen lid van een Bucket Line, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+	<% end %>
+	<% if current_user.super_admin %>
+		<%= link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path %>
 	<% end %>
 <% end %>

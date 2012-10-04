@@ -6,6 +6,18 @@ Given /^I follow the first initiative$/ do
 	click_link('Bekijk initiatief') #Use only if there are multiple initiatives
 end
 
+When /^I create a new initiative$/ do
+  click_link('Nieuwe Bucket Line aanmaken')
+  fill_in("initiative_name", :with => "Mijn initiatief")
+  fill_in("initiative_location", :with => "Mijn locatie")
+  fill_in("initiative_description", :with => "Mijn omschrijving")
+  click_button("Bucket Line aanmaken")
+end
+
+Then /^I should be an initiative admin$/ do
+  UserRole.where(:user_id => @super_admin.id, :initiative_id => Initiative.last.id).count.should == 1
+end
+
 When /^a new user is registered on the initiative$/ do
 	@new_user = User.create(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
 	@new_user.update_attributes(:confirmed_at => Time.now)

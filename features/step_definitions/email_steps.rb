@@ -15,6 +15,10 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
 
+Then /^the new user should get an invitation for the initiative$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
 When /^I open the email$/ do
   open_email(current_email_address)
 end

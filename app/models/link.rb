@@ -15,7 +15,6 @@ class Link
 	before_destroy :send_retreat_contribution_mail
 
 	def send_contribution_mail
-		p "SEND MAIL"
 		item = self.item
 		project = item.project
 		if project
