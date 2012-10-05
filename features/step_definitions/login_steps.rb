@@ -37,6 +37,12 @@ Given /^I am logged in as (?:|an )initiative user$/ do
   login(@user.email, 'foobar')
 end
 
+Given /^there is an initiative user$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  step %{there is a user}
+  @user.user_roles.create(:initiative_id => @initiative.id)
+end
+
 Given /^I am logged in as an initiative user for both initiatives$/ do
   #Must be preceded by declaring an initiative in an earlier step
   step %{there is a user}

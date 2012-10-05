@@ -60,3 +60,12 @@ Then /^I should only see the initiative I am a member of$/ do
 	page.should_not have_content ("Mijn tweede initiatief")
 end
 
+When /^I promote the initiative user to initiative admin$/ do
+  check "user_role_admin"
+  click_button "Update"
+end
+
+Then /^the intitiative user should be initiative admin$/ do
+  UserRole.where(:initiative_id => @initiative.id, :user_id => @user.id, :admin => true).count.should == 1
+end
+

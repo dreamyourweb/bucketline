@@ -18,7 +18,17 @@
 			<td><%= user.profile.tools_and_materials %></td>
 			<td><%= user.profile.phone %></td>
 			<td><%= user.email %></td>
-			<td><%= "\u2713" if user.initiative_admin(@initiative) %></td>
+			<td>
+				<% if user != current_user %>
+					<% user_role = get_user_role(@initiative, user) %>
+					<%= form_for([@initiative, user_role]) do |f| %>
+						<%= f.check_box :admin %> <%= f.submit "Update", :class => "btn", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?" %>
+					<% end %>
+				<% else %>
+					<%= check_box_tag '', '', true, :disabled => true %>
+				<% end %>
+			</td>
+			<!-- <td><#= "\u2713" if user.initiative_admin(@initiative) %></td> -->
 		</tr>
 	<% end %>	
 </table>

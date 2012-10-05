@@ -35,7 +35,7 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.save
-        format.html { redirect_to @user_role, notice: 'User role was successfully created.' }
+        format.html { redirect_to :id => nil, notice: 'Gebruikersrol is succesvol aangepast.' }
         format.json { render json: @user_role, status: :created, location: @user_role }
       else
         format.html { render action: "new" }
@@ -51,7 +51,7 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.update_attributes(params[:user_role])
-        format.html { redirect_to @user_role, notice: 'User role was successfully updated.' }
+        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is succesvol aangepast.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -67,7 +67,7 @@ class UserRolesController < ApplicationController
     @user_role.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_roles_url }
+      format.html { redirect_to :id => nil }
       format.json { head :no_content }
     end
   end

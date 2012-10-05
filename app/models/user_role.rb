@@ -2,6 +2,8 @@ class UserRole
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
+	attr_accessible :admin, :user_id, :initiative_id
+
 	#A user role is the role a user has for a particular initiative. User can be admin.
 	belongs_to :user
 	belongs_to :initiative
