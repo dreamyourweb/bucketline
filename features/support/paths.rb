@@ -16,7 +16,7 @@ module NavigationHelpers
 			root_url
 		when /^the initiative admin contributions dashboard$/
 			initiative_links_url(@initiative)
-    when /^the manage user page$/
+    when /^the manage users page$/
       initiative_profiles_url(@initiative)
 
     # Add more mappings here.

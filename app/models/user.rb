@@ -55,7 +55,8 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  validates_uniqueness_of :invitation_token
+  #TODO: MAKE TOKEN UNIQUE
+  #validates_uniqueness_of :invitation_token
 
   before_save :check_or_create_profile
 
