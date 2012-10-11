@@ -23,4 +23,5 @@ Feature: loose items for wishlist dashboard
 		And I fill the form with a loose item
 		Then I should see my new loose item
 
+	@wip
 	Scenario: Loose items show up in admin dashboard 	 

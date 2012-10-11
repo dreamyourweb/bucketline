@@ -14,7 +14,7 @@ HvO::Application.routes.draw do
 		#get "send_reminder", :to => "profiles#send_reminder_mail"
 	end
   
-  devise_for :users
+  devise_for :users, :controllers => {:invitations => 'invitations'}
 	devise_scope :user do
 		get "login", :to => "devise/sessions#new"
 		get "logout", :to => "devise/sessions#destroy"

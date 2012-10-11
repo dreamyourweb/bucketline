@@ -1,5 +1,7 @@
 <h2>Overzicht alle gebruikers voor <%= @initiative.name %></h2>
 
+<p><%= link_to 'Nodig een nieuwe gebruiker uit voor deze Bucket Line', new_user_invitation_path %></p>	
+
 <table class="admin-table table table-bordered table-striped">
 	<tr>
 		<th>Naam</th>
@@ -30,7 +32,7 @@
 			</td>
 			<!-- <td><#= "\u2713" if user.initiative_admin(@initiative) %></td> -->
 		</tr>
-	<% end %>	
+	<% end %>
 </table>
 
 <div class="well">

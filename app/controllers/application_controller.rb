@@ -26,4 +26,10 @@ class ApplicationController < ActionController::Base
 			@initiative = Initiative.find(session[:initiative_id])
 		end
 	end
+
+	protected
+
+	def authenticate_inviter!
+		authenticate_user_for_initiative
+	end
 end

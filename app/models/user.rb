@@ -3,8 +3,11 @@ class User
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable
+  devise :invitable, :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable,
+         :invite_for => 1.week, :invite_key => {:email => Devise.email_regexp}, :validate_on_invite => :name
+
+  include DeviseInvitable::Inviter
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
@@ -12,6 +15,15 @@ class User
 	#Facebook
 	has_many :authentications, :dependent => :destroy
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
+
+  #Identify invitation senders
+  #has_many :invitations, :class_name => self.class.to_s, :as => :invited_by
+
+  #Fields for invitations
+  field :invitation_token, :type => String
+  field :invitation_sent_at, :type => DateTime
+  field :invitation_accepted_at, :type => DateTime
+  field :invitation_limit, :type => Integer
 
 	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
   field :name, :type => String, :null => false
@@ -42,6 +54,8 @@ class User
   # field :locked_at,       :type => Time
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  validates_uniqueness_of :invitation_token
 
   before_save :check_or_create_profile
 
