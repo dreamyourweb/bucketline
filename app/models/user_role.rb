@@ -26,4 +26,10 @@ class UserRole
 			mail.deliver
 		end
 	end
+
+	#Sent from controller
+	def send_user_role_update_mail
+		mail = UserRoleUpdateMailer.new(:initiative => self.initiative.name, :email => self.user.email, :role => self.admin ? "Admin" : "Gebruiker")
+		mail.deliver
+	end
 end

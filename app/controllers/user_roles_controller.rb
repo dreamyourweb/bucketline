@@ -51,6 +51,7 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.update_attributes(params[:user_role])
+        @user_role.send_user_role_update_mail
         format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is succesvol aangepast.' }
         format.json { head :no_content }
       else
