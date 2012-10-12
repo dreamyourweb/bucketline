@@ -8,7 +8,38 @@ class AvailableDatesController < ApplicationController
 		@profile = current_user.profile
 	end
 
-	def set_calendar
+  def availability_dashboard
+    #Only show available dates of users that are available for the current initiative
+    @available_dates = []
+    @initiative.user_roles.each do |user_role|
+      if params[:show] == "all"
+        user_role.user.profile.available_dates.each do |available_date|
+          if available_date
+            @available_dates << available_date
+          end
+        end
+      else
+        user_role.user.profile.available_dates.where(:date.gte => Date.today).each do |available_date|
+          if available_date
+            @available_dates << available_date
+          end
+        end
+      end
+    end
+
+    @dates = []
+    @available_dates.each do |available_date|
+      @dates << available_date.date
+    end
+    @dates = @dates.uniq
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @available_dates }
+    end
+  end
+
+  def set_calendar
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
     @shown_month = Date.civil(@year, @month)
@@ -18,24 +49,6 @@ class AvailableDatesController < ApplicationController
   def index
     @available_dates = @profile.available_dates.all
 		@event_strips = current_user.profile.available_dates.all.event_strips_for_month(@shown_month, @first_day_of_week)
-
-		respond_to do |format|
-      format.html
-      format.json { render json: @available_dates }
-		end
-  end
-
-  def availability_dashboard
-		if params[:show] == "all"
-    	@available_dates = AvailableDate.all.order_by([[:date, :asc]])
-		else
-    	@available_dates = AvailableDate.where(:date.gte => Date.today).order_by([[:date, :asc]])
-		end		
-		@dates = []
-		@available_dates.each do |available_date|
-			@dates << available_date.date
-		end
-		@dates = @dates.uniq
 
 		respond_to do |format|
       format.html

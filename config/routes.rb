@@ -10,7 +10,6 @@ HvO::Application.routes.draw do
   get "profiles/all", :as => "all_profiles", :to => "profiles#super_admin_index"
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
-		get "availability_dashboard", :to => "available_dates#availability_dashboard"
 		#get "send_reminder", :to => "profiles#send_reminder_mail"
 	end
   
@@ -28,6 +27,7 @@ HvO::Application.routes.draw do
 		end
 		resources :items, :except => [:index, :show] #loose items
 		get "dashboard", :to => "items#dashboard"
+    get "availability_dashboard", :to => "available_dates#availability_dashboard"
 		resources :links, :only => [:index]
     get "profiles", :to => "profiles#index"
 	end

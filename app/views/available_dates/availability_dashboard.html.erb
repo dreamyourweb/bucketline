@@ -4,7 +4,7 @@
 	<% @dates.each do |date| %>
 		<div class="accordion-group">
 			<div class="accordion-heading">
-				<a class="accordion-toggle" href=<%= "#" + date.to_s %> data-parent="#accordion2" data-toggle="collapse"><%= pretty_date(date) %> (<%=@available_dates.where(:date => date).count %>)</a>
+				<a class="accordion-toggle" href=<%= "#" + date.to_s %> data-parent="#accordion2" data-toggle="collapse"><%= pretty_date(date) %> (<%=@available_dates.select{|ad| ad.date == date}.count %>)</a>
 			</div>
 			<div id=<%= date.to_s %> class="accordion-body collapse" style="height: 0px;">
 				<div class="accordion-inner">
@@ -17,7 +17,7 @@
 							<th>Gereedschappen en materialen</th>		
 							<th>Email</th>		
 						</tr>
-						<% @available_dates.where(:date => date).each do |available_date| %>
+						<% @available_dates.select{|ad| ad.date == date}.each do |available_date| %>
 							<% if available_date.profile.user %>
 								<tr>
 									<td><%= available_date.profile.user.name %></td>

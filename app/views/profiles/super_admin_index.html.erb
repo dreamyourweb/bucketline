@@ -9,8 +9,10 @@
 		<th>Kan helpen met</th>		
 		<th>Gereedschappen en materialen</th>		
 		<th>Telefoon</th>		
-		<th>Email</th>		
+		<th>Email</th>
+		<th>Buddy bereidheid</th>		
 		<th>Admin</th>		
+		<th>Super admin</th>		
 	</tr>
 	<% @users.each do |user| %>
 		<tr>
@@ -21,7 +23,9 @@
 			<td><%= user.profile.tools_and_materials %></td>
 			<td><%= user.profile.phone %></td>
 			<td><%= user.email %></td>
-			<td><%= "\u2713" if user.initiative_admin(user.initiatives) || user.super_admin %></td>
+			<td><%= "\u2713" if user.profile.willing_to_become_admin %></td>
+			<td><%= "\u2713" if user.initiative_admin(user.initiatives) %></td>
+			<td><%= "\u2713" if user.super_admin %></td>
 		</tr>
 	<% end %>	
 </table>

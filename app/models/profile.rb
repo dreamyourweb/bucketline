@@ -12,7 +12,9 @@ class Profile
   field :expertise, :type => String
   field :willing_to_help_with, :type => String
   field :tools_and_materials, :type => String
+  field :willing_to_become_admin, :type => Boolean, :default => false
 	field :send_reminder_mail, :type => Boolean, :default => true
 	field :send_project_cancellation_mail, :type => Boolean, :default => true
 	field :always_send_project_placement_mail, :type => Boolean, :default => true
+	field :send_user_role_update_mail, :type => Boolean, :default => true
 end

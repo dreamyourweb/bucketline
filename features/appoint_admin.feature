@@ -12,5 +12,3 @@ Feature: Initiative admin appoints fellow admin
 		And I promote the initiative user to initiative admin
 		Then the intitiative user should be initiative admin
 		And "initiative_user@test.com" should receive 1 email
-
-	#Scenario: Buddy request

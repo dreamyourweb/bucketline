@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <hr>
+	<h3>Persoonlijke instellingen</h3>
   <div class="control-group">
     <%= f.label :phone, "Telefoon:", :class => "control-label" %>
 		<div class="controls">
@@ -35,7 +37,16 @@
 	    <%= f.text_area :tools_and_materials, :rows => 6, :class => "input-xlarge" %>
 		</div>
   </div>
-	<br>
+  <div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+		  	<%= f.check_box :willing_to_become_admin %>
+		  	Ik ben bereid om buddy te worden als de nood aan de man is.
+			</label>
+		</div>
+  </div>
+	<hr>
+	<h3>E-mail instellingen</h3>
   <div class="control-group">
 		<div class="controls">
 			<label class="checkbox">
@@ -48,7 +59,7 @@
 		<div class="controls">
 			<label class="checkbox">
 		    <%= f.check_box :always_send_project_placement_mail %>
-		    Stuur mij een email als er een nieuw project of item geplaatst wordt.
+		    Stuur mij een email als er een nieuwe klus of benodigdheid geplaatst wordt.
 			</label>
 		</div>
   </div>
@@ -56,7 +67,15 @@
 		<div class="controls">
 			<label class="checkbox">
 		    <%= f.check_box :send_project_cancellation_mail %>
-		    Stuur mij een email als een project of item waaraan ik bijdraag wordt geannuleerd of gewijzigd.
+		    Stuur mij een email als een klus of benodigdheid waaraan ik bijdraag wordt geannuleerd of gewijzigd.
+			</label>
+		</div>
+  </div>
+  <div class="control-group">
+		<div class="controls">
+			<label class="checkbox">
+		    <%= f.check_box :send_user_role_update_mail %>
+		    Stuur mij een email als mijn bevoegdheden in een Bucket Line wordt aangepast.
 			</label>
 		</div>
   </div>

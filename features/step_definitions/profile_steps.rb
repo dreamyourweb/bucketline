@@ -15,8 +15,10 @@ Then /^I should see my relevant profile fields$/ do
 	page.should have_content("Ik kan helpen met")
 	page.should have_content("Ik kan de volgende gereedschappen en materialen inbrengen")
 	page.should have_content("Stuur mij een herinnerings-email")
-	page.should have_content("Stuur mij een email als er een nieuw project of item geplaatst wordt")
-	page.should have_content("Stuur mij een email als een project of item waaraan ik bijdraag wordt geannuleerd of gewijzigd")
+	page.should have_content("Stuur mij een email als er een nieuwe klus of benodigdheid geplaatst wordt")
+	page.should have_content("Stuur mij een email als een klus of benodigdheid waaraan ik bijdraag wordt geannuleerd of gewijzigd")
+	page.should have_content("Stuur mij een email als mijn bevoegdheden in een Bucket Line wordt aangepast")
+	page.should have_content("Ik ben bereid om buddy te worden als de nood aan de man is")
 end
 
 Then /^the initiative user should be purged from the system$/ do
