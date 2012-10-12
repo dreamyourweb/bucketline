@@ -1,4 +1,4 @@
-en:
+nl:
   devise:
     invitations:
       send_instructions: 'Er is een uitnodiging verstuurd naar %{email}.'
