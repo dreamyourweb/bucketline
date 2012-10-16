@@ -3,7 +3,7 @@
 <% end %>
 <div class="row">
 	<div class="span12">
-		<p>Op deze pagina vind je ons verlanglijstje. Dit is een lijst van benodigdheden die niet bij een specifiek project op een bepaalde datum horen, maar die we juist doorlopend nodig hebben.</p>
+		<p>Op deze pagina vind je ons verlanglijstje. Dit is een lijst van benodigdheden die niet bij een specifieke klus op een bepaalde datum horen, maar die we juist doorlopend nodig hebben.</p>
 	</div>
 </div>
 <% if current_user && current_user.initiative_admin(@initiative) %>
@@ -15,17 +15,35 @@
 	</div>
 <% end %>
 <div class="row">
-	<div class="span4">
-		<h2>Handjes</h2>
-		<%= render :partial => "item", :collection => @help, :locals => {:initiative => @initiative, :profile => @profile} %>
+	<div class="span3">
+		<h2>Vervoer</h2>
 	</div>
-	<div class="span4">
-		<h2>Gereedschap</h2>
-		<%= render :partial => "item", :collection => @tools, :locals => {:initiative => @initiative, :profile => @profile} %>
+	<div class="span3">
+		<h2>In en om het huis</h2>
 	</div>
-	<div class="span4">
-		<h2>Materiaal</h2>
-		<%= render :partial => "item", :collection => @materials, :locals => {:initiative => @initiative, :profile => @profile} %>
+	<div class="span3">
+		<h2>Oppas en gezelschap</h2>
+	</div>
+	<div class="span3">
+		<h2>Boodschappen en koken</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="span3">
+		<hr>
+		<%= render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile} %>
+	</div>
+	<div class="span3">
+		<hr>
+		<%= render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile} %>
+	</div>
+	<div class="span3">
+		<hr>
+		<%= render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile} %>
+	</div>
+	<div class="span3">
+		<hr>
+		<%= render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile} %>
 	</div>
 </div>
 

@@ -30,9 +30,10 @@ class ItemsController < ApplicationController
 
 	def dashboard
 		#@projects = Project.excludes(:success => true).order_by(:start_at, :asc) #find all unfinished projects
-		@help = []
-		@tools = []
-		@materials = []
+		@vervoer = []
+		@in_en_om_het_huis = []
+		@oppas_en_gezelschap = []
+    @boodschappen_en_koken = []
     @profile = current_user.profile
     if params[:show_all_items]
       @items = @initiative.items.where(:project_id => nil).all
@@ -40,12 +41,14 @@ class ItemsController < ApplicationController
       @items = @initiative.items.where(:project_id => nil, :success => false).all
     end
 		@items.each do |item|
-			if item.type == "help"
-				@help << item
-			elsif item.type == "tool"
-				@tools << item
-			else
-				@materials << item
+			if item.type == "vervoer"
+				@vervoer << item
+			elsif item.type == "in en om het huis"
+				@in_en_om_het_huis << item
+			elsif item.type == "oppas en gezelschap"
+				@oppas_en_gezelschap << item
+      else
+        @boodschappen_en_koken << item
 			end
 		end
     #@help = Item.where(:type => "help").order_by(:start_at, :asc)

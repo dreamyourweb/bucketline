@@ -7,7 +7,6 @@ Feature: Admin invites new user to join initiative
 		Given there is an initiative
 		And I am logged in as an initiative admin
 
-	@wip
 	Scenario: Admin invites new user
 		When I go to the manage users page
 		And I follow "Nodig een nieuwe gebruiker uit voor deze Bucket Line"
@@ -16,7 +15,6 @@ Feature: Admin invites new user to join initiative
 		When the user accepts the invitation
 		Then "initiative_user@test.com" should be an initiative member
 
-	@wip
 	Scenario: Admin invites existing user
 		Given there is a user
 		When I go to the manage users page
@@ -25,3 +23,8 @@ Feature: Admin invites new user to join initiative
 		Then "initiative_user@test.com" should receive 1 email
 		When the user accepts the invitation
 		Then "initiative_user@test.com" should be an initiative member
+
+	@wip
+	Scenario: User gets invited to two initiatives
+		#Faces a problem, because after an accepted invite for a second initiative, the users password becomes corrupted somehow, eventhough it still has the same encrypted string.
+

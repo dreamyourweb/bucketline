@@ -13,7 +13,7 @@ end
 Then /^I should see my relevant profile fields$/ do
 	page.should have_content("Ik ben goed in")
 	page.should have_content("Ik kan helpen met")
-	page.should have_content("Ik kan de volgende gereedschappen en materialen inbrengen")
+	page.should have_content("Handige spullen in mijn bezit")
 	page.should have_content("Stuur mij een herinnerings-email")
 	page.should have_content("Stuur mij een email als er een nieuwe klus of benodigdheid geplaatst wordt")
 	page.should have_content("Stuur mij een email als een klus of benodigdheid waaraan ik bijdraag wordt geannuleerd of gewijzigd")

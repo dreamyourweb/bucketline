@@ -82,7 +82,7 @@ When /^I fill in the form with a project and an item$/ do
 	select("00", :from => "project_input_start_at_5i")
 	select("12", :from => "project_input_end_at_4i")
 	select("00", :from => "project_input_end_at_5i")
-	select("Materiaal", :from => "project_items_attributes_0_type")
+	select("Vervoer", :from => "project_items_attributes_0_type")
 end
 
 When /^I delete the project$/ do

@@ -21,10 +21,14 @@ module ItemsHelper
 	end
 
 	def get_icon(item)
-		if item.type == 'help'
+		if item.type == 'in en om het huis'
+			"icon-home"
+		elsif item.type == 'oppas en gezelschap'
 			"icon-user"
-		elsif item.type == 'tool'
-			"icon-cog"
+		elsif item.type == 'vervoer'
+			"icon-road"
+		elsif item.type == 'boodschappen en koken'
+			"icon-shopping-cart"
 		else
 			"icon-home"
 		end

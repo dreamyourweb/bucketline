@@ -41,12 +41,14 @@ class Item
 		end
 	end
 	def translate_type
-		if self.type == "help"
-			"Handjes"
-		elsif self.type == "tool"
-			"Gereedschap"
+		if self.type == "vervoer"
+			"Vervoer"
+		elsif self.type == "in en om het huis"
+			"In en om het huis"
+		elsif self.type == "oppas en gezelschap"
+			"Oppas en gezelschap"
 		else
-			"Materiaal"
+			"Boodschappen en koken"
 		end
 	end
 	def providing_user(user) #checks if user is providing this item

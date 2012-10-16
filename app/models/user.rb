@@ -25,6 +25,8 @@ class User
   field :invitation_accepted_at, :type => DateTime
   field :invitation_limit, :type => Integer
 
+  field :last_invited_for_initiative_id, :type => String
+
 	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
   field :name, :type => String, :null => false
 	## Database authenticatable
