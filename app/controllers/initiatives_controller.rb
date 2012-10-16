@@ -58,8 +58,7 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       if @initiative.save
         @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
-        format.html { redirect_to initiatives_url + "?no_redirect=true", notice: 'Je nieuwe initiatief is aangemaakt.' }
-        format.json { render json: @initiative, status: :created, location: @initiative }
+        redirect_to root_path
       else
         format.html { render action: "new" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
