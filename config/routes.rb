@@ -1,7 +1,9 @@
 HvO::Application.routes.draw do
 	root :to => "initiatives#index"
 
-	#Facebook login
+	get "waardeverbinder", :as => "waardeverbinder_info", :to => "waardeverbinder#info"
+
+  #Facebook login
 	match '/auth/:provider/callback' => 'authentications#create'
 
   resources :messages, :except => [:edit, :show]

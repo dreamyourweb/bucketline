@@ -2,10 +2,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="span9">
-				<p>Bucket Line is een initiatief van etc. <% if current_user %>Voor feedback, <%= link_to "laat een bericht achter", feedback_path, :class => "fancybox" %><% end %>. Voor vragen over Bucket Line kun je een email sturen naar info@bucketline.nl.</p>
+				<p>Voor vragen over Bucket Line kun je een email sturen naar info@bucketline.nl. Bucket Line maakt gebruik van de waardeverbinder. Deze online tool verbindt alle hulp vanuit een groep mensen, om zo gezamelijk een gaaf project neer te zetten. <%= link_to "Lees meer over de waardeverbinder, en of het iets voor jou is", waardeverbinder_info_path %>.</p>
 			</div>
-			<!-- <a href="http://huisvanovervloed.nl" class="span3 footer-logo"></a> -->
 		</div>
-		<sub>Alle rechten voorbehouden. Icons provided by <%= link_to "glyphicons", "http://glyphicons.com/", :target => "_blank" %>.</sub>
+		<sub>&copy; <a href="http://www.dreamyourweb.nl">dreamyourweb</a> <%= Date.today.year %>. Icons provided by <%= link_to "glyphicons", "http://glyphicons.com/", :target => "_blank" %>.</sub>
 	</div>
 </footer>

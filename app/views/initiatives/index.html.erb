@@ -1,18 +1,23 @@
 <div class="row">
-	<div class="span6">
-		<h1>UVP</h1>
+	<div class="span12">
+		<h2>Bucket Line brengt mensen samen om in een tijdelijke en persoonlijke noodsituatie, een steun te zijn door kleine klussen te doen.</h2>
 	</div>
 </div>
+<hr>
 <div class="row">
-	<div class="span4">
+	<div class="span6">
 		<h3>Bucket Line</h3>
-		<p>Gedetailleerdere uitleg, wie, wat, waarom.</p> 
-		<% if !current_user %>
-			<p><%= link_to 'Log in', login_path %> of <%= link_to 'meld je aan', new_user_registration_path %>.</p> 
-		<% end %>
+		<p>Een Bucket Line bestaat uit je eigen vertrouwde netwerk: de buurt, familie, het bedrijf, de school, de vereniging. Als bij jou of bij een ander in jouw Bucket Line netwerk een tijdelijke noodsituatie ontstaat, zoals een sterfgeval of ernstige ziekte in een gezin, zorgt de Bucket Line voor een gezamenlijke aanpak van kleine klussen die gedaan moeten worden, zoals boodschappen doen, poetsen, koken, of licht administratief werk.</p> 
 	</div>
+	<div class="span6">
+		<h3>De Bucket Line waardeverbinder</h3>
+		<p>Met deze website kun je je eigen Bucket Line opstellen. Je kunt het zien als een interactieve agenda. Een hulpbehoevende en zijn buddy plaatsen kleine klussen, zoals bijvoorbeeld koken, of naar de apotheek rijden. Op basis van de beschikbaarheid van de leden van de Bucket Line en wat er binnen de Bucket Line aanwezig is, worden deze klussen ingepland. In een agenda kun je alle klussen bekijken, en meteen je beschikbaarheid of hulp aanbieden.</p><p>Op dit punt is de Bucket Line waardeverbinder nog in de test fase. Neem contact op het Bucket Line (info@bucketline.nl) als je wilt helpen met testen.</p>
+	</div>	
 </div>
-
+<hr>
+<% if !current_user %>
+	<p><%= link_to 'Log in', login_path %> of <%= link_to 'meld je aan', new_user_registration_path %>.</p> 
+<% end %>
 <% if current_user %>
 	<% if !@initiatives.empty? %>
 		<h3>Mijn bucket Lines</h3>
