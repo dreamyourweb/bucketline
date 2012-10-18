@@ -4,13 +4,19 @@ task :send_reminders => :environment do
 	User.all.each do |user|
 		if user.profile.send_reminder_mail
 			item_names = []
+			project_names = []
+			initiative_names = []
 			links = user.profile.links.each do |link|
 				if !link.item.project_id.nil? && link.item.project.input_date == Date.tomorrow
-					item_names << link.item.name	
+					item_names << link.item.name
+					project_names << link.item.project.query
+					initiative_names << link.item.project.name	
 				end
 			end
+			project_names.uniq!
+			initiative_names.uniq!
 			if !item_names.empty?
-				email = ReminderMailer.new(:item_names => item_names.to_sentence, :email => user.email)
+				email = ReminderMailer.new(:item_names => item_names.to_sentence, :project_names => project_names.to_sentence, :initiative_names => initiative_names.to_sentence, :email => user.email)
 				email.deliver
 				puts "delivered to " + user.email + "..."
 			end

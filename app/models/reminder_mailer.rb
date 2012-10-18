@@ -1,4 +1,6 @@
 class ReminderMailer < MailForm::Base
+	attribute :initiative_names
+	attribute :project_names
 	attribute :item_names
 	attribute :email
 

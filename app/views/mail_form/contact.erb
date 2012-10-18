@@ -11,7 +11,7 @@
     when 'initiative'
       "Bucket Line:"
 		when 'project_query'
-			"Project omschrijving:"
+			"Klus omschrijving:"
 		when 'project_start_at'
 			"Begin:"
 		when 'project_end_at'
@@ -28,7 +28,11 @@
 			"Contact informatie:"
 		when 'project_remark'
 			"Extra opmerkingen:"
-		when 'item_names'
+    when 'initiative_names'
+      "Bucket Line:"
+    when 'project_names'
+      "Klus(sen):"
+ 		when 'item_names'
 			"Items:"
     when 'item_name'
       "Item:"
@@ -37,7 +41,7 @@
     when 'item_sentence'
       "Benodigdheden:"
 		when 'items'
-			"Benodigdheden voor dit project:"
+			"Benodigdheden voor deze klus:"
 		when 'user_email'
 			"Email nieuwe gebruiker:"
    	when 'contributor_name'
@@ -45,7 +49,7 @@
     when 'contributor_email'
       "Email bijdrager:"
     when 'project_completion'
-      "Project status:"
+      "Klus status:"
     else 
 			@resource.class.human_attribute_name(attribute)
 		end

@@ -15,7 +15,7 @@ class UserRolesController < ApplicationController
   # GET /user_roles/new
   # GET /user_roles/new.json
   def new
-    @user_role = @intiative.user_role.new
+    @user_role = @intiative.user_roles.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,11 +31,11 @@ class UserRolesController < ApplicationController
   # POST /user_roles
   # POST /user_roles.json
   def create
-    @user_role = UserRole.new(params[:user_role])
+    @user_role = @initiative.user_roles.new(params[:user_role])
 
     respond_to do |format|
       if @user_role.save
-        format.html { redirect_to :id => nil, notice: 'Gebruikersrol is succesvol aangepast.' }
+        format.html { redirect_to :id => nil, notice: 'Gebruikersrol is aangepast.' }
         format.json { render json: @user_role, status: :created, location: @user_role }
       else
         format.html { render action: "new" }
@@ -54,7 +54,7 @@ class UserRolesController < ApplicationController
         if @user_role.user.profile.send_user_role_update_mail
           @user_role.send_user_role_update_mail
         end
-        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is succesvol aangepast.' }
+        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is aangepast.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

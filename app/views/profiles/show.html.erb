@@ -9,7 +9,7 @@
 <table class="admin-table table table-bordered table-striped">
 	<tr>
 		<th>Bucket Line</th>
-		<th>Project</th>
+		<th>Klus</th>
 		<th>Bijdrage</th>
 		<th>Aantal</th>
 		<th>Datum</th>
@@ -31,4 +31,7 @@
 	<% end %>
 </table>
 
-<%= link_to 'Verwijder mijn account', user_registration_path, :method => :delete, :confirm => "Weet je zeker dat je je volledige inschrijving wilt verwijderen? Al je bijdragen worden ingetrokken en je kunt dan niet meer bijdragen." %>
+<% if @user_role %>
+	<%= link_to 'Meld mij af bij deze Bucket Line', initiative_user_role_path(@initiative, @user_role), :method => :delete, :confirm => "Weet je zeker dat je jezelf wilt terugtrekken uit deze Bucket Line?" %>
+<% end %><br>
+<%= link_to 'Verwijder mijn volledige inschrijving bij Bucket Line', user_registration_path, :method => :delete, :confirm => "Weet je zeker dat je je volledige inschrijving wilt verwijderen? Al je bijdragen worden ingetrokken en je kunt niet meer verder bijdragen." %>

@@ -1,6 +1,6 @@
 <p>Hallo <%= @resource.email %>!</p>
 
-<p>Iemand heeft je uitgenodigd voor Bucket Line. Je kunt deze uitnodiging aannemen door de onderstaande link te volgen.</p>
+<p>Iemand heeft je uitgenodigd voor een Bucket Line. Je kunt deze uitnodiging aannemen door de onderstaande link te volgen.</p>
 
 <p><%= link_to 'Uitnodiging accepteren', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
 

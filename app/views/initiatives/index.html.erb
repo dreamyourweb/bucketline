@@ -20,7 +20,7 @@
 <% end %>
 <% if current_user %>
 	<% if !@initiatives.empty? %>
-		<h3>Mijn bucket Lines</h3>
+		<h3>Mijn bucket Line<%= "s" if @initiatives.count > 1 %></h3>
 		<div class="row">
 			<div class="span12">
 				<table class="table table-bordered table-striped">
@@ -40,10 +40,10 @@
 							<td><%= initiative.description %></td>
 							<% user_admin_role = current_user.initiative_admin(initiative) %>
 							<td><%= if user_admin_role then 'admin' else 'bijdrager' end %></td>
-							<td><%= link_to 'Bekijk initiatief', initiative_projects_path(initiative) %></td>
+							<td><%= link_to 'Bekijk kalender', initiative_projects_path(initiative) %></td>
 							<td>
 								<% if user_admin_role %>
-									<%= link_to 'Bewerken', edit_initiative_path(initiative) %> | <%= link_to 'Verwijderen', initiative, confirm: 'Het initiatief wordt verwijderd inclusief alle projecten en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete %>
+									<%= link_to 'Bewerken', edit_initiative_path(initiative) %> | <%= link_to 'Verwijderen', initiative, confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete %>
 								<% end %>
 							</td>
 						</tr>
@@ -52,7 +52,9 @@
 			</div>
 		</div>
 	<% else %>
-		<p style="font-weight:bold;">Je bent nog geen lid van een Bucket Line, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+		<div class="alert alert-block">
+			<p style="font-weight:bold;">Je bent nog geen lid van een Bucket Line. Vraag een ander lid om een uitnodiging, of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+		</div>
 	<% end %>
 	<% if current_user.super_admin %>
 		<%= link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path %>
