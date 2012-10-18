@@ -11,7 +11,7 @@
 	</div>
 	<div class="span6">
 		<h3>De Bucket Line waardeverbinder</h3>
-		<p>Met deze website kun je je eigen Bucket Line opstellen. Je kunt het zien als een interactieve agenda. Een hulpbehoevende en zijn buddy plaatsen kleine klussen, zoals bijvoorbeeld koken, of naar de apotheek rijden. Op basis van de beschikbaarheid van de leden van de Bucket Line en wat er binnen de Bucket Line aanwezig is, worden deze klussen ingepland. In een agenda kun je alle klussen bekijken, en meteen je beschikbaarheid of hulp aanbieden.</p><p>Op dit punt is de Bucket Line waardeverbinder nog in de test fase. Neem contact op het Bucket Line (info@bucketline.nl) als je wilt helpen met testen.</p>
+		<p>Met deze website kun je je eigen Bucket Line opstellen. Je kunt het zien als een interactieve agenda. Op basis van de beschikbaarheid van de leden van de Bucket Line en wat er binnen de Bucket Line aanwezig is, worden door een hulpbehoevende kleine klussen ingepland. Denk bijvoorbeeld aan koken, of naar de apotheek rijden. In een agenda kunnen de leden alle klussen bekijken, en meteen hun hulp aanbieden.</p><p>Op dit punt zijn we de Bucket Line waardeverbinder nog aan het testen. Neem contact op het Bucket Line (info@bucketline.nl) als je wilt helpen met testen.</p>
 	</div>	
 </div>
 <hr>
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 	<% else %>
-		<p>Je bent nog geen lid van een Bucket Line, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
+		<p style="font-weight:bold;">Je bent nog geen lid van een Bucket Line, vraag een kennis om een uitnodiging of neem contact op met info@bucketline.nl om er zelf een te beginnen.</p>
 	<% end %>
 	<% if current_user.super_admin %>
 		<%= link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path %>
