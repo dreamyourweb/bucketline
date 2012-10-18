@@ -1,4 +1,4 @@
-desc "This task is called by the Heroku scheduler add-on"
+#desc "This task is called by the Heroku scheduler add-on"
 task :send_reminders => :environment do
 	puts "Sending reminders..."
 	User.all.each do |user|
@@ -10,7 +10,7 @@ task :send_reminders => :environment do
 				if !link.item.project_id.nil? && link.item.project.input_date == Date.tomorrow
 					item_names << link.item.name
 					project_names << link.item.project.query
-					initiative_names << link.item.project.name	
+					initiative_names << link.item.project.initiative.name	
 				end
 			end
 			project_names.uniq!

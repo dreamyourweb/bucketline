@@ -18,9 +18,9 @@ Feature: Update profile
 		Then I should see my new expertise
 
 	Scenario: User cancels account
-		And I follow "Verwijder mijn account"
+		And I follow "Verwijder mijn volledige inschrijving bij Bucket Line"
 		Then the initiative user should be purged from the system 
 
 	Scenario: Admin cancels account
-		And I follow "Verwijder mijn account"
+		And I follow "Verwijder mijn volledige inschrijving bij Bucket Line"
 		Then the initiative admin should be purged from the system

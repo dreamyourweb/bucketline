@@ -24,21 +24,21 @@ When /^I open the email$/ do
 end
 
 When /^the system sends the reminders$/ do    
-  require "rake"
   @rake = Rake::Application.new
   Rake.application = @rake
   Rake.application.rake_require "tasks/scheduler"
-  Rake::Task.define_task(:environment)
-  @rake['send_reminders'].invoke   
+  Rake::Task.define_task(:send_reminders)
+  @rake[:send_reminders].execute   
+  @rake[:send_reminders].reenable   
 end
 
 When /^the system sends the item placement mail$/ do    
-  require "rake"
   @rake = Rake::Application.new
   Rake.application = @rake
   Rake.application.rake_require "tasks/scheduler"
-  Rake::Task.define_task(:environment)
-  @rake['send_item_placement_mail'].invoke   
+  Rake::Task.define_task(:send_item_placement_mail)
+  @rake[:send_item_placement_mail].execute   
+  @rake[:send_item_placement_mail].reenable   
 end
 
 Then /^"([^']*?)" should receive (\d+) emails? from "([^']*?)"$/ do |address, n, sender|

@@ -68,6 +68,7 @@ Feature: get email notifications
 		When a new user is registered on the initiative
 		Then "initiative_admin@test.com" should receive 1 email
 
+	@wip
 	Scenario: send reminders
 		Given I am logged in as an initiative user
 		And there is a project with an item

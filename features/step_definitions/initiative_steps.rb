@@ -3,7 +3,7 @@ Given /^there is an initiative$/ do
 end
 
 Given /^I follow the first initiative$/ do
-	click_link('Bekijk initiatief') #Use only if there are multiple initiatives
+	click_link('Bekijk kalender') #Use only if there are multiple initiatives
 end
 
 When /^I create a new initiative$/ do
@@ -35,21 +35,21 @@ Then /^I should see both initiatives$/ do
 end
 
 Then /^I should see the right initiative permissions for the initiative user$/ do
-  page.should have_content("Bekijk initiatief")
+  page.should have_content("Bekijk kalender")
   page.should_not have_content("Bewerken")
   page.should_not have_content("Verwijderen")
   page.should_not have_content("Nieuwe Bucket Line aanmaken")
 end
 
 Then /^I should see the right initiative permissions for the initiative admin$/ do
-  page.should have_content("Bekijk initiatief")
+  page.should have_content("Bekijk kalender")
   page.should have_content("Bewerken")
   page.should have_content("Verwijderen")
   page.should_not have_content("Nieuwe Bucket Line aanmaken")
 end
 
 Then /^I should see the right initiative permissions for the super admin$/ do
-  page.should have_content("Bekijk initiatief")
+  page.should have_content("Bekijk kalender")
   page.should have_content("Bewerken")
   page.should have_content("Verwijderen")
   page.should have_content("Nieuwe Bucket Line aanmaken")
