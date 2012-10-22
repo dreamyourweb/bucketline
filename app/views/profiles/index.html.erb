@@ -1,6 +1,9 @@
 <h2>Overzicht alle gebruikers voor <%= @initiative.name %></h2>
 
 <p><%= link_to 'Nodig een nieuwe gebruiker uit voor deze Bucket Line', new_user_invitation_path %></p>	
+<% if current_user.super_admin %>
+	<p><%= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_initiative_user_role_path(@initiative) %></p>
+<% end %>
 
 <table class="admin-table table table-bordered table-striped">
 	<tr>

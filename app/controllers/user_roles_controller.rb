@@ -1,21 +1,25 @@
 class UserRolesController < ApplicationController
+  before_filter :authenticate_admin_for_initiative
+  before_filter :authenticate_super_admin, :only => [:new, :create]
+
   before_filter :get_initiative
 
   # GET /user_roles
   # GET /user_roles.json
-  def index
-    @user_roles = @initiative.user_roles.all
+  #def index
+  #  @user_roles = @initiative.user_roles.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @user_roles }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.json { render json: @user_roles }
+  #  end
+  #end
 
   # GET /user_roles/new
   # GET /user_roles/new.json
   def new
-    @user_role = @intiative.user_roles.new
+    @users = User.all
+    @user_role = @initiative.user_roles.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -24,9 +28,9 @@ class UserRolesController < ApplicationController
   end
 
   # GET /user_roles/1/edit
-  def edit
-    @user_role = UserRole.find(params[:id])
-  end
+  #def edit
+  #  @user_role = UserRole.find(params[:id])
+  #end
 
   # POST /user_roles
   # POST /user_roles.json
@@ -35,11 +39,9 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.save
-        format.html { redirect_to :id => nil, notice: 'Gebruikersrol is aangepast.' }
-        format.json { render json: @user_role, status: :created, location: @user_role }
+        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is aangepast.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @user_role.errors, status: :unprocessable_entity }
       end
     end
   end
