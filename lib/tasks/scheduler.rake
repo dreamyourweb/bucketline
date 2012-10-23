@@ -51,15 +51,14 @@ task :send_item_placement_mail => :environment do
 				mailing_list << user.email
 			end
 		end
-		joined_mailing_list = mailing_list.join(">,<")
 
 		#Build sentence
 		item_sentence = ""
 		items.each do |item|
-			item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + "<br>"
+			item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + ". "
 		end	
 
-		email = ItemPlacementMailer.new(:recipients => joined_mailing_list, :item_sentence => item_sentence)
+		email = ItemPlacementMailer.new(:recipients => mailing_list, :item_sentence => item_sentence)
 		puts "sending emails..."
 		puts email.recipients
 		puts email.item_sentence

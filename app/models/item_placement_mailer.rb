@@ -7,7 +7,7 @@ class ItemPlacementMailer < MailForm::Base
 	    {
 		    :subject => "Bucket Line - Er zijn nieuwe benodigdheden geplaatst",
 		    :to => "no-reply@bucketline.nl",
-			:bcc => %(<#{recipients}>),
+			:bcc => recipients,
 			:from => "no-reply@bucketline.nl"
 	    }
   	end

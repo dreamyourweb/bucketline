@@ -7,10 +7,10 @@ class ItemCancellationMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Bucket Line - Een item waaraan je bijdraagt is geannuleerd",
-      :to => %(<#{admin_email}>),
-			:bcc => %(<#{recipients}>),
-			:from => %(<#{admin_email}>)
+      :subject => "Bucket Line - Een benodigdheid waaraan je bijdraagt is geannuleerd",
+      :to => admin_email,
+			:bcc => recipients,
+			:from => admin_email
     }
   end
 end

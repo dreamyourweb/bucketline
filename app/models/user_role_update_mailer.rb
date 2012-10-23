@@ -6,8 +6,8 @@ class UserRoleUpdateMailer < MailForm::Base
   def headers
     {
       :subject => "Bucket Line - Je bevoegdheden zijn aangepast",
-      :to => %(<#{email}>),
-      :from => "no-reply@waardeverbinder.nl"
+      :to => email,
+      :from => "no-reply@bucketline.nl"
     }
   end
 end

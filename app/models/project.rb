@@ -75,8 +75,7 @@ class Project
 				mailing_list << user.email
 			end
 		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
-		email = ProjectPlacementMailer.new(:initiative => self.initiative.name, :recipients => unique_mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
+		email = ProjectPlacementMailer.new(:initiative => self.initiative.name, :recipients => mailing_list, :admin_email => self.owner.email, :admin_contact => ("email: " + self.owner.email + ", tel: " + self.owner.profile.phone), :location => self.location, :project_query => self.query, :project_start_at => self.start_at, :project_end_at => self.end_at, :items => item_list, :project_remark => self.remark)
 		email.deliver
 	end
 
@@ -110,7 +109,7 @@ class Project
 				end
 			end
 		end
-		unique_mailing_list = mailing_list.uniq.join(">,<")
+		unique_mailing_list = mailing_list.uniq
 	end
 
 	def contributing_users

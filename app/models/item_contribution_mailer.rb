@@ -10,8 +10,8 @@ class ItemContributionMailer < MailForm::Base
 
   def headers
     {
-      :subject => "Bucket Line - Er is een nieuwe bijdrage aan een van je projecten of benodigdheden",
-      :to => %(<#{admin_email}>),
+      :subject => "Bucket Line - Er is een nieuwe bijdrage aan een van je klussen of benodigdheden",
+      :to => admin_email,
       :from => "no-reply@bucketline.nl"
     }
   end
