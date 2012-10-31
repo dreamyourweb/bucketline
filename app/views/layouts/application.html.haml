@@ -33,8 +33,8 @@
   .row#flashmessages
     = render 'layouts/flashmessages'
   - if current_user
-    .feedback
-      = link_to feedback_path, :class => "fancybox" do
-        = image_tag "feedback_tab.png"
+    #feedback.hide-for-small
+      = link_to feedback_path, class: "fancybox" do
+        %h6 Feedback
   = yield
   = render :partial => "layouts/footer"
