@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/hecticjeff/fancybox-rails.git
+  revision: cba9c756a71601163ae3d04d18e36febff88de41
+  specs:
+    fancybox-rails (0.1.4)
+      railties (>= 3.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -92,8 +99,6 @@ GEM
     factory_girl_rails (3.5.0)
       factory_girl (~> 3.5.0)
       railties (>= 3.0.0)
-    fancybox-rails (0.1.4)
-      railties (>= 3.1.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
@@ -288,7 +293,7 @@ DEPENDENCIES
   email_spec
   event-calendar
   factory_girl_rails (>= 1.6.0)
-  fancybox-rails
+  fancybox-rails!
   guard
   guard-cucumber
   guard-rspec

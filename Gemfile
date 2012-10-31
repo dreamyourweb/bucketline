@@ -18,7 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 
-gem 'fancybox-rails'
+gem 'fancybox-rails', :git => 'git://github.com/hecticjeff/fancybox-rails.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
