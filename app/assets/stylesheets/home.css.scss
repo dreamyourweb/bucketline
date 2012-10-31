@@ -1,7 +1,35 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+header#homepage{
+	background: url(homepage-buckets.png) center bottom no-repeat $backgroundMediumColor;
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	padding-top: 20px;
+	padding-bottom: 300px;
+	.large.button{
+		margin-top: 30px;
+	}
+	.subheader{
+		color: $white;
+	}
+}
 
+@media only screen and (max-width: 767px){
+
+	header#homepage {
+		background-size: auto 200px;
+		padding-bottom: 220px;
+	}
+}
+
+section#homepage-waardeverbinder{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color :$backgroundLightColor;
+}
+
+
+
+
+/**************** OLD ***********************/
 
 .row.features{
 	margin-top: 130px;

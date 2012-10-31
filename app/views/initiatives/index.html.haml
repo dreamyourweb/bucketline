@@ -1,0 +1,56 @@
+%header#homepage
+  .row
+    .twelve.columns
+      %h1 Bucket Line
+      %h4.subheader Bucket Line brengt mensen samen om in een tijdelijke en persoonlijke noodsituatie, een steun te zijn door kleine klussen te doen.
+      = link_to 'Maak je eigen Bucket Line', new_initiative_path, class: "large button"
+
+%section#homepage-waardeverbinder
+  .row
+    .six.columns
+      %h4 Bucket Line
+      %p Een Bucket Line bestaat uit je eigen vertrouwde netwerk: de buurt, familie, het bedrijf, de school, de vereniging. Als bij jou of bij een ander in jouw Bucket Line netwerk een tijdelijke noodsituatie ontstaat, zoals een sterfgeval of ernstige ziekte in een gezin, zorgt de Bucket Line voor een gezamenlijke aanpak van kleine klussen die gedaan moeten worden, zoals boodschappen doen, poetsen, koken, of licht administratief werk.
+    .six.columns
+      %h4 De Bucket Line waardeverbinder
+      %p Met deze website kun je je eigen Bucket Line opstellen. Je kunt het zien als een interactieve agenda. Op basis van de beschikbaarheid van de leden van de Bucket Line en wat er binnen de Bucket Line aanwezig is, worden door een hulpbehoevende kleine klussen ingepland. Denk bijvoorbeeld aan koken, of naar de apotheek rijden. In een agenda kunnen de leden alle klussen bekijken, en meteen hun hulp aanbieden.
+      %p Op dit punt zijn we de Bucket Line waardeverbinder nog aan het testen. Neem contact op het Bucket Line (info@bucketline.nl) als je wilt helpen met testen.
+
+%section
+  .row
+    .twelve.columns
+      - if !current_user
+        %p
+          = link_to 'Log in', login_path
+          of #{link_to 'meld je aan', new_user_registration_path}.
+      - if current_user
+        - if !@initiatives.empty?
+          %h3
+            Mijn bucket Line#{"s" if @initiatives.count > 1}
+          .row
+            .span12
+              %table.table.table-bordered.table-striped
+                %tr
+                  %th Initiatief
+                  %th Locatie
+                  %th Omschrijving
+                  %th Mijn rol
+                  %th
+                  %th
+                - @initiatives.each do |initiative|
+                  %tr
+                    %td= initiative.name
+                    %td= initiative.location
+                    %td= initiative.description
+                    - user_admin_role = current_user.initiative_admin(initiative)
+                    %td= if user_admin_role then 'admin' else 'bijdrager' end
+                    %td= link_to 'Bekijk kalender', initiative_projects_path(initiative)
+                    %td
+                      - if user_admin_role
+                        = link_to 'Bewerken', edit_initiative_path(initiative)
+                        | #{link_to 'Verwijderen', initiative, confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
+        - else
+          .alert.alert-block
+            %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line. Vraag een ander lid om een uitnodiging, of neem contact op met info@bucketline.nl om er zelf een te beginnen.
+        - if current_user.super_admin
+          %p
+            = link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path

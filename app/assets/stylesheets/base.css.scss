@@ -1,3 +1,23 @@
+.top-bar{
+	margin: 0;
+}
+
+.button{
+	border-color: $baseColor;
+	background-color: $baseColor;
+	border-style: none;
+}
+.button:hover{
+	background-color: $baseDarkColor;
+}
+
+fieldset{
+	padding: 12px 12px 12px;
+}
+
+
+
+/***************** OLD **************************/
 html{
 	height:100%;
 }

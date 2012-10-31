@@ -1,4 +1,4 @@
-<h1>Nieuwe Bucket Line opzetten</h1>
+<h2>Nieuwe Bucket Line</h2>
 
 <%= render 'form' %>
 

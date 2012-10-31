@@ -1,0 +1,8 @@
+$baseColor: #6c5dc8;
+$baseDarkColor: darken($baseColor, 20%);
+
+$backgroundDarkColor: lighten($baseColor, 10%);
+$backgroundMediumColor: lighten($baseColor, 20%);
+$backgroundLightColor: lighten($baseColor, 30%);
+
+$footerColor: rgb(63, 63, 63);

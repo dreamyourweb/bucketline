@@ -24,8 +24,11 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass'
   gem 'coffee-rails', '~> 3.2.1'
-  #gem 'therubyracer'
+  gem 'compass-rails'
+  
+  gem 'zurb-foundation', '~> 3.2'
   gem 'uglifier', '>= 1.0.3'
+  gem "haml-rails"
 end
 
 group :development, :test do
@@ -57,7 +60,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem "unicorn-rails"
 
 # Deploy with Capistrano
 # gem 'capistrano'
