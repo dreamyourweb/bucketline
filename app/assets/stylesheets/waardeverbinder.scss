@@ -1,0 +1,22 @@
+#waardeverbinder-image{
+	background-image: url(waardeverbinder.jpg);
+	background-size: auto 300px;
+	background-position: right;
+
+	width: 100%;
+	height: 200px;
+
+	background-repeat: no-repeat;
+}
+
+header#waardeverbinder-top{
+	h1{color: $white;}
+	margin-bottom: 0;
+}
+
+@media only screen and (max-width: 767px){
+	#waardeverbinder-image{
+		background-size: auto 150px;
+		height: 100px;
+	}
+}

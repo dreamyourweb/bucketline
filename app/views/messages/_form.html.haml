@@ -1,0 +1,16 @@
+= form_for(@message) do |f|
+  - if @message.errors.any?
+    %h6.alert
+      = pluralize(@message.errors.count, "error")
+
+  = f.text_area :body, class: form_error_class(@message.errors[:body]), :rows => 6
+  - if !@message.errors[:body].empty?
+    %small.error #{@message.errors[:body].first}
+
+  = f.hidden_field :sender, :value => current_user.email
+
+  %p
+    %strong Let op,
+    gebruik dit formulier alleen voor het doorgeven van suggesties voor verbetering van de applicatie. Om in contact te komen met Bucket Line, mailt u naar info@bucketline.nl
+
+  = f.submit "Versturen", :class => "button"

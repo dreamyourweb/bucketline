@@ -2,8 +2,14 @@ body{
 	line-height: auto;
 }
 
+header{
+	padding-top: 20px;
+	background-color: $backgroundMediumColor;
+	margin-bottom: 30px;
+}
+
 .top-bar{
-	margin: 0;
+	margin-bottom: 0;
 }
 
 .button{
@@ -48,7 +54,6 @@ fieldset{
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
-
 
 /***************** OLD **************************/
 html{

@@ -2,7 +2,6 @@ header#homepage{
 	background: url(homepage-buckets.png) center bottom no-repeat $backgroundMediumColor;
 	background-attachment: scroll;
 	background-repeat: no-repeat;
-	padding-top: 20px;
 	padding-bottom: 300px;
 	.large.button{
 		margin-top: 30px;
@@ -10,6 +9,7 @@ header#homepage{
 	.subheader{
 		color: $white;
 	}
+	margin-bottom: 0px;
 }
 
 @media only screen and (max-width: 767px){
