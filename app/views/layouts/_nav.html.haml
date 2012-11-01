@@ -2,12 +2,15 @@
   %ul
     %li.name
       %h1
-        = link_to "Bucket Line", initiatives_path + "?no_redirect=true"
-        = @initiative.name if @initiative
+        = link_to "Bucket Line", root_path
+        =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
+        / = @initiative.name if @initiative
     %li.toggle-topbar
       %a{href: "#"}
   %section
     %ul.left
+      %li{class: get_active("initiatives")}
+        = link_to "Initiatieven", initiatives_path
       - if @initiative && request.path_parameters[:controller] != "initiatives"
         %li{class: get_active("calendar")}
           = link_to "Kalender", initiative_projects_path(@initiative)
@@ -43,8 +46,13 @@
 
     %ul.right
       - if user_signed_in?
-        %li
+        %li.has-dropdown
           = link_to current_user.email, profile_path(current_user.profile)
+          %ul.dropdown
+            %li{class: get_active("profile")}
+              = link_to "Profiel", profile_path(current_user.profile)
+            %li{class: get_active("availability")}
+              = link_to "Beschikbaarheid", profile_available_dates_path(current_user.profile)
         %li
           = link_to "Uitloggen", logout_path, :class => "btn"
       - else

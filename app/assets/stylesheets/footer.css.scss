@@ -3,6 +3,14 @@ footer{
 	padding-top: 20px;
 	margin-top: 20px;
 	color: $white;
+
+	a{
+		color: $shinyEdge;
+	}
+
+	a:hover{
+		color: $backgroundMediumColor;
+	};
 }
 
 /*************** OLD *******************/

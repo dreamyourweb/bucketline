@@ -1,5 +1,7 @@
 HvO::Application.routes.draw do
-	root :to => "initiatives#index"
+
+  root :to => "home#index"
+	# root :to => "initiatives#index"
 
 	get "waardeverbinder", :as => "waardeverbinder_info", :to => "waardeverbinder#info"
 

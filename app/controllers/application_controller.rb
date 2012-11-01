@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 		if params[:initiative_id]
 			@initiative = Initiative.find(params[:initiative_id])
 		else
-			@initiative = Initiative.find(session[:initiative_id])
+			@initiative = Initiative.find(session[:initiative_id]) if !@initiative.nil?
 		end
 	end
 

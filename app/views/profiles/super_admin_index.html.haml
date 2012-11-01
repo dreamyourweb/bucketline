@@ -1,0 +1,33 @@
+%header
+  .row
+    .twelve.columns
+      %h2 Applicatiegebruikers
+      %h4.subheader Totaal beschikbare sociale kapitaal
+%section
+  .row
+    .twelve.columns
+      %table.admin-table.table.table-bordered.table-striped
+        %tr
+          %th Naam
+          %th Bucket Line
+          %th Expertise
+          %th Kan helpen met
+          %th Handige spullen in bezit
+          %th Telefoon
+          %th Email
+          %th Buddy bereidheid
+          %th Admin
+          %th Super admin
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= initiatives_to_sentence(user.initiatives)
+            %td= user.profile.expertise
+            %td= user.profile.willing_to_help_with
+            %td= user.profile.tools_and_materials
+            %td= user.profile.phone
+            %td= user.email
+            %td= "✓" if user.profile.willing_to_become_admin
+            %td= "✓" if user.initiative_admin(user.initiatives)
+            %td= "✓" if user.super_admin
+      = link_to "Terug", initiatives_path + "?no_redirect=true"
