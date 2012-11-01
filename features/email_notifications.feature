@@ -1,6 +1,6 @@
 Feature: get email notifications
 	In order to be reminded of important activities
-	As a person related to the project
+	As a person related to a project
 	I want to receive email notifications on critical moments
 
 	Background:
