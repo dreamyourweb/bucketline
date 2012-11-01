@@ -9,31 +9,34 @@
       %a{href: "#"}
   %section
     %ul.left
-      %li{class: get_active("initiatives")}
+      %li{class: "#{get_active("initiatives")} #{}"}
         = link_to "Initiatieven", initiatives_path
+
+        
       - if @initiative && request.path_parameters[:controller] != "initiatives"
-        %li{class: get_active("calendar")}
-          = link_to "Kalender", initiative_projects_path(@initiative)
-        %li{class: get_active("dashboard")}
-          = link_to "Verlanglijstje", initiative_dashboard_path(@initiative)
-        - if user_signed_in?
-          %li{class: get_active("profile")}
-            = link_to "Mijn profiel en bijdragen", profile_path(current_user.profile)
-          %li{class: get_active("availability")}
-            = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile)
-          -if current_user.initiative_admin(@initiative)
-            %ul.drpodown
-              %li{class: get_active("availability_dashboard")}
-                = link_to "Beschikbare specialisten", initiative_availability_dashboard_path(@initiative)
-              %li{class: get_active("links")}
-                = link_to "Alle bijdragen", initiative_links_path(@initiative)
-              %li{class: get_active("profiles")}
-                = link_to "Deelnemers beheren", initiative_profiles_path(@initiative)
-              - if current_user.super_admin
-                %li{class: get_active("messages")}
-                  = link_to "Feedback berichten", messages_path
-                %li{class: get_active("all_profiles")}
-                  = link_to "Alle gebruikers", all_profiles_path
+        / %li{class: get_active("calendar")}
+        /   = link_to "Kalender", initiative_projects_path(@initiative)
+        / %li{class: get_active("dashboard")}
+        /   = link_to "Verlanglijstje", initiative_dashboard_path(@initiative)
+
+        / - if user_signed_in?
+        /   %li{class: get_active("profile")}
+        /     = link_to "Mijn profiel en bijdragen", profile_path(current_user.profile)
+        /   %li{class: get_active("availability")}
+        /     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile)
+        /   -if current_user.initiative_admin(@initiative)
+        /     %ul.drpodown
+        /       %li{class: get_active("availability_dashboard")}
+        /         = link_to "Beschikbare specialisten", initiative_availability_dashboard_path(@initiative)
+        /       %li{class: get_active("links")}
+        /         = link_to "Alle bijdragen", initiative_links_path(@initiative)
+        /       %li{class: get_active("profiles")}
+        /         = link_to "Deelnemers beheren", initiative_profiles_path(@initiative)
+        /       - if current_user.super_admin
+        /         %li{class: get_active("messages")}
+        /           = link_to "Feedback berichten", messages_path
+        /         %li{class: get_active("all_profiles")}
+        /           = link_to "Alle gebruikers", all_profiles_path
 
       - elsif current_user && current_user.super_admin
         %li.has-dropdown

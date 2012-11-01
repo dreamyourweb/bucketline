@@ -1,0 +1,10 @@
+/ = link_to projects_info_path, :class => "fancybox" do
+/   = image_tag "help.png", :class => "help-icon"
+%header
+  .row
+    .twelve.columns
+      %h1 #{@initiative.name}
+.row
+  .twelve.columns
+    = link_to 'Plaats nieuwe klus', :controller => :projects, :action => :new
+    = raw(event_calendar)

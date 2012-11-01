@@ -1,8 +1,0 @@
-<blockquote>
-	<p><%= comment.body %></p>
-	<small>
-		<%= comment.author %>
-		<%= link_to 'Verwijder reactie', question_comment_path(comment.question, comment), confirm: 'Weet je zeker dat je deze reactie wilt verwijderen?', method: :delete %> | 
-		<%= link_to 'Bekijk extra info', question_comment_path(comment.question, comment) %>
-	</small> 
-</blockquote>

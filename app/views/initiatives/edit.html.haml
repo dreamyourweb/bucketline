@@ -1,0 +1,13 @@
+%header
+  .row
+    .twelve.columns
+      %h1 Initiatief bewerken
+      %h4.subheader #{@initiative.name}
+.row
+  .six.columns
+    = render 'form'
+    = link_to 'Terug', initiatives_path
+  / .six.columns.hide-for-small
+  /   .panel
+  /     %h5 Foutje, bedankt!
+  /     %p Maak je geen zorgen als je een foutje hebt gemaakt. Je kunt later alles nog aanpassen.
