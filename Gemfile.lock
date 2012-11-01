@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/hecticjeff/fancybox-rails.git
-  revision: cba9c756a71601163ae3d04d18e36febff88de41
+  remote: git://github.com/sverigemeny/fancybox-rails.git
+  revision: 10851fd5b580ba9729c21cfc2af2556a4ce4a740
   specs:
     fancybox-rails (0.1.4)
       railties (>= 3.1.0)

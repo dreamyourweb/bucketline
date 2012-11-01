@@ -38,7 +38,7 @@
 
   - if current_user
     #feedback.hide-for-small
-      = link_to feedback_path, class: "fancybox" do
+      = link_to feedback_path, class: "fancybox fancybox.ajax" do
         %h6 Feedback
 
   = yield
