@@ -20,6 +20,8 @@ gem 'oauth2'
 
 gem 'fancybox-rails', :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 
+gem "haml-rails"
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass'
@@ -28,7 +30,6 @@ group :assets do
   
   gem 'zurb-foundation', '~> 3.2'
   gem 'uglifier', '>= 1.0.3'
-  gem "haml-rails"
 end
 
 group :development, :test do
