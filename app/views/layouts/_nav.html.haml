@@ -1,17 +1,25 @@
 %nav.top-bar
-  %ul
-    %li.name
-      %h1
-        = link_to "Bucket Line", root_path
-        =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
-        / = @initiative.name if @initiative
-    %li.toggle-topbar
-      %a{href: "#"}
-  %section
+  - if user_signed_in?
+    %ul
+      %li.name.has-dropdown
+        %h1
+          - if @initiative
+            = link_to @initiative.name, "#"
+          - else
+            = link_to "Profiel", "#"
+          =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
+          / = @initiative.name if @initiative
+        %ul.dropdown
+          - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
+            %li{class: get_active("messages")}
+              = link_to initiative.name, root_url(:subdomain => initiative.name) 
+      %li.toggle-topbar
+        %a{href: "#"}
+    %section
     %ul.left
-      %li{class: "#{get_active("initiatives")} #{}"}
-        = link_to "Initiatieven", initiatives_path
-
+      - if current_user && current_user.super_admin
+        %li
+          = link_to "Applicatie beheer", "#"
         
       - if @initiative && request.path_parameters[:controller] != "initiatives"
         / %li{class: get_active("calendar")}
@@ -50,20 +58,21 @@
     %ul.right
       - if user_signed_in?
         %li.has-dropdown
-          = link_to current_user.email, profile_path(current_user.profile)
+          = link_to current_user.email, profile_path(current_user.profile, :host => request.domain)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
           %ul.dropdown
             %li{class: get_active("profile")}
-              = link_to "Profiel", profile_path(current_user.profile)
-            %li{class: get_active("availability")}
-              = link_to "Beschikbaarheid", profile_available_dates_path(current_user.profile)
-        %li
-          = link_to "Uitloggen", logout_path, :class => "btn"
+              = link_to "Profiel", profile_path(current_user.profile, :subdomain => false)
+            %li
+              = link_to "Mijn bijdragen", profile_path(current_user.profile, :subdomain => false)
+            %li
+              = link_to "Instellingen", profile_path(current_user.profile, :subdomain => false)
+            %li.divider
+            %li
+              = link_to "Uitloggen", logout_path(:subdomain => false), :class => "btn"
       - else
         %li
           = link_to "Inloggen", login_path
         %li
           = link_to "Registreren", new_user_registration_path
-
-
 
 

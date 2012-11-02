@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+	include UrlHelper
+
   protect_from_forgery
 
 	def authenticate_super_admin
@@ -20,10 +22,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def get_initiative
-		if params[:initiative_id]
-			@initiative = Initiative.find(params[:initiative_id])
-		else
-			@initiative = Initiative.find(session[:initiative_id]) if !@initiative.nil?
+		if request.subdomain
+			@initiative = Initiative.where(name: request.subdomain).first
 		end
 	end
 

@@ -6,8 +6,9 @@ class ProjectsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-		session[:initiative_id] = params[:initiative_id]
-		@initiative = Initiative.find(params[:initiative_id])
+		# session[:initiative_id] = params[:initiative_id]
+
+		@initiative = Initiative.where(name: request.subdomain).first
 
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i

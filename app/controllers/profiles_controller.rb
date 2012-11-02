@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
 		@items = []
-    @user_role = UserRole.where(:initiative_id => @initiative.id, :profile_id => current_user.id).first
+    # @user_role = UserRole.where(:initiative_id => @initiative.id, :profile_id => current_user.id).first
 		@profile = current_user.profile
 		@profile.links.all.each do |link| 
 			@items << link.item

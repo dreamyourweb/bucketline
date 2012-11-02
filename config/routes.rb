@@ -1,5 +1,6 @@
 HvO::Application.routes.draw do
 
+  match '/' => 'projects#index', :constraints => { :subdomain => /.+/ }  
   root :to => "home#index"
 	# root :to => "initiatives#index"
 
@@ -26,15 +27,16 @@ HvO::Application.routes.draw do
   resources :initiatives, :except => [:show] do #perhaps store initiative in session variable
     resources :user_roles, :except => [:show, :edit, :index] 
     match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-	  resources :projects, :except => [:show] do
-		  resources :items, :only => [:index, :update] #items belonging to projects
-		end
 		resources :items, :except => [:index, :show] #loose items
 		get "dashboard", :to => "items#dashboard"
     get "availability_dashboard", :to => "available_dates#availability_dashboard"
 		resources :links, :only => [:index]
     get "profiles", :to => "profiles#index"
 	end
+
+  resources :projects, :except => [:show] do
+    resources :items, :only => [:index, :update] #items belonging to projects
+  end
 
 	get "projects/info"
 	get "available_dates/info"
