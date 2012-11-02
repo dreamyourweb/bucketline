@@ -1,19 +1,7 @@
 %ul.nav-bar.vertical
   %li.active
-    %a{:href => "#"} Nav Item 1
-  %li.has-flyout
-    %a{:href => "#"} Nav Item 2
-    %a.flyout-toggle{:href => "#"}
-    %ul.flyout
-      %li
-        %a{:href => "#"} Sub Nav Item 1
-      %li
-        %a{:href => "#"} Sub Nav Item 2
-      %li
-        %a{:href => "#"} Sub Nav 3
-      %li
-        %a{:href => "#"} Sub Nav 4
-      %li
-        %a{:href => "#"} Sub Nav Item 5
+    = link_to "Mijn profiel", profile_url(current_user.profile, :subdomain => false)
   %li
-    %a{:href => "#"} Nav Item 4
+    = link_to "Mijn bijdrages", profile_url(current_user.profile, :subdomain => false)
+  %li
+    = link_to "Instellingen", profile_url(current_user.profile, :subdomain => false)
