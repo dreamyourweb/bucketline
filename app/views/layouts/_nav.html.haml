@@ -1,6 +1,6 @@
 %nav.top-bar
-  - if user_signed_in?
-    %ul
+  %ul
+    - if user_signed_in?
       %li.name.has-dropdown
         %h1
           - if @initiative
@@ -58,17 +58,17 @@
     %ul.right
       - if user_signed_in?
         %li.has-dropdown
-          = link_to current_user.email, profile_path(current_user.profile, :host => request.domain)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
+          = link_to current_user.email, profile_url(current_user.profile, :subdomain => false)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
           %ul.dropdown
             %li{class: get_active("profile")}
-              = link_to "Profiel", profile_path(current_user.profile, :subdomain => false)
+              = link_to "Profiel", profile_url(current_user.profile, :subdomain => false)
             %li
-              = link_to "Mijn bijdragen", profile_path(current_user.profile, :subdomain => false)
+              = link_to "Mijn bijdragen", profile_url(current_user.profile, :subdomain => false)
             %li
-              = link_to "Instellingen", profile_path(current_user.profile, :subdomain => false)
+              = link_to "Instellingen", profile_url(current_user.profile, :subdomain => false)
             %li.divider
             %li
-              = link_to "Uitloggen", logout_path(:subdomain => false), :class => "btn"
+              = link_to "Uitloggen", logout_url(:subdomain => false), :class => "btn"
       - else
         %li
           = link_to "Inloggen", login_path
