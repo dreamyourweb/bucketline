@@ -2,9 +2,11 @@
 /   = image_tag "help.png", :class => "help-icon"
 %header
   .row
-    .twelve.columns
+    %section.header
       %h1 #{@initiative.name}
 .row
-  .twelve.columns
+  .nine.columns.push-three
     = link_to 'Plaats nieuwe klus', :controller => :projects, :action => :new
     = raw(event_calendar)
+  .three.columns.pull-nine
+    = render :partial => "shared/initiative_side_menu.html"

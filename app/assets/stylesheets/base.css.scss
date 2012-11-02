@@ -50,6 +50,20 @@ fieldset{
   height: 40px;
 }
 
+section.header{
+	@include column(12);
+}
+
+// #main{
+// 	@include column(9);
+// 	@include push(3);
+// }
+
+// #sidebar{
+// 	@include column(3);
+// 	@include pull(9);
+// }
+
 
 /***************** OLD **************************/
 html{
