@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
       if @project.update_attributes(params[:project])
         #Items are updated after project is updated, so if this method is called by an after_create hook, project.items is old when the mail is sent. That's why it is called by the controller.
         @project.send_project_update_mail
-        format.html { redirect_to initiative_projects_path(@initiative), notice: 'Het project is bijgewerkt' }
+        format.html { redirect_to projects_path, notice: 'Het project is bijgewerkt' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to initiative_projects_url(@initiative) }
+      format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
   end
