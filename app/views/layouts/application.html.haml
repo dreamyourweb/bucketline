@@ -52,11 +52,11 @@
         = yield
       .three.columns.pull-nine
         = yield(:sidebar)
-  - if content_for?(:full)
+  - elsif content_for?(:full)
+    = yield(:full)   
+  - else
     .row
       .twelve.columns
-        = yield(:full)
-  - else
-    = yield
+        = yield
 
   = render :partial => "layouts/footer"
