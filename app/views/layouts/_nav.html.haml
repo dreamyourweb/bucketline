@@ -18,8 +18,10 @@
     %section
     %ul.left
       - if current_user && current_user.super_admin
-        %li
+        %li.has-dropdown
           = link_to "Applicatie beheer", admin_path
+          %ul.dropdown
+            = render :partial => "admin/side_menu"
         
       - if @initiative && request.path_parameters[:controller] != "initiatives"
         / %li{class: get_active("calendar")}

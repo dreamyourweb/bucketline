@@ -11,6 +11,8 @@ gem 'mail_form'
 gem 'devise'
 gem 'devise_invitable'
 gem 'event-calendar', :require => 'event_calendar'
+gem "simple_calendar", "~> 0.0.7"
+
 #gem "watu_table_builder", :require => "table_builder"
 
 #Facebook login
