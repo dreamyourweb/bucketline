@@ -33,7 +33,7 @@
 					<% end %>
 
 				<% else %>
-					<%= form_tag initiative_project_item_path(@initiative, @project, item), :method => "put" do %>			
+					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
 						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
 						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
 
@@ -64,8 +64,8 @@
 </div>
 
 <% if current_user && current_user.initiative_admin(@initiative) %>
-	<%= link_to 'Project of items bewerken', edit_initiative_project_path(@initiative, @project) %><br>
-	<%= link_to 'Project verwijderen', initiative_project_path(@initiative, @project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %>
+	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
+	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %>
 	<hr>
 	<div>
 		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
