@@ -5,13 +5,19 @@ class Initiative
   field :name, :type => String
   field :location, :type => String
   field :description, :type => String
+  field :slug, :type => String
 
   validates_presence_of :name
+  before_save :build_slug
 
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
 
 	has_many :projects, :dependent => :destroy
 	has_many :items, :dependent => :destroy #loose items
+
+	def build_slug
+		self.slug = self.name.downcase.gsub(' ', '-')
+	end
 
 	def admins
 		user_roles = UserRole.where(:initiative_id => self.id, :admin => true)

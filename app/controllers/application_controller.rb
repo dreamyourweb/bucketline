@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
 	def get_initiative
 		if request.subdomain
-			@initiative = Initiative.where(name: request.subdomain).first
+			@initiative = Initiative.where(slug: request.subdomain).first
 		end
 	end
 

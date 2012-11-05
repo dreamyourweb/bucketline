@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   def index
 		# session[:initiative_id] = params[:initiative_id]
 
-		@initiative = Initiative.where(name: request.subdomain).first
+		@initiative = Initiative.where(slug: request.subdomain).first
 
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
