@@ -36,4 +36,4 @@
       %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line. Vraag een ander lid om een uitnodiging, of neem contact op met info@bucketline.nl om er zelf een te beginnen.
   - if current_user.super_admin
     %p
-      = link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path
+      = link_to 'Nieuwe Bucket Line aanmaken', new_initiative_url(:subdomain => false)

@@ -38,7 +38,7 @@ class InitiativesController < ApplicationController
   # GET /initiatives/new
   # GET /initiatives/new.json
   def new
-    # @initiative = Initiative.new
+    @initiative = Initiative.new
 
     respond_to do |format|
       format.html # new.html.erb
