@@ -247,6 +247,8 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simple_calendar (0.0.8)
+      rails (>= 3.0)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -311,6 +313,7 @@ DEPENDENCIES
   rspec-rails
   ruby_gntp
   sass-rails (~> 3.2.3)
+  simple_calendar (~> 0.0.7)
   uglifier (>= 1.0.3)
   unicorn-rails
   zurb-foundation (~> 3.2)
