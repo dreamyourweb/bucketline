@@ -12,7 +12,7 @@
 			<% if item.success %>
 				<p>Dit item is al afgevinkt, het is niet meer mogelijk om bij te dragen.</p>
 			<% else %>
-				<%= form_tag initiative_item_path(initiative, item), :method => "put", :class=>"item-form" do %>			
+				<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
 					<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>
 					<%= hidden_field_tag :redirect_to_dashboard, true %>
 				<% end %>
@@ -29,8 +29,8 @@
 	<% end %>
 
 	<% if current_user && current_user.initiative_admin(initiative) %>
-		<br><%= link_to "Item bewerken", edit_initiative_item_path(initiative, item) %>
-		<%= link_to "Item verwijderen", initiative_item_path(initiative, item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
+		<br><%= link_to "Item bewerken", edit_item_path(item) %>
+		<%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
 	<% end %>
 </div>
 

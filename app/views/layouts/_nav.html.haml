@@ -12,7 +12,7 @@
         %ul.dropdown
           - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
             %li{class: get_active("messages")}
-              = link_to initiative.name, root_url(:subdomain => initiative.name) 
+              = link_to initiative.name, root_url(:subdomain => initiative.slug) 
       %li.toggle-topbar
         %a{href: "#"}
     %section

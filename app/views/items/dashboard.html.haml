@@ -27,6 +27,6 @@
 - if current_user && current_user.initiative_admin(@initiative)
   .row
     .span12
-      = link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative)
+      = link_to 'Plaats nieuw item op verlanglijstje', new_item_path
       %br
-        = link_to 'Toon ook de afgeronde items', initiative_dashboard_path(@initiative) + "?show_all_items=true"
+        = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"

@@ -104,13 +104,13 @@ class ProfilesController < ApplicationController
     if @profile == current_user.profile
   		if params[:redirect_to_links]
         @link.destroy
-  			redirect_to initiative_links_path(@initiative), :notice => "Bijdrage is ingetrokken."
+  			redirect_to links_path, :notice => "Bijdrage is ingetrokken."
       elsif params[:redirect_to_calendar]
         @link.destroy
-        redirect_to initiative_calendar_path(@initiative), :notice => "Bijdrage is ingetrokken."
+        redirect_to calendar_path, :notice => "Bijdrage is ingetrokken."
       elsif params[:redirect_to_wishlist]
         @link.destroy
-        redirect_to initiative_dashboard_path(@initiative), :notice => "Bijdrage is ingetrokken."
+        redirect_to dashboard_path, :notice => "Bijdrage is ingetrokken."
   		else
   			@link.destroy
   			redirect_to profile_path(current_user.profile), :notice => "Bijdrage is ingetrokken."
