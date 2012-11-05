@@ -37,4 +37,12 @@ class Initiative
 		users
 	end
 
+  def events_hash_for_month(date=Date.today)
+    events_hash = {}
+    self.projects.where(start_at: date.beginning_of_month..date.end_of_month).each do |project|
+      events_hash[project.start_at.day] = project
+    end
+    return events_hash
+  end
+
 end

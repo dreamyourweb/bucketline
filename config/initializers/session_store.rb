@@ -6,7 +6,7 @@
 #   HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => "bucketline.nl"
 # end
   
-  HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => :all
+HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => :all
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

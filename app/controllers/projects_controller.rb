@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  helper LaterDude::CalendarHelper
+
   before_filter :get_initiative
 	before_filter :authenticate_admin_for_initiative, :except => [:index, :info]
   before_filter :authenticate_user_for_initiative, :only => [:index, :info]
@@ -8,7 +10,7 @@ class ProjectsController < ApplicationController
   def index
 		# session[:initiative_id] = params[:initiative_id]
 
-		@initiative = Initiative.where(slug: request.subdomain).first
+		# @initiative = Initiative.where(slug: request.subdomain).first
 
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
@@ -17,6 +19,7 @@ class ProjectsController < ApplicationController
 
 		@first_day_of_week = 1
 		@event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
+    @events_hash = @initiative.events_hash_for_month(@shown_month)
   end
 
 	def info
