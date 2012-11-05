@@ -41,17 +41,21 @@
       = link_to feedback_path, class: "fancybox fancybox.ajax" do
         %h6 Feedback
 
-
-  - if 1==1
+  - if content_for?(:header)
     %header
       .row
         %section.header
           = yield(:header)
+  - if content_for?(:sidebar)
     .row
       .nine.columns.push-three
         = yield
       .three.columns.pull-nine
         = yield(:sidebar)
+  - if content_for?(:full)
+    .row
+      .twelve.columns
+        = yield(:full)
   - else
     = yield
 

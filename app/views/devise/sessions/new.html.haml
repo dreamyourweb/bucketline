@@ -1,0 +1,24 @@
+- content_for :header do
+  %h1 Inloggen
+ 
+- content_for :full do
+  .four.columns
+    / .login
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-horizontal"}) do |f|
+      = f.label :email, :class => "control-label"
+      = f.email_field :email
+      = f.label "Wachtwoord", :class => "control-label"
+      = f.password_field :password
+      - if devise_mapping.rememberable?
+        %label.checkbox
+          = f.check_box :remember_me
+          %span.custom.checkbox
+          Onthoud mij
+      .controls
+        = f.submit "Inloggen", :class => "btn btn-primary"
+    .login-links
+      = render "links"
+    / .last{:style => "display:none"}
+    /   %p.fb-login
+    /     Of:
+    /     %br= link_to 'Log in met facebook', '/auth/facebook/', :class=> "btn btn-primary"
