@@ -27,7 +27,7 @@
       %td= user.profile.tools_and_materials
       %td= user.profile.phone
       %td= user.email
-      %td= "\✓" if user.profile.willing_to_become_admin
+      %td= "Ja" if user.profile.willing_to_become_admin
       %td
         - if user != current_user
           - user_role = get_user_role(@initiative, user)
