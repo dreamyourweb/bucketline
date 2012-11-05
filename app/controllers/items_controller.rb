@@ -134,7 +134,7 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to initiative_dashboard_path(@initiative), :notice => "Item is verwijderd" }
+      format.html { redirect_to dashboard_path, :notice => "Item is verwijderd" }
       format.json { head :no_content }
     end
   end
