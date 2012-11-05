@@ -7,7 +7,7 @@
 
 %p= link_to 'Nodig een nieuwe gebruiker uit voor deze Bucket Line', new_user_invitation_path
 - if current_user.super_admin
-  %p= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_initiative_user_role_path(@initiative)
+  %p= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_user_role_path
 
 %table.admin-table.table.table-bordered.table-striped
   %tr
@@ -31,7 +31,7 @@
       %td
         - if user != current_user
           - user_role = get_user_role(@initiative, user)
-          = form_for([@initiative, user_role]) do |f|
+          = form_for(user_role) do |f|
             = f.check_box :admin
             = f.submit "Update", :class => "btn", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
         - else

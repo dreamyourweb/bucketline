@@ -39,7 +39,7 @@ class UserRolesController < ApplicationController
 
     respond_to do |format|
       if @user_role.save
-        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is aangepast.' }
+        format.html { redirect_to profiles_path, notice: 'Gebruikersrol is aangepast.' }
       else
         format.html { render action: "new" }
       end
@@ -56,7 +56,7 @@ class UserRolesController < ApplicationController
         if @user_role.user.profile.send_user_role_update_mail
           @user_role.send_user_role_update_mail
         end
-        format.html { redirect_to initiative_profiles_path(@initiative), notice: 'Gebruikersrol is aangepast.' }
+        format.html { redirect_to profiles_path, notice: 'Gebruikersrol is aangepast.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
