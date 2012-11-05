@@ -1,0 +1,35 @@
+- content_for :header do
+  %h1 #{@initiative.name}
+  %h4.subheader Beschikbaarheid
+ 
+- content_for :sidebar do
+  = render :partial => "shared/initiative_side_menu.html"
+  
+%p Beschikbare specialisten geordend per datum, voor vandaag en verder. #{link_to "Toon ook beschikbaarheid van voor vandaag.", :controller => "available_dates", :action => "availability_dashboard", :show => "all"}
+
+#accordion2.accordion
+  - @dates.each do |date|
+    .accordion-group
+      .accordion-heading
+      %a.accordion-toggle{href: "#" + date.to_s, "data-parent" => "#accordion2", "data-toggle" => "collapse"}
+        #{pretty_date(date)} (#{@available_dates.select{|ad| ad.date == date}.count})
+
+      .accordion-body.collapse{:id => "\#{date.to_s}", :style => "height: 0px;"}
+      .accordion-inner
+        %table.admin-table.table.table-bordered.table-striped
+          %tr
+            %th Naam
+            %th Dagdelen
+            %th Expertise
+            %th Kan helpen met
+            %th Handige spullen in bezit
+            %th Email
+          - @available_dates.select{|ad| ad.date == date}.each do |available_date|
+            - if available_date.profile.user
+              %tr
+                %td= available_date.profile.user.name
+                %td= build_dayparttext(available_date)
+                %td= available_date.profile.expertise
+                %td= available_date.profile.willing_to_help_with
+                %td= available_date.profile.tools_and_materials
+                %td= available_date.profile.user.email

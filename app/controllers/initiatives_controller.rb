@@ -1,5 +1,6 @@
 class InitiativesController < ApplicationController
   before_filter :authenticate_super_admin, :except => [:index]
+  before_filter :get_initiative
 
   # GET /initiatives
   # GET /initiatives.json
@@ -37,7 +38,7 @@ class InitiativesController < ApplicationController
   # GET /initiatives/new
   # GET /initiatives/new.json
   def new
-    @initiative = Initiative.new
+    # @initiative = Initiative.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,7 +48,7 @@ class InitiativesController < ApplicationController
 
   # GET /initiatives/1/edit
   def edit
-    @initiative = Initiative.find(params[:id])
+    # @initiative = Initiative.find(params[:id])
   end
 
   # POST /initiatives

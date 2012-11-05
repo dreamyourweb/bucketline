@@ -19,7 +19,7 @@
     %ul.left
       - if current_user && current_user.super_admin
         %li
-          = link_to "Applicatie beheer", "#"
+          = link_to "Applicatie beheer", admin_path
         
       - if @initiative && request.path_parameters[:controller] != "initiatives"
         / %li{class: get_active("calendar")}
@@ -45,15 +45,6 @@
         /           = link_to "Feedback berichten", messages_path
         /         %li{class: get_active("all_profiles")}
         /           = link_to "Alle gebruikers", all_profiles_path
-
-      - elsif current_user && current_user.super_admin
-        %li.has-dropdown
-          %a{href: "#"} Admin
-          %ul.dropdown
-            %li{class: get_active("messages")}
-              = link_to "Feedback berichten", messages_path
-            %li{class: get_active("all_profiles")}
-              = link_to "Alle gebruikers", all_profiles_path
 
     %ul.right
       - if user_signed_in?

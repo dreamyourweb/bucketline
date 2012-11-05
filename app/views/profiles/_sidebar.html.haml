@@ -1,0 +1,6 @@
+- content_for :sidebar do
+  %ul.nav-bar.vertical
+    %li{class: (request.path ==  profile_path(current_user.profile, :subdomain => false)) ? "active" : ""}
+      = link_to "Mijn profiel", profile_path(current_user.profile, :subdomain => false)
+    %li{class: (request.path == profile_contribution_path(current_user.profile, :subdomain => false)) ? "active" : ""}
+      = link_to "Mijn bijdrages", profile_contribution_path(current_user.profile, :subdomain => false)

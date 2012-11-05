@@ -1,0 +1,45 @@
+- content_for :header do
+  %h1 #{@initiative.name}
+  %h4.subheader Deelnemers
+ 
+- content_for :sidebar do
+  = render :partial => "shared/initiative_side_menu.html"
+
+%p= link_to 'Nodig een nieuwe gebruiker uit voor deze Bucket Line', new_user_invitation_path
+- if current_user.super_admin
+  %p= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_initiative_user_role_path(@initiative)
+
+%table.admin-table.table.table-bordered.table-striped
+  %tr
+    %th Naam
+    %th Expertise
+    %th Kan helpen met
+    %th Handige spullen in bezit
+    %th Telefoon
+    %th Email
+    %th Buddy bereidheid
+    %th Admin
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= user.profile.expertise
+      %td= user.profile.willing_to_help_with
+      %td= user.profile.tools_and_materials
+      %td= user.profile.phone
+      %td= user.email
+      %td= "\✓" if user.profile.willing_to_become_admin
+      %td
+        - if user != current_user
+          - user_role = get_user_role(@initiative, user)
+          = form_for([@initiative, user_role]) do |f|
+            = f.check_box :admin
+            = f.submit "Update", :class => "btn", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
+        - else
+          = check_box_tag '', '', true, :disabled => true
+      / <td><#= "\✓" if user.initiative_admin(@initiative) %></td>
+.well
+  %p Kopiëerbare lijst met alle adressen:
+  = text_field_tag "emails", build_emails_for_copy(@users), :style => "width:99%;"
+  %p
+    %b Let op:
+    zet deze adressen om privacy redenen alleen in de 'bcc' van de email. (Anders weet iedereen elkaars email!)

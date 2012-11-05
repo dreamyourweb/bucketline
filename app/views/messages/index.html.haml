@@ -1,20 +1,16 @@
-%header
-  .row
-    .twelve.columns
-      %h1 Feedback berichten
+- content_for :header do
+  %h1 Feedback berichten
+ 
+- content_for :sidebar do
+  = render :partial => "admin/side_menu"
 
-%section
-  .row
-    .twelve.columns
-      %p Terugkoppeling en ideëen die door de gebruikers zijn ingezonden via het feedback formulier
-      %table.admin-table.table.table-bordered.table-striped
-        %tr
-          %th Afzender
-          %th Bericht
-          %th
-        - @messages.each do |message|
-          %tr
-            %td= message.sender
-            %td= message.body
-            %td= link_to 'Verwijderen', message, confirm: 'Weet je zeker dat je dit bericht wilt verwijderen?', method: :delete
-      = link_to "Terug", initiatives_path
+%table.admin-table.table.table-bordered.table-striped
+  %tr
+    %th Afzender
+    %th Bericht
+    %th
+  - @messages.each do |message|
+    %tr
+      %td= message.sender
+      %td= message.body
+      %td= link_to 'Verwijderen', message, confirm: 'Weet je zeker dat je dit bericht wilt verwijderen?', method: :delete

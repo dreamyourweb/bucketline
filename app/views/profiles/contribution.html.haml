@@ -1,0 +1,26 @@
+- content_for :header do
+  %h1 Mijn bijdragen
+ 
+- content_for :sidebar do
+  = render :partial => "sidebar"
+
+%table.admin-table.table.table-bordered.table-striped
+  %tr
+    %th Bucket Line
+    %th Klus
+    %th Bijdrage
+    %th Aantal
+    %th Datum
+    %th Begintijd
+    %th Eindtijd
+    %th
+  - @items.each do |item|
+    %tr
+      %td= if item.project then item.project.initiative.name else item.initiative.name end
+      %td= item.project.query if item.project_id
+      %td= item.name
+      %td= get_amount(@profile, item)
+      %td= pretty_date(item.project.start_at) if item.project_id
+      %td= pretty_time(item.project.start_at) if item.project_id
+      %td= pretty_time(item.project.end_at) if item.project_id
+      %td= link_to "Bijdrage intrekken", remove_item_from_profile_path(@profile, item), :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?"

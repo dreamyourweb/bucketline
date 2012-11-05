@@ -12,6 +12,14 @@ class ProfilesController < ApplicationController
     @users = User.all
   end
 
+  def contribution
+    @items = []
+    @profile = current_user.profile
+    @profile.links.all.each do |link| 
+      @items << link.item
+    end
+  end
+
   # GET /profiles/1
   # GET /profiles/1.json
   def show

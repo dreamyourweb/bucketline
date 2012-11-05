@@ -1,9 +1,8 @@
 - content_for :header do
   %h1 #{@initiative.name}
-  %h4.subheader Kalender
+  %h4.subheader Mijn beschikbaarheid
  
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu.html"
-
-= link_to 'Plaats nieuwe klus', :controller => :projects, :action => :new
-= raw(event_calendar)
+  
+= raw(availability_event_calendar)

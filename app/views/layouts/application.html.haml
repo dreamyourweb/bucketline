@@ -41,6 +41,18 @@
       = link_to feedback_path, class: "fancybox fancybox.ajax" do
         %h6 Feedback
 
-  = yield
+
+  - if 1==1
+    %header
+      .row
+        %section.header
+          = yield(:header)
+    .row
+      .nine.columns.push-three
+        = yield
+      .three.columns.pull-nine
+        = yield(:sidebar)
+  - else
+    = yield
 
   = render :partial => "layouts/footer"

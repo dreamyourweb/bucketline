@@ -1,0 +1,32 @@
+- content_for :header do
+  %h1 #{@initiative.name}
+  %h4.subheader Verlanglijst
+ 
+- content_for :sidebar do
+  = render :partial => "shared/initiative_side_menu.html"
+
+.row
+  .three.columns
+    %h5 Vervoer
+  .three.columns
+    %h5 In en om het huis
+  .three.columns
+    %h5 Oppas en gezelschap
+  .three.columns
+    %h5 Boodschappen en koken
+.row
+  .three.columns
+    = render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile}
+  .three.columns
+    = render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile}
+  .three.columns
+    = render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile}
+  .three.columns
+    = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
+
+- if current_user && current_user.initiative_admin(@initiative)
+  .row
+    .span12
+      = link_to 'Plaats nieuw item op verlanglijstje', new_initiative_item_path(@initiative)
+      %br
+        = link_to 'Toon ook de afgeronde items', initiative_dashboard_path(@initiative) + "?show_all_items=true"

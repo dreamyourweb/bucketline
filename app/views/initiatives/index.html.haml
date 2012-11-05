@@ -1,45 +1,39 @@
-%header
-  .row
-    .twelve.columns
-      %h1 Bucket Line Initiatieven
-      = link_to 'Maak je eigen Bucket Line', new_initiative_path, class: "large button"
+- content_for :header do
+  %h1 Bucket Line Initiatieven
+  = link_to 'Nieuwe Bucket Line', new_initiative_path, class: "large button"
+ 
+- content_for :sidebar do
+  = render :partial => "admin/side_menu"
 
-%section
-  .row
-    .twelve.columns
-      - if !current_user
-        %p
-          = link_to 'Log in', login_path
-          of #{link_to 'meld je aan', new_user_registration_path}.
-      - if current_user
-        - if !@initiatives.empty?
-          %h3
-            Mijn bucket Line#{"s" if @initiatives.count > 1}
-          .row
-            .span12
-              %table.table.table-bordered.table-striped
-                %tr
-                  %th Initiatief
-                  %th Locatie
-                  %th Omschrijving
-                  %th Mijn rol
-                  %th
-                  %th
-                - @initiatives.each do |initiative|
-                  %tr
-                    %td= initiative.name
-                    %td= initiative.location
-                    %td= initiative.description
-                    - user_admin_role = current_user.initiative_admin(initiative)
-                    %td= if user_admin_role then 'admin' else 'bijdrager' end
-                    %td= link_to 'Bekijk kalender', initiative_projects_path(initiative)
-                    %td
-                      - if user_admin_role
-                        = link_to 'Bewerken', edit_initiative_path(initiative)
-                        | #{link_to 'Verwijderen', initiative, confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
-        - else
-          .alert.alert-block
-            %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line. Vraag een ander lid om een uitnodiging, of neem contact op met info@bucketline.nl om er zelf een te beginnen.
-        - if current_user.super_admin
-          %p
-            = link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path
+- if !current_user
+  %p
+    = link_to 'Log in', login_path
+    of #{link_to 'meld je aan', new_user_registration_path}.
+- if current_user
+  - if !@initiatives.empty?
+    %table.table.table-bordered.table-striped
+      %tr
+        %th Initiatief
+        %th Locatie
+        %th Omschrijving
+        %th Mijn rol
+        %th
+        %th
+      - @initiatives.each do |initiative|
+        %tr
+          %td= initiative.name
+          %td= initiative.location
+          %td= initiative.description
+          - user_admin_role = current_user.initiative_admin(initiative)
+          %td= if user_admin_role then 'admin' else 'bijdrager' end
+          %td= link_to 'Bekijk kalender', root_url(subdomain: initiative.name)
+          %td
+            - if user_admin_role
+              = link_to 'Bewerken', edit_initiative_path(initiative)
+              | #{link_to 'Verwijderen', initiative, confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
+  - else
+    .alert.alert-block
+      %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line. Vraag een ander lid om een uitnodiging, of neem contact op met info@bucketline.nl om er zelf een te beginnen.
+  - if current_user.super_admin
+    %p
+      = link_to 'Nieuwe Bucket Line aanmaken', new_initiative_path

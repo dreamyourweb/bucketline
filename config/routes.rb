@@ -1,6 +1,13 @@
 HvO::Application.routes.draw do
 
-  match '/' => 'projects#index', :constraints => { :subdomain => /.+/ }  
+  constraints :subdomain => /.+/ do
+    match '/' => 'projects#index'
+    match '/whishlist' => "items#dashboard"
+    match '/all_available_dates' => "available_dates#availability_dashboard"
+    match '/profiles' => "profiles#index"
+    match '/settings' => "initiatives#edit"
+  end
+  
   root :to => "home#index"
 	# root :to => "initiatives#index"
 
@@ -16,6 +23,7 @@ HvO::Application.routes.draw do
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
 		#get "send_reminder", :to => "profiles#send_reminder_mail"
+    get "contribution" => "profiles#contribution"
 	end
   
   devise_for :users, :controllers => {:invitations => 'invitations'}
@@ -36,6 +44,13 @@ HvO::Application.routes.draw do
 
   resources :projects, :except => [:show] do
     resources :items, :only => [:index, :update] #items belonging to projects
+  end
+
+  get 'admin', :to => 'messages#index'
+  scope "/admin" do
+    resources :messages
+    get 'profiles', :to => "profiles#super_admin_index"
+    get 'initiatives', :to => "initiatives#index"
   end
 
 	get "projects/info"
