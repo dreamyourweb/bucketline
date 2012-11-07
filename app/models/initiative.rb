@@ -7,10 +7,11 @@ class Initiative
   field :description, :type => String
   field :slug, :type => String
 
+  before_validation :build_slug
+
   validates_presence_of :name
   validates_uniqueness_of :slug, :message => "Naam bestaat al."
   validates_exclusion_of :slug, :in => ["www", "bucketline"], :message => "Naam is niet toegestaan."
-  before_save :build_slug
 
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
 
