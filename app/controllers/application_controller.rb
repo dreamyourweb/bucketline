@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 		if request.subdomain
 			@initiative = Initiative.where(slug: request.subdomain).first
 			if @initiative.nil?
-				redirect_to root_url
+				redirect_to root_url(:subdomain => false)
 			end
 		end
 	end

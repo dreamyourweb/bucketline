@@ -12,15 +12,6 @@ class InitiativesController < ApplicationController
         @initiatives = current_user.initiatives
       end
     end
-
-    if (@initiatives && @initiatives.count == 1) && !params[:no_redirect]
-      redirect_to initiative_projects_path(@initiatives.first) #Only one initiative, so redirect directly to this initiative if not stated otherwise
-    else
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @initiatives }
-      end
-    end
   end
 
   # GET /initiatives/1
@@ -59,7 +50,7 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       if @initiative.save
         @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
-        redirect_to root_path
+        redirect_to root_url(:subdomain => @initiative.slug)
       else
         format.html { render action: "new" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }

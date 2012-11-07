@@ -1,4 +1,4 @@
-= form_for @initiative, :url => new_initiative_url  do |f|
+= form_for @initiative do |f|
   - if @initiative.errors.any?
     %h6.alert
       = pluralize(@initiative.errors.count, "error")

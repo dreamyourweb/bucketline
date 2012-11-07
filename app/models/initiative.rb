@@ -8,7 +8,7 @@ class Initiative
   field :slug, :type => String
 
   validates_presence_of :name
-  validates_uniqueness_of :slug, "Naam bestaat al."
+  validates_uniqueness_of :slug, :message => "Naam bestaat al."
   validates_exclusion_of :slug, :in => ["www", "bucketline"], :message => "Naam is niet toegestaan."
   before_save :build_slug
 
