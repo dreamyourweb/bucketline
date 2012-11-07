@@ -50,7 +50,7 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       if @initiative.save
         @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
-        redirect_to root_url(:subdomain => @initiative.slug)
+        format.html { redirect_to initiatives_url + "?no_redirect=true" }
       else
         format.html { render action: "new" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
@@ -65,8 +65,7 @@ class InitiativesController < ApplicationController
 
     respond_to do |format|
       if @initiative.update_attributes(params[:initiative])
-        format.html { redirect_to @initiative, notice: 'Initiative was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to initiatives_url + "?no_redirect=true" }
       else
         format.html { render action: "edit" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
