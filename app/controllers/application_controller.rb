@@ -24,6 +24,9 @@ class ApplicationController < ActionController::Base
 	def get_initiative
 		if request.subdomain
 			@initiative = Initiative.where(slug: request.subdomain).first
+			if @initiative.nil?
+				redirect_to "http://bucketline.nl"
+			end
 		end
 	end
 

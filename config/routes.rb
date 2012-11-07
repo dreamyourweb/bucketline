@@ -7,7 +7,7 @@ HvO::Application.routes.draw do
     match '/profiles' => "profiles#index"
     match '/settings' => "initiatives#edit"
   end
-  
+
   root :to => "home#index"
 	# root :to => "initiatives#index"
 
