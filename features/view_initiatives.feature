@@ -41,7 +41,6 @@ Feature: View and redirect from initiatives overview
 		#And I am on the initiatives page
 		Then I should see the right initiative permissions for the initiative admin
 
-	@wip
 	Scenario: Super admin has the right permissions on an initiative
 		Given there is an initiative
 		And I am logged in as a super admin
