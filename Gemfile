@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :test do
+  #gem 'rack-test', :git => "https://github.com/hassox/rack-test.git"
 	gem "factory_girl_rails", ">= 1.6.0"
   gem "cucumber-rails", ">= 1.2.1"
   gem "capybara", ">= 1.1.2"

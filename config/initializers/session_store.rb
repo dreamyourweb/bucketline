@@ -1,7 +1,9 @@
 # Be sure to restart your server when you modify this file.
 
-if Rails.env.development? or Rails.env.test?
+if Rails.env.development?
   HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => "lvh.me"
+elsif Rails.env.test?
+  HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => "example.com"
 elsif Rails.env.production?
   HvO::Application.config.session_store :cookie_store, key: '_HvO_session', :domain => "bucketline.nl"
 end
