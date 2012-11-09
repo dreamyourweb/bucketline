@@ -9,7 +9,7 @@ Feature: loose items for wishlist dashboard
 	Scenario: Mark item as provided via wishlist dashboard
 		Given there is a loose item
 		And I am logged in as an initiative user
-		And I am on the only initiatives' projects page
+		#And I am on the only initiatives' projects page
 		When I follow "Verlanglijstje"
 		And I provide 1 item
 		And I follow "Verlanglijstje"
@@ -17,7 +17,7 @@ Feature: loose items for wishlist dashboard
 
 	Scenario: Place loose item
 		Given I am logged in as an initiative admin
-		And I am on the only initiatives' projects page
+		#And I am on the only initiatives' projects page
 		When I follow "Verlanglijstje"
 		And I follow "Plaats nieuw item op verlanglijstje"
 		And I fill the form with a loose item

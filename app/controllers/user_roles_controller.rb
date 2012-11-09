@@ -1,8 +1,8 @@
 class UserRolesController < ApplicationController
+  before_filter :get_initiative
+
   before_filter :authenticate_admin_for_initiative
   before_filter :authenticate_super_admin, :only => [:new, :create]
-
-  before_filter :get_initiative
 
   # GET /user_roles
   # GET /user_roles.json

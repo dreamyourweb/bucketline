@@ -2,9 +2,9 @@ Given /^there is an initiative$/ do
 	@initiative = Initiative.find_or_create_by(:name => "Mijn initiatief", :location => "Mijn locatie", :description => "Mijn omschrijving")
 end
 
-Given /^I follow the first initiative$/ do
-	click_link('Bekijk kalender') #Use only if there are multiple initiatives
-end
+#Given /^I follow the first initiative$/ do
+#	click_link('Bekijk kalender') #Use only if there are multiple initiatives
+#end
 
 When /^I create a new initiative$/ do
   click_link('Nieuwe Bucket Line aanmaken')

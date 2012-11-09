@@ -3,7 +3,7 @@
   %h4.subheader Beschikbaarheid
  
 - content_for :sidebar do
-  = render :partial => "shared/initiative_side_menu.html"
+  = render :partial => "shared/initiative_side_menu"
   
 %p Beschikbare specialisten geordend per datum, voor vandaag en verder. #{link_to "Toon ook beschikbaarheid van voor vandaag.", :controller => "available_dates", :action => "availability_dashboard", :show => "all"}
 

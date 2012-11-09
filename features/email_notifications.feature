@@ -5,7 +5,7 @@ Feature: get email notifications
 
 	Background:
 		Given there is an initiative
-		And I am on the only initiatives' projects page
+		#And I am on the only initiatives' projects page
 
 	Scenario: receive notification when a project is placed
 		Given I am logged in as an initiative user

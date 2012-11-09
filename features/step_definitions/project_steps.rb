@@ -50,7 +50,7 @@ When /^the initiative admin cancels the project$/ do
 end
 
 When /^the initiative admin edits the project$/ do
-	visit "/initiatives"
+	#visit "/initiatives"
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')
 	click_link "Mijn project"
