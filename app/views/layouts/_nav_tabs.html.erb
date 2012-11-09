@@ -10,8 +10,8 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li class=<%= get_active("availability_dashboard") %> ><%= link_to "Beschikbare specialisten", initiative_availability_dashboard_path(@initiative) %></li>
-						<li class=<%= get_active("links") %> ><%= link_to "Alle bijdragen", initiative_links_path(@initiative) %></li>
-						<li class=<%= get_active("profiles") %> ><%= link_to "Deelnemers beheren", initiative_profiles_path(@initiative) %></li>
+						<li class=<%= get_active("links") %> ><%= link_to "Alle bijdragen", links_path %></li>
+						<li class=<%= get_active("profiles") %> ><%= link_to "Deelnemers beheren", profiles_path %></li>
 						<% if current_user.super_admin %>
 							<li class=<%= get_active("messages") %> ><%= link_to "Feedback berichten", messages_path %></li>
 							<li class=<%= get_active("all_profiles") %> ><%= link_to "Alle gebruikers", all_profiles_path %></li>

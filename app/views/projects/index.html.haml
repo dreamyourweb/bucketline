@@ -5,7 +5,8 @@
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
 
-= link_to 'Plaats nieuwe klus', :controller => :projects, :action => :new
+- if current_user.initiative_admin(@initiative)
+  = link_to 'Plaats nieuwe klus', :controller => :projects, :action => :new
 = raw(event_calendar)
 / = calendar_for(Date.today.year, Date.today.month, first_day_of_week: 1) do |day|
 /   - if @events_hash[day.day]

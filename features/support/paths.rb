@@ -15,9 +15,9 @@ module NavigationHelpers
 		when /^the home page$/
 			root_url
 		when /^the initiative admin contributions dashboard$/
-			initiative_links_url(@initiative)
+			links_url
     when /^the manage users page$/
-      initiative_profiles_url(@initiative)
+      profiles_url
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

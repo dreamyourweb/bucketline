@@ -6,8 +6,8 @@ Feature: Update profile
 	Background:
 		Given there is an initiative
 		And I am logged in as an initiative user
-		And I am on the only initiatives' projects page
-		When I follow "Mijn profiel"
+		#And I am on the only initiatives' projects page
+		When I follow "Profiel"
 
 	Scenario: Relevant profile fields
 		Then I should see my relevant profile fields

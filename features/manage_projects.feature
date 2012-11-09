@@ -19,7 +19,7 @@ Feature: Place a new project
 		When I click on a project
 		And I provide 1 item
 		And I delete the project
-		And I follow "Mijn profiel"
+		And I follow "Profiel"
 		Then I should not see "Mijn item"
 
 	Scenario: Admin refuses contribution

@@ -3,6 +3,7 @@ Feature: Initiative admin appoints fellow admin
 	As an initiative admin
 	I want to appoint a fellow initiative admin
 
+	@wip
 	Scenario: Initiative admin appoints a fellow initiative admin
 		Given there is an initiative
 		And there is an initiative user
