@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 	def get_initiative
 		if request.subdomain
 			@initiative = Initiative.where(slug: request.subdomain).first
-			if @initiative.nil?
+			if @initiative.nil? && request.path_parameters[:controller] != "profiles"
 				redirect_to root_url(:subdomain => false)
 			end
 		end

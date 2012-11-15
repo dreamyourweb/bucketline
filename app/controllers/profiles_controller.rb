@@ -29,6 +29,8 @@ class ProfilesController < ApplicationController
 		@profile.links.all.each do |link| 
 			@items << link.item
 		end
+
+    p "USER:" + current_user.to_s
 		#items.order_by([[:start_at, :asc]])
 		respond_to do |format|
       format.html # show.html.erb

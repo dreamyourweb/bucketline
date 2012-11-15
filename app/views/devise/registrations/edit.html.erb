@@ -1,27 +1,31 @@
 <% content_for :header do %>
-  <h1>Bewerk <%= resource_name.to_s.humanize %></h1>
+  <h1>Instellingen bewerken</h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render :partial => "profiles/sidebar" %>
 <% end %>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
+  <div>Naam<br />
+  <%= f.email_field :name %></div>
+
+  <div>Email<br />
   <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div>Nieuwe wachtwoord <i>(leeglaten als je deze niet wilt veranderen)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div>Nieuwe wachtwoord bevestigen<br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div>Huidige wachtwoord <i>(we hebben je huidige wachtwoord nodig om veranderingen te bevestigen)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Instellingen wijzigen" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Verwijder mijn inschrijving</h3>
 
-<p>Unhappy? <%= link_to "Verwijder my account", registration_path(resource_name), :confirm => "Zeker weten?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+  <%= link_to 'Verwijder mijn volledige inschrijving bij Bucket Line', user_registration_path, :method => :delete, :confirm => "Weet je zeker dat je je volledige inschrijving wilt verwijderen? Al je bijdragen worden ingetrokken en je kunt niet meer verder bijdragen." %>

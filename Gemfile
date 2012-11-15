@@ -20,7 +20,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'oauth2'
 
-gem 'fancybox-rails', :git => 'git://github.com/sverigemeny/fancybox-rails.git'
+gem 'fancybox-rails'#, :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 
 gem "haml-rails"
 
