@@ -1,7 +1,9 @@
 - content_for :header do
   %h1 #{@initiative.name}
-  %h4.subheader Verlanglijst
- 
+  %h4.subheader Verlanglijstje
+  - if current_user && current_user.initiative_admin(@initiative)
+    = link_to 'Nieuw Item', new_item_path, :class => "large button"
+
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
 
@@ -25,8 +27,4 @@
     = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
 
 - if current_user && current_user.initiative_admin(@initiative)
-  .row
-    .span12
-      = link_to 'Plaats nieuw item op verlanglijstje', new_item_path
-      %br
-        = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"
+  = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"

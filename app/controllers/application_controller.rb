@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 	def get_initiative
 		if request.subdomain
 			@initiative = Initiative.where(slug: request.subdomain).first
-			if @initiative.nil? && request.path_parameters[:controller] != "profiles"
+			if @initiative.nil? && request.path_parameters[:controller] != "profiles" && request.path_parameters[:controller] != "admin" && !(request.path_parameters[:controller] == "initiatives" && request.path_parameters[:action] == "index")
 				redirect_to root_url(:subdomain => false)
 			end
 		end

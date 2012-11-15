@@ -30,7 +30,7 @@
 
 	<% if current_user && current_user.initiative_admin(initiative) %>
 		<br><%= link_to "Item bewerken", edit_item_path(item) %>
-		<%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
+		<br><%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
 	<% end %>
 </div>
 
