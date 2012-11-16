@@ -7,11 +7,11 @@ end
 #end
 
 When /^I create a new initiative$/ do
-  click_link('Nieuwe Bucket Line aanmaken')
+  click_link('Nieuwe Bucket Line')
   fill_in("initiative_name", :with => "Mijn initiatief")
   fill_in("initiative_location", :with => "Mijn locatie")
   fill_in("initiative_description", :with => "Mijn omschrijving")
-  click_button("Bucket Line aanmaken")
+  click_button("Opslaan")
 end
 
 Then /^I should be an initiative admin$/ do
@@ -45,17 +45,18 @@ end
 
 Then /^I should see the right initiative permissions for the initiative user$/ do
   page.should have_content("Mijn initiatief")
-  page.should have_content("Profiel")
+  page.should have_content("Mijn profiel")
   page.should have_content("Mijn bijdragen")
   page.should have_content("Instellingen")
   page.should have_content("Kalender")
   page.should have_content("Verlanglijstje")
   page.should have_content("Mijn beschikbaarheid")
-  page.should_not have_content("Plaats nieuwe klus")
-  page.should_not have_content("Bucketline instellingen")
+  page.should have_content("Over deze Bucket Line")
+  page.should_not have_content("Nieuwe Klus")
+  page.should_not have_content("Bucket Line instellingen")
   page.should_not have_content("Deelnemers beheer")
-  page.should_not have_content("Bucketline beschikbaarheid")
-  page.should_not have_content("Bucketline bijdragen")
+  page.should_not have_content("Alle beschikbaarheid")
+  page.should_not have_content("Alle bijdragen")
   page.should_not have_content("Applicatie beheer")
   page.should_not have_content("Alle bucket lines")
   page.should_not have_content("Feedback berichten")
@@ -64,17 +65,18 @@ end
 
 Then /^I should see the right initiative permissions for the initiative admin$/ do
   page.should have_content("Mijn initiatief")
-  page.should have_content("Profiel")
+  page.should have_content("Mijn profiel")
   page.should have_content("Mijn bijdragen")
   page.should have_content("Instellingen")
   page.should have_content("Kalender")
   page.should have_content("Verlanglijstje")
   page.should have_content("Mijn beschikbaarheid")
-  page.should have_content("Bucketline bijdragen")
-  page.should have_content("Plaats nieuwe klus")
-  page.should have_content("Bucketline instellingen")
+  page.should have_content("Over deze Bucket Line")
+  page.should have_content("Alle bijdragen")
+  page.should have_content("Nieuwe Klus")
+  page.should have_content("Bucket Line instellingen")
   page.should have_content("Deelnemers beheer")
-  page.should have_content("Bucketline beschikbaarheid")
+  page.should have_content("Alle beschikbaarheid")
   page.should_not have_content("Applicatie beheer")
   page.should_not have_content("Alle bucket lines")
   page.should_not have_content("Feedback berichten")
@@ -83,7 +85,7 @@ end
 
 Then /^I should see the right initiative permissions for the super admin$/ do
   #Super admin is not a member of any initiative, so initiative options are not shown
-  page.should have_content("Profiel")
+  page.should have_content("Mijn profiel")
   page.should have_content("Mijn bijdragen")
   page.should have_content("Instellingen")
 
@@ -99,7 +101,6 @@ Then /^I should only see the initiative I am a member of$/ do
 end
 
 When /^I promote the initiative user to initiative admin$/ do
-  save_and_open_page
   check "user_role_admin"
   click_button "Update"
 end

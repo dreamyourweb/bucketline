@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
 		
 		when /^the initiatives page$/
-			initiatives_url + "?no_redirect=true"
+			admin_initiatives_url
     when /^the registrations page$/
       new_user_registration_path
     when /^the only initiatives' projects page$/
@@ -19,7 +19,7 @@ module NavigationHelpers
 		when /^the initiative admin contributions dashboard$/
 			links_url
     when /^the manage users page$/
-      profiles_url
+      profiles_url(:subdomain => @initiative.slug)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -9,7 +9,7 @@ Feature: Admin invites new user to join initiative
 
 	Scenario: Admin invites new user
 		When I go to the manage users page
-		And I follow "Nodig een nieuwe gebruiker uit voor deze Bucket Line"
+		And I follow "Nieuwe Uitnodiging"
 		And I submit the form with a new invitation
 		Then "initiative_user@test.com" should receive 1 email
 		When the user accepts the invitation
@@ -18,7 +18,7 @@ Feature: Admin invites new user to join initiative
 	Scenario: Admin invites existing user
 		Given there is a user
 		When I go to the manage users page
-		And I follow "Nodig een nieuwe gebruiker uit voor deze Bucket Line"
+		And I follow "Nieuwe Uitnodiging"
 		And I submit the form with a new invitation
 		Then "initiative_user@test.com" should receive 1 email
 		When the user accepts the invitation

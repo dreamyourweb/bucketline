@@ -53,7 +53,7 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       if @initiative.save
         @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
-        format.html { redirect_to initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangemaakt." }
+        format.html { redirect_to admin_initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangemaakt." }
       else
         format.html { render action: "new" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class InitiativesController < ApplicationController
   def update
     respond_to do |format|
       if @initiative.update_attributes(params[:initiative])
-        format.html { redirect_to initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangepast." }
+        format.html { redirect_to admin_initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangepast." }
       else
         format.html { render action: "edit" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
@@ -81,7 +81,7 @@ class InitiativesController < ApplicationController
     @initiative.destroy
 
     respond_to do |format|
-      format.html { redirect_to initiatives_url + "?no_redirect=true" }
+      format.html { redirect_to admin_initiatives_url + "?no_redirect=true" }
       format.json { head :no_content }
     end
   end

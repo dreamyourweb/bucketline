@@ -9,7 +9,7 @@ Feature: Place a new project
 		#And I am on the only initiatives' projects page
 
 	Scenario: Place new project
-		And I follow "Plaats nieuwe klus"
+		And I follow "Nieuwe Klus"
 		And I fill in the form with a project and an item
 		And I press "Project en items opslaan"
 		Then I should see my project
@@ -19,15 +19,14 @@ Feature: Place a new project
 		When I click on a project
 		And I provide 1 item
 		And I delete the project
-		And I follow "Profiel"
+		And I follow "Mijn profiel"
 		Then I should not see "Mijn item"
 
 	Scenario: Admin refuses contribution
 		Given there is a project with an item
 		When I click on a project
 		And I provide 1 item
-		And I go to the initiative admin contributions dashboard
-		And I follow the project link
-		Then I should see "Mijn item"		
+		And I follow "Alle bijdragen"
+		Then I should see "Mijn item"
 		When I follow "bijdrage weigeren"
 		Then I should not see "Mijn item"

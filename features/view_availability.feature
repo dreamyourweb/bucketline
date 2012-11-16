@@ -9,5 +9,5 @@ Feature: view availability of specialists
 		And a specialist "Frans" with email "frans@test.com" and expertise "Bakker" who provided his availability 
 
 	Scenario: View available specialists
-		When I follow "Bucketline beschikbaarheid"
+		When I follow "Alle beschikbaarheid"
 		Then I should see "frans@test.com"

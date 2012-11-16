@@ -5,7 +5,7 @@ Feature: Create initiative and invite new members
 
 	Scenario: User creates initiative and becomes inititative administrator
 		Given I am logged in as a super admin
-		#And I am on the initiatives page
+		And I am on the initiatives page
 		When I create a new initiative
 		Then I should be an initiative admin 
 

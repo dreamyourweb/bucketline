@@ -2,7 +2,7 @@
   %h1 #{@initiative.name}
   %h4.subheader Verlanglijstje voor doorlopende benodigdheden
   - if current_user && current_user.initiative_admin(@initiative)
-    = link_to 'Nieuw Item', new_item_path, :class => "large button"
+    = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "large button"
 
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"

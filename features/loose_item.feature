@@ -19,7 +19,7 @@ Feature: loose items for wishlist dashboard
 		Given I am logged in as an initiative admin
 		#And I am on the only initiatives' projects page
 		When I follow "Verlanglijstje"
-		And I follow "Plaats nieuw item op verlanglijstje"
+		And I follow "Nieuwe Benodigdheid"
 		And I fill the form with a loose item
 		Then I should see my new loose item
 

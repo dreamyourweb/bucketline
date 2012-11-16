@@ -30,7 +30,7 @@ end
 When /^the initiative admin plans a project for tomorrow$/ do
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')
-	click_link('Plaats nieuwe klus')
+	click_link('Nieuwe Klus')
 	fill_in("project_query", :with => "Mijn project")
 	select(Date.tomorrow.day.to_s, :from => "project_input_date_3i")
 	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_input_date_2i")

@@ -6,21 +6,23 @@ Feature: Update profile
 	Background:
 		Given there is an initiative
 		And I am logged in as an initiative user
-		#And I am on the only initiatives' projects page
-		When I follow "Profiel"
 
 	Scenario: Relevant profile fields
+		When I follow "Mijn profiel"
 		Then I should see my relevant profile fields
 
 	Scenario: Edit my expertise
+		When I follow "Mijn profiel"
 		And I change my experise
 		And I press "Profiel opslaan"
 		Then I should see my new expertise
 
 	Scenario: User cancels account
+		When I follow "Instellingen"
 		And I follow "Verwijder mijn volledige inschrijving bij Bucket Line"
 		Then the initiative user should be purged from the system 
 
 	Scenario: Admin cancels account
+		When I follow "Instellingen"
 		And I follow "Verwijder mijn volledige inschrijving bij Bucket Line"
 		Then the initiative admin should be purged from the system

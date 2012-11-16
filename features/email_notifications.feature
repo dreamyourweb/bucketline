@@ -73,7 +73,6 @@ Feature: get email notifications
 		Given I am logged in as an initiative user
 		And there is a project with an item
 		And a clear email queue
-		And I am on the only initiatives' projects page
  		When I provide an item via the calendar page
 		And the system sends the reminders
 		Then "initiative_user@test.com" should receive 1 email 

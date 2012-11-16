@@ -23,7 +23,7 @@ Feature: User offers help
 
 	Scenario: Retreat help via profile
 		When I provide an item via the calendar page
-		And I follow "Profiel"
+		And I follow "Mijn profiel"
 		Then I should see "Mijn item"
 		When I retreat my contribution
 		Then I should not see "Mijn item"
