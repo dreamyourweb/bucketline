@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_filter :get_initiative, :except => [:super_admin_index]
 	before_filter :authenticate_user!
-	before_filter :authenticate_admin_for_initiative, :only => [:index]
+  before_filter :authenticate_admin_for_initiative, :only => [:index]
   before_filter :authenticate_super_admin, :only => [:super_admin_index]
 
 	def index
@@ -30,7 +30,6 @@ class ProfilesController < ApplicationController
 			@items << link.item
 		end
 
-    p "USER:" + current_user.to_s
 		#items.order_by([[:start_at, :asc]])
 		respond_to do |format|
       format.html # show.html.erb
@@ -115,7 +114,7 @@ class ProfilesController < ApplicationController
         redirect_to dashboard_path, :notice => "Bijdrage is ingetrokken."
   		else
   			@link.destroy
-  			redirect_to profile_path(current_user.profile), :notice => "Bijdrage is ingetrokken."
+  			redirect_to profile_contribution_path(current_user.profile), :notice => "Bijdrage is ingetrokken."
       end
 		else
 			redirect_to profile_path(current_user.profile), :notice => "Je kunt alleen je eigen bijdrages intrekken."

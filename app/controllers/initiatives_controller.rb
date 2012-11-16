@@ -1,6 +1,7 @@
 class InitiativesController < ApplicationController
-  before_filter :get_initiative, :only => [:edit, :update]
-  before_filter :authenticate_super_admin, :except => [:edit, :update]
+  before_filter :get_initiative, :only => [:edit, :update, :show]
+  before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
+  before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
 
   # GET /initiatives
@@ -11,15 +12,23 @@ class InitiativesController < ApplicationController
 
   # GET /initiatives/1
   # GET /initiatives/1.json
-  #def show
-  #  @initiative = Initiative.find(params[:id])
-	#	session[:initiative_id] = params[:id]
+  def show
+    @user_role = @initiative.user_roles.where(:user_id => current_user.id).last
 
-  #  respond_to do |format|
-  #    format.html # show.html.erb
-  #    format.json { render json: @initiative }
-  #  end
-  #end
+    @admin_names = []
+    @user_names = []
+    @extra_user_count = 0
+
+    @initiative.user_roles.each do |user_role|
+      if user_role.admin && user_role.user.profile.show_name_in_overview
+        @admin_names << user_role.user.name
+      elsif user_role.user.profile.show_name_in_overview
+        @user_names << user_role.user.name
+      else
+        @extra_user_count += 1
+      end
+    end
+  end
 
   # GET /initiatives/new
   # GET /initiatives/new.json

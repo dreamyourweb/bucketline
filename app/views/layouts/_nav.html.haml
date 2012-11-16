@@ -6,11 +6,11 @@
           - if @initiative
             = link_to @initiative.name, "#"
           - elsif @profile
-            = link_to "Profiel", "#"
+            = link_to "Mijn Bucket Lines", "#"
           - elsif @user
-            = link_to "Profiel", "#"
+            = link_to "Mijn Bucket Lines", "#"
           - else
-            = link_to "Admin", "#"
+            = link_to "Mijn Bucket Lines", "#"
           =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
           / = @initiative.name if @initiative
         %ul.dropdown

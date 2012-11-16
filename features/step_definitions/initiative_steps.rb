@@ -29,6 +29,15 @@ Given /^there are two initiatives$/ do
 	@second_initiative = Initiative.find_or_create_by(:name => "Mijn tweede initiatief", :location => "Mijn locatie", :description => "Mijn omschrijving")
 end
 
+Then /^I should see the initiative properties$/ do
+  page.should have_content("Naam: Mijn initiatief")
+  page.should have_content("Omschrijving: Mijn omschrijving")
+  page.should have_content("Locatie: Mijn locatie")
+  page.should have_content("Bucket Line beheerders: ")
+  page.should have_content("Bucket Line leden: User")
+  page.should have_content("Schrijf mij uit bij deze Bucket Line")
+end
+
 Then /^I should see both initiatives$/ do
   page.should have_content("Mijn eerste initiatief")
   page.should have_content("Mijn tweede initiatief")

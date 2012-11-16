@@ -5,6 +5,8 @@
     = link_to "Verlanglijstje", "/whishlist"
   %li{class: (request.path == profile_available_dates_path(current_user)) ? "active" : ""}
     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user)
+  %li{class: (request.path == initiative_path) ? "active" : ""}
+    = link_to "Over deze Bucket Line", initiative_path
 
 - if current_user.initiative_admin(@initiative)
   %ul.nav-bar.vertical

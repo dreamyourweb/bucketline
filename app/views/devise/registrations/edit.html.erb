@@ -10,7 +10,7 @@
   <%= devise_error_messages! %>
 
   <div>Naam<br />
-  <%= f.email_field :name %></div>
+  <%= f.text_field :name %></div>
 
   <div>Email<br />
   <%= f.email_field :email %></div>
@@ -24,7 +24,7 @@
   <div>Huidige wachtwoord <i>(we hebben je huidige wachtwoord nodig om veranderingen te bevestigen)</i><br />
   <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Instellingen wijzigen" %></div>
+  <div><%= f.submit "Instellingen wijzigen", :class => "button" %></div>
 <% end %>
 
 <h3>Verwijder mijn inschrijving</h3>

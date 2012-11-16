@@ -1,0 +1,19 @@
+<% content_for :header do %>
+  <h1>Over deze Bucket Line</h1>
+  <h4 class="subheader">Informatie over en bijdragers aan <%= @initiative.name %><h4>
+<% end %>
+ 
+<% content_for :sidebar do %>
+  <%= render :partial => "shared/initiative_side_menu" %>
+<% end %>
+
+<p><b>Naam:</b> <%= @initiative.name %><p>
+<p><b>Omschrijving:</b> <%= @initiative.description %><p>
+<p><b>Locatie:</b> <%= @initiative.location %><p>
+
+<p><b>Bucket Line beheerders:</b> <%= @admin_names.to_sentence %>.</p>
+<p><b>Bucket Line leden:</b> <%= @user_names.to_sentence %><%= if @extra_user_count > 0 then ", en nog " + @extra_user_count.to_s + " ander(en)." end %></p>
+
+<% if @user_role %>
+	<p><%= link_to "Schrijf mij uit bij deze Bucket Line", user_role_path(@user_role), :method => :delete, :confirmation => "Weet je zeker dat je jezelf wilt uitschrijven bij deze Bucket Line?" %></p>
+<% end %>

@@ -9,13 +9,25 @@ module ItemsHelper
 
 	def get_contributors(item)
 		contributors = []
+		anonymous_contributor_count = 0
 		item.links.all.each do |link|
-			contributors << link.profile.user.name
+			if link.profile.show_name_in_overview
+				contributors << link.profile.user.name
+			else
+				anonymous_contributor_count += 1
+			end
 		end
 		if !contributors.empty?
-			contributors = " Bijdragers zijn: " + contributors.to_sentence + "."
+			contributors = " Bijdragers zijn: " + contributors.to_sentence
+			if anonymous_contributor_count > 0
+				contributors << ", en nog " + anonymous_contributor_count.to_s + " ander(en)"
+			end
+			contributors << "."
 		else
 			contributors = ""
+			if anonymous_contributor_count > 0
+				contributors << anonymous_contributor_count.to_s + " bijdrager(s)."
+			end
 		end
 		contributors
 	end

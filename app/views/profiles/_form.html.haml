@@ -33,4 +33,8 @@
     = f.check_box :send_user_role_update_mail
     %span.custom.checkbox
     Stuur mij een email als mijn bevoegdheden in een Bucket Line wordt aangepast.
-  = f.submit "Profiel opslaan", :class => "btn btn-primary"
+  %label{for: "checkbox5"}
+    = f.check_box :show_name_in_overview
+    %span.custom.checkbox
+    Toon mijn naam als bijdrager.
+  = f.submit "Profiel opslaan", :class => "button"

@@ -6,6 +6,7 @@ HvO::Application.routes.draw do
     match '/all_available_dates' => "available_dates#availability_dashboard"
     match '/profiles' => "profiles#index"
     match '/settings' => "initiatives#edit"
+    match '/initiative' => "initiatives#show"
   end
 
   root :to => "home#index"
@@ -20,6 +21,7 @@ HvO::Application.routes.draw do
 	match "feedback" => "messages#new"
 
   get "profiles/all", :as => "all_profiles", :to => "profiles#super_admin_index"
+  get "initiative_profiles", :as => "all_initiative_profiles", :to => "profiles#initiative_user_index"
   resources :profiles, :except => [:index] do
 		resources :available_dates, :except => [:show]
 		#get "send_reminder", :to => "profiles#send_reminder_mail"
@@ -32,7 +34,7 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :initiatives, :except => [:show, :index] #index is defined later on under admin scope
+  resources :initiatives, :except => [:index] #index is defined later on under admin scope
   resources :user_roles, :except => [:show, :edit, :index] 
   match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 	resources :items, :except => [:index, :show] #loose items
