@@ -1,5 +1,6 @@
 <% content_for :header do %>
   <h1>Instellingen bewerken</h1>
+  <h4 class="subheader">Wijzig je wachtwoord</h4>
 <% end %>
 <% content_for :sidebar do %>
   <%= render :partial => "profiles/sidebar" %>
@@ -14,10 +15,10 @@
   <div>Email<br />
   <%= f.email_field :email %></div>
 
-  <div>Nieuwe wachtwoord <i>(leeglaten als je deze niet wilt veranderen)</i><br />
+  <div>Nieuw wachtwoord <i>(leeglaten als je deze niet wilt veranderen)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div>Nieuwe wachtwoord bevestigen<br />
+  <div>Nieuw wachtwoord bevestigen<br />
   <%= f.password_field :password_confirmation %></div>
 
   <div>Huidige wachtwoord <i>(we hebben je huidige wachtwoord nodig om veranderingen te bevestigen)</i><br />

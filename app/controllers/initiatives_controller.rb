@@ -1,17 +1,12 @@
 class InitiativesController < ApplicationController
-  before_filter :authenticate_super_admin, :except => [:index]
-  before_filter :get_initiative
+  before_filter :get_initiative, :only => [:edit, :update]
+  before_filter :authenticate_super_admin, :except => [:edit, :update]
+  before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
 
   # GET /initiatives
   # GET /initiatives.json
   def index
-    if current_user
-      if current_user.super_admin
-        @initiatives = Initiative.all
-      else
-        @initiatives = current_user.initiatives
-      end
-    end
+    @initiatives = Initiative.all
   end
 
   # GET /initiatives/1
@@ -39,7 +34,6 @@ class InitiativesController < ApplicationController
 
   # GET /initiatives/1/edit
   def edit
-    # @initiative = Initiative.find(params[:id])
   end
 
   # POST /initiatives
@@ -61,8 +55,6 @@ class InitiativesController < ApplicationController
   # PUT /initiatives/1
   # PUT /initiatives/1.json
   def update
-    @initiative = Initiative.find(params[:id])
-
     respond_to do |format|
       if @initiative.update_attributes(params[:initiative])
         format.html { redirect_to initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangepast." }
@@ -76,7 +68,7 @@ class InitiativesController < ApplicationController
   # DELETE /initiatives/1
   # DELETE /initiatives/1.json
   def destroy
-    @initiative = Initiative.find(params[:id])
+    @initiative = Initiative.where(slug: request.subdomain).first
     @initiative.destroy
 
     respond_to do |format|

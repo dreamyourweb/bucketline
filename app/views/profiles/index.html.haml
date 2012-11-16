@@ -1,11 +1,11 @@
 - content_for :header do
   %h1 #{@initiative.name}
-  %h4.subheader Deelnemers
+  %h4.subheader Overzicht van deelnemers
+  = link_to 'Nieuwe uitnodiging', new_user_invitation_path, :class => "large button"
  
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu.html"
 
-%p= link_to 'Nodig een nieuwe gebruiker uit voor deze Bucket Line', new_user_invitation_path
 - if current_user.super_admin
   %p= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_user_role_path
 

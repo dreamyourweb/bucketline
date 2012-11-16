@@ -32,14 +32,14 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-    resources :initiatives, :except => [:show, :index] #index is defined later on under admin scope
-    resources :user_roles, :except => [:show, :edit, :index] 
-    match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
-		resources :items, :except => [:index, :show] #loose items
-		get "dashboard", :to => "items#dashboard"
-    get "availability_dashboard", :to => "available_dates#availability_dashboard"
-		resources :links, :only => [:index]
-    #get "profiles", :to => "profiles#index"
+  resources :initiatives, :except => [:show, :index] #index is defined later on under admin scope
+  resources :user_roles, :except => [:show, :edit, :index] 
+  match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+	resources :items, :except => [:index, :show] #loose items
+	get "dashboard", :to => "items#dashboard"
+  get "availability_dashboard", :to => "available_dates#availability_dashboard"
+	resources :links, :only => [:index]
+  #get "profiles", :to => "profiles#index"
 
   resources :projects, :except => [:show] do
     resources :items, :only => [:index, :update] #items belonging to projects

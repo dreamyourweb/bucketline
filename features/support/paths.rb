@@ -10,6 +10,8 @@ module NavigationHelpers
 		
 		when /^the initiatives page$/
 			initiatives_url + "?no_redirect=true"
+    when /^the registrations page$/
+      new_user_registration_path
     when /^the only initiatives' projects page$/
       initiatives_url #Is redirected to the projects if there is only one initiative
 		when /^the home page$/

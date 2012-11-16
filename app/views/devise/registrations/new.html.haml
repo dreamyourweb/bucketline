@@ -1,10 +1,10 @@
 - content_for :header do
-  %h1 Registreer
-  %h4.subheader Maak een bijdrage aan een bucket line
+  %h1 Ik heb interesse
+  %h4.subheader Laat ons weten dat je geinteresseerd bent, dan nemen wij contact met je op
 
 .row
   .twelve.columns
-    %p Dit registratieformulier is enkel voor losse aanmeldingen. Om bij te dragen aan een Bucket Line moet je via de mail een uitnodiging hebben gekregen. De Bucket Line waardeverbinder zit momenteen nog in de test fase. Als je zelf een Bucket Line wil opzetten en wilt meehelpen met testen, neem dan contact op met info@bucketline.nl 
+    %p  Deelnemen aan een Bucket Line gaat altijd op uitnodiging, maar via dit formulier kun je vast je interesse tonen. Je stelt ook vast je wachtwoord in, zodat je meteen aangemeld bent. Na verzending van het formulier nemen wij contact met je op om je verder te helpen. Voor losse vragen kun je ook mailen maar info@bucketline.nl.
 
 .row
   .four.columns
@@ -14,10 +14,8 @@
       = f.text_field :name
       = f.label :email
       = f.email_field :email
-      = f.label "Wachtwoord"
+      = f.label "Nieuw wachtwoord"
       = f.password_field :password
-      = f.label "Wachtwoord bevestigen"
+      = f.label "Nieuw wachtwoord bevestigen"
       = f.password_field :password_confirmatio
-      = f.submit "Registreren", :class=>"button"
-    .login-links
-    = render "links"
+      = f.submit "Versturen", :class=>"button"

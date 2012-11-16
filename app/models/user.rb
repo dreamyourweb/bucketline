@@ -61,6 +61,14 @@ class User
   #validates_uniqueness_of :invitation_token
 
   before_save :check_or_create_profile
+  after_create :send_user_created_mail
+
+  def send_user_created_mail
+    if self.user_roles.count == 0 #User performed a loose registration 
+      mail = UserCreatedMailer.new(:email => "info@bucketline.nl", :user_email => self.email, :initiative => "Losse aanmelding, neem contact op.")
+      mail.deliver
+    end
+  end
 
 	def check_or_create_profile
 		if self.profile.nil?

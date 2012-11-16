@@ -26,4 +26,3 @@ Feature: Admin invites new user to join initiative
 
 	Scenario: User gets invited to two initiatives
 		#Faces a problem, because after an accepted invite for a second initiative, the users password becomes corrupted somehow, eventhough it still has the same encrypted string.
-

@@ -7,6 +7,8 @@
             = link_to @initiative.name, "#"
           - elsif @profile
             = link_to "Profiel", "#"
+          - elsif @user
+            = link_to "Profiel", "#"
           - else
             = link_to "Admin", "#"
           =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
@@ -21,7 +23,7 @@
     %ul.left
       - if current_user && current_user.super_admin
         %li.has-dropdown
-          = link_to "Applicatie beheer", admin_path
+          = link_to "Applicatie beheer", admin_initiatives_path
           %ul.dropdown
             = render :partial => "admin/side_menu"
         
@@ -68,6 +70,6 @@
         %li
           = link_to "Inloggen", login_path
         %li
-          = link_to "Registreren", new_user_registration_path
+          = link_to "Ik heb interesse", new_user_registration_path
 
 

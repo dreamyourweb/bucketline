@@ -1,11 +1,13 @@
 <% content_for :header do %>
-	<h1>Overzicht van alle bijdragen aan <%= @initiative.name %></h1>
-	<p>Voor bijdragen van vandaag of later, geordend per project. <%= link_to "Toon ook projecten en bijdragen van voor vandaag.", :controller => "links", :action => "index", :show => "all" %></p>
+	<h1>Alle bijdragen aan <%= @initiative.name %></h1>
+	<h4 class="subheader">Overzicht voor bijdragen van vandaag of later, geordend per project.</h4>
 <% end %> 
 
 <% content_for :sidebar do %>
   <%= render :partial => "shared/initiative_side_menu" %>
 <% end %>
+
+<p><%= link_to "Toon ook projecten en bijdragen van voor vandaag.", :controller => "links", :action => "index", :show => "all" %></p>
 
 <div id="accordion3" class="accordion">
 	<% @projects.each do |project| %>

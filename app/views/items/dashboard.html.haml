@@ -1,6 +1,6 @@
 - content_for :header do
   %h1 #{@initiative.name}
-  %h4.subheader Verlanglijstje
+  %h4.subheader Verlanglijstje voor doorlopende benodigdheden
   - if current_user && current_user.initiative_admin(@initiative)
     = link_to 'Nieuw Item', new_item_path, :class => "large button"
 

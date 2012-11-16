@@ -2,21 +2,10 @@
 	<% if user_signed_in? %>
 		<%= link_to current_user.email, profile_path(current_user.profile) %>
 		<%= link_to "Uitloggen", logout_path, :class => "btn" %>
-	<% elsif 0==1 %>
-		<%= form_for("user", :url => user_session_path, :html => {:class => "form-inline"}) do |f| %>
-	    	<fieldset>
-	        	<%= f.text_field :email, :class => "input-small", :placeholder => "Email" %>
-	        	<%= f.password_field :password, :class => "input-small", :placeholder => "Wachtwoord" %>
-	        	<%= f.label :remember_me, :class => "checkbox"  do |cb|  %>
-	        	<%= f.check_box :remember_me %><%=t 'devise.sessions.new.remember_me' %>
-	        	<% end %>
-				<%= f.submit t('devise.sessions.new.sign_in'), :class => "btn" %>
-	 		</fieldset>
-    	<% end %>
     <% else %>
     	<ul class="nav">
     		<li><%= link_to "Inloggen", login_path %></li>
-    		<li><%= link_to "Registreren", new_user_registration_path %></li>
+    		<li><%= link_to "Ik heb interesse", new_user_registration_path %></li>
     	</ul>
 	<% end %>
 </div>
