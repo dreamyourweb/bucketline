@@ -30,7 +30,6 @@ Feature: Admin invites new user to join initiative
 		And the user accepts the invitation
 		Then "initiative_user@test.com" should be an initiative member
 
-	@wip	
 	Scenario: User gets invited to two initiatives
 		Given there are two initiatives
 		And I am logged in as an initiative admin for both initiatives
@@ -48,5 +47,3 @@ Feature: Admin invites new user to join initiative
 		And the user accepts the invitation
 		And I log out
 		Then the user should be able to log in
-
-		#Faces a problem, because after an accepted invite for a second initiative, the users password becomes corrupted somehow, eventhough it still has the same encrypted string.

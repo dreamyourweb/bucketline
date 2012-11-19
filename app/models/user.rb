@@ -14,6 +14,8 @@ class User
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
 
 	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
+  field :invited, :type => Boolean, :default => false #Was user invited or did he register on his own 
+
   field :name, :type => String, :null => false
 	## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
@@ -50,7 +52,7 @@ class User
   after_create :send_user_created_mail
 
   def send_user_created_mail
-    if self.user_roles.count == 0 #User performed a loose registration
+    if self.invited == false #User performed a loose registration
       mail = UserCreatedMailer.new(:email => "info@bucketline.nl", :user_email => self.email, :initiative => "Losse aanmelding, neem contact op.")
       mail.deliver
     end

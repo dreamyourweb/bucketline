@@ -1,10 +1,18 @@
-<h1>Nieuwe uitnodiging</h1>
+<% content_for :header do %>
+  <h1>Nieuwe uitnodiging</h1>
+  <h4 class="subheader">Voer een e-mail adres in om iemand uit te nodigen voor <%= @initiative.name %></h4>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "shared/initiative_side_menu" %>
+<% end %>
+
 <%= form_for(@invitation) do |f| %>
   <div class="field">
-    <p>Ontvanger:</p>
-    <%= f.email_field :email %>
+    <%= f.label :email, "E-mail ontvanger:", :class => "control-label" %>
+    <%= f.email_field :email, :class => "input-xlarge" %>
   </div>
   <div class="actions">
-    <%= f.submit "Versturen" %>
+    <%= f.submit "Verstuur Uitnodiging", :class => "button" %>
   </div>
 <% end %>

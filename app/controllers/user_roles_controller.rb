@@ -18,7 +18,12 @@ class UserRolesController < ApplicationController
   # GET /user_roles/new
   # GET /user_roles/new.json
   def new
-    @users = User.all
+    @users = []
+    User.all.each do |user|
+      if user.user_roles.count == 0
+        @users << user
+      end
+    end
     @user_role = @initiative.user_roles.new
 
     respond_to do |format|
