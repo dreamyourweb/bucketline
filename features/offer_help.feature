@@ -9,7 +9,6 @@ Feature: User offers help
 		And there is a project with an item
 
 	Scenario: View all the projects
-		#Given I am on the only initiatives' projects page
 		Then I should see all the projects
 
 	Scenario: Mark item as provided via wishlist dashboard
@@ -23,7 +22,7 @@ Feature: User offers help
 
 	Scenario: Retreat help via profile
 		When I provide an item via the calendar page
-		And I follow "Mijn profiel"
+		And I follow "Mijn bijdragen"
 		Then I should see "Mijn item"
 		When I retreat my contribution
 		Then I should not see "Mijn item"

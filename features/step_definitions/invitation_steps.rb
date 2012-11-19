@@ -4,5 +4,6 @@ When /^I submit the form with a new invitation$/ do
 end
 
 When /^the user accepts the invitation$/ do
-  pending # express the regexp above with the code you wish you had
+	step %(I open the email)
+	step %(I follow "Uitnodiging accepteren" in the email)
 end

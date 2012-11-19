@@ -109,7 +109,8 @@ Then /^the intitiative user should be initiative admin$/ do
   UserRole.where(:initiative_id => @initiative.id, :user_id => @user.id, :admin => true).count.should == 1
 end
 
-Then /^"(.*?)" should be an initiative member$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then /^"(.*?)" should be an initiative member$/ do |email|
+  user = User.where(:email => email).first
+  UserRole.where(:initiative_id => @initiative.id, :user_id => user.id, :admin => false).count.should == 1
 end
 

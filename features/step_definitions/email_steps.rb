@@ -11,6 +11,10 @@ Given /^(?:a clear email queue|no emails have been sent)$/ do
   reset_mailer
 end
 
+When /^(?:I|they) follow "([^"]*?)" in the email$/ do |link|
+  visit_in_email(link)
+end
+
 Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end

@@ -8,20 +8,24 @@ Feature: Admin invites new user to join initiative
 		And I am logged in as an initiative admin
 
 	Scenario: Admin invites new user
+		Given no emails have been sent
 		When I go to the manage users page
 		And I follow "Nieuwe Uitnodiging"
 		And I submit the form with a new invitation
 		Then "initiative_user@test.com" should receive 1 email
-		When the user accepts the invitation
+		When I log out
+		And the user accepts the invitation
 		Then "initiative_user@test.com" should be an initiative member
 
 	Scenario: Admin invites existing user
 		Given there is a user
+		And no emails have been sent
 		When I go to the manage users page
 		And I follow "Nieuwe Uitnodiging"
 		And I submit the form with a new invitation
 		Then "initiative_user@test.com" should receive 1 email
-		When the user accepts the invitation
+		When I log out
+		And the user accepts the invitation
 		Then "initiative_user@test.com" should be an initiative member
 
 	Scenario: User gets invited to two initiatives

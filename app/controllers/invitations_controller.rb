@@ -2,10 +2,10 @@ class InvitationsController < Devise::InvitationsController
 
   #Pasted entire controller in here, but should actually overwrite only the things that are necessary
 
+  before_filter :get_initiative, :only => [:new, :create]  
   before_filter :authenticate_inviter!, :only => [:new, :create]
   before_filter :has_invitations_left?, :only => [:create]
   before_filter :require_no_authentication, :only => [:edit, :update]
-  before_filter :get_initiative, :only => [:new, :create]  
   helper_method :after_sign_in_path_for
 
   # GET /resource/invitation/new
