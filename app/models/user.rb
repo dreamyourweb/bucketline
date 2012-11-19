@@ -64,7 +64,7 @@ class User
   after_create :send_user_created_mail
 
   def send_user_created_mail
-    if self.user_roles.count == 0 #User performed a loose registration 
+    if self.user_roles.count == 0 && user.invitation_token.nil? #User performed a loose registration without being invited
       mail = UserCreatedMailer.new(:email => "info@bucketline.nl", :user_email => self.email, :initiative => "Losse aanmelding, neem contact op.")
       mail.deliver
     end

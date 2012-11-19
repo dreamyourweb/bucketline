@@ -19,9 +19,9 @@ class InvitationsController < Devise::InvitationsController
     user = User.where(resource_params).first
     if user.nil?
       user = User.invite!(resource_params.merge({:last_invited_for_initiative_id => @initiative.id}), current_inviter)
-    else
-      user.invite!
-      user.update_attributes(:last_invited_for_initiative_id => @initiative.id)
+    #else
+      #user.invite!
+      #user.update_attributes(:last_invited_for_initiative_id => @initiative.id)
     end
 
     if user.errors.empty?
@@ -36,10 +36,11 @@ class InvitationsController < Devise::InvitationsController
   def edit
     @user = User.to_adapter.find_first( :invitation_token => params[:invitation_token] ) #Find user with correct token
     initiative = Initiative.find(@user.last_invited_for_initiative_id)
-    if @user.invitation_accepted_at && initiative #User is already registered, so no new login has to be created
-      UserRole.create(:initiative_id => initiative.id, :user_id => @user.id)
-      redirect_to login_path, :notice => "Je bent nu aangemeld bij je nieuwe Bucket Line, log in om verder te gaan."
-    elsif params[:invitation_token] && @user && initiative
+    #if @user.invitation_accepted_at && initiative #User is already registered, so no new login has to be created
+    #  UserRole.create(:initiative_id => initiative.id, :user_id => @user.id)
+    #  redirect_to login_path, :notice => "Je bent nu aangemeld bij je nieuwe Bucket Line, log in om verder te gaan."
+    #els
+    if params[:invitation_token] && @user && initiative
       UserRole.create(:initiative_id => initiative.id, :user_id => @user.id)
       render :edit #Set the name and password
     else

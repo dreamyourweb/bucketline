@@ -74,6 +74,14 @@ Given /^I am logged in as (?:|an )initiative admin$/ do
   login(@admin.email, 'foobar')
 end
 
+Given /^I am logged in as an initiative admin for both initiatives$/ do
+  #Must be preceded by declaring an initiative in an earlier step
+  step %{there is an admin}
+  @admin.user_roles.create(:initiative_id => @first_initiative.id, :admin => true)
+  @admin.user_roles.create(:initiative_id => @second_initiative.id, :admin => true)
+  login(@admin.email, 'foobar')
+end
+
 Given /^I am logged in as (?:|a )super admin$/ do
   #Must be preceded by declaring an initiative in an earlier step
   step %{there is a super admin}
@@ -127,6 +135,24 @@ end
 
 When /^the initiative admin logs in via the login screen$/ do
   login("initiative_admin@test.com", "foobar")
+end
+
+When /^the user sets his password$/ do
+  fill_in('user_name', :with => "User")
+  fill_in('user_password', :with => "foobar")
+  fill_in('user_password_confirmation', :with => "foobar")
+  click_button("Stel wachtwoord in")  
+end
+
+Then /^the user should be able to log in$/ do
+  user = User.where(:email => "initiative_user@test.com").last
+  user.invitation_token = nil
+  user.save
+  puts User.where(:email => "initiative_user@test.com").all.entries
+  
+  login("initiative_user@test.com", "foobar")
+  page.should_not have_content("De gebruikersnaam of het wachtwoord is ongeldig")
+  page.should have_content("Mijn eerste initiatief")
 end
 
 def login(email, password)
