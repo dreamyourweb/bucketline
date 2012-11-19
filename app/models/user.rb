@@ -3,11 +3,8 @@ class User
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable,
-         :invite_for => 1.week, :invite_key => {:email => Devise.email_regexp}, :validate_on_invite => :name
-
-  include DeviseInvitable::Inviter
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
@@ -15,17 +12,6 @@ class User
 	#Facebook
 	has_many :authentications, :dependent => :destroy
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
-
-  #Identify invitation senders
-  #has_many :invitations, :class_name => self.class.to_s, :as => :invited_by
-
-  #Fields for invitations
-  field :invitation_token, :type => String
-  field :invitation_sent_at, :type => DateTime
-  field :invitation_accepted_at, :type => DateTime
-  field :invitation_limit, :type => Integer
-
-  field :last_invited_for_initiative_id, :type => String
 
 	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
   field :name, :type => String, :null => false
@@ -64,7 +50,7 @@ class User
   after_create :send_user_created_mail
 
   def send_user_created_mail
-    if self.user_roles.count == 0 && user.invitation_token.nil? #User performed a loose registration without being invited
+    if self.user_roles.count == 0 #User performed a loose registration
       mail = UserCreatedMailer.new(:email => "info@bucketline.nl", :user_email => self.email, :initiative => "Losse aanmelding, neem contact op.")
       mail.deliver
     end

@@ -1,12 +1,10 @@
-<h2><%= t 'devise.invitations.new.header' %></h2>
-
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
-
-<% resource.class.invite_key_fields.each do |field| -%>
-  <p><%= f.label field %><br />
-  <%= f.text_field field %></p>
-<% end -%>
-
-  <p><%= f.submit t('devise.invitations.new.submit_button') %></p>
+<h1>Nieuwe uitnodiging</h1>
+<%= form_for(@invitation) do |f| %>
+  <div class="field">
+    <p>Ontvanger:</p>
+    <%= f.email_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Versturen" %>
+  </div>
 <% end %>

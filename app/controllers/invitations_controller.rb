@@ -1,78 +1,58 @@
-class InvitationsController < Devise::InvitationsController
+class InvitationsController < ApplicationController
+  before_filter :get_initiative, :only => [:new, :create]
+  before_filter :authenticate_admin_for_initiative, :only => [:new, :create]
 
-  #Pasted entire controller in here, but should actually overwrite only the things that are necessary
-
-  before_filter :get_initiative, :only => [:new, :create]  
-  before_filter :authenticate_inviter!, :only => [:new, :create]
-  before_filter :has_invitations_left?, :only => [:create]
-  before_filter :require_no_authentication, :only => [:edit, :update]
-  helper_method :after_sign_in_path_for
-
-  # GET /resource/invitation/new
+  #Make new invitation
   def new
-    build_resource
-    render :new
+    @invitation = Invitation.new
   end
 
-  # POST /resource/invitation
+  #Set password and register new user
+  def accept
+    @user = User.new
+    @invitation = Invitation.where(:token => params[:token]).last
+    if @invitation.nil?
+      redirect_to root_path, :notice => "Token is ongeldig."
+    end
+    @initiative = @invitation.initiative
+    user = User.where(:email => @invitation.email).last
+    if user.nil? || user.empty? #No user with the invited email exists yet
+      #render :action => "accept"
+      render :action => "accept" 
+    else
+      @initiative.user_roles.create(:user_id => user.id)
+      @invitation.destroy
+      redirect_to login_path, :notice => "Uitnodiging is geaccepteerd, log in om verder te gaan."
+      #just create user_role for the existing user
+    end
+  end
+
+  #Send new invitation
   def create
-    user = User.where(resource_params).first
-    if user.nil?
-      user = User.invite!(resource_params.merge({:last_invited_for_initiative_id => @initiative.id}), current_inviter)
-    #else
-      #user.invite!
-      #user.update_attributes(:last_invited_for_initiative_id => @initiative.id)
-    end
+    @invitation = @initiative.invitations.new(params[:invitation])
 
-    if user.errors.empty?
-      set_flash_message :notice, :send_instructions, :email => user.email
-      respond_with user, :location => after_invite_path_for(user)
-    else
-      respond_with_navigational(user) { render :new }
+    respond_to do |format|
+      if @invitation.save
+        format.html { redirect_to profiles_path, notice: 'Uitnodiging is verstuurd naar ' + @invitation.email.to_s }
+      else
+        format.html { render action: "new" }
+     end
     end
   end
 
-  # GET /resource/invitation/accept?invitation_token=abcdef
-  def edit
-    @user = User.to_adapter.find_first( :invitation_token => params[:invitation_token] ) #Find user with correct token
-    initiative = Initiative.find(@user.last_invited_for_initiative_id)
-    #if @user.invitation_accepted_at && initiative #User is already registered, so no new login has to be created
-    #  UserRole.create(:initiative_id => initiative.id, :user_id => @user.id)
-    #  redirect_to login_path, :notice => "Je bent nu aangemeld bij je nieuwe Bucket Line, log in om verder te gaan."
-    #els
-    if params[:invitation_token] && @user && initiative
-      UserRole.create(:initiative_id => initiative.id, :user_id => @user.id)
-      render :edit #Set the name and password
-    else
-      set_flash_message(:alert, :invitation_token_invalid)
-      redirect_to after_sign_out_path_for(user)
+  def register
+    @invitation = Invitation.where(:token => params[:token]).last
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        @user.user_roles.create(:initiative_id => @invitation.initiative_id)
+        @invitation.destroy
+        format.html { redirect_to root_path, notice: 'Registratie voltooid, log in om verder te gaan.' }
+      else
+        format.html { render action: "accept" }
+     end
     end
+
   end
-
-  # PUT /resource/invitation
-  def update
-    self.resource = resource_class.accept_invitation!(resource_params)
-
-    if resource.errors.empty?
-      set_flash_message :notice, :updated
-      sign_in(resource_name, resource)
-      respond_with resource, :location => after_accept_path_for(resource)
-    else
-      respond_with_navigational(resource){ render :edit }
-    end
-  end
-
-  protected
-  def current_inviter
-    @current_inviter ||= authenticate_inviter!
-  end
-
-  def has_invitations_left?
-    unless current_inviter.nil? || current_inviter.has_invitations_left?
-      build_resource
-      set_flash_message :alert, :no_invitations_remaining
-      respond_with_navigational(resource) { render :new }
-    end
-  end
-
 end

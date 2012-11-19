@@ -9,7 +9,7 @@ gem "bson_ext", "~> 1.5"
 
 gem 'mail_form'
 gem 'devise'
-gem 'devise_invitable'
+#gem 'devise_invitable'
 gem 'event-calendar', :require => 'event_calendar'
 gem 'later_dude', '>= 0.3.1'
 

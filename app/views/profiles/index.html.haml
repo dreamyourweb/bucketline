@@ -1,7 +1,7 @@
 - content_for :header do
   %h1 #{@initiative.name}
   %h4.subheader Overzicht van deelnemers
-  = link_to 'Nieuwe Uitnodiging', new_user_invitation_path, :class => "large button"
+  = link_to 'Nieuwe Uitnodiging', new_invitation_path, :class => "large button"
  
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"

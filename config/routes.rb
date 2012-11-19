@@ -1,5 +1,10 @@
 HvO::Application.routes.draw do
 
+  get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
+  post "/invitations", :to => "invitations#create", :as => "invitations"
+  get "/invitations/:token/accept", :to => "invitations#accept", :as => "accept_invitation"
+  post "/invitations/:token", :to => "invitations#register", :as => "register_user_via_invitation"
+
   constraints :subdomain => /.+/ do
     match '/' => 'projects#index'
     match '/whishlist' => "items#dashboard"
@@ -28,7 +33,7 @@ HvO::Application.routes.draw do
     get "contribution" => "profiles#contribution"
 	end
   
-  devise_for :users, :controllers => {:invitations => 'invitations'}
+  devise_for :users
 	devise_scope :user do
 		get "login", :to => "devise/sessions#new"
 		get "logout", :to => "devise/sessions#destroy"

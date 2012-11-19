@@ -1,8 +1,0 @@
-<p>Hallo <%= @resource.email %>!</p>
-
-<p>Iemand heeft je uitgenodigd voor een Bucket Line. Je kunt deze uitnodiging aannemen door de onderstaande link te volgen.</p>
-
-<p><%= link_to 'Uitnodiging accepteren', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
-
-<p>Als je de uitnodiging niet wilt aannemen, dan kun je deze email negeren.<br>
-Je registratie zal niet worden aangemaakt totdat je de bovenstaande link volgt en je wachtwoord instelt.</p>
