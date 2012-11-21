@@ -1,17 +1,20 @@
-%header#waardeverbinder-top
-  .row
-    .twelve.columns
-      %h1 De Waardeverbinder
-.container
-  #waardeverbinder-image
+- content_for :header do
+  %h1 De Waardeverbinder
+  %h4.subheader Verbind de hulp vanuit een groep mensen aan toffe projecten
 
 .row
   .four.column
     %h4 Wat is de waardeverbinder?
+  .four.column
+    %h4 Waarom is dit nodig?
+  .four.column
+    %h4 Hoe werkt het?
+
+.row
+  .four.column
     %p De waardeverbinder is een toepassing om snel en goedkoop dingen voor elkaar te krijgen. We hebben allemaal best veel spullen over, of toegang tot hulp die we zelf niet gebruiken. Als we al deze overvloed bij elkaar brengen, dan kunnen er prachtige dingen ontstaan. Want wat voor de één troep is, kan voor een ander van waarde zijn. De waardeverbinder biedt structuur om al deze overvloed in goede banen te leiden, en zo gezamenlijk iets gaafs neer te zetten.
 
   .four.column
-    %h4 Waarom is dit nodig?
     %p Deze overvloed noemen we sociale overwaarde. Door onze sociale overwaarde nieuw leven in te blazen, kunnen we grote dingen realiseren, en dragen we bij aan een afname van onze wegwerpcultuur. Want waarom zouden we grof betalen voor iets wat je met een beetje organisatie ook zonder geld kunt neerzetten?
     %p
       Het idee voor de waardeverbinder is ontstaan naar aanleiding van het
@@ -22,7 +25,6 @@
         %a{:href => "http://www.socialeoverwaarde.nl/", :target => "_blank"} sociale overwaarde
 
   .four.column
-    %h4 Hoe werkt het?
     %p
       De waardeverbinder is een product van het jonge webbedrijf
       = succeed "." do
@@ -31,5 +33,6 @@
 
 .row
   .twelve.columns
-    %p Voor vragen, opmerkingen of meer informatie over de waardeverbinder, neem contact op met thijs@dreamyourweb.nl
+    %p
+      %b Voor vragen, opmerkingen of meer informatie over de waardeverbinder, neem contact op met thijs@dreamyourweb.nl
     = link_to "Ga terug naar Bucket Line", root_path
