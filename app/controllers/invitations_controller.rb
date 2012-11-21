@@ -33,8 +33,7 @@ class InvitationsController < ApplicationController
 
     respond_to do |format|
       if @invitation.save
-        email = InvitationMailer.new(:inviter => current_user.name, :invitation_url => accept_invitation_url(:token => @invitation.token, :subdomain => false), :email => @invitation.email)
-        email.deliver
+        InvitationMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation.token, :subdomain => false), @invitation.email).deliver
         format.html { redirect_to profiles_path, notice: 'Uitnodiging is verstuurd naar ' + @invitation.email.to_s }
       else
         format.html { render action: "new" }

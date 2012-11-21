@@ -3,8 +3,6 @@ Feature: Admin invites new user to join initiative
 	As an admin
 	I want to invite a user to join my initiative
 
-	Background:
-
 	Scenario: Admin invites new user
 		Given there is an initiative
 		And I am logged in as an initiative admin
@@ -15,6 +13,7 @@ Feature: Admin invites new user to join initiative
 		Then "initiative_user@test.com" should receive 1 email
 		When I log out
 		And the user accepts the invitation
+		And the user sets his password
 		Then "initiative_user@test.com" should be an initiative member
 
 	Scenario: Admin invites existing user

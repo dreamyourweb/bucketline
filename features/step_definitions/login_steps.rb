@@ -140,16 +140,11 @@ end
 When /^the user sets his password$/ do
   fill_in('user_name', :with => "User")
   fill_in('user_password', :with => "foobar")
-  fill_in('user_password_confirmation', :with => "foobar")
-  click_button("Stel wachtwoord in")  
+  fill_in('user_password_confirmatio', :with => "foobar")
+  click_button("Accepteren")  
 end
 
 Then /^the user should be able to log in$/ do
-  user = User.where(:email => "initiative_user@test.com").last
-  user.invitation_token = nil
-  user.save
-  puts User.where(:email => "initiative_user@test.com").all.entries
-  
   login("initiative_user@test.com", "foobar")
   page.should_not have_content("De gebruikersnaam of het wachtwoord is ongeldig")
   page.should have_content("Mijn eerste initiatief")
