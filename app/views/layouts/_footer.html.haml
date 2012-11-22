@@ -5,5 +5,6 @@
         Voor vragen over Bucket Line kun je een email sturen naar info@bucketline.nl. Bucket Line maakt gebruik van de waardeverbinder. Deze online tool verbindt alle hulp vanuit een groep mensen, om zo gezamelijk een gaaf project neer te zetten. #{link_to "Lees meer over de waardeverbinder", waardeverbinder_info_path}. Bucket Line heeft ook een #{link_to "profiel op idealenkompas", "http://www.idealenkompas.nl/initiatief/899", :target => "_blank"}.
       %sub
         \&copy;
-        %a{:href => "http://www.dreamyourweb.nl"} dreamyourweb
-        = Date.today.year
+        %a{:href => "http://www.dreamyourweb.nl", :target => "_blank"} dreamyourweb
+        = Date.today.year.to_s + "."
+        = link_to "Disclaimer.", disclaimer_path

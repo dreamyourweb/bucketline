@@ -26,7 +26,7 @@
           %td= initiative.description
           - user_admin_role = current_user.initiative_admin(initiative)
           %td= if user_admin_role then 'admin' else 'bijdrager' end
-          %td= link_to 'Bekijk kalender', root_url(subdomain: initiative.name)
+          %td= link_to 'Bekijk kalender', root_url(subdomain: initiative.slug)
           %td
             - if user_admin_role
               = link_to 'Bewerken', edit_initiative_path(initiative)

@@ -5,8 +5,8 @@
       .twelve.columns
         %h1 Bucket Line
         %h4.subheader Bucket Line brengt mensen samen om in een tijdelijke en persoonlijke noodsituatie, een steun te zijn door voor elkaar kleine klussen te doen.
-        = link_to 'Maak je eigen Bucket Line', new_initiative_path, class: "large button", style: "visibility:hidden;"
-
+        - if !current_user
+          = link_to 'Ik heb interesse', new_user_registration_path, class: "large button"
   %section#homepage-waardeverbinder
     .row
       .seven.columns
@@ -15,9 +15,6 @@
         %h4 De Bucket Line waardeverbinder
     .row
       .seven.columns
-        <div class="prezi-player"><style type="text/css" media="screen">.prezi-player { width: 550px; height:260px; margin-bottom:20px;} .prezi-player-links { text-align: center; }</style><object id="prezi_bfzwlfi-lzvt" name="prezi_bfzwlfi-lzvt" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="260"><param name="movie" value="http://prezi.com/bin/preziloader.swf"/><param name="allowfullscreen" value="true"/><param name="allowFullScreenInteractive" value="true"/><param name="allowscriptaccess" value="always"/><param name="wmode" value="direct"/><param name="bgcolor" value="#ffffff"/><param name="flashvars" value="prezi_id=bfzwlfi-lzvt&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"/><embed id="preziEmbed_bfzwlfi-lzvt" name="preziEmbed_bfzwlfi-lzvt" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowFullScreenInteractive="true" allowscriptaccess="always" width="550" height="260" bgcolor="#ffffff" flashvars="prezi_id=bfzwlfi-lzvt&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"></embed></object><div class="prezi-player-links"><p><a title="Bucket Line" href="http://prezi.com/bfzwlfi-lzvt/bucket-line/">Bucket Line</a> on <a href="http://prezi.com">Prezi</a></p></div></div>
+        <div class="prezi-player"><style type="text/css" media="screen">.prezi-player { width: 550px; height:260px; margin-bottom:20px;} .prezi-player-links { text-align: center; }</style><object id="prezi_bfzwlfi-lzvt" name="prezi_bfzwlfi-lzvt" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="550" height="260"><param name="movie" value="http://prezi.com/bin/preziloader.swf"/><param name="allowfullscreen" value="true"/><param name="allowFullScreenInteractive" value="true"/><param name="allowscriptaccess" value="always"/><param name="wmode" value="direct"/><param name="bgcolor" value="#ffffff"/><param name="flashvars" value="prezi_id=bfzwlfi-lzvt&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"/><embed id="preziEmbed_bfzwlfi-lzvt" name="preziEmbed_bfzwlfi-lzvt" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowFullScreenInteractive="true" allowscriptaccess="always" width="550" height="260" bgcolor="#ffffff" flashvars="prezi_id=bfzwlfi-lzvt&amp;lock_to_path=0&amp;color=ffffff&amp;autoplay=no&amp;autohide_ctrls=0"></embed></object></div>
       .five.columns
         %p Met deze website kun je je eigen Bucket Line opstellen. Je kunt het zien als een interactieve agenda. Op basis van de beschikbaarheid van de leden van de Bucket Line en wat er binnen de Bucket Line aanwezig is, worden door een hulpbehoevende kleine klussen ingepland. Denk bijvoorbeeld aan koken, of naar de apotheek rijden. In een agenda kunnen de leden alle klussen bekijken, en meteen hun hulp aanbieden.
-        %br
-        - if !current_user
-          = link_to 'Ik heb interesse', new_user_registration_path, class: "large button"

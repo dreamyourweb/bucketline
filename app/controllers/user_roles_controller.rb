@@ -1,7 +1,8 @@
 class UserRolesController < ApplicationController
   before_filter :get_initiative
 
-  before_filter :authenticate_admin_for_initiative
+  before_filter :authenticate_admin_for_initiative, :only => [:update]
+  before_filter :authenticate_user_for_initiative, :only => [:destroy]
   before_filter :authenticate_super_admin, :only => [:new, :create]
 
   # GET /user_roles
@@ -74,11 +75,15 @@ class UserRolesController < ApplicationController
   # DELETE /user_roles/1.json
   def destroy
     @user_role = UserRole.find(params[:id])
-    @user_role.destroy
-
-    respond_to do |format|
-      format.html { redirect_to :id => nil }
-      format.json { head :no_content }
+    if @user_role.user == current_user || current_user.user_roles.where(:initiative_id => @initiative.id).count > 0 || current_user.super_admin
+      @user_role.destroy
+      if params[:redirect_to_profiles]
+        redirect_to profiles_path, :notice => 'Gebruiker is verwijderd uit de Bucket Line.'
+      else
+        redirect_to root_url(:subdomain => false), :notice => 'Je bent afgemeld bij de Bucket Line.'
+      end
+    else
+      redirect_to root_url(:subdomain => false), :notice => 'Je hebt niet de juiste rechten om deze gebruiker te wijzigen.'
     end
   end
 end

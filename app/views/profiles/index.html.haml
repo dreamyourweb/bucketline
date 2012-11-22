@@ -19,6 +19,7 @@
     %th Email
     %th Buddy bereidheid
     %th Admin
+    %th 
   - @users.each do |user|
     %tr
       %td= user.name
@@ -33,10 +34,13 @@
           - user_role = get_user_role(@initiative, user)
           = form_for(user_role) do |f|
             = f.check_box :admin
-            = f.submit "Update", :class => "btn", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
+            = f.submit "Update", :class => "button", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
         - else
           = check_box_tag '', '', true, :disabled => true
-      / <td><#= "\✓" if user.initiative_admin(@initiative) %></td>
+      %td
+        - if user != current_user
+          - user_role = get_user_role(@initiative, user)
+          = link_to "Verwijderen", user_role_path(user_role) + "?redirect_to_profiles=true", :method => :delete, :confirm => "Weet je zeker dat je deze gebruiker uit deze Bucket Line wilt verwijderen?"
 .well
   %p Kopiëerbare lijst met alle adressen:
   = text_field_tag "emails", build_emails_for_copy(@users), :style => "width:99%;"

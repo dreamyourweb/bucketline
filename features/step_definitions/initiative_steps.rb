@@ -18,6 +18,16 @@ Then /^I should be an initiative admin$/ do
   UserRole.where(:user_id => @super_admin.id, :initiative_id => Initiative.last.id).count.should == 1
 end
 
+When /^I remove "(.*?)" from the initiative$/ do |arg1|
+  click_link "Verwijderen"
+end
+
+Then /^"(.*?)" should not be an initiative member$/ do |arg1|
+  @user = User.where(:email => arg1).first
+  @initiative = Initiative.where(:name => "Mijn initiatief").first
+  UserRole.where(:user_id => @user.id, :initiative_id => @initiative.id).count.should == 0
+end
+
 When /^a new user is registered on the initiative$/ do
 	@new_user = User.create(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
 	@new_user.update_attributes(:confirmed_at => Time.now)

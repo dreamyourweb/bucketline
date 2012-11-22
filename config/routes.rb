@@ -18,6 +18,7 @@ HvO::Application.routes.draw do
 	# root :to => "initiatives#index"
 
 	get "waardeverbinder", :as => "waardeverbinder_info", :to => "waardeverbinder#info"
+  get "disclaimer", :as => "disclaimer", :to => "home#disclaimer"
 
   #Facebook login
 	match '/auth/:provider/callback' => 'authentications#create'
