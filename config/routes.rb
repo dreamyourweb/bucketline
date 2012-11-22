@@ -11,11 +11,10 @@ HvO::Application.routes.draw do
     match '/all_available_dates' => "available_dates#availability_dashboard"
     match '/profiles' => "profiles#index"
     match '/settings' => "initiatives#edit"
-    match '/initiative' => "initiatives#show"
+    get '/about', :to => "initiatives#show" #Something wrong with this
   end
 
   root :to => "home#index"
-	# root :to => "initiatives#index"
 
 	get "waardeverbinder", :as => "waardeverbinder_info", :to => "waardeverbinder#info"
   get "disclaimer", :as => "disclaimer", :to => "home#disclaimer"

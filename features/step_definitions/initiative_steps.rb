@@ -22,6 +22,23 @@ When /^I remove "(.*?)" from the initiative$/ do |arg1|
   click_link "Verwijderen"
 end
 
+When /^I update the Bucket Line settings$/ do
+  fill_in("initiative_name", :with => "Ons initiatief")
+  fill_in("initiative_location", :with => "Onze locatie")
+  fill_in("initiative_description", :with => "Onze omschrijving")
+  click_button("Opslaan")
+end
+
+Then /^I should see the new Bucket Line settings$/ do
+  page.should have_content("Ons initiatief")
+  page.should have_content("Onze locatie")
+  page.should have_content("Onze omschrijving")
+end
+
+Then /^the url should have the new Bucket Line slug$/ do
+  current_url.match("ons-initiatief").should_not == nil
+end
+
 Then /^"(.*?)" should not be an initiative member$/ do |arg1|
   @user = User.where(:email => arg1).first
   @initiative = Initiative.where(:name => "Mijn initiatief").first

@@ -1,5 +1,5 @@
 class InitiativesController < ApplicationController
-  before_filter :get_initiative, :only => [:edit, :update, :show]
+  before_filter :get_initiative, :only => [:edit, :show, :update]
   before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
@@ -64,13 +64,11 @@ class InitiativesController < ApplicationController
   # PUT /initiatives/1
   # PUT /initiatives/1.json
   def update
-    respond_to do |format|
-      if @initiative.update_attributes(params[:initiative])
-        format.html { redirect_to admin_initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangepast." }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @initiative.errors, status: :unprocessable_entity }
-      end
+    #@initiative = Initiative.find(params[:id])
+    if @initiative.update_attributes(params[:initiative])
+      redirect_to settings_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangepast."
+    else
+      render action: "edit"
     end
   end
 
