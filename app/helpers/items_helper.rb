@@ -18,7 +18,7 @@ module ItemsHelper
 			end
 		end
 		if !contributors.empty?
-			contributors = " Bijdragers zijn: " + contributors.to_sentence
+			contributors = contributors.to_sentence
 			if anonymous_contributor_count > 0
 				contributors << ", en nog " + anonymous_contributor_count.to_s + " ander(en)"
 			end
