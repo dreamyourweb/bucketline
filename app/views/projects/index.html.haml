@@ -1,11 +1,19 @@
 - content_for :header do
   %h1 Kalender
-  %h4.subheader Kalender voor klussen op een specifieke datum
+  %h4.subheader Help mee met een van de taken in de kalender
   - if current_user.initiative_admin(@initiative)
     = link_to 'Nieuwe Klus', new_project_path, :class => "large button"
 
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
+
+.row
+  .twelve.columns
+    - if @initiative.projects.count == 0
+      - if current_user.initiative_admin(@initiative)
+        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Klik op een getalletje in de kalender om voor die dag een klus te plaatsen.
+      - else
+        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.
 
 = raw(event_calendar)
 / = calendar_for(Date.today.year, Date.today.month, first_day_of_week: 1) do |day|

@@ -1,8 +1,16 @@
 - content_for :header do
   %h1 Verlanglijstje
-  %h4.subheader Verlanglijstje voor doorlopende benodigdheden
+  %h4.subheader Help mee door een benodigdheid op het verlanglijstje aan te dragen
   - if current_user && current_user.initiative_admin(@initiative)
     = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "large button"
+
+.row
+  .twelve.columns
+    - if @items.count == 0
+      - if current_user.initiative_admin(@initiative)
+        %p.instruction Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.
+      - else
+        %p.instruction Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Een beheerder moet eerst een item toevoegen voor je kunt bijdragen.
 
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"

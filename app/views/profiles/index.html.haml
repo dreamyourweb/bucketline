@@ -6,6 +6,11 @@
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
 
+.row
+  .twelve.columns
+    - if @users.count < 2
+      %p.instruction Er zijn nog geen verdere deelnemers aan deze Bucket Line. Klik op 'Nieuwe Uitnodiging' om meer mensen uit te nodigen.
+
 - if current_user.super_admin
   %p= link_to 'Verbind handmatig een bestaande gebruiker aan deze Bucket Line', new_user_role_path
 
