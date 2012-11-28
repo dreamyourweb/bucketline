@@ -9,7 +9,7 @@ Given /^there is a user$/ do
     @user = User.find_or_create_by(:email => 'initiative_user@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "User")
     @user.update_attributes(:confirmed_at => Time.now)
   end
-  @user.profile.update_attributes(:expertise => "Hard werken")
+  @user.profile.update_attributes(:expertise => "Hard werken", :show_name_in_overview => true)
 end
 
 Given /^there is an admin$/ do

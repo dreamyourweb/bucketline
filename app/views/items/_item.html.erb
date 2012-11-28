@@ -14,10 +14,10 @@
 			<% # EDIT / DELETE ICONS FOR ADMINS %>
 			<% if current_user && current_user.initiative_admin(initiative) %>
 				<%= link_to edit_item_path(item) do %>
-					<i class="general-enclosed foundicon-settings" title="Item Bewerken"></i>
+					<i class="general-enclosed foundicon-settings" title="Item bewerken"></i>
 				<% end %>
-				<%= link_to item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken." do %>
-					<i class="general-enclosed foundicon-trash" title="Item Verwijderen"></i>
+				<%= link_to item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :title => "Item verwijderen" do %>
+					<i class="general-enclosed foundicon-trash" title="Item verwijderen"></i>
 				<% end %>
 			<% end %>
 			</div>

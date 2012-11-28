@@ -18,7 +18,7 @@ Feature: User offers help
 	Scenario: Mark item as provided via calender
 		When I provide an item via the calendar page
 		And I click on a project
-		Then I should see "Bijdragers zijn: User"
+		Then I should see "User"
 
 	Scenario: Retreat help via profile
 		When I provide an item via the calendar page
