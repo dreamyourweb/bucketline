@@ -2,7 +2,9 @@ module InitiativesHelper
 	def initiatives_to_sentence(initiatives)
 		sentence = []
 		initiatives.each do |initiative|
-			sentence << initiative.name
+			if initiative
+				sentence << initiative.name
+			end
 		end
 		sentence.to_sentence
 	end

@@ -10,8 +10,8 @@
 
 - if current_user.initiative_admin(@initiative)
   %ul.nav-bar.vertical
-    %li{class: (request.path == "/settings") ? "active" : ""}
-      = link_to "Bucket Line instellingen", "/settings"
+    %li{class: (request.path == "/initiative/edit") ? "active" : ""}
+      = link_to "Bucket Line instellingen", "/initiative/edit"
     %li{class: (request.path == "/profiles") ? "active" : ""}
       = link_to "Deelnemers beheer", "/profiles"
     %li{class: (request.path == "/all_available_dates") ? "active" : ""}
