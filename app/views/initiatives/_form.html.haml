@@ -1,4 +1,5 @@
-= form_for @initiative do |f|
+- if request.path_parameters[:action] == 'edit' then action = :update else action = :create end
+= form_for @initiative, :url => {:controller => :initiatives, :action => action} do |f|
   - if @initiative.errors.any?
     %h6.alert
       = pluralize(@initiative.errors.count, "error")

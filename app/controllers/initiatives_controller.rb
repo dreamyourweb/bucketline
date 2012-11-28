@@ -66,7 +66,7 @@ class InitiativesController < ApplicationController
   def update
     #@initiative = Initiative.find(params[:id])
     if @initiative.update_attributes(params[:initiative])
-      redirect_to settings_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangepast."
+      redirect_to edit_initiative_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangepast."
     else
       render action: "edit"
     end

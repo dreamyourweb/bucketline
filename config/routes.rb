@@ -7,12 +7,20 @@ HvO::Application.routes.draw do
 
   constraints :subdomain => /.+/ do
     match '/' => 'projects#index'
-    match '/whishlist' => "items#dashboard"
+    match '/wishlist' => "items#dashboard"
     match '/all_available_dates' => "available_dates#availability_dashboard"
     match '/profiles' => "profiles#index"
-    match '/settings' => "initiatives#edit"
-    get '/about', :to => "initiatives#show" #Something wrong with this
+    
+    match '/initiative/edit' => "initiatives#edit", :as => "edit_initiative"
+    post '/initiative', :to => "initiatives#create", :as => "initiatives"
+    match '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
+    delete '/initiative', :to => "initiatives#destroy", :as => "initiative"
+    get '/initiative', :to => "initiatives#show", :as => "initiative" #Something wrong with this
+    put '/initiative', :to => "initiatives#update", :as => "initiative"
   end
+
+  #resources :initiatives, :except => [:index]
+  #match "/settings", :to => "initiatives#edit"
 
   root :to => "home#index"
 
@@ -39,7 +47,8 @@ HvO::Application.routes.draw do
 		get "logout", :to => "devise/sessions#destroy"
 	end
 
-  resources :initiatives, :except => [:index] #index is defined later on under admin scope
+  #resources :initiatives, :except => [:index] #index is defined later on under admin scope
+
   resources :user_roles, :except => [:show, :edit, :index] 
   match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 	resources :items, :except => [:index, :show] #loose items
