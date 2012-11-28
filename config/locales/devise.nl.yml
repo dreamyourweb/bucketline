@@ -19,6 +19,7 @@ nl:
       timeout: "Je sessie is verlopen, log opnieuw in om verder te gaan."
       unauthenticated: "Log in of registreer om verder te gaan."
       unconfirmed: "Activeer je account om verder te gaan."
+      already_authenticated: "Je bent al ingelogd."
     invitations:
       invitation_token_invalid: "Onze excuses! Die uitnodigingstoken is ongeldig."
       send_instructions: "Je uitnodiging is verzonden."

@@ -112,6 +112,7 @@ nl:
       less_than: moet minder zijn dan %{count}
       less_than_or_equal_to: moet minder dan of gelijk zijn aan %{count}
       not_a_number: is geen getal
+      not_saved: Wijzigingen niet opgeslagen
       not_an_integer: moet een geheel getal zijn
       odd: moet oneven zijn
       record_invalid: ! 'Validatie mislukt: %{errors}'
