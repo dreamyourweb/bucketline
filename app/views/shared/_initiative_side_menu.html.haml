@@ -1,8 +1,8 @@
 %ul.nav-bar.vertical
   %li{class: (request.path == projects_path) ? "active" : ""}
     = link_to "Kalender", projects_path
-  %li{class: (request.path == "/whishlist") ? "active" : ""}
-    = link_to "Verlanglijstje", "/whishlist"
+  %li{class: (request.path == "/wishlist") ? "active" : ""}
+    = link_to "Verlanglijstje", "/wishlist"
   %li{class: (request.path == profile_available_dates_path(current_user)) ? "active" : ""}
     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user)
   %li{class: (request.path == initiative_path) ? "active" : ""}
