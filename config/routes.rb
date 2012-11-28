@@ -12,12 +12,12 @@ HvO::Application.routes.draw do
     match '/profiles' => "profiles#index"
     
     match '/initiative/edit' => "initiatives#edit", :as => "edit_initiative"
-    post '/initiative', :to => "initiatives#create", :as => "initiatives"
-    match '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
     delete '/initiative', :to => "initiatives#destroy", :as => "initiative"
     get '/initiative', :to => "initiatives#show", :as => "initiative" #Something wrong with this
     put '/initiative', :to => "initiatives#update", :as => "initiative"
   end
+  match '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
+  post '/initiative', :to => "initiatives#create", :as => "initiatives"
 
   #resources :initiatives, :except => [:index]
   #match "/settings", :to => "initiatives#edit"

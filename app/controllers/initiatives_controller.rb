@@ -53,7 +53,7 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       if @initiative.save
         @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
-        format.html { redirect_to admin_initiatives_url + "?no_redirect=true", :notice => "Bucket Line is aangemaakt." }
+        format.html { redirect_to initiative_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangemaakt." }
       else
         format.html { render action: "new" }
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
