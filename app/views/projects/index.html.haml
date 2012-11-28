@@ -1,5 +1,5 @@
 - content_for :header do
-  %h1 #{@initiative.name}
+  %h1 Kalender
   %h4.subheader Kalender voor klussen op een specifieke datum
   - if current_user.initiative_admin(@initiative)
     = link_to 'Nieuwe Klus', new_project_path, :class => "large button"

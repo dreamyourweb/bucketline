@@ -80,7 +80,7 @@ class User
       initiative_admin_role = true
     else
       initiatives.to_a.each do |initiative|
-        if UserRole.where(:initiative_id => initiative.id, :user_id => self.id).last.admin
+        if initiative && UserRole.where(:initiative_id => initiative.id, :user_id => self.id).last.admin
           initiative_admin_role = true
         end
       end

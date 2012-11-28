@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
 	end
 
   def super_admin_index #Show all the users
-    @users = User.all
+    @users = User.all.entries
   end
 
   def contribution
