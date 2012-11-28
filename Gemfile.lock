@@ -93,6 +93,9 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
+    foundation-icons-sass-rails (2.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     fssm (0.2.9)
     gherkin (2.11.1)
       json (>= 1.4.6)
@@ -285,6 +288,7 @@ DEPENDENCIES
   event-calendar
   factory_girl_rails (>= 1.6.0)
   fancybox-rails
+  foundation-icons-sass-rails
   guard
   guard-cucumber
   guard-rspec

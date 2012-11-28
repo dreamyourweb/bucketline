@@ -1,36 +1,76 @@
-<div class = "well" >
-	<% if current_user && item.success %>
-		<i class='icon-ok-circle pull-right gift-margin'></i>
-	<% end %>
-	<% if current_user && item.providing_user(current_user) %>
-		<i class="icon-gift pull-right gift-margin"></i>
-	<% end %>
-	<% if !item.provided %>
-		<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
-		<%= render :partial => 'item_info', :locals => {:item => item} %>
-		<% if user_signed_in? %>
-			<% if item.success %>
-				<p>Dit item is al afgevinkt, het is niet meer mogelijk om bij te dragen.</p>
-			<% else %>
-				<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
-					<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %></p>
-					<%= hidden_field_tag :redirect_to_dashboard, true %>
+<div class="item">
+	<h3>
+		<%= item.name %>
+
+		<div class="item-icons">
+			<% # SUCCES & GIFT Icons %>
+			<% if current_user && item.success %>
+				<i class='green general foundicon-checkmark' title="Afgevinkt"></i>
+			<% end %>
+			<% if current_user && item.providing_user(current_user) %>
+				<i class="red general foundicon-heart" title="Jij draagt hieraan bij"></i>
+			<% end %>
+
+			<% # EDIT / DELETE ICONS FOR ADMINS %>
+			<% if current_user && current_user.initiative_admin(initiative) %>
+				<%= link_to edit_item_path(item) do %>
+					<i class="general-enclosed foundicon-settings" title="Item Bewerken"></i>
+				<% end %>
+				<%= link_to item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken." do %>
+					<i class="general-enclosed foundicon-trash" title="Item Verwijderen"></i>
 				<% end %>
 			<% end %>
-		<% else %>
-			<p><%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen</p>
-		<% end %>
-	<% else %>
-		<span class="label label-inverse pull-right">Voorzien</span>
-		<%= render :partial => 'item_info', :locals => {:item => item} %>
-	<% end %>
-	<% if current_user && item.providing_user(current_user) %>
-		<%= link_to "Bijdrage intrekken", remove_item_from_profile_path(profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?" %>
+			</div>
+	</h3>
+
+	<% # ITEM PROVIDED OR NOT MESSAGE %>
+	<% if !item.success && !item.provided then %>
+		<div class="label">Nog <%= item.items_left.to_s %> nodig</div>
+	<% elsif !item.success %>
+		<div class="label">Voorzien</div>
 	<% end %>
 
-	<% if current_user && current_user.initiative_admin(initiative) %>
-		<br><%= link_to "Item bewerken", edit_item_path(item) %>
-		<br><%= link_to "Item verwijderen", item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :class => "pull-right" %>
+	<% # ITEM INFO %>
+	<div class="item-info">
+		<p><%= item.description %></p>
+		<div class="item-more-info">
+			<% contributors = get_contributors(item) %>
+			<% if !contributors.empty? %>
+				<p>
+					<strong>Bijdragen van:</strong><br/> 
+					<%= contributors %>
+				</p>
+			<% end %>
+			<% if user_signed_in? %>
+				<% item_owner = item.owner %>
+				<% if item_owner %>
+					<p><strong>Contactpersoon: </strong><br/>
+						<%= item_owner.name %><br/>
+						<a href="mailto:<%= item_owner.email %>"><%= item_owner.email %></a><br/>
+						<%= item_owner.profile.phone %>
+					</p>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+	<% # BIJDRAGE: Afgevinkt / Bijdragen / Login %>
+	<% if !item.provided && user_signed_in? then %>
+		<% if item.success then %>
+			<button disabled="true">Item afgevinkt</button>
+		<% else %>
+			<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
+				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!" %></p>
+				<%= hidden_field_tag :redirect_to_dashboard, true %>
+			<% end #form %>
+		<% end #if %>
+	<% elsif !item.provided %>
+		<p><%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen</p>
+	<% end %>
+
+	<% # BIJDRAGE INTREKKEN %>
+	<% if current_user && item.providing_user(current_user) %>
+		<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?" %>
 	<% end %>
 </div>
 
