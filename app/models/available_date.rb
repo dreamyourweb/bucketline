@@ -6,17 +6,35 @@ class AvailableDate
 	has_event_calendar
 
 	belongs_to :profile
-	before_save :set_start_and_end_date, :trim_daypart
+	before_save :set_start_and_end_date, :build_daypart
 	
-	attr_accessible :date, :daypart
+	attr_accessible :date, :daypart, :morning, :afternoon, :evening, :night
 
 	field :date, :type => Date
-	field :start_at, :type => Date
-  field :end_at, :type => Date
-	field :daypart
+	field :start_at, :type => Date #Depricated
+  	field :end_at, :type => Date #Depricated
+	field :daypart, :type => Array
 
-	def trim_daypart
-		self.daypart.delete("")
+	field :morning, :type => Boolean, :default => false
+	field :afternoon, :type => Boolean, :default => false
+	field :evening, :type => Boolean, :default => false
+	field :night, :type => Boolean, :default => false
+
+	def build_daypart
+		daypart_array = []
+		if self.morning
+			daypart_array << "Ochtend"
+		end
+		if self.afternoon
+			daypart_array << "Middag"
+		end
+		if self.evening
+			daypart_array << "Avond"
+		end
+		if self.night
+			daypart_array << "Nacht"
+		end
+		self.daypart = daypart_array
 	end
 
 	def set_start_and_end_date

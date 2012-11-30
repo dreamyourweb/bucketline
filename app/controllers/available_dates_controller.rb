@@ -64,8 +64,13 @@ class AvailableDatesController < ApplicationController
 	end
 
 	def new
-    @available_date = @profile.available_dates.new
-		render :layout => false
+    double_date = AvailableDate.where(:profile_id => current_user.profile.id, :date => Time.mktime(params[:year], params[:month], params[:day]).to_date).first
+    if double_date
+      redirect_to edit_profile_available_date_path(current_user.profile, double_date)
+    else
+      @available_date = @profile.available_dates.new
+  		render :layout => false
+    end
 	end
 
   def create

@@ -11,20 +11,35 @@
     </div>
   <% end %>
 
-	<div class="field">
-		<h2>Selecteer dagdelen</h2>
-		<p><sub>(Houd ctrl ingedrukt om meerdere te selecteren)</sub></p>
-		<%= f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
-	</div>
+  <div class="daypart-selection">
+    <p>Selecteer dagdelen</p>
 
-	<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
-  <div>
-    <%= f.hidden_field :date, :value => pre_select_date %>
+      <% #<p><sub>(Houd ctrl ingedrukt om meerdere te selecteren)</sub></p> %>
+      <% # f.select(:daypart, [["Ochtend", "Ochtend"], ["Middag", "Middag"], ["Avond", "Avond"], ["Nacht", "Nacht"]], {}, {:multiple => true}) %>
+
+  	<div class="field">
+      <%= f.check_box :morning %> Ochtend
+  	</div>
+    <div class="field">
+      <%= f.check_box :afternoon %> Middag
+    </div>
+    <div class="field">
+      <%= f.check_box :evening %> Avond
+    </div>
+    <div class="field">
+      <%= f.check_box :night %> Nacht
+    </div>
+    <br>
+
+    <% if request.path_parameters[:action] == "new" %> 
+    	<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
+      <div>
+        <%= f.hidden_field :date, :value => pre_select_date %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Opslaan", :class => "button" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Opslaan" %>
-  </div>
-
-	<p><sub>Ochtend: 9:00 - 13:00; middag: 13:00 - 17:00;<br>avond: 18:00 - 22:00; nacht: 22:00 - laat.</sub></p>
 <% end %>
