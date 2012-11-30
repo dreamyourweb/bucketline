@@ -54,7 +54,7 @@ When /^the initiative admin edits the project$/ do
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')
 	click_link "Mijn project"
-	click_link "Project of items bewerken"
+	click_link "Project bewerken"
 	fill_in("project_query", :with => "Mijn bewerkte project")
 	click_button("Project en items opslaan")
 end

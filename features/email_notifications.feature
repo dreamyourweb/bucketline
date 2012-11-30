@@ -5,7 +5,6 @@ Feature: get email notifications
 
 	Background:
 		Given there is an initiative
-		#And I am on the only initiatives' projects page
 
 	Scenario: receive notification when a project is placed
 		Given I am logged in as an initiative user
@@ -35,7 +34,7 @@ Feature: get email notifications
 		Given I have contributed to a project
 		And no emails have been sent
 		When I follow "Mijn project"
-		And I retreat my contribution
+		And I retreat my contribution via the button
 		Then "initiative_admin@test.com" should receive 1 email
 
 	Scenario: receive notification when a project I provided for is cancelled

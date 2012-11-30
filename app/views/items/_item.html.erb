@@ -71,7 +71,7 @@
 
 	<% # BIJDRAGE INTREKKEN %>
 	<% if current_user && item.providing_user(current_user) %>
-		<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button" %>
+		<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get %>
 	<% end %>
 </div>
 

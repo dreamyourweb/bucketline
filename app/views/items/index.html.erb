@@ -31,7 +31,7 @@
 
 					<% # EDIT / DELETE ICONS FOR ADMINS %>
 					<% if current_user && current_user.initiative_admin(@initiative) %>
-						<%= link_to edit_project_path(@project) do %>
+						<%= link_to edit_project_path(@project), :title => "Project bewerken" do %>
 							<i class="general-enclosed foundicon-settings" title="Project bewerken"></i>
 						<% end %>
 					<% end %>
@@ -75,7 +75,7 @@
 
 			<% # BIJDRAGE INTREKKEN %>
 			<% if current_user && item.providing_user(current_user) %>
-				<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item) + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button" %>
+				<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item) + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get %>
 			<% end %>
 		</li>
 	<% end %>

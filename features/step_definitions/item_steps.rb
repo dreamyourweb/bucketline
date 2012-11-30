@@ -45,6 +45,10 @@ When /^the initiative admin places a loose item$/ do
 	step %{I fill the form with a loose item}
 end
 
-When /^I retreat my contribution$/ do
-	click_link "intrekken" #/[B|b]ijdrage intrekken/i
+When /^I retreat my contribution via the button$/ do
+  click_button("intrekken")
+end
+
+When /^I retreat my contribution via the link$/ do
+  click_link("intrekken") #/[B|b]ijdrage intrekken/i
 end

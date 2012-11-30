@@ -24,11 +24,11 @@ Feature: User offers help
 		When I provide an item via the calendar page
 		And I follow "Mijn bijdragen"
 		Then I should see "Mijn item"
-		When I retreat my contribution
+		When I retreat my contribution via the link
 		Then I should not see "Mijn item"
 
 	Scenario: Retreat help via calendar
 		When I provide an item via the calendar page
 		And I click on a project
-		And I retreat my contribution
+		And I retreat my contribution via the button
 		Then I should not see "Bijdragers zijn: User"
