@@ -1,5 +1,10 @@
-<h2>Nieuwe benodigdheid voor op verlanglijstje</h2>
+<% content_for :header do %>
+  <h1>Verlanglijstje</h1>
+  <h4 class="subheader">Nieuwe benodigdheid voor op verlanglijstje</h4>
+<% end %>
+ 
+<% content_for :sidebar do %>
+  <%= render :partial => "shared/initiative_side_menu" %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Terug', dashboard_path %>

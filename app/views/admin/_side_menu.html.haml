@@ -1,7 +1,7 @@
 %ul.nav-bar.vertical
-  %li{class: (request.path == admin_initiatives_url(:subdomain => false)) ? "active" : ""}
+  %li{class: (request.path == admin_initiatives_path) ? "active" : ""}
     = link_to "Alle bucket lines", admin_initiatives_url(:subdomain => false)
-  %li{class: (request.path == admin_feedback_url(:subdomain => false)) ? "active" : ""}
+  %li{class: (request.path == admin_feedback_path) ? "active" : ""}
     = link_to "Feedback berichten", admin_feedback_url(:subdomain => false)
-  %li{class: (request.path == admin_profiles_url(:subdomain => false)) ? "active" : ""}
+  %li{class: (request.path == admin_profiles_path) ? "active" : ""}
     = link_to "Alle gebruikers", admin_profiles_url(:subdomain => false)

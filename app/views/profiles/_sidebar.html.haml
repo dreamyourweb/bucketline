@@ -4,5 +4,5 @@
       = link_to "Mijn profiel", profile_path(current_user.profile, :subdomain => false)
     %li{class: (request.path == profile_contribution_path(current_user.profile, :subdomain => false)) ? "active" : ""}
       = link_to "Mijn bijdragen", profile_contribution_path(current_user.profile, :subdomain => false)
-    %li{class: (request.path == edit_user_registration_url(:subdomain => false)) ? "active" : ""}
+    %li{class: (request.path == edit_user_registration_path) ? "active" : ""}
       = link_to "Instellingen", edit_user_registration_url(:subdomain => false)      

@@ -1,5 +1,10 @@
-<h1>Losse benodigdheid bewerken</h1>
+<% content_for :header do %>
+  <h1>Verlanglijstje</h1>
+  <h4 class="subheader">Losse benodigdheid bewerken</h4>
+<% end %>
+ 
+<% content_for :sidebar do %>
+  <%= render :partial => "shared/initiative_side_menu" %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Ga terug', dashboard_path(@initiative) %>
