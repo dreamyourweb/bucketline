@@ -83,10 +83,10 @@ module ApplicationHelper
 	def build_event_text(event)
 		text = ""
 		if event.success
-			text << "<i class='icon-ok-circle pull-right'></i>"		
+			text << "<i class='green general foundicon-checkmark right' style='margin-right:2px;'></i>"		
 		end
 		if current_user && event.providing_user(current_user)
-			text << "<i class='icon-gift pull-right'></i>"
+			text << "<i class='red general foundicon-heart right' style='margin-right:2px;'></i>"
 		end
 		text << build_timetext(event)
 		text << "<br><b>#{truncate(event.query, :length => 17)}.</b>"
@@ -99,6 +99,8 @@ module ApplicationHelper
 	def build_timetext(event)
 		if event.input_date.nil? #does this project instance still work with dayparts?
 			event.daypart.to_sentence
+		elsif event.start_at == event.end_at
+			"Vanaf " + pretty_time(event.start_at)
 		else
 			pretty_time(event.start_at) + " - " + pretty_time(event.end_at)
 		end

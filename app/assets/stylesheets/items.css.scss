@@ -22,6 +22,10 @@ i.red { color: #aa0000; }
   border-top: 1px solid #5b4502; 
   background-color: #feffe0;
 }
+
+.project-item {
+	width:700px;
+}
 .item-info { clear: both; }
 .item-icons { float: right; }
 
@@ -30,5 +34,7 @@ i.red { color: #aa0000; }
 .label { float: right; }
 
 input.amount-input {
- /* width: 50px; */
+ width: 50px;
+ height: 2em;
+ font-size:12px;
 }

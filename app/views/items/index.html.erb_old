@@ -1,0 +1,72 @@
+<div>
+	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
+	<strong>Project datum: </strong><%= pretty_date(@project.start_at) %> <%= build_timetext(@project) %><br>
+	<% if current_user && !@owner_profile.nil? %>
+		<strong>Contactpersoon:</strong> <%= @owner.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
+	<% end %>
+	<% if !@project.location.nil? && !@project.location.empty? %>
+		<strong>Verzamel locatie:</strong> <%= @project.location %><br>
+	<% end %>
+	<% if !@project.remark.nil? && !@project.remark.empty? %>
+		<strong>Opmerkingen:</strong> <%= @project.remark %>
+	<% end %>
+</div><br>
+
+<h4>Benodigdheden voor dit project:</h4>
+
+<div>
+	<ul class="unstyled">
+	<% @items.each do |item| %>
+		<li class="item">
+				<% if current_user && item.providing_user(current_user) %>
+					<i class="icon-gift pull-right gift-margin"></i>
+				<% end %>
+
+				<% if item.provided %>
+					<span class="label label-inverse pull-right">Voorzien</span>
+					<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
+
+					<% contributors = get_contributors(item) %>
+					<% if contributors %>
+						<small><%= contributors %></small>
+					<% end %>
+
+				<% else %>
+					<%= form_tag project_item_path(@project, item), :method => "put" do %>			
+						<span class="label label-important pull-right">Nog <%= item.items_left.to_s %> nodig</span>
+						<p><i class=<%= get_icon(item) %> ></i> <%= item.name %></p>
+
+						<% contributors = get_contributors(item) %>
+						<% if contributors %>
+							<small><%= contributors %></small>
+						<% end %>
+
+						<% if @project.success %>
+							Dit project is al afgerond, het is niet meer mogelijk om bij te dragen.
+						<% else %>
+							<% if user_signed_in? %>
+								Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "btn" %>
+							<% else %>
+								<%= link_to "Log in", login_path %> of <%= link_to "meld je aan", new_user_registration_path %> om bij te dragen.
+							<% end %>
+						<% end %>
+					<% end %>
+				<% end %>
+				<% if current_user && item.providing_user(current_user) %>
+					<%= link_to "Bijdrage intrekken", remove_item_from_profile_path(@profile, item) + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?" %>
+				<% end %>
+		</li>
+	<% end %>
+	</ul>
+</div>
+
+<% if current_user && current_user.initiative_admin(@initiative) %>
+	<%= link_to 'Project of items bewerken', edit_project_path(@project) %><br>
+	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %>
+	<hr>
+	<div>
+		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
+		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
+		<%= text_field_tag "emails", build_emails_for_copy(@contributing_users), :style => "width:95%;" %>
+	</div>
+<% end %>

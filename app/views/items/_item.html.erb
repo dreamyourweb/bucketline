@@ -20,7 +20,7 @@
 					<i class="general-enclosed foundicon-trash" title="Item verwijderen"></i>
 				<% end %>
 			<% end %>
-			</div>
+		</div>
 	</h3>
 
 	<% # ITEM PROVIDED OR NOT MESSAGE %>
@@ -60,7 +60,8 @@
 			<button disabled="true">Item afgevinkt</button>
 		<% else %>
 			<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
-				<p>Aantal: <%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "small button" %></p>
+				<div><p class="left">Aantal:</p><%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %></div>
+				<div><%= submit_tag "Dit wil ik bijdragen!", :class => "small button" %></div>
 				<%= hidden_field_tag :redirect_to_dashboard, true %>
 			<% end #form %>
 		<% end #if %>
