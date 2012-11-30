@@ -57,9 +57,9 @@ module ApplicationHelper
 
 	def get_event_height
 		if request.path_parameters[:controller] == "projects"
-			50
+			65
 		else
-			75
+			80
 		end
 	end
 
@@ -89,9 +89,9 @@ module ApplicationHelper
 			text << "<i class='icon-gift pull-right'></i>"
 		end
 		text << build_timetext(event)
-		text << "<br><b>#{truncate(event.query, :length => 23)}.</b>"
+		text << "<br><b>#{truncate(event.query, :length => 17)}.</b>"
 		if !event.remark.nil?
-			text << "<br>#{truncate(event.remark, :length => 23)}"
+			text << "<br>#{truncate(event.remark, :length => 17)}"
 		end
 		text
 	end
@@ -100,7 +100,7 @@ module ApplicationHelper
 		if event.input_date.nil? #does this project instance still work with dayparts?
 			event.daypart.to_sentence
 		else
-			"van " + pretty_time(event.start_at) + " tot " + pretty_time(event.end_at)
+			pretty_time(event.start_at) + " - " + pretty_time(event.end_at)
 		end
 	end
 
