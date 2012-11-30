@@ -1,18 +1,17 @@
 <div>
-	<h2>Project: <%= @project.query %><%= " (afgerond)" if @project.success %></h2>
-	<strong>Project datum: </strong><%= pretty_date(@project.start_at) %> <%= build_timetext(@project) %><br>
+	<p><strong>Project datum: </strong><%= pretty_date(@project.start_at) %>. <%= build_timetext(@project) %></p>
 	<% if current_user && !@owner_profile.nil? %>
-		<strong>Contactpersoon:</strong> <%= @owner.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)<br>
+		<p><strong>Contactpersoon:</strong> <%= @owner.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)</p>
 	<% end %>
 	<% if !@project.location.nil? && !@project.location.empty? %>
-		<strong>Verzamel locatie:</strong> <%= @project.location %><br>
+		<p><strong>Verzamel locatie:</strong> <%= @project.location %></p>
 	<% end %>
 	<% if !@project.remark.nil? && !@project.remark.empty? %>
-		<strong>Opmerkingen:</strong> <%= @project.remark %>
+		<p><strong>Opmerkingen:</strong> <%= @project.remark %></p>
 	<% end %>
-</div><br>
+</div>
 
-<h4>Benodigdheden voor dit project:</h4>
+<h4><%= @project.query %><%= " (afgerond)" if @project.success %></h4>
 
 <div>
 	<ul class="unstyled">
@@ -23,7 +22,7 @@
 
 				<div class="item-icons">
 					<% # SUCCES & GIFT Icons %>
-					<% if current_user && item.success %>
+					<% if current_user && @project.success %>
 						<i class='green general foundicon-checkmark' title="Afgevinkt"></i>
 					<% end %>
 					<% if current_user && item.providing_user(current_user) %>
@@ -40,9 +39,9 @@
 			</h3>
 
 			<% # ITEM PROVIDED OR NOT MESSAGE %>
-			<% if !item.success && !item.provided then %>
+			<% if !@project.success && !item.provided then %>
 				<span class="round label">Nog <%= item.items_left.to_s %> nodig</span>
-			<% elsif !item.success %>
+			<% elsif !@project.success %>
 				<span class="success round label">Voorzien</span>
 			<% end %>
 
@@ -62,8 +61,8 @@
 
 			<% # BIJDRAGE: Afgevinkt / Bijdragen / Login %>
 			<% if !item.provided && user_signed_in? then %>
-				<% if item.success then %>
-					<button disabled="true">Item afgevinkt</button>
+				<% if @project.success then %>
+					<button disabled="true">Project afgevinkt</button>
 				<% else %>
 					<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
 						<div><p class="left">Aantal:</p></div>
@@ -84,8 +83,7 @@
 </div>
 
 <% if current_user && current_user.initiative_admin(@initiative) %>
-	<%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %>
-	<hr>
+	<p><%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %></p>
 	<div>
 		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
 		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
