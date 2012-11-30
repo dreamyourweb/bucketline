@@ -45,7 +45,7 @@ end
 When /^the initiative admin cancels the project$/ do
 	#click_link "Bekijk initiatief"
 	click_link "Mijn project"
- 	click_link "Project verwijderen"
+ 	click_link "Klus verwijderen"
 	#confirm javascript popup box	
 end
 

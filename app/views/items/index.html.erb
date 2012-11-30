@@ -1,5 +1,5 @@
 <div>
-	<p><strong>Project datum: </strong><%= pretty_date(@project.start_at) %>. <%= build_timetext(@project) %></p>
+	<p><strong>Datum: </strong><%= pretty_date(@project.start_at) %>. <%= build_timetext(@project) %></p>
 	<% if current_user && !@owner_profile.nil? %>
 		<p><strong>Contactpersoon:</strong> <%= @owner.name %> (email: <%= @owner.email %>, tel: <%= @owner.profile.phone %>)</p>
 	<% end %>
@@ -83,7 +83,7 @@
 </div>
 
 <% if current_user && current_user.initiative_admin(@initiative) %>
-	<p><%= link_to 'Project verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je dit project wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %></p>
+	<p><%= link_to 'Klus verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je deze klus wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %></p>
 	<div>
 		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
 		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
