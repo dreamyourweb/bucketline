@@ -52,7 +52,8 @@
 		</div>
 
 		<div class="form-actions">
-		  <%= f.submit "Item plaatsen", :class => "button" %>
+			<% if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Item', 'Placement']);" else onclick_action = "" end %>
+			<%= f.submit "Item plaatsen", :class => "button", :onclick => onclick_action %>
 		</div>
 	</p>
 <% end %>

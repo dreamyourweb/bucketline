@@ -76,6 +76,7 @@
 	<p><%= link_to_add_fields "Extra benodigdheid toevoegen", f, :items %></p>
 
   <div class="form-actions">
-    <%= f.submit "Project en items opslaan", :class => "button" %>
+ 	<% if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Project', 'Placement']);" else onclick_action = "" end %>
+   <%= f.submit "Project en items opslaan", :class => "button", :onclick => onclick_action %>
   </div>
 <% end %>

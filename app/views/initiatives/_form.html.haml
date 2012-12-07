@@ -20,5 +20,6 @@
   - if !@initiative.errors[:description].empty?
     %small.error #{@initiative.errors[:description].first}
 
-  = f.submit "Opslaan", class: "button"
+  - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Initiative', 'Placement']);" else onclick_action = "" end
+  = f.submit "Opslaan", class: "button", onclick: onclick_action
 

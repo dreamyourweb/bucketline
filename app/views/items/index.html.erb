@@ -66,7 +66,7 @@
 				<% else %>
 					<%= form_tag item_path(item), :method => "put", :class=>"item-form" do %>			
 						<div><p class="left">Aantal:</p></div>
-						<div><%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "small button" %></div>
+						<div><%= text_field_tag 'amount_to_give', 1, :class => "amount-input" %> <%= submit_tag "Dit wil ik bijdragen!", :class => "small button", :onclick => "_gaq.push(['_trackEvent', 'Project', 'Contribution']);" %></div>
 					<% end #form %>
 				<% end #if %>
 			<% elsif !item.provided %>
@@ -75,7 +75,7 @@
 
 			<% # BIJDRAGE INTREKKEN %>
 			<% if current_user && item.providing_user(current_user) %>
-				<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item) + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get %>
+				<%= button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item) + "?redirect_to_calendar=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get, :onclick => "_gaq.push(['_trackEvent', 'Project', 'Retraction']);" %>
 			<% end %>
 		</li>
 	<% end %>
@@ -83,7 +83,7 @@
 </div>
 
 <% if current_user && current_user.initiative_admin(@initiative) %>
-	<p><%= link_to 'Klus verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je deze klus wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht." %></p>
+	<p><%= link_to 'Klus verwijderen', project_path(@project), :method => :delete, :confirm => "Weet je zeker dat je deze klus wilt verwijderen? Alle benodigdheden worden dan ook verwijderd. De mensen die hebben bijgedragen krijgen automatisch bericht.", :onclick => "_gaq.push(['_trackEvent', 'Project', 'Cancellation']);" %></p>
 	<div>
 		<p>Kopiëerbare lijst met alle adressen van de bijdragers voor dit project:<br>
 		<sub><b>Let op:</b> zet deze adressen om privacy redenen alleen in de 'bcc' van de email.</sub></p>
