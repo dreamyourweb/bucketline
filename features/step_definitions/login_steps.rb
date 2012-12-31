@@ -32,7 +32,7 @@ When /^I fill in the form with my registration$/ do
   fill_in("user_name", :with => "New User")
   fill_in("user_email", :with => "new_user@test.com")
   fill_in("user_password", :with => "foobar")
-  fill_in("user_password_confirmatio", :with => "foobar")
+  fill_in("user_password_confirmation", :with => "foobar")
   click_button("Versturen")
 end
 
@@ -140,7 +140,7 @@ end
 When /^the user sets his password$/ do
   fill_in('user_name', :with => "User")
   fill_in('user_password', :with => "foobar")
-  fill_in('user_password_confirmatio', :with => "foobar")
+  fill_in('user_password_confirmation', :with => "foobar")
   click_button("Accepteren")  
 end
 
