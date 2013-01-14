@@ -38,32 +38,33 @@ task :update_project_status => :environment do
 end
 
 task :send_item_placement_mail => :environment do
-	#Build item list
-	items = Item.where(:created_at.gt => Time.now.utc - 1.hour, :project_id => nil).all #Get all items that were created less than an hour ago
+	Initiative.all.each do |initiative|
+		#Build item list
+		items = initiative.items.where(:created_at.gt => Time.now.utc - 1.hour, :project_id => nil).all #Get all items that were created less than an hour ago
 
-	unless items.empty?
-		puts "Building item placement mail..."
+		unless items.empty?
+			puts "Building item placement mail..."
 
-		#Build mailinglist
-		mailing_list = []
-		User.all.each do |user|
-			if user.profile.always_send_project_placement_mail #Get all the to-be-reminded-users
-				mailing_list << user.email
+			#Build mailinglist
+			mailing_list = []
+			initiative.users.each do |user|
+				if user.profile.always_send_project_placement_mail #Get all the to-be-reminded-users
+					mailing_list << user.email
+				end
 			end
+
+			#Build sentence
+			item_sentence = ""
+			items.each do |item|
+				item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + ". "
+			end	
+
+			email = ItemPlacementMailer.new(:recipients => mailing_list, :item_sentence => item_sentence, :initiative => initiative.name)
+			puts "sending emails..."
+			puts email.recipients
+			puts email.item_sentence
+			email.deliver
 		end
-
-		#Build sentence
-		item_sentence = ""
-		items.each do |item|
-			item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + ". "
-		end	
-
-		email = ItemPlacementMailer.new(:recipients => mailing_list, :item_sentence => item_sentence)
-		puts "sending emails..."
-		puts email.recipients
-		puts email.item_sentence
-		email.deliver
 	end
-
 	puts "done."
 end
