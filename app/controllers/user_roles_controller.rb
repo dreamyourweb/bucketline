@@ -21,9 +21,9 @@ class UserRolesController < ApplicationController
   def new
     @users = []
     User.all.each do |user|
-      if user.user_roles.count == 0
+      #if user.user_roles.count == 0
         @users << user
-      end
+      #end
     end
     @user_role = @initiative.user_roles.new
 
