@@ -27,7 +27,9 @@ class Initiative
 		user_roles = UserRole.where(:initiative_id => self.id, :admin => true)
 		admins = []
 		user_roles.each do |user_role|
-			admins << user_role.user
+			if user_role.user
+				admins << user_role.user
+			end
 		end
 		admins
 	end
@@ -36,7 +38,9 @@ class Initiative
 		user_roles = UserRole.where(:initiative_id => self.id)
 		users = []
 		user_roles.each do |user_role|
-			users << user_role.user
+			if user_role.user
+				users << user_role.user
+			end
 		end
 		users
 	end
