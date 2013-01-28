@@ -141,3 +141,6 @@ Then /^"(.*?)" should be an initiative member$/ do |email|
   UserRole.where(:initiative_id => @initiative.id, :user_id => user.id, :admin => false).count.should == 1
 end
 
+Then /^there should be no initiatives$/ do
+  Initiative.count.should == 0
+end

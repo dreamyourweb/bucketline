@@ -1,5 +1,5 @@
 class InitiativesController < ApplicationController
-  before_filter :get_initiative, :only => [:edit, :show, :update]
+  before_filter :get_initiative, :only => [:edit, :show, :update, :destroy]
   before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]

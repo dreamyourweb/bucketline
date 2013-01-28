@@ -24,6 +24,13 @@ Feature: Manage initiative and invite new members
 		And I follow "Schrijf mij uit bij deze Bucket Line"
 		Then "initiative_user@test.com" should not be an initiative member
 
+	Scenario: initiative is deleted
+		Given there is an initiative
+		And I am logged in as a super admin
+		And I am on the initiatives page
+		When I follow "Verwijderen"
+		Then there should be no initiatives
+
 	@wip
 	Scenario: Initiative name is changed
 		Given there is an initiative
