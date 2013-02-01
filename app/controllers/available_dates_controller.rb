@@ -78,7 +78,7 @@ class AvailableDatesController < ApplicationController
 
     respond_to do |format|
       if @available_date.save
-        format.html { redirect_to profile_available_dates_path(@project), notice: 'Beschikbaarheid is aangepast.' }
+        format.html { redirect_to profile_available_dates_path(@profile), notice: 'Beschikbaarheid is aangepast.' }
         format.json { render json: @available_date, status: :created, location: @available_date }
       else
         format.html { render action: "new" }
