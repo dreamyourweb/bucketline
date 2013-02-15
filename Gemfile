@@ -24,6 +24,9 @@ gem 'fancybox-rails'#, :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 
 gem "haml-rails"
 
+gem "fog"
+gem "heroku-mongo-backup"
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'bootstrap-sass'
