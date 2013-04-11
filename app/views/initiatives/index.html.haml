@@ -18,7 +18,7 @@
         %th Omschrijving
         %th Mijn rol
         %th
-        %th
+        //%th
       - @initiatives.each do |initiative|
         %tr
           %td= initiative.name
@@ -27,10 +27,10 @@
           - user_admin_role = current_user.initiative_admin(initiative)
           %td= if user_admin_role then 'admin' else 'bijdrager' end
           %td= link_to 'Bekijk kalender', root_url(subdomain: initiative.slug)
-          %td
-            - if user_admin_role
-              = link_to 'Bewerken', edit_initiative_url(subdomain: initiative.slug)
-              | #{link_to 'Verwijderen', initiative_url(subdomain: initiative.slug), confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
+          //%td
+          //  - if user_admin_role
+          //    = link_to 'Bewerken', edit_initiative_url(subdomain: initiative.slug)
+          //    | #{link_to 'Verwijderen', initiative_url(subdomain: initiative.slug), confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. //Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
   - else
     .alert.alert-block
       %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line, lid worden van een Bucket Line gaat altijd op uitnodiging. Binnenkort nemen we contact me je op, om te kijken hoe we je verder kunnen helpen. Voor losse vragen kun je mailen met info@bucketline.nl
