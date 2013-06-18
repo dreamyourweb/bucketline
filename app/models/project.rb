@@ -71,7 +71,7 @@ class Project
 	def send_project_placement_mail
 		mailing_list = []
 		item_list = self.build_items_for_mailer
-		User.all.each do |user|
+		self.initiative.users.each do |user|
 			if user.profile.always_send_project_placement_mail && user.email != self.owner.email #Get all the to-be-reminded-users that are not the owner of this project
 				mailing_list << user.email
 			end

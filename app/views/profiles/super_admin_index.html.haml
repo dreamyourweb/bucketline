@@ -21,11 +21,11 @@
     %tr
       %td= user.name
       %td= initiatives_to_sentence(user.initiatives)
-      %td= user.profile.expertise
-      %td= user.profile.willing_to_help_with
-      %td= user.profile.tools_and_materials
-      %td= user.profile.phone
+      %td= user.profile.expertise if user.profile
+      %td= user.profile.willing_to_help_with if user.profile
+      %td= user.profile.tools_and_materials if user.profile
+      %td= user.profile.phone if user.profile
       %td= user.email
-      %td= "✓" if user.profile.willing_to_become_admin
+      %td= "✓" if user.profile && user.profile.willing_to_become_admin 
       %td= "✓" if user.initiative_admin(user.initiatives)
       %td= "✓" if user.super_admin

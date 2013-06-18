@@ -16,7 +16,11 @@ class UserRole
 	def ensure_only_one_user_role_per_user_initiative_couple
 		same_user_roles_as_self = UserRole.where(:initiative_id => self.initiative_id, :user_id => self.user_id)
 		if same_user_roles_as_self.count > 1 #duplicates are present
-			same_user_roles_as_self.first.delete
+			same_user_roles_as_self.each_with_index do |user_role, index|
+				if index > 0
+					user_role.destroy
+				end
+			end
 		end
 	end
 
