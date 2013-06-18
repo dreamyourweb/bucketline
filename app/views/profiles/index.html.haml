@@ -28,12 +28,12 @@
   - @users.each do |user|
     %tr
       %td= user.name
-      %td= user.profile.expertise
-      %td= user.profile.willing_to_help_with
-      %td= user.profile.tools_and_materials
-      %td= user.profile.phone
+      %td= user.profile.expertise if user.profile
+      %td= user.profile.willing_to_help_with if user.profile
+      %td= user.profile.tools_and_materials if user.profile
+      %td= user.profile.phone if user.profile
       %td= user.email
-      %td= "Ja" if user.profile.willing_to_become_admin
+      %td= "Ja" if user.profile && user.profile.willing_to_become_admin
       %td
         - if user != current_user
           - user_role = get_user_role(@initiative, user)
