@@ -32,8 +32,6 @@ GEM
     arel (3.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
     bson (1.9.2)
     bson_ext (1.9.2)
       bson (~> 1.9.2)
@@ -48,9 +46,9 @@ GEM
       timers (~> 1.1.0)
     chunky_png (1.2.8)
     coderay (1.0.9)
-    coffee-rails (3.2.1)
+    coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
-      railties (~> 3.2.0.beta)
+      railties (~> 3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -134,14 +132,6 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hashie (2.0.5)
-    heroku (3.0.0)
-      heroku-api (~> 0.3.7)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.15)
-      excon (~> 0.25.1)
     heroku-mongo-backup (0.4.32)
       mongo
     hike (1.2.3)
@@ -192,7 +182,6 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
-    netrc (0.7.7)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth2 (0.8.1)
@@ -210,7 +199,6 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
-    pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -245,8 +233,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -264,7 +250,6 @@ GEM
       rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
     ruby_gntp (0.3.4)
-    rubyzip (1.0.0)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -311,7 +296,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
   bson_ext (~> 1.5)
   capybara (>= 1.1.2)
   coffee-rails (~> 3.2.1)
@@ -329,7 +313,6 @@ DEPENDENCIES
   guard-cucumber
   guard-rspec
   haml-rails
-  heroku
   heroku-mongo-backup
   jquery-rails
   later_dude (>= 0.3.1)
@@ -339,11 +322,12 @@ DEPENDENCIES
   oauth2
   omniauth
   omniauth-facebook
-  pg
-  rails (>= 3.2.11)
+  rails (>= 3.2.14)
   rspec-rails
   ruby_gntp
   sass-rails
+  sprockets
   uglifier (>= 1.0.3)
+  unicorn
   unicorn-rails
   zurb-foundation (~> 3.2)

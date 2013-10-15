@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 3.2.11'
+gem 'rails', '>= 3.2.14'
 
 gem 'jquery-rails'
 
@@ -22,21 +22,23 @@ gem 'oauth2'
 
 gem 'fancybox-rails'#, :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 
-gem "haml-rails"
-
 gem "fog"
 gem "heroku-mongo-backup"
 
 group :assets do
-  gem 'sass-rails'
-  gem 'bootstrap-sass'
+  # gem 'bootstrap-sass'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
+  gem 'sprockets'
   
-  gem 'zurb-foundation', '~> 3.2'
-  gem 'foundation-icons-sass-rails'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'sass-rails'
+gem "haml-rails"
+gem 'zurb-foundation', '~> 3.2'
+gem 'foundation-icons-sass-rails'
+
 
 group :development, :test do
 	gem "rspec-rails"
@@ -56,10 +58,10 @@ group :test do
 	gem 'email_spec'
 end
 
-group :production do
-	gem 'heroku'
-	gem 'pg'
-end
+# group :production do
+# 	gem 'heroku'
+# 	gem 'pg'
+# end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -69,6 +71,7 @@ end
 
 # Use unicorn as the web server
 gem "unicorn-rails"
+gem "unicorn"
 
 # Deploy with Capistrano
 # gem 'capistrano'
