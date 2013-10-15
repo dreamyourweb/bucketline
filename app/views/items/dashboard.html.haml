@@ -7,10 +7,10 @@
 .row
   .twelve.columns
     - if @items.count == 0
-      - if current_user.initiative_admin(@initiative)
-        %p.instruction Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.
+      - if current_user.initiative_admin(@initiative)        
+        = alert("Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.")
       - else
-        %p.instruction Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Een beheerder moet eerst een item toevoegen voor je kunt bijdragen.
+        =alert("Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Een beheerder moet eerst een item toevoegen voor je kunt bijdragen.")
 
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
