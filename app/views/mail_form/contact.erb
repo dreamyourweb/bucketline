@@ -1,6 +1,6 @@
 <h3><%= message.subject %></h3>
 
-<% @resource.attributes.each do |attribute, value| %>
+<% @resource.mail_form_attributes.each do |attribute, value| %>
   <% if attribute == "update_notice" && value == "true" %>
     <p>Hieronder vind je de nieuwste gegevens.</p>
   <% end %>
