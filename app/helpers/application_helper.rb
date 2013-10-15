@@ -113,4 +113,11 @@ module ApplicationHelper
 	def pretty_time(time)
 		time.to_formatted_s(:time)
 	end
+
+  def alert(content, type="")
+    content_tag "div", class: "alert-box #{type}" do
+      (content + content_tag("a", "&times;".html_safe, class: "close")).html_safe
+    end
+  end
+
 end

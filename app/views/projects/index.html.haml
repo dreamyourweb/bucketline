@@ -11,9 +11,9 @@
   .twelve.columns
     - if @initiative.projects.count == 0
       - if current_user.initiative_admin(@initiative)
-        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Klik op een getalletje in de kalender om voor die dag een klus te plaatsen.
+        = alert("Er zijn nog geen klussen in de kalender geplaatst. Klik op een getalletje in de kalender om voor die dag een klus te plaatsen.")
       - else
-        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.
+        = alert("Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.")
 
 = raw(event_calendar)
 / = calendar_for(Date.today.year, Date.today.month, first_day_of_week: 1) do |day|
