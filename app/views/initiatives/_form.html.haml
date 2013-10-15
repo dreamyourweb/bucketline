@@ -7,17 +7,17 @@
 
   = f.label :name, class: form_error_class(@initiative.errors[:name])
   = f.text_field :name, class: form_error_class(@initiative.errors[:name])
-  - if !@initiative.errors[:name].empty?
-    %small.error #{@initiative.errors[:name].first}
+  - if @initiative.errors[:slug].present?
+    %small.error #{@initiative.errors[:slug].first}
 
   = f.label :location, class: form_error_class(@initiative.errors[:location])
   = f.text_field :location, class: form_error_class(@initiative.errors[:location])
-  - if !@initiative.errors[:location].empty?
+  - if @initiative.errors[:location].present?
     %small.error #{@initiative.errors[:location].first}
 
   = f.label :description, class: form_error_class(@initiative.errors[:description])
   = f.text_area :description, class: form_error_class(@initiative.errors[:description])
-  - if !@initiative.errors[:description].empty?
+  - if @initiative.errors[:description].present?
     %small.error #{@initiative.errors[:description].first}
 
   - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Initiative', 'Placement']);" else onclick_action = "" end
