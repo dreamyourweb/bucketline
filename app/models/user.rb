@@ -38,6 +38,8 @@ class User
   field :confirmed_at,         :type => Time
   field :confirmation_sent_at, :type => Time
   field :unconfirmed_email,    :type => String # Only if using reconfirmable
+                                               # 
+  field :terms_and_conditions_accepted, :type => Boolean
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
@@ -50,6 +52,9 @@ class User
 
   before_save :check_or_create_profile
   after_create :send_user_created_mail
+
+  validates_acceptance_of :terms_and_conditions_accepted, :accept => true, :message => "must be checked to be able to register."
+
 
   def send_user_created_mail
     if self.invited == false #User performed a loose registration

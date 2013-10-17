@@ -18,4 +18,7 @@
       = f.password_field :password
       = f.label "Nieuw wachtwoord bevestigen"
       = f.password_field :password_confirmation
+      .terms
+        = f.check_box :terms_and_conditions_accepted
+        = raw(t('shared.accept_tac', :tac_link => link_to(t('shared.user_privacy'), terms_and_conditions_url + "?fancybox=true", :class => "fancybox")))
       = f.submit "Versturen", :class=>"button"

@@ -1,75 +1,79 @@
-%nav.top-bar
-  %ul
-    - if user_signed_in?
-      %li.name.has-dropdown
-        %h1
-          - if @initiative
-            = link_to @initiative.name, "#"
-          - elsif @profile
-            = link_to "Mijn Bucket Lines", "#"
-          - elsif @user
-            = link_to "Mijn Bucket Lines", "#"
-          - else
-            = link_to "Mijn Bucket Lines", "#"
-          =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
-          / = @initiative.name if @initiative
-        %ul.dropdown
-          - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
-            %li{class: get_active("messages")}
-              = link_to initiative.name, root_url(:subdomain => initiative.slug) 
-      %li.toggle-topbar
-        %a{href: "#"}
-    %section
-    %ul.left
-      - if current_user && current_user.super_admin
-        %li.has-dropdown
-          = link_to "Applicatie beheer", admin_initiatives_path
-          %ul.dropdown
-            = render :partial => "admin/side_menu"
-        
-      - if @initiative && request.path_parameters[:controller] != "initiatives"
-        / %li{class: get_active("calendar")}
-        /   = link_to "Kalender", initiative_projects_path(@initiative)
-        / %li{class: get_active("dashboard")}
-        /   = link_to "Verlanglijstje", initiative_dashboard_path(@initiative)
-
-        / - if user_signed_in?
-        /   %li{class: get_active("profile")}
-        /     = link_to "Mijn profiel en bijdragen", profile_path(current_user.profile)
-        /   %li{class: get_active("availability")}
-        /     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile)
-        /   -if current_user.initiative_admin(@initiative)
-        /     %ul.drpodown
-        /       %li{class: get_active("availability_dashboard")}
-        /         = link_to "Beschikbare specialisten", initiative_availability_dashboard_path(@initiative)
-        /       %li{class: get_active("links")}
-        /         = link_to "Alle bijdragen", initiative_links_path(@initiative)
-        /       %li{class: get_active("profiles")}
-        /         = link_to "Deelnemers beheren", initiative_profiles_path(@initiative)
-        /       - if current_user.super_admin
-        /         %li{class: get_active("messages")}
-        /           = link_to "Feedback berichten", messages_path
-        /         %li{class: get_active("all_profiles")}
-        /           = link_to "Alle gebruikers", all_profiles_path
-
-    %ul.right
+.contain-to-grid
+  %nav.top-bar
+    %ul
       - if user_signed_in?
-        %li.has-dropdown
-          = link_to current_user.email, profile_url(current_user.profile, :subdomain => false)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
+        %li.name.has-dropdown
+          %h1
+            - if @initiative
+              = link_to @initiative.name, "#"
+            - elsif @profile
+              = link_to "Mijn Bucket Lines", "#"
+            - elsif @user
+              = link_to "Mijn Bucket Lines", "#"
+            - else
+              = link_to "Mijn Bucket Lines", "#"
+            =# link_to "Bucket Line", initiatives_path + "?no_redirect=true"
+            / = @initiative.name if @initiative
           %ul.dropdown
-            %li{class: get_active("profile")}
-              = link_to "Mijn profiel", profile_url(current_user.profile, :subdomain => false)
-            %li
-              = link_to "Mijn bijdragen", profile_contribution_url(current_user.profile, :subdomain => false)
-            %li
-              = link_to "Instellingen", edit_user_registration_url(:subdomain => false)
-            %li.divider
-            %li
-              = link_to "Uitloggen", logout_url(:subdomain => false), :class => "btn"
-      - else
-        %li
-          = link_to "Inloggen", login_path
-        %li
-          = link_to "Ik heb interesse", new_user_registration_path
+            - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
+              %li{class: get_active("messages")}
+                = link_to initiative.name, root_url(:subdomain => initiative.slug) 
+        %li.toggle-topbar
+          %a{href: "#"}
+      %section
+      %ul.left
+        - if current_user && current_user.super_admin
+          %li.has-dropdown
+            = link_to "Applicatie beheer", admin_initiatives_path
+            %ul.dropdown
+              = render :partial => "admin/side_menu"
+        - else
+          %li
+            = link_to "Home", root_path
+          
+        - if @initiative && request.path_parameters[:controller] != "initiatives"
+          / %li{class: get_active("calendar")}
+          /   = link_to "Kalender", initiative_projects_path(@initiative)
+          / %li{class: get_active("dashboard")}
+          /   = link_to "Verlanglijstje", initiative_dashboard_path(@initiative)
+
+          / - if user_signed_in?
+          /   %li{class: get_active("profile")}
+          /     = link_to "Mijn profiel en bijdragen", profile_path(current_user.profile)
+          /   %li{class: get_active("availability")}
+          /     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user.profile)
+          /   -if current_user.initiative_admin(@initiative)
+          /     %ul.drpodown
+          /       %li{class: get_active("availability_dashboard")}
+          /         = link_to "Beschikbare specialisten", initiative_availability_dashboard_path(@initiative)
+          /       %li{class: get_active("links")}
+          /         = link_to "Alle bijdragen", initiative_links_path(@initiative)
+          /       %li{class: get_active("profiles")}
+          /         = link_to "Deelnemers beheren", initiative_profiles_path(@initiative)
+          /       - if current_user.super_admin
+          /         %li{class: get_active("messages")}
+          /           = link_to "Feedback berichten", messages_path
+          /         %li{class: get_active("all_profiles")}
+          /           = link_to "Alle gebruikers", all_profiles_path
+
+      %ul.right
+        - if user_signed_in?
+          %li.has-dropdown
+            = link_to current_user.email, profile_url(current_user.profile, :subdomain => false)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
+            %ul.dropdown
+              %li{class: get_active("profile")}
+                = link_to "Mijn profiel", profile_url(current_user.profile, :subdomain => false)
+              %li
+                = link_to "Mijn bijdragen", profile_contribution_url(current_user.profile, :subdomain => false)
+              %li
+                = link_to "Instellingen", edit_user_registration_url(:subdomain => false)
+              %li.divider
+              %li
+                = link_to "Uitloggen", logout_url(:subdomain => false), :class => "btn"
+        - else
+          %li
+            = link_to "Inloggen", login_path
+          %li
+            = link_to "Ik heb interesse", new_user_registration_path
 
 

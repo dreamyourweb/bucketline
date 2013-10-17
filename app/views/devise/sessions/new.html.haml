@@ -15,6 +15,9 @@
         Onthoud mij
     .controls
       = f.submit "Inloggen", :class => "button"
+
+    .terms.small-text * #{raw(t('shared.accept_tac', :tac_link => link_to(t('shared.user_privacy'), terms_and_conditions_url + "?fancybox=true", :class => "fancybox")))}
+
   .login-links
     = render "links"
   / .last{:style => "display:none"}

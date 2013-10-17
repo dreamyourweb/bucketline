@@ -75,6 +75,8 @@ HvO::Application.routes.draw do
 	get "profiles/:id/info", :to => "profiles#info", :as => "profile_info"
 	get "profiles/:profile_id/item/:id", :to => "profiles#remove_item", :as => "remove_item_from_profile"
 
+  get "terms_and_conditions", :as => "terms_and_conditions", :to => "home#terms_and_conditions"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

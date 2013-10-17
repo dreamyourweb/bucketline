@@ -7,4 +7,4 @@
         \&copy;
         %a{:href => "http://www.dreamyourweb.nl", :target => "_blank"} dreamyourweb
         = Date.today.year.to_s + "."
-        = link_to "Disclaimer.", disclaimer_path
+        = link_to t('footer.privacy'), terms_and_conditions_url + "?fancybox=true", :class => "fancybox"
