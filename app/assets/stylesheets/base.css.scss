@@ -41,11 +41,11 @@ fieldset{
 	bottom: 0px;
 	z-index: 1000;
 	h6{
-		color: $white;
+		color: $secondary-color;
 		margin: 6px;
 	}
 	background-color: black;
-	border: 3px solid $white;
+	border: 3px solid $secondary-color;
 	border-bottom: 0px;
 	@include single-box-shadow;
 
@@ -60,7 +60,7 @@ fieldset{
 }
 
 section.header{
-	@include column(12);
+	@include grid-column(12);
 }
 
 // #main{

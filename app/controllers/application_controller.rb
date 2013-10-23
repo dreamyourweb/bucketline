@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 			end
 		end
 	end
-
+	
 	protected
 
 	def authenticate_inviter!

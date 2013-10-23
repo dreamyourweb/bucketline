@@ -1,12 +1,21 @@
 h1,h2,h3,h4,h5,h6{
 	font-family: OpenSansRegular;
+  small{
+    text-transform: uppercase;
+    margin-bottom: 0.2em;
+  }
+}
+
+h1{
+  margin-bottom: 0.2em;
 }
 
 h1.subheader,h2.subheader,h3.subheader,h4.subheader,h5.subheader,h6.subheader{
 	font-family: OpenSansLight;
-	color: $white;
+	color: $secondary-color;
 }
 
 .alert{
-	color: $alertColor;
+	color: $alert-color;
 }
+

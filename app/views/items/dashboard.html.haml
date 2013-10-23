@@ -4,35 +4,35 @@
   - if current_user && current_user.initiative_admin(@initiative)
     = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "large button"
 
-.row
-  .twelve.columns
-    - if @items.count == 0
-      - if current_user.initiative_admin(@initiative)        
-        = alert("Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.")
-      - else
-        =alert("Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Een beheerder moet eerst een item toevoegen voor je kunt bijdragen.")
-
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
 
-.row
-  .three.columns
-    %h5 Vervoer
-  .three.columns
-    %h5 In en om het huis
-  .three.columns
-    %h5 Oppas en gezelschap
-  .three.columns
-    %h5 Boodschappen en koken
-.row
-  .three.columns
-    = render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile}
-  .three.columns
-    = render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile}
-  .three.columns
-    = render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile}
-  .three.columns
-    = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
+- if @items.present?
+  .row
+    .small-12.large-3.columns
+      %h6 Vervoer
+    .small-12.large-3.columns
+      %h6 In en om het huis
+    .small-12.large-3.columns
+      %h6 Oppas en gezelschap
+    .small-12.large-3.columns
+      %h6 Boodschappen en koken
+  .row
+    .small-12.large-3.columns
+      = render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile}
+    .small-12.large-3.columns
+      = render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile}
+    .small-12.large-3.columns
+      = render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile}
+    .small-12.large-3.columns
+      = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
 
-- if current_user && current_user.initiative_admin(@initiative)
-  = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"
+  - if current_user && current_user.initiative_admin(@initiative)
+    = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"
+- else
+  %h3 Er is hier niets te zien. Er zijn nog geen benodigdheden.
+  - if current_user.initiative_admin(@initiative) 
+    %p Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.
+    = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "medium button"
+  - else
+    %p Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Een beheerder moet eerst een item toevoegen voor je kunt bijdragen.")

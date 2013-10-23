@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 3.2.14'
+gem 'rails', '~> 4.0.0'
 
 gem 'jquery-rails'
 
-gem "mongoid", "~> 2.4"
-gem "bson_ext", "~> 1.5"
+gem "mongoid", github: 'mongoid/mongoid'
+gem 'mongoid_multiparams'
+gem "bson_ext"
 
 gem 'mail_form'
 gem 'devise'
@@ -25,10 +26,11 @@ gem 'fancybox-rails'#, :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 gem "fog"
 gem "heroku-mongo-backup"
 
+gem 'rails-i18n', '~> 4.0.0' 
+
 group :assets do
   # gem 'bootstrap-sass'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'compass-rails'
+  gem 'coffee-rails'
   gem 'sprockets'
   
   gem 'uglifier', '>= 1.0.3'
@@ -36,7 +38,8 @@ end
 
 gem 'sass-rails'
 gem "haml-rails"
-gem 'zurb-foundation', '~> 3.2'
+gem 'zurb-foundation'
+gem 'compass-rails', github: "Compass/compass-rails"
 gem 'foundation-icons-sass-rails'
 
 
@@ -78,3 +81,11 @@ gem "unicorn"
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+# 
+gem 'protected_attributes' # https://github.com/rails/protected_attributes
+# gem 'active_resource' # https://github.com/rails/activeresource
+# gem 'actionpack-action_caching' # https://github.com/rails/actionpack-action_caching
+# gem 'activerecord-session_store' # https://github.com/rails/activerecord-session_store
+# gem 'rails-observers' # https://github.com/rails/rails-observers
+
+ruby "2.0.0"

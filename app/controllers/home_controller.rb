@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
     if user_signed_in?
       initiative = current_user.user_roles.map{|ur| ur.initiative}.first

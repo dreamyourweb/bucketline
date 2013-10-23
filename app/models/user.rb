@@ -13,13 +13,13 @@ class User
 	has_many :authentications, :dependent => :destroy
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
 
-	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
-  field :invited, :type => Boolean, :default => false #Was user invited or did he register on his own 
+	field :super_admin, :type => Mongoid::Boolean, :default => false #Super admin is the owner and admin for the entire client instance
+  field :invited, :type => Mongoid::Boolean, :default => false #Was user invited or did he register on his own 
 
-  field :name, :type => String, :null => false
+  field :name, :type => String
 	## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
-  field :encrypted_password, :type => String, :null => false, :default => ""
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -39,7 +39,7 @@ class User
   field :confirmation_sent_at, :type => Time
   field :unconfirmed_email,    :type => String # Only if using reconfirmable
                                                # 
-  field :terms_and_conditions_accepted, :type => Boolean
+  field :terms_and_conditions_accepted, :type => Mongoid::Boolean
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
@@ -54,6 +54,7 @@ class User
   after_create :send_user_created_mail
 
   validates_acceptance_of :terms_and_conditions_accepted, :accept => true, :message => "must be checked to be able to register."
+  validates_presence_of :name, :email, :encrypted_password
 
 
   def send_user_created_mail

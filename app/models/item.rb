@@ -3,7 +3,7 @@ class Item
  	include Mongoid::Timestamps
 	include Mongoid::MultiParameterAttributes
 
-	attr_accessible :name, :type, :amount, :description, :owner_id, :success
+	# attr_accessible :name, :type, :amount, :description, :owner_id, :success
 
 	belongs_to :initiative #loose items for wishlist
 	belongs_to :project
@@ -22,7 +22,7 @@ class Item
 	field :description
 	field :type
 	field :amount, :type => Integer, :default => 1
-	field :success, :type => Boolean, :default => false
+	field :success, :type => Mongoid::Boolean, :default => false
 
 	def items_left
 		@items_provided = 0

@@ -3,6 +3,7 @@ class InitiativesController < ApplicationController
   before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
+  before_filter :get_initiative_from_subdomain, only: [:show, :edit, :update]
 
   # GET /initiatives
   # GET /initiatives.json
@@ -81,6 +82,16 @@ class InitiativesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_initiatives_url + "?no_redirect=true" }
       format.json { head :no_content }
+    end
+  end
+
+  private 
+
+  def get_initiative_from_subdomain
+    if request.subdomain
+      @initiative = Initiative.where(slug: request.subdomain).first
+    else
+      @initiative = Initiative.find(params[:id])
     end
   end
 end

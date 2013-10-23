@@ -23,6 +23,7 @@
 
   -# Included JS Files
   = javascript_include_tag "application"
+  = javascript_include_tag "vendor/custom.modernizr"
 
   = csrf_meta_tag
 
@@ -48,15 +49,15 @@
           = yield(:header)
   - if content_for?(:sidebar)
     .row
-      .nine.columns.push-three
+      .small-9.columns.push-3
         = yield
-      .three.columns.pull-nine
+      .small-3.columns.pull-9
         = yield(:sidebar)
   - elsif content_for?(:full)
     = yield(:full)   
   - else
     .row
-      .twelve.columns
+      .small-12.columns
         = yield
 
   = render :partial => "layouts/footer"

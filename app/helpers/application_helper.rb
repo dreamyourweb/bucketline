@@ -120,4 +120,9 @@ module ApplicationHelper
     end
   end
 
+  def current_initiative
+    @initiative = Initiative.where(slug: request.subdomain).first if request.subdomain
+  end
+
+
 end

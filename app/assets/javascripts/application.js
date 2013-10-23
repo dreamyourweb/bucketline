@@ -15,3 +15,9 @@
 //= require foundation
 //= require fancybox
 //= require_tree .
+
+$(function()
+{
+  $(document).foundation();
+});
+

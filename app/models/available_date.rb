@@ -8,17 +8,17 @@ class AvailableDate
 	belongs_to :profile
 	before_save :set_start_and_end_date, :build_daypart
 	
-	attr_accessible :date, :daypart, :morning, :afternoon, :evening, :night
+	# attr_accessible :date, :daypart, :morning, :afternoon, :evening, :night
 
 	field :date, :type => Date
 	field :start_at, :type => Date #Depricated
   	field :end_at, :type => Date #Depricated
 	field :daypart, :type => Array
 
-	field :morning, :type => Boolean, :default => false
-	field :afternoon, :type => Boolean, :default => false
-	field :evening, :type => Boolean, :default => false
-	field :night, :type => Boolean, :default => false
+	field :morning, :type => Mongoid::Boolean, :default => false
+	field :afternoon, :type => Mongoid::Boolean, :default => false
+	field :evening, :type => Mongoid::Boolean, :default => false
+	field :night, :type => Mongoid::Boolean, :default => false
 
 	def build_daypart
 		daypart_array = []

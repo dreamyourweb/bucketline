@@ -15,21 +15,8 @@ i.red { color: #aa0000; }
   margin: 0;
 }
 
-.item { 
-  padding: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #5b4502; 
-  border-top: 1px solid #5b4502; 
-  background-color: #feffe0;
-}
-
-.project-item {
-	width:95%;
-}
 .item-info { clear: both; }
 .item-icons { float: right; }
-
-.item h3 { font-size: 17px; margin: 0 0 2px 0;}
 
 .label { float: right; }
 
@@ -37,4 +24,11 @@ input.amount-input {
  width: 50px;
  height: 2em;
  font-size:12px;
+}
+
+.item{
+  @include panel;
+  .label{
+    font-size: 0.5em;
+  }
 }

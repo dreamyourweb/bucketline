@@ -1,37 +1,41 @@
 HvO::Application.routes.draw do
 
+  constraints :subdomain => /.+/ do
+    get '/' => 'projects#index'
+    get '/wishlist' => "items#dashboard"
+    get '/all_available_dates' => "available_dates#availability_dashboard"
+    get '/profiles' => "profiles#index"
+
+    # resources :initiatives
+    
+    get '/initiative/edit' => "initiatives#edit"
+    delete '/initiative', :to => "initiatives#destroy"
+    get '/initiative', :to => "initiatives#show"
+    put '/initiative', :to => "initiatives#update"
+    #   resources :initiatives
+  end
+  root :to => "home#index"
+
   get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
   post "/invitations", :to => "invitations#create", :as => "invitations"
   get "/invitations/:token/accept", :to => "invitations#accept", :as => "accept_invitation"
   post "/invitations/:token", :to => "invitations#register", :as => "register_user_via_invitation"
 
-  constraints :subdomain => /.+/ do
-    match '/' => 'projects#index'
-    match '/wishlist' => "items#dashboard"
-    match '/all_available_dates' => "available_dates#availability_dashboard"
-    match '/profiles' => "profiles#index"
-    
-    match '/initiative/edit' => "initiatives#edit", :as => "edit_initiative"
-    delete '/initiative', :to => "initiatives#destroy", :as => "initiative"
-    get '/initiative', :to => "initiatives#show", :as => "initiative" #Something wrong with this
-    put '/initiative', :to => "initiatives#update", :as => "initiative"
-  end
-  match '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
-  post '/initiative', :to => "initiatives#create", :as => "initiatives"
+  # resources :initiatives
+  # get '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
+  # post '/initiative', :to => "initiatives#create", :as => "initiatives"
 
   #resources :initiatives, :except => [:index]
   #match "/settings", :to => "initiatives#edit"
-
-  root :to => "home#index"
 
 	get "waardeverbinder", :as => "waardeverbinder_info", :to => "waardeverbinder#info"
   get "disclaimer", :as => "disclaimer", :to => "home#disclaimer"
 
   #Facebook login
-	match '/auth/:provider/callback' => 'authentications#create'
+	post '/auth/:provider/callback' => 'authentications#create'
 
   resources :messages, :except => [:edit, :show]
-	match "feedback" => "messages#new"
+	get "feedback" => "messages#new"
 
   get "profiles/all", :as => "all_profiles", :to => "profiles#super_admin_index"
   get "initiative_profiles", :as => "all_initiative_profiles", :to => "profiles#initiative_user_index"
@@ -50,7 +54,7 @@ HvO::Application.routes.draw do
   #resources :initiatives, :except => [:index] #index is defined later on under admin scope
 
   resources :user_roles, :except => [:show, :edit, :index] 
-  match '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
+  get '/calendar(/:year(/:month))' => 'projects#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 	resources :items, :except => [:index, :show] #loose items
 	get "dashboard", :to => "items#dashboard"
   get "availability_dashboard", :to => "available_dates#availability_dashboard"

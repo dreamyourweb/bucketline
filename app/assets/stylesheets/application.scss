@@ -1,6 +1,9 @@
 // @import "bootstrap";
-@import "foundation-icons";
+@import "foundation";
 @import "foundation_and_overrides";
+@import "foundation-icons";
+
+@import "compass";
 
 @import "fonts";
 @import "typography";
@@ -20,5 +23,4 @@
 @import "waardeverbinder";
 @import "alerts";
 
-@import "compass/css3/box-shadow";
 @import "fancybox";
