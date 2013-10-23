@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
-
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jquery-rails'
 
 gem "mongoid", github: 'mongoid/mongoid'
@@ -28,13 +29,10 @@ gem "heroku-mongo-backup"
 
 gem 'rails-i18n', '~> 4.0.0' 
 
-group :assets do
-  # gem 'bootstrap-sass'
-  gem 'coffee-rails'
-  gem 'sprockets'
-  
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'coffee-rails'
+gem 'sprockets'
+
+gem 'uglifier', '>= 1.0.3'
 
 gem 'sass-rails'
 gem "haml-rails"
