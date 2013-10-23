@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.0.0'
+gem 'rails_12factor'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
