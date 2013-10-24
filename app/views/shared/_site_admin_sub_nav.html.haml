@@ -1,0 +1,14 @@
+.interior-header.admin
+  .row
+    .large-4.columns
+      .title-text.white-text.hide-for-small
+        Mijn profiel
+    
+    .large-8.columns
+      %ul.inline-list
+        %li
+          = link_to "Alle bucket lines", admin_initiatives_url(:subdomain => false), class: (request.path == admin_initiatives_path) ? "active" : ""
+        %li
+          = link_to "Feedback berichten", admin_feedback_url(:subdomain => false), class: (request.path == admin_feedback_path) ? "active" : ""
+        %li
+          = link_to "Alle gebruikers", admin_profiles_url(:subdomain => false), class: (request.path == admin_profiles_path) ? "active" : ""

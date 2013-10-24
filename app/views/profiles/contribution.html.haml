@@ -1,8 +1,5 @@
 - content_for :header do
-  %h1 Mijn bijdragen
-  %h4.subheader Alle bijdragen per Bucket Line 
-- content_for :sidebar do
-  = render :partial => "sidebar"
+  = render :partial => "shared/profile_sub_nav" 
 
 %table.admin-table.table.table-bordered.table-striped
   %tr

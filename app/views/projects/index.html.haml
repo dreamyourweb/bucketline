@@ -1,8 +1,5 @@
 - content_for :header do
-  %h1 Kalender
-  %h4.subheader Help mee met een van de taken in de kalender
-  - if current_user.initiative_admin(@initiative)
-    = link_to 'Nieuwe Klus', new_project_path, :class => "large button"
+  = render :partial => "shared/sub_nav" 
 
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"

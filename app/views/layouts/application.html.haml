@@ -32,6 +32,8 @@
 
 %body{:class => (controller.controller_name == "initiatives" && (controller.action_name == "show" || controller.action_name == "index")) ? "home" : ""}
 
+  %section.main
+
   = render :partial => "layouts/nav"
   
   #flashmessages
@@ -43,21 +45,19 @@
         %h6 Feedback
 
   - if content_for?(:header)
-    %header
-      .row
-        %section.header
-          = yield(:header)
-  - if content_for?(:sidebar)
-    .row
-      .small-9.columns.push-3
-        = yield
-      .small-3.columns.pull-9
-        = yield(:sidebar)
-  - elsif content_for?(:full)
+    = yield(:header)
+
+  - if content_for?(:title)
+    = render partial: "shared/title" 
+
+  - if content_for?(:full)
     = yield(:full)   
+
   - else
-    .row
-      .small-12.columns
-        = yield
+    .row.bump-25
+      .large-12.columns
+        .row
+          .small-12.columns
+            = yield
 
   = render :partial => "layouts/footer"

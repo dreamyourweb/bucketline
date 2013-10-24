@@ -1,12 +1,8 @@
 - content_for :header do
-  %h1 Alle beschikbaarheid
-  %h4.subheader Overzicht van beschikbaarheid
+  = render :partial => "shared/sub_nav" 
  
-- content_for :sidebar do
-  = render :partial => "shared/initiative_side_menu"
-  
 .row
-  .twelve.columns
+  .small-12.columns
     - if @dates.count == 0
       %p.instruction Er heeft nog niemand zijn of haar beschikbaarheid doorgegeven. Spoor mensen aan om hun beschikbaarheid door te geven in hun persoonlijke beschikbaarheidskalender, zodat je gerichter klussen kunt plannen.
 

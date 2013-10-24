@@ -20,11 +20,11 @@ i.red { color: #aa0000; }
 
 .label { float: right; }
 
-input.amount-input {
- width: 50px;
- height: 2em;
- font-size:12px;
-}
+// input.amount-input {
+//  width: 50px;
+//  height: 2em;
+//  font-size:12px;
+// }
 
 .item{
   @include panel;

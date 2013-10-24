@@ -1,8 +1,7 @@
 <% content_for :header do %>
-  <h1>Over deze Bucket Line</h1>
-  <h4 class="subheader">Informatie over en bijdragers aan <%= @initiative.name %><h4>
+  <% render :partial => "shared/sub_nav" %>
 <% end %>
- 
+
 <% content_for :sidebar do %>
   <%= render :partial => "shared/initiative_side_menu" %>
 <% end %>

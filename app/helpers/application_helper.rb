@@ -37,6 +37,10 @@ module ApplicationHelper
 		end
 	end
 
+  def get_current(page)
+    (get_active(page) == "active") ? "current" : ""
+  end
+
   def month_link(month_date)
     link_to(I18n.localize(month_date, :format => "%B"), {:month => month_date.month, :year => month_date.year})
   end
@@ -124,5 +128,8 @@ module ApplicationHelper
     @initiative = Initiative.where(slug: request.subdomain).first if request.subdomain
   end
 
+  def is_current_page?(path)
+    (request.original_url == path) ? "active" : ""
+  end
 
 end

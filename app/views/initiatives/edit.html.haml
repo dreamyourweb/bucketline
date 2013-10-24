@@ -1,8 +1,4 @@
 - content_for :header do
-  %h1 #{@initiative.name}
-  %h4.subheader Bucket Line instellingen bewerken
- 
-- content_for :sidebar do
-  = render :partial => "shared/initiative_side_menu"
-
+  = render :partial => "shared/sub_nav" 
+  
 = render :partial => 'initiatives/form'

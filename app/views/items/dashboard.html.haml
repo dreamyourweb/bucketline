@@ -1,11 +1,5 @@
 - content_for :header do
-  %h1 Verlanglijstje
-  %h4.subheader Help mee door een benodigdheid op het verlanglijstje aan te dragen
-  - if current_user && current_user.initiative_admin(@initiative)
-    = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "large button"
-
-- content_for :sidebar do
-  = render :partial => "shared/initiative_side_menu"
+  = render :partial => "shared/sub_nav" 
 
 - if @items.present?
   .row

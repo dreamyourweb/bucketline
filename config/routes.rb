@@ -21,7 +21,7 @@ HvO::Application.routes.draw do
   get "/invitations/:token/accept", :to => "invitations#accept", :as => "accept_invitation"
   post "/invitations/:token", :to => "invitations#register", :as => "register_user_via_invitation"
 
-  # resources :initiatives
+  resources :initiatives
   # get '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
   # post '/initiative', :to => "initiatives#create", :as => "initiatives"
 

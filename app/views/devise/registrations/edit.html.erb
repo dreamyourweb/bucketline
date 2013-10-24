@@ -1,9 +1,5 @@
 <% content_for :header do %>
-  <h1>Instellingen</h1>
-  <h4 class="subheader">Wijzig je wachtwoord</h4>
-<% end %>
-<% content_for :sidebar do %>
-  <%= render :partial => "profiles/sidebar" %>
+  <%= render :partial => "shared/profile_sub_nav" %>
 <% end %>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>

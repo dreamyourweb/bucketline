@@ -8,6 +8,8 @@ h1,h2,h3,h4,h5,h6{
 
 h1{
   margin-bottom: 0.2em;
+  color: white;
+  font-weight: 500;
 }
 
 h1.subheader,h2.subheader,h3.subheader,h4.subheader,h5.subheader,h6.subheader{
@@ -19,3 +21,10 @@ h1.subheader,h2.subheader,h3.subheader,h4.subheader,h5.subheader,h6.subheader{
 	color: $alert-color;
 }
 
+body{
+  font-family: OpenSansRegular;
+}
+
+p{
+  font-family: OpenSansRegular;
+}

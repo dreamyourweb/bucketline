@@ -24,9 +24,6 @@ HvO::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'lvh.me:3000' }
-
-  config.action_dispatch.tld_length = 5
- 
+  config.action_mailer.default_url_options = { :host => 'lvh.me:3000' } 
 
 end

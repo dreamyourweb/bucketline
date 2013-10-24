@@ -6,35 +6,39 @@
       %ul
         - @profile.errors.full_messages.each do |msg|
           %li= msg
-  = f.label :phone, "Telefoon:", :class => "control-label"
-  = f.text_field :phone, :class => "input-xlarge"
-  = f.label :expertise, "Ik ben goed in:", :class => "control-label"
-  = f.text_field :expertise, :class => "input-xlarge"
-  = f.label :willing_to_help_with, "Ik kan helpen met:", :class => "control-label"
-  = f.text_area :willing_to_help_with, :rows => 6, :class => "input-xlarge"
-  = f.label :tools_and_materials, "Handige spullen in mijn bezit:", :class => "control-label"
-  = f.text_area :tools_and_materials, :rows => 6, :class => "input-xlarge"
-  %label.checkbox
-    = f.check_box :willing_to_become_admin
-    Ik ben bereid om buddy te worden als de nood aan de man is.
-  %label{for: "checkbox1"}
-    = f.check_box :send_reminder_mail
-    %span.custom.checkbox
-    Stuur mij een herinnerings-email, één dag voor een toegezegde bijdrage.
-  %label{for: "checkbox2"}
-    = f.check_box :always_send_project_placement_mail
-    %span.custom.checkbox
-    Stuur mij een email als er een nieuwe klus of benodigdheid geplaatst wordt.
-  %label{for: "checkbox3"}
-    = f.check_box :send_project_cancellation_mail
-    %span.custom.checkbox
-    Stuur mij een email als een klus of benodigdheid waaraan ik bijdraag wordt geannuleerd of gewijzigd.
-  %label{for: "checkbox4"}
-    = f.check_box :send_user_role_update_mail
-    %span.custom.checkbox
-    Stuur mij een email als mijn bevoegdheden in een Bucket Line wordt aangepast.
-  %label{for: "checkbox5"}
-    = f.check_box :show_name_in_overview
-    %span.custom.checkbox
-    Toon mijn naam als bijdrager.
-  = f.submit "Profiel opslaan", :class => "button"
+  .row
+    .small-12.large-6.columns
+      = f.label :phone, "Telefoon:", :class => "control-label"
+      = f.text_field :phone, :class => "input-xlarge"
+      = f.label :expertise, "Ik ben goed in:", :class => "control-label"
+      = f.text_field :expertise, :class => "input-xlarge"
+      = f.label :willing_to_help_with, "Ik kan helpen met:", :class => "control-label"
+      = f.text_area :willing_to_help_with, :rows => 6, :class => "input-xlarge"
+      = f.label :tools_and_materials, "Handige spullen in mijn bezit:", :class => "control-label"
+      = f.text_area :tools_and_materials, :rows => 6, :class => "input-xlarge"
+  .row
+    .small-12.columns
+      %label.checkbox
+        = f.check_box :willing_to_become_admin
+        Ik ben bereid om buddy te worden als de nood aan de man is.
+      %label{for: "checkbox1"}
+        = f.check_box :send_reminder_mail
+        %span.custom.checkbox
+        Stuur mij een herinnerings-email, één dag voor een toegezegde bijdrage.
+      %label{for: "checkbox2"}
+        = f.check_box :always_send_project_placement_mail
+        %span.custom.checkbox
+        Stuur mij een email als er een nieuwe klus of benodigdheid geplaatst wordt.
+      %label{for: "checkbox3"}
+        = f.check_box :send_project_cancellation_mail
+        %span.custom.checkbox
+        Stuur mij een email als een klus of benodigdheid waaraan ik bijdraag wordt geannuleerd of gewijzigd.
+      %label{for: "checkbox4"}
+        = f.check_box :send_user_role_update_mail
+        %span.custom.checkbox
+        Stuur mij een email als mijn bevoegdheden in een Bucket Line wordt aangepast.
+      %label{for: "checkbox5"}
+        = f.check_box :show_name_in_overview
+        %span.custom.checkbox
+        Toon mijn naam als bijdrager.
+      = f.submit "Profiel opslaan", :class => "button"
