@@ -1,0 +1,9 @@
+.calendar-day
+  .day-label
+    = date.day
+  - if events.present?
+    - events.each do |event|
+      %a.event{href: project_items_path(event), "data-reveal-id" => "itemModal", "data-reveal-ajax" => "true"}
+        %ul.vcard
+          %li.fn #{event.query}
+          %li.time #{event.start_at.to_s(:time)} - #{event.end_at.to_s(:time)}

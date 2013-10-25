@@ -2,8 +2,6 @@ class AvailableDate
   include Mongoid::Document
  	include Mongoid::Timestamps
 	include Mongoid::MultiParameterAttributes
-	include EventCalendar
-	has_event_calendar
 
 	belongs_to :profile
 	before_save :set_start_and_end_date, :build_daypart

@@ -2,8 +2,8 @@ class Project
   include Mongoid::Document
  	include Mongoid::Timestamps
 	include Mongoid::MultiParameterAttributes
-	include EventCalendar
-	has_event_calendar
+	# include EventCalendar
+	# has_event_calendar
 
 	
 	has_many :items, :autosave => true, :dependent => :delete

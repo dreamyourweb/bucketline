@@ -1,0 +1,25 @@
+$(window).resize ->
+  $('table.calendar td').height($('table.calendar td').width()*0.8);
+
+$ ->
+  $('table.calendar td').height($('table.calendar td').width()*0.8);
+
+$(".previous-year a").click (e) ->
+  $(".selected-year").text(parseInt($(".selected-year").text()) - 1);
+
+$(".next-year a").click (e) ->
+  $(".selected-year").text(parseInt($(".selected-year").text()) + 1);
+
+# Project Calendar
+$("#projectCalendar table.calendar td").click (e) ->
+  Turbolinks.visit("/projects/new?date=" + $(this).data("date"))
+
+$(".month-button").click (e) ->
+  Turbolinks.visit("/calendar/" + $.trim($(".selected-year").text()) + "/" + $.trim($(this).data("month")));
+
+# Availability Calender
+$("#availabilityCalendar table.calendar td").click (e) ->    
+  $('#availabilityModal').foundation('reveal', 'open', {url: "/profiles/#{$('#availabilityCalendar').data('profile-id')}/available_dates/new?date=" + $(this).data("date")})
+
+$(".month-button").click (e) ->
+  Turbolinks.visit("/available_dates/" + $.trim($(".selected-year").text()) + "/" + $.trim($(this).data("month")));

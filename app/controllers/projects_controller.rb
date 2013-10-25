@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  helper LaterDude::CalendarHelper
+  # helper LaterDude::CalendarHelper
 
   before_filter :get_initiative
 	before_filter :authenticate_admin_for_initiative, :except => [:index, :info]
@@ -15,11 +15,22 @@ class ProjectsController < ApplicationController
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
 
-    @shown_month = Date.civil(@year, @month)
+    
+    @current_month = Date.civil(@year, @month)
+    @first_day_month = Date.civil(@year, @month)
+    @last_day_month = Date.civil(@year, @month, -1)
 
 		@first_day_of_week = 1
-		@event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
-    @events_hash = @initiative.events_hash_for_month(@shown_month)
+
+    @events_hash = Array.new
+
+    @events = @initiative.projects.where(:start_at.gte => @first_day_month, :start_at.lte => @last_day_month).asc(:start_at).each do |e|
+      @events_hash[e.start_at.day] = [] if @events_hash[e.start_at.day].nil?;
+      @events_hash[e.start_at.day].push(e)
+    end
+
+		# @event_strips = @initiative.projects.all.event_strips_for_month(@shown_month, @first_day_of_week)
+    # @events_hash = @initiative.events_hash_for_month(@shown_month)
   end
 
 	def info

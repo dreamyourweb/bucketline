@@ -16,6 +16,8 @@ $base-font-size: 100% !default;
 // set the value of $em-base to $base-font-size ($em-base: $base-font-size;)
 $em-base: 16px !default;
 
+$base-line-height-calc: strip-unit($base-line-height)/100 * strip-unit($base-font-size)/100 * strip-unit($em-base) * 1px;
+
 // It strips the unit of measure and returns it
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);

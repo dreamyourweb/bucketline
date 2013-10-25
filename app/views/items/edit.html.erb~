@@ -1,5 +1,0 @@
-<h1>Editing item</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Terug naar lijst', items_path %>

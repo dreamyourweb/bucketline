@@ -15,6 +15,15 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.37)
 
+GIT
+  remote: git://github.com/rails/sass-rails.git
+  revision: debabfce664370f18e5ed6e6ae2fb3772883a284
+  specs:
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -49,6 +58,8 @@ GEM
     bson (2.0.0.rc3)
     bson_ext (1.5.1)
     builder (3.1.4)
+    calendar_helper (0.2.6)
+      open4
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -93,7 +104,6 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
-    event-calendar (2.3.3)
     excon (0.27.6)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -209,6 +219,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    open4 (1.3.0)
     optionable (0.1.1)
     origin (1.1.0)
     orm_adapter (0.4.0)
@@ -266,10 +277,6 @@ GEM
     ruby-hmac (0.4.0)
     ruby_gntp (0.3.4)
     sass (3.2.12)
-    sass-rails (4.0.1)
-      railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0)
     slop (3.4.6)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -314,6 +321,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  calendar_helper
   capybara (>= 1.1.2)
   coffee-rails
   compass-rails!
@@ -321,7 +329,6 @@ DEPENDENCIES
   database_cleaner
   devise
   email_spec
-  event-calendar
   factory_girl_rails (>= 1.6.0)
   fancybox-rails
   fog
@@ -347,7 +354,7 @@ DEPENDENCIES
   rails_12factor
   rspec-rails
   ruby_gntp
-  sass-rails
+  sass-rails!
   sprockets
   turbolinks
   uglifier (>= 1.0.3)

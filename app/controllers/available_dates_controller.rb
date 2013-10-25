@@ -40,15 +40,28 @@ class AvailableDatesController < ApplicationController
   end
 
   def set_calendar
+
     @month = (params[:month] || Time.zone.now.month).to_i
     @year = (params[:year] || Time.zone.now.year).to_i
-    @shown_month = Date.civil(@year, @month)
+
+    @current_month = Date.civil(@year, @month)
+    @first_day_month = Date.civil(@year, @month)
+    @last_day_month = Date.civil(@year, @month, -1)
+
 		@first_day_of_week = 1
+
+    @available_dates_hash = Array.new
+
+    @available_dates = @profile.available_dates.where(:date.gte => @first_day_month, :date.lte => @last_day_month).asc(:date).each do |e|
+      @available_dates_hash[e.start_at.day] = [] if @available_dates_hash[e.start_at.day].nil?;
+      @available_dates_hash[e.start_at.day].push(e)
+    end
+
 	end
 
   def index
     @available_dates = @profile.available_dates.all
-		@event_strips = current_user.profile.available_dates.all.event_strips_for_month(@shown_month, @first_day_of_week)
+		# @event_strips = current_user.profile.available_dates.all.event_strips_for_month(@shown_month, @first_day_of_week)
 
 		respond_to do |format|
       format.html
@@ -64,7 +77,7 @@ class AvailableDatesController < ApplicationController
 	end
 
 	def new
-    double_date = AvailableDate.where(:profile_id => current_user.profile.id, :date => Time.mktime(params[:year], params[:month], params[:day]).to_date).first
+    double_date = AvailableDate.where(:profile_id => current_user.profile.id, :date => Date.parse(params[:date])).first
     if double_date
       redirect_to edit_profile_available_date_path(current_user.profile, double_date)
     else

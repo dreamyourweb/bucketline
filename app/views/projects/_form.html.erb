@@ -17,15 +17,10 @@
 			<%= f.text_field :query %>
 		</div>
  	</div>
-	<% if params[:year] %>
-		<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
-	<% else %>
-		<% pre_select_date = Date.today %>
-	<% end %>
 	<div class="date-selector control-group">
 		<%= f.label 'Datum:', :class => "control-label" %> 
 		<div class="controls"> 
-			<%= f.date_select(:input_date, {:default => pre_select_date}, {:class => "project_date"})%>
+			<%= f.date_select(:input_date, {:default => Date.parse(params[:date])}, {:class => "project_date"})%>
 		</div>
  	</div>
 	<div class="time-selector control-group">

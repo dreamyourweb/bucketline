@@ -12,9 +12,7 @@
       - else
         = alert("Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.")
 
-= raw(event_calendar)
-/ = calendar_for(Date.today.year, Date.today.month, first_day_of_week: 1) do |day|
-/   - if @events_hash[day.day]
-/     - @events_hash[day.day].query
-/   - else
-/     - day.day
+#projectCalendar
+  = render partial: 'shared/calendar', locals: {year: @year, month: @month, events: @events_hash}
+
+#itemModal.reveal-modal

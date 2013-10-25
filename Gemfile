@@ -12,7 +12,8 @@ gem "bson_ext"
 gem 'mail_form'
 gem 'devise'
 #gem 'devise_invitable'
-gem 'event-calendar', :require => 'event_calendar'
+# gem 'event-calendar', :require => 'event_calendar'
+gem 'calendar_helper'
 gem 'later_dude', '>= 0.3.1'
 
 #gem "watu_table_builder", :require => "table_builder"
@@ -34,7 +35,7 @@ gem 'sprockets'
 
 gem 'uglifier', '>= 1.0.3'
 
-gem 'sass-rails'
+gem 'sass-rails', github: "rails/sass-rails"
 gem "haml-rails"
 gem 'zurb-foundation'
 gem 'compass-rails', github: "Compass/compass-rails"

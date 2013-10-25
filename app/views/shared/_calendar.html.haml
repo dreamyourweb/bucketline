@@ -1,0 +1,42 @@
+.row
+  .small-1.columns.previous-month
+    = link_to "&lsaquo;".html_safe, {:month => @current_month.prev_month.month, :year => @current_month.prev_month.year}
+  .small-10.columns.current-month
+    %a.block{href:"#", "data-dropdown" => "dateDropdown"}
+      %h4
+        #{I18n.localize(@current_month, :format => "%B")} #{@current_month.year}
+  .small-1.columns.next-month
+    = link_to "&rsaquo;".html_safe, {:month => @current_month.next_month.month, :year => @current_month.next_month.year}
+
+  = calendar(:year => year, :month => month, :first_day_of_week => 1, month_header: false) do |d|
+    - render partial: 'calendar_item', locals: {date: d, events: events[d.day]}
+
+
+%div#dateDropdown.f-dropdown.content{"data-dropdown-content" => ""}
+  .row.year-control
+    .small-4.columns
+      .previous-year
+        %a{href:"#"} &lsaquo;
+    .small-4.columns
+      .selected-year
+        = @current_month.year
+    .small-4.columns
+      .next-year
+        %a{href:"#"} &rsaquo;
+  .row
+    %ul.small-block-grid-3.month-block
+      %li.month-button{"data-month" => 1} Jan
+      %li.month-button{"data-month" => 2} Feb
+      %li.month-button{"data-month" => 3} Mar
+      %li.month-button{"data-month" => 4} Apr
+      %li.month-button{"data-month" => 5} Mei
+      %li.month-button{"data-month" => 6} Jun
+      %li.month-button{"data-month" => 7} Jul
+      %li.month-button{"data-month" => 8} Aug
+      %li.month-button{"data-month" => 9} Sep
+      %li.month-button{"data-month" => 10} Okt
+      %li.month-button{"data-month" => 11} Nov
+      %li.month-button{"data-month" => 12} Dec
+  .row
+    .small-12.columns.this-month
+      = link_to "Deze maand", {:month => Date.today.month, :year => Date.today.year}

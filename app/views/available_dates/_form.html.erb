@@ -32,7 +32,7 @@
     <br>
 
     <% if request.path_parameters[:action] == "new" %> 
-    	<% pre_select_date = Time.mktime(params[:year], params[:month], params[:day]).to_date %>
+    	<% pre_select_date = Date.parse(params[:date]) %>
       <div>
         <%= f.hidden_field :date, :value => pre_select_date %>
       </div>
