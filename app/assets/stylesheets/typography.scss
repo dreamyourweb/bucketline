@@ -28,3 +28,8 @@ body{
 p{
   font-family: OpenSansRegular;
 }
+
+
+h2 + h2.subheader{
+  margin-top: -40px;
+}

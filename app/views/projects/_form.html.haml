@@ -1,0 +1,53 @@
+= form_for(@project, :html => {:class => "custom"}) do |f| 
+  - if @project.errors.any? 
+    #error_explanation.alert
+      %h2
+        = pluralize(@project.errors.count, "error")
+        ":"
+
+      %ul
+        - @project.errors.full_messages.each do |msg| 
+          = msg
+
+  .row
+    .small-12.large-6.columns
+
+      = f.label 'Titel:' 
+      = f.text_field :query 
+      
+      = f.label 'Datum:'  
+      .row
+        .small-12.columns
+          = f.date_select(:input_date, {:default => Date.parse(params[:date])}, {:class => "project_date date"})
+
+      = f.label 'Begin:'  
+      .row
+        .small-12.columns
+          = f.time_select(:input_start_at, {:minute_step => 15}, {class: "time"}) 
+
+      = f.label 'Einde:'  
+      .row.tim
+        .small-12.columns
+          = f.time_select(:input_end_at, {:minute_step => 15}, {class: "time"}) 
+
+      = f.label "Verzamel locatie:" 
+      = f.select(:location, [["Thuis", "Thuis"], ["Elders (zie opmerkingen)", "Elders (zie opmerkingen)"]]) 
+
+      = f.label "Contactpersoon:" 
+      = collection_select(:project, :owner_id, @admins, :id, :email, {:selected => current_user.id}) 
+
+      = f.label 'Opmerkingen:'  
+      = f.text_area :remark, :rows => 4 
+
+      %label.checkbox
+        = f.check_box :success 
+        Klus is gedaan.
+
+      = f.fields_for :items do |builder| 
+        = render "item_fields", :f => builder
+
+      = link_to_add_fields "Extra benodigdheid toevoegen", f, :items
+
+    
+      - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Project', 'Placement']);" else onclick_action = "" end 
+      = f.submit "Project en items opslaan", :class => "button", :onclick => onclick_action 

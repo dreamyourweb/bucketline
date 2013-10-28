@@ -4,6 +4,8 @@
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu"
 
+= hidden_field_tag "initiativeAdmin", current_user.initiative_admin(@initiative) 
+
 .row
   .small-12.columns
     - if @initiative.projects.count == 0

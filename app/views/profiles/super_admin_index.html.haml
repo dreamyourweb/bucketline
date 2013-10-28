@@ -1,27 +1,29 @@
 - content_for :header do
   = render :partial => "shared/site_admin_sub_nav" 
 
-%table.admin-table.table.table-bordered.table-striped
-  %tr
-    %th Naam
-    %th Bucket Line
-    %th Expertise
-    %th Kan helpen met
-    %th Handige spullen in bezit
-    %th Telefoon
-    %th Email
-    %th Buddy bereidheid
-    %th Admin
-    %th Super admin
-  - @users.each do |user|
+%table.admin-table
+  %thead
     %tr
-      %td= user.name
-      %td= initiatives_to_sentence(user.initiatives)
-      %td= user.profile.expertise if user.profile
-      %td= user.profile.willing_to_help_with if user.profile
-      %td= user.profile.tools_and_materials if user.profile
-      %td= user.profile.phone if user.profile
-      %td= user.email
-      %td= "✓" if user.profile && user.profile.willing_to_become_admin 
-      %td= "✓" if user.initiative_admin(user.initiatives)
-      %td= "✓" if user.super_admin
+      %th Naam
+      %th Bucket Line
+      %th Expertise
+      %th Kan helpen met
+      %th Handige spullen in bezit
+      %th Telefoon
+      %th Email
+      %th Buddy bereidheid
+      %th Admin
+      %th Super admin
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= initiatives_to_sentence(user.initiatives)
+        %td= user.profile.expertise if user.profile
+        %td= user.profile.willing_to_help_with if user.profile
+        %td= user.profile.tools_and_materials if user.profile
+        %td= user.profile.phone if user.profile
+        %td= user.email
+        %td= "✓" if user.profile && user.profile.willing_to_become_admin 
+        %td= "✓" if user.initiative_admin(user.initiatives)
+        %td= "✓" if user.super_admin
