@@ -31,7 +31,6 @@ Feature: Manage initiative and invite new members
 		When I follow "Verwijderen"
 		Then there should be no initiatives
 
-	@wip
 	Scenario: Initiative name is changed
 		Given there is an initiative
 		And I am logged in as an initiative admin

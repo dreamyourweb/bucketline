@@ -33,4 +33,7 @@ HvO::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  ENV['EMAIL_SENDER'] = 'no-reply@bucketline.nl'
+  config.action_mailer.default_url_options = { :host => "example.com" }  
 end

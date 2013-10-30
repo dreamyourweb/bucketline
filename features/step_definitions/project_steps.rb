@@ -4,11 +4,11 @@ end
 
 Given /^there is a project that belongs to an initiative admin with an item$/ do
 	if @admin.nil?
-		@admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar')
+		@admin = User.create(:email => 'initiative_admin@test.com', :password => 'foobar', :password_confirmation => 'foobar', :name => "Admin")
 		@admin.profile = Profile.create #(:name => "Anoniempje")
 		@admin.save
 		@admin.update_attributes(:confirmed_at => Time.now)
-		@admin.profile.update_attributes(:name => "Admin", :expertise => "Bier drinken")
+		@admin.profile.update_attributes(:expertise => "Bier drinken")
 	end
 	@initiative = Initiative.last
 	@admin.user_roles.create(:initiative_id => @initiative.id, :admin => true)
@@ -30,11 +30,12 @@ end
 When /^the initiative admin plans a project for tomorrow$/ do
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')
-	click_link('Nieuwe Klus')
+	#click_link('Nieuwe Klus')
+	visit(new_project_url(:subdomain => "mijn-initiatief" , :date => Date.tomorrow.to_s))
 	fill_in("project_query", :with => "Mijn project")
-	select(Date.tomorrow.day.to_s, :from => "project_input_date_3i")
-	select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_input_date_2i")
-	select(Date.tomorrow.year.to_s, :from => "project_input_date_1i")
+	#select(Date.tomorrow.day.to_s, :from => "project_input_date_3i")
+	#select(I18n.t("date.month_names")[Date.tomorrow.month], :from => "project_input_date_2i")
+	#select(Date.tomorrow.year.to_s, :from => "project_input_date_1i")
 	select("10", :from => "project_input_start_at_4i")
 	select("00", :from => "project_input_start_at_5i")
 	select("12", :from => "project_input_end_at_4i")
@@ -42,9 +43,14 @@ When /^the initiative admin plans a project for tomorrow$/ do
 	click_button("Project en items opslaan")
 end
 
+When /^I go to the new project form$/ do
+	visit(new_project_url(:subdomain => "mijn-initiatief" , :date => Date.today.to_s))
+end
+
 When /^the initiative admin cancels the project$/ do
 	#click_link "Bekijk initiatief"
-	click_link "Mijn project"
+	#click_link "Mijn project"
+	step %{I click on a project}
  	click_link "Klus verwijderen"
 	#confirm javascript popup box	
 end
@@ -53,7 +59,8 @@ When /^the initiative admin edits the project$/ do
 	#visit "/initiatives"
 	#click_link('Bekijk initiatief')
 	click_link('Kalender')
-	click_link "Mijn project"
+	step %{I click on a project}
+	#click_link "Mijn project"
 	click_link "Project bewerken"
 	fill_in("project_query", :with => "Mijn bewerkte project")
 	click_button("Project en items opslaan")
@@ -72,7 +79,9 @@ When /^I provide (\d+) item$/ do |arg1|
 end
 
 When /^I click on a project$/ do
-  click_link "Mijn project"
+  #click_link "Mijn project"
+  project = Project.first
+  visit project_items_url(:project_id => project.id, :subdomain => "mijn-initiatief")
 end
 
 When /^I fill in the form with a project and an item$/ do

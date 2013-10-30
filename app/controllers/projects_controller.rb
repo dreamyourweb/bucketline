@@ -59,8 +59,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        #Items are created after project is created, so if this method is called by an after_create hook, project.items is still empty when the mail is sent. That's why it is called by the controller.
-				@project.send_project_placement_mail
+        #Mails for project creation are sent hourly by a rake task.
         format.html { redirect_to projects_path, notice: 'Het project is geplaatst' }
         format.json { render json: @project, status: :created, location: @project }
       else
