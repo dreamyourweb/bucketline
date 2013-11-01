@@ -20,6 +20,9 @@
   - if @initiative.errors[:description].present?
     %small.error #{@initiative.errors[:description].first}
 
+  - if @bucket_group.present?
+    = f.hidden_field :bucket_group_id, value: @bucket_group.id
+
   - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Initiative', 'Placement']);" else onclick_action = "" end
   = f.submit "Opslaan", class: "button", onclick: onclick_action
 

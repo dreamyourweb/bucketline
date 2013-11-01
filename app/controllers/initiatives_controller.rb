@@ -1,9 +1,10 @@
 class InitiativesController < ApplicationController
   before_filter :get_initiative, :only => [:edit, :show, :update, :destroy]
-  before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
+  # before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
   before_filter :get_initiative_from_subdomain, only: [:show, :edit, :update]
+  before_filter :authenticate_admin_for_bucket_group, :only => [:new_from_bucket_group, :create]
 
   # GET /initiatives
   # GET /initiatives.json
@@ -36,10 +37,31 @@ class InitiativesController < ApplicationController
   def new
     @initiative = Initiative.new
 
+    if params[:bucket_group_id].present?
+      @bucket_group = BucketGroup.find(params[:bucket_group_id])
+    end
+
     respond_to do |format|
-      format.html # new.html.erb
+      format.html do
+        if @bucket_group.present?
+          render "new_bucket_group"
+        end
+      end
       format.json { render json: @initiative }
     end
+  end
+
+  def new_from_bucket_group
+    @initiative = Initiative.new
+    @bucket_group = BucketGroup.find(params[:bucket_group_id])
+
+    respond_to do |format|
+      format.html do
+        render "new_bucket_group"
+      end
+      format.json { render json: @initiative }
+    end
+
   end
 
   # GET /initiatives/1/edit
@@ -49,11 +71,25 @@ class InitiativesController < ApplicationController
   # POST /initiatives
   # POST /initiatives.json
   def create
+    if params[:initiative][:bucket_group_id].present?
+      bucket_group = BucketGroup.find(params[:initiative][:bucket_group_id])
+      params[:initiative].delete(:bucket_group_id)
+    end
+
     @initiative = Initiative.new(params[:initiative])
 
     respond_to do |format|
       if @initiative.save
-        @initiative.user_roles.create(:user_id => current_user.id, :admin => true) #Make the current user automatically admin of his newly created initiative
+
+        if bucket_group.present?
+          bucket_group.users.each do |bu|
+            @initiative.user_roles.create(user: bu.user)
+          end
+        end
+
+        admin_user = @initiative.user_roles.find_or_create_by(:user_id => current_user.id) #Make the current user automatically admin of his newly created initiative
+        admin_user.admin = true
+        admin_user.save                                                                                           #
         format.html { redirect_to initiative_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangemaakt." }
       else
         format.html { render action: "new" }

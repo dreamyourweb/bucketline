@@ -14,7 +14,7 @@ class Initiative
   validates_exclusion_of :slug, :in => ["www", "bucketline"], :message => "Naam is niet toegestaan."
 
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
-  has_many :invitations, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy, as: :invitationable
 
 	has_many :projects #, :dependent => :destroy
 	has_many :items #, :dependent => :destroy #loose items

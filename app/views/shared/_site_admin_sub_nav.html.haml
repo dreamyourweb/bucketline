@@ -9,6 +9,8 @@
         %li
           = link_to "Alle bucket lines", admin_initiatives_url(:subdomain => false), class: (request.path == admin_initiatives_path) ? "active" : ""
         %li
+          = link_to "Alle bucketgroepen", admin_bucket_groups_url(:subdomain => false), class: (request.path == admin_bucket_groups_path) ? "active" : ""
+        %li
           = link_to "Feedback berichten", admin_feedback_url(:subdomain => false), class: (request.path == admin_feedback_path) ? "active" : ""
         %li
           = link_to "Alle gebruikers", admin_profiles_url(:subdomain => false), class: (request.path == admin_profiles_path) ? "active" : ""

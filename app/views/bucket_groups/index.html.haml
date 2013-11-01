@@ -1,0 +1,20 @@
+- content_for :header do
+  = render :partial => "shared/site_admin_sub_nav" 
+
+= link_to 'Nieuwe Bucketgroep', new_bucket_group_path, class: "large button"
+  
+%table.admin-table
+  %thead
+    %tr
+      %th Bucketgroep
+      %th Omschrijving
+      %th
+  %tbody
+    - @bucket_groups.each do |group|
+      %tr
+        %td= group.name
+        %td= group.description            
+        %td
+          = link_to 'Bewerken', admin_edit_bucket_group_url(group)
+          |
+          = link_to 'Verwijderen', bucket_group_url(group), confirm: 'Weet je zeker dat je deze bucketgroep wilt verwijderen? Dit kan niet ongedaan gemaakt worden!', method: :delete

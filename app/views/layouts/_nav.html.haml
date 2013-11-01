@@ -15,9 +15,17 @@
               - else
                 = link_to "Mijn Bucket Lines", "#"
             %ul.dropdown
-              - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
-                %li{class: get_active("messages")}
-                  = link_to initiative.name, root_url(:subdomain => initiative.slug) 
+              - if current_user.user_roles.map{|ur| ur.initiative}.count > 0
+                %li
+                  %label Bucketlines
+                - current_user.user_roles.map{|ur| ur.initiative}.each do |initiative|
+                  %li{class: get_active("messages")}
+                    = link_to initiative.name, root_url(:subdomain => initiative.slug) 
+              %li
+                %label Groepen
+                - current_user.bucket_groups.each do |bg|
+                  %li{class: get_active("bucket_groups")}
+                    = link_to bg.name, bucket_group_url(bg, subdomain: false)
         %li.divider
         - if current_user && current_user.super_admin
           %li.has-dropdown
@@ -25,6 +33,8 @@
             %ul.dropdown
               %li{class: (request.path == admin_initiatives_path) ? "active" : ""}
                 = link_to "Alle bucket lines", admin_initiatives_url(:subdomain => false)
+              %li{class: (request.path == admin_bucket_groups_url) ? "active" : ""}
+                = link_to "Alle bucketgroepen", admin_bucket_groups_url(:subdomain => false)
               %li{class: (request.path == admin_feedback_path) ? "active" : ""}
                 = link_to "Feedback berichten", admin_feedback_url(:subdomain => false)
               %li{class: (request.path == admin_profiles_path) ? "active" : ""}

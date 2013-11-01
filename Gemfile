@@ -14,7 +14,6 @@ gem 'devise'
 #gem 'devise_invitable'
 # gem 'event-calendar', :require => 'event_calendar'
 gem 'calendar_helper'
-gem 'later_dude', '>= 0.3.1'
 
 #gem "watu_table_builder", :require => "table_builder"
 

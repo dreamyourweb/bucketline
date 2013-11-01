@@ -12,16 +12,29 @@ HvO::Application.routes.draw do
     delete '/initiative', :to => "initiatives#destroy"
     get '/initiative', :to => "initiatives#show"
     put '/initiative', :to => "initiatives#update"
-    #   resources :initiatives
+    resources :initiatives
+    resources :invitations
   end
   root :to => "home#index"
 
-  get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
-  post "/invitations", :to => "invitations#create", :as => "invitations"
+  # get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
+
+  # post "/invitations", :to => "invitations#create", :as => "invitations"
   get "/invitations/:token/accept", :to => "invitations#accept", :as => "accept_invitation"
   post "/invitations/:token", :to => "invitations#register", :as => "register_user_via_invitation"
 
-  resources :initiatives
+  resources :initiatives do
+    # resources :invitations
+    collection do
+      get "new_from_bucket_group", :to => "initiatives#new_from_bucket_group"
+    end
+  end
+  resources :bucket_groups do
+    member do
+      get 'admin_edit'
+    end
+    resources :invitations
+  end
   # get '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"
   # post '/initiative', :to => "initiatives#create", :as => "initiatives"
 
@@ -71,6 +84,7 @@ HvO::Application.routes.draw do
     get 'feedback', :to => 'messages#index', :as => "admin_feedback"
     get 'profiles', :to => "profiles#super_admin_index", :as => "admin_profiles"
     get 'initiatives', :to => "initiatives#index", :as => "admin_initiatives"
+    get 'bucketgroups', to: "bucket_groups#index", :as => "admin_bucket_groups"
   end
 
 	get "projects/info"

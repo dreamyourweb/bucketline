@@ -168,7 +168,6 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.1)
-    later_dude (0.3.3)
     launchy (2.3.0)
       addressable (~> 2.3)
     listen (2.1.1)
@@ -340,7 +339,6 @@ DEPENDENCIES
   heroku-mongo-backup
   jquery-rails
   jquery-turbolinks
-  later_dude (>= 0.3.1)
   mail_form
   mongoid!
   mongoid-rspec

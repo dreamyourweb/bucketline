@@ -12,6 +12,7 @@ class User
 	#Facebook
 	has_many :authentications, :dependent => :destroy
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
+  # has_many :bucket_group_users, dependent: :destroy
 
 	field :super_admin, :type => Mongoid::Boolean, :default => false #Super admin is the owner and admin for the entire client instance
   field :invited, :type => Mongoid::Boolean, :default => false #Was user invited or did he register on his own 
@@ -94,6 +95,15 @@ class User
     initiative_admin_role
   end
 
+  def bucket_group_admin?(bucket_group)
+    c = bucket_group.users.includes(:user).where(user_id: self.id)
+    if c.present?
+      return c.first.admin
+    else
+      return false
+    end
+  end
+
   def initiatives #the initiatives in which the user has a role
     user_roles = UserRole.where(:user_id => self.id).all
     initiatives = []
@@ -102,4 +112,9 @@ class User
     end
     initiatives
   end
+
+  def bucket_groups
+    BucketGroup.where('users.user_id' => self.id).asc(:name)
+  end
+
 end

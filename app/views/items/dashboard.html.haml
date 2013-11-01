@@ -3,6 +3,9 @@
 
 - if @items.present?
   .row
+    .small-12.columns
+      = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "medium button"
+  .row
     .small-12.large-3.columns
       %h6 Vervoer
     .small-12.large-3.columns

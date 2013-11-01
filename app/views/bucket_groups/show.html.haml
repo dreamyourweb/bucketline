@@ -1,0 +1,55 @@
+- content_for :header do
+  = render :partial => "shared/bucket_group_sub_nav"
+
+- if current_user.bucket_group_admin?(@bucket_group)
+  = link_to 'Nieuwe Uitnodiging', new_bucket_group_invitation_path(@bucket_group), :class => "large button"
+  = link_to 'Nieuwe Bucketline', new_from_bucket_group_initiatives_path(bucket_group_id: @bucket_group.id), class: "large button"
+
+- if current_user.initiative_admin(@initiative)
+  
+  = form_for @bucket_group do |f|
+
+    %table.admin-table
+      %tr
+        %th Naam
+        %th Expertise
+        %th Kan helpen met
+        %th Handige spullen in bezit
+        %th Telefoon
+        %th Email
+        %th Buddy bereidheid
+        %th Admin
+        %th 
+      = f.fields_for :users do |bgu|
+        %tr
+          %td= bgu.object.user.name
+          %td= bgu.object.user.profile.expertise if bgu.object.user.profile
+          %td= bgu.object.user.profile.willing_to_help_with if bgu.object.user.profile
+          %td= bgu.object.user.profile.tools_and_materials if bgu.object.user.profile
+          %td= bgu.object.user.profile.phone if bgu.object.user.profile
+          %td= bgu.object.user.email
+          %td= "Ja" if bgu.object.user.profile && bgu.object.user.profile.willing_to_become_admin
+          %td
+            - if bgu.object.user != current_user      
+              = bgu.check_box :admin
+            - else
+              = bgu.check_box :admin, disabled: true
+          %td
+            - if bgu.object.user != current_user            
+              =# link_to "Verwijderen", user_role_path(user_role) + "?redirect_to_profiles=true", :method => :delete, :confirm => "Weet je zeker dat je deze gebruiker uit deze Bucket Line wilt verwijderen?"
+
+    = f.submit "Update", :class => "button", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
+
+
+
+- else
+
+  %h3 Admins
+  %dl
+    - @bucket_group.users.includes(:user).where(admin: true).each do |user|
+      %dt= user.user.name
+
+  %h3 Leden
+  %dl
+    - @bucket_group.users.includes(:user).where(admin: false).each do |user|
+      %dt= user.user.name
