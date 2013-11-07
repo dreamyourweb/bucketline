@@ -5,7 +5,7 @@
   = link_to 'Nieuwe Uitnodiging', new_bucket_group_invitation_path(@bucket_group), :class => "large button"
   = link_to 'Nieuwe Bucketline', new_from_bucket_group_initiatives_path(bucket_group_id: @bucket_group.id), class: "large button"
 
-- if current_user.initiative_admin(@initiative)
+- if @bucket_group.user_is_admin?(current_user)
   
   = form_for @bucket_group do |f|
 

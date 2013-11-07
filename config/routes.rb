@@ -33,6 +33,9 @@ HvO::Application.routes.draw do
     member do
       get 'admin_edit'
     end
+    collection do
+      get "new_unregistered", :to => "bucket_groups#new_unregistered"
+    end
     resources :invitations
   end
   # get '/initiatives/new', :to => "initiatives#new", :as => "new_initiative"

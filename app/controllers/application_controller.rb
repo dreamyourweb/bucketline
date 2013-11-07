@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate_user_for_bucket_group
-		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.bucket_group_users.where(:bucket_group_id => @bucket_group.id).last)
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_member?(current_user))
 	end
 
 	def authenticate_admin_for_bucket_group
-		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.bucket_group_users.where(:bucket_group_id => @bucket_group.id).where(admin:true).last)
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user))
 	end
 
 	def get_profile

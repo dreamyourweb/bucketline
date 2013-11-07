@@ -1,14 +1,18 @@
 class BucketGroupsController < ApplicationController
-  before_filter :authenticate_super_admin, :only => [:index]
-  before_filter :authenticate_user_for_initiative
-  before_filter :authenticate_admin_for_initiative, except: [:show]
-
+  before_filter :get_bucket_group, only: [:show, :settings]
+  before_filter :authenticate_super_admin, :only => [:index, :new]
+  before_filter :authenticate_user_for_bucket_group, except: [:new_unregistered, :create]
+  before_filter :authenticate_admin_for_bucket_group, except: [:show, :new_unregistered, :create]
 
   def index
     @bucket_groups = BucketGroup.all
   end
 
   def new
+    @bucket_group = BucketGroup.new
+  end
+
+  def new_unregistered
     @bucket_group = BucketGroup.new
   end
 
@@ -21,19 +25,28 @@ class BucketGroupsController < ApplicationController
   end
 
   def show
-    get_bucket_group
   end
 
   def settings
-    get_bucket_group
   end
 
   def create
     @bucket_group = BucketGroup.new(params[:bucket_group])
+    p params
+
+    if params[:bucket_group]["creator_email"].present?
+      user = User.create( email: params[:bucket_group][:creator_email],
+                          name: params[:bucket_group][:creator_name],
+                          password: params[:bucket_group][:creator_password],
+                          password_confirmation: params[:bucket_group][:creator_password_confirmation] 
+        )
+    else
+      user = current_user
+    end
 
     respond_to do |format|
       if @bucket_group.save
-        @bucket_group.users.create(:user_id => current_user.id, :admin => true)
+        @bucket_group.users.create(:user_id => user.id, :admin => true)
         format.html { redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Bucket groep is aangemaakt." }
       else
         format.html { render action: "new" }

@@ -36,6 +36,7 @@ class InvitationsController < ApplicationController
           @invitation.delete
         elsif @invitationable.is_a? BucketGroup
           @invitationable.users.build(user: user)
+          @invitation.delete
         else
         end
 
@@ -55,8 +56,6 @@ class InvitationsController < ApplicationController
     end
 
     respond_to do |format|
-      p "ATHAERHAERG"
-      p @invitation.invitationable
       if @invitation.save
         InvitationMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation.token, :subdomain => false), @invitation.email).deliver
         format.html { redirect_to root_path, notice: 'Uitnodiging is verstuurd naar ' + @invitation.email.to_s }
