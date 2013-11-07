@@ -7,11 +7,11 @@
     .large-8.columns
       %ul.inline-list
         %li
+          = link_to "Home", initiative_path,class: get_active("home")
+        %li
           = link_to "Kalender", projects_path, class: get_active("calendar")
         %li
           = link_to "Verlanglijstje", "/wishlist", class: get_active("dashboard")
-        %li
-          = link_to "Info", initiative_path,class: get_active("home")
         - if current_user.initiative_admin(@initiative)  
           %li.admin-initiative-menu
             %a{href:"#", 'data-dropdown' => "drop1", 'data-options' => "is_hover:true", class: (request.path == "/initiative/edit" || request.path == "/profiles" || request.path == "/all_available_dates" || request.path == "/links") ? "active" : ""} Admin

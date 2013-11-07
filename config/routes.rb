@@ -1,7 +1,7 @@
 HvO::Application.routes.draw do
 
   constraints :subdomain => /.+/ do
-    get '/' => 'projects#index'
+    get '/' => 'initiatives#show'
     get '/wishlist' => "items#dashboard"
     get '/all_available_dates' => "available_dates#availability_dashboard"
     get '/profiles' => "profiles#index"
