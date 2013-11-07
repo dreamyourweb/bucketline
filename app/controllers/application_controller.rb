@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate_admin_for_bucket_group
-		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user))
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user) )
 	end
 
 	def get_profile

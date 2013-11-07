@@ -1,5 +1,6 @@
 class InitiativesController < ApplicationController
   before_filter :get_initiative, :only => [:edit, :show, :update, :destroy]
+  before_filter :get_bucket_group, only: [:new_from_bucket_group, :create]
   # before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
@@ -130,4 +131,15 @@ class InitiativesController < ApplicationController
       @initiative = Initiative.find(params[:id])
     end
   end
+
+  def get_bucket_group
+    @bucket_group = nil
+    if params[:bucket_group_id].present?
+      @bucket_group = BucketGroup.find(params[:bucket_group_id]) 
+    end
+    if params[:initiative].present? and params[:initiative][:bucket_group_id].present?
+      @bucket_group = BucketGroup.find(params[:initiative][:bucket_group_id]) 
+    end
+  end
+
 end
