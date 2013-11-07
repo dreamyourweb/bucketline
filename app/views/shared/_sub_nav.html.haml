@@ -11,8 +11,6 @@
         %li
           = link_to "Verlanglijstje", "/wishlist", class: get_active("dashboard")
         %li
-          = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user), class: get_active("availability")
-        %li
           = link_to "Info", initiative_path,class: get_active("home")
         - if current_user.initiative_admin(@initiative)  
           %li.admin-initiative-menu
@@ -22,8 +20,6 @@
                 = link_to "Bucket Line instellingen", "/initiative/edit"
               %li
                 = link_to "Deelnemers beheer", "/profiles"
-              %li
-                = link_to "Alle beschikbaarheid", "/all_available_dates"
               %li
                 = link_to "Alle bijdragen", "/links"
 
