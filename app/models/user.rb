@@ -41,6 +41,8 @@ class User
   field :unconfirmed_email,    :type => String # Only if using reconfirmable
                                                # 
   field :terms_and_conditions_accepted, :type => Mongoid::Boolean
+
+  field :bucketline_creator_role, type: Mongoid::Boolean, default: false
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both

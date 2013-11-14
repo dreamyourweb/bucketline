@@ -1,13 +1,15 @@
 class InvitationsController < ApplicationController
   before_filter :get_invitationable, :only => [:new, :create]
-  before_filter :authenticate_admin_for_initiative, :only => [:new, :create]
+  # before_filter :authenticate_admin_for_initiative, :only => [:new, :create]
 
   #Make new invitation
   def new
     if @initiative.present?
+      redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.user_roles.where(:initiative_id => @initiative.id).last)
       @invitation = Invitation.new(invitationable: @initiative)
       render "new"
     elsif @bucket_group.present?
+      redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user) )
       @invitation = Invitation.new(invitationable: @bucket_group)
       render "new_bucket_group"
     else
