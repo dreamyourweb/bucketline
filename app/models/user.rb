@@ -56,7 +56,7 @@ class User
   before_save :check_or_create_profile
   after_create :send_user_created_mail
 
-  validates_acceptance_of :terms_and_conditions_accepted, :accept => true, :message => "must be checked to be able to register."
+  validates_acceptance_of :terms_and_conditions_accepted#, :message => "must be checked to be able to register."
   validates_presence_of :name, :email, :encrypted_password
 
 

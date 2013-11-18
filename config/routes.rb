@@ -29,7 +29,7 @@ HvO::Application.routes.draw do
       get "new_from_bucket_group", :to => "initiatives#new_from_bucket_group"
     end
   end
-  resources :bucket_groups do
+  resources :bucket_groups, except: :index  do
     member do
       get 'admin_edit'
     end
@@ -87,7 +87,7 @@ HvO::Application.routes.draw do
     get 'feedback', :to => 'messages#index', :as => "admin_feedback"
     get 'profiles', :to => "profiles#super_admin_index", :as => "admin_profiles"
     get 'initiatives', :to => "initiatives#index", :as => "admin_initiatives"
-    get 'bucketgroups', to: "bucket_groups#index", :as => "admin_bucket_groups"
+    get 'bucket_groups', to: "bucket_groups#index", :as => "admin_bucket_groups"
   end
 
 	get "projects/info"

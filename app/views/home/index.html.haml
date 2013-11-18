@@ -3,6 +3,9 @@
   %header#homepage
     .row
       .small-12.columns
+        = render 'layouts/flashmessages'
+    .row
+      .small-12.columns
         %h1 Bucket Line
         %h4.subheader Bucket Line brengt mensen samen om in een tijdelijke en persoonlijke noodsituatie, een steun te zijn door voor elkaar kleine klussen te doen.
         - if !current_user

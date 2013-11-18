@@ -37,6 +37,13 @@ class ApplicationController < ActionController::Base
 			end
 		end
 	end
+
+	before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :terms_and_conditions_accepted
+  end
 	
 	protected
 

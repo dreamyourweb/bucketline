@@ -132,4 +132,23 @@ module ApplicationHelper
     (request.original_url == path) ? "active" : ""
   end
 
+  class BetterFormBuilder < ActionView::Helpers::FormBuilder
+
+    def field_error(field, object=nil)
+      if object.nil?
+        object = @object
+      end
+      if object.errors[field].any?
+        message = object.errors[field].first
+        if message.is_a? Array
+          message = message.first
+        end
+        if message.present?
+          "<div class='error'><small class='error'>#{object.errors[field].first}</small></div>".html_safe
+        end
+      end
+    end
+
+  end
+
 end

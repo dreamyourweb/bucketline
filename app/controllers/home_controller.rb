@@ -16,9 +16,7 @@ class HomeController < ApplicationController
   def disclaimer
   end
 
-  def terms_and_conditions
-    
+  def terms_and_conditions  
   end
-
 
 end

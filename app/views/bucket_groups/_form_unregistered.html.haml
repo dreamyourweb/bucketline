@@ -1,23 +1,33 @@
-= form_for @bucket_group do |f|
+= form_for @bucket_group, :builder => ApplicationHelper::BetterFormBuilder do |f|
   .row
     .small-12.large-6.columns
 
+      - @object = @bucket_group
+
+      = f.hidden_field :new_registration, value: true
+
       = f.label :creator_name, "Jouw naam"
       = f.text_field :creator_name
+      = f.field_error :creator_name
 
       = f.label :creator_email, "Jouw email"
       = f.email_field :creator_email
+      = f.field_error  :creator_email
 
       = f.label :creator_password, "Je wachtwoord"
       = f.password_field :creator_password
+      = f.field_error  :creator_password
 
       = f.label :creator_password_confirmation, "Je wachtwoord nogmaals"
       = f.password_field :creator_password_confirmation
+      = f.field_error  :creator_password_confirmation
       
       = f.label :name, "Naam Bucketgroup"
       = f.text_field :name
+      = f.field_error :name
 
       = f.label :description, "Beschrijving Bucketgroup"
       = f.text_area :description
+      = f.field_error :decription
       
       = f.submit class: "button"

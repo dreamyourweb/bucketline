@@ -32,24 +32,44 @@ class BucketGroupsController < ApplicationController
 
   def create
     @bucket_group = BucketGroup.new(params[:bucket_group])
-    p params
 
-    if params[:bucket_group]["creator_email"].present?
-      user = User.create( email: params[:bucket_group][:creator_email],
+    if params[:bucket_group][:new_registration]
+      user = User.new( email: params[:bucket_group][:creator_email],
                           name: params[:bucket_group][:creator_name],
                           password: params[:bucket_group][:creator_password],
                           password_confirmation: params[:bucket_group][:creator_password_confirmation] 
         )
+      if @bucket_group.valid?
+        user.save
+      end
     else
       user = current_user
     end
 
+    @bucket_group.errors[:creator_name] = user.errors[:name]
+    @bucket_group.errors[:creator_email] = user.errors[:email]
+    @bucket_group.errors[:creator_password] = user.errors[:password]
+    @bucket_group.errors[:creator_password_confirmation] = user.errors[:password_confirmation]
+
     respond_to do |format|
-      if @bucket_group.save
+      if !(user.errors.count > 0) and @bucket_group.save
         @bucket_group.users.create(:user_id => user.id, :admin => true)
-        format.html { redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Bucket groep is aangemaakt." }
+        format.html do
+          if current_user.present?
+            redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Bucket groep is aangemaakt."
+          else
+            redirect_to root_path, notice: "Je nieuwe Bucket Groep is aangemaakt. Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen."
+          end
+        end
       else
-        format.html { render action: "new" }
+        
+        format.html do
+          if current_user.present?
+            render action: "new"
+          else
+            render action: "new_unregistered"
+          end
+        end
         format.json { render json: @bucket_group.errors, status: :unprocessable_entity }
       end
     end
