@@ -20,10 +20,7 @@
                 = link_to "Bucket Line instellingen", "/initiative/edit"
               %li
                 = link_to "Deelnemers beheer", "/profiles"
-              %li
-                = link_to "Alle bijdragen", "/links"
-
-
+                
       / - if current_user.initiative_admin(@initiative)
       /   %ul.inline-list.admin
       /     %li
