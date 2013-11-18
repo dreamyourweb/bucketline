@@ -36,11 +36,6 @@
 
     = render :partial => "layouts/nav"
 
-    - if current_user
-      #feedback.hide-for-small
-        = link_to new_message_path, class: "fancybox fancybox.ajax" do
-          %h6 Feedback
-
     - if content_for?(:header)
       = yield(:header)
 
