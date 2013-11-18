@@ -5,7 +5,7 @@
 = form_for [@bucket_group, @invitation] do |f|
   .row
     .small-12.large-6.columns
-      = f.label :email, "E-mail ontvanger (let op, je kunt maar aan 1 adres tegelijk invoeren):"
+      = f.label :email, "E-mail ontvanger:"
       = f.email_field :email
 
       = f.submit "Verstuur Uitnodiging", :class => "button"
