@@ -7,9 +7,9 @@
     .large-8.columns
       %ul.inline-list
         %li
-          = link_to "Alle bucket lines", admin_initiatives_url(:subdomain => false), class: (request.path == admin_initiatives_path) ? "active" : ""
+          = link_to "Bucket Lines", admin_initiatives_url(:subdomain => false), class: (request.path == admin_initiatives_path) ? "active" : ""
         %li
-          = link_to "Alle bucketgroepen", admin_bucket_groups_url(:subdomain => false), class: (request.path == admin_bucket_groups_path) ? "active" : ""
+          = link_to "Preventieve Bucket Lines", admin_bucket_groups_url(:subdomain => false), class: (request.path == admin_bucket_groups_path) ? "active" : ""
         %li
           = link_to "Feedback berichten", admin_feedback_url(:subdomain => false), class: (request.path == admin_feedback_path) ? "active" : ""
         %li

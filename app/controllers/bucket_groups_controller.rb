@@ -56,9 +56,9 @@ class BucketGroupsController < ApplicationController
         @bucket_group.users.create(:user_id => user.id, :admin => true)
         format.html do
           if current_user.present?
-            redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Bucket groep is aangemaakt."
+            redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Preventieve Bucket Line is aangemaakt."
           else
-            redirect_to root_path, notice: "Je nieuwe Bucket Groep is aangemaakt. Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen."
+            redirect_to root_path, notice: "Je nieuwe preventieve Bucket Line is aangemaakt. Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen."
           end
         end
       else
@@ -80,9 +80,9 @@ class BucketGroupsController < ApplicationController
 
     respond_to do |format|
       if @bucket_group.update_attributes(params[:bucket_group])
-        format.html {render action: :show, notice: "Bucket groep geupdatet"}
+        format.html {render action: :show, notice: "Preventieve Bucket Line geupdatet"}
       else
-        format.html {render action: :show, alert: "Bucket groep niet geupdatet."}
+        format.html {render action: :show, alert: "Preventieve Bucket Line niet geupdatet."}
       end
     end
   end
@@ -90,7 +90,7 @@ class BucketGroupsController < ApplicationController
   def destroy
     BucketGroup.find(params[:id]).destroy
     respond_to do |format|
-      format.html {redirect_to :back, notice: "Bucker groep verwijderd."}
+      format.html {redirect_to :back, notice: "Preventieve Bucket Line verwijderd."}
     end
   end
 
