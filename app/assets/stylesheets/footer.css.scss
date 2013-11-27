@@ -1,12 +1,12 @@
 @import "compass/layout.scss";
 
-@include sticky-footer(140px, "#main", "#layoutFooter", "footer");
+@include sticky-footer(100px, "#main", "#layoutFooter", "footer");
 
 footer{
 	background-color:$footerColor;
 	padding-top: 20px;
 	margin-top: 20px;
-	color: $secondary-color;
+	color: $shiny-edge-color;;
 
 	a{
 		color: $shiny-edge-color;
@@ -16,6 +16,13 @@ footer{
 		color: $backgroundMediumColor;
 	};
 	overflow: hidden;
+	.full-height{
+		height: 100%;
+		vertical-align: bottom;
+	}
+	ul.inline-list{
+		font-size: 85%;
+	}
 }
 
 /*************** OLD *******************/
