@@ -13,7 +13,8 @@
             %li
               %a{href:"http://bucketline.wpengine.com/?page_id=5"} Voor Mantelzorgers
             %li
-              %a{href:"http://bucketline.wpengine.com/?page_id=50"} Preventief netwerk opzetten
+              = link_to "Preventief netwerk opzetten", new_unregistered_bucket_groups_path
+              / %a{href:"http://bucketline.wpengine.com/?page_id=50"} Preventief netwerk opzetten
             %li
               %a{href:"http://bucketline.wpengine.com/?page_id=13"} Contact
             - unless user_signed_in?
