@@ -18,7 +18,7 @@
       = f.label 'Datum:'  
       .row
         .small-12.columns
-          = f.date_select(:input_date, {:default => Date.parse(params[:date])}, {:class => "project_date date"})
+          = f.date_select(:input_date, {:default => @project.input_date || Date.parse(params[:date])}, {:class => "project_date date"})
 
       = f.label 'Begin:'  
       .row

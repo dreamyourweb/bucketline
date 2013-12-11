@@ -216,3 +216,5 @@ nl:
         description: Beschrijving
         name: Naam
         location: Lokatie
+      item:
+        name: Benodigdheid
