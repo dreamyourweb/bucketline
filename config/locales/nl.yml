@@ -209,3 +209,6 @@ nl:
         encrypted_password: Wachtwoord bevestiging
         password_confirmation: Nieuw wachtwoord
         current_password: Huidig wachtwoord
+      bucket_group:
+        description: Beschrijving
+        name: Naam
