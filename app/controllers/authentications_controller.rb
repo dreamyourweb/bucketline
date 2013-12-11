@@ -11,7 +11,7 @@ class AuthenticationsController < ApplicationController
 			  user = User.new
 				user.apply_omniauth(auth)
 				if user.save(:validate => false)
-				  flash[:notice] = "Er is een login aangemaakt via facebook, je bent nu ingelogd."
+				  flash[:notice] = "Er is een login aangemaakt via facebook."
 				  sign_in_and_redirect(:user, user)
 				else
 				  flash[:error] = "Er ging iets mis bij het aanmaken van je registratie. Probeer het nog eens."

@@ -7,7 +7,7 @@
 nl:
   devise:
     confirmations:
-      confirmed: "Je account is geactiveerd. Je bent nu ingelogd."
+      confirmed: "Je account is geactiveerd."
       new:
         resend_confirmation: "Stuur bevestigingsinstructies nogmaals"
       send_instructions: "Je ontvangt een e-mail met instructies om je account te activeren."
@@ -85,7 +85,7 @@ nl:
         no_account: "Er bestaat geen account met dit e-mailadres. Mocht je op een uitnodiging wachten; deze komen zo snel mogelijk beschikbaar."
         send_password_instructions: "Stuur mij instructies om mijn wachtwoord te resetten"
       send_instructions: "Je ontvangt een e-mail met instructies om je wachtwoord opnieuw in te stellen."
-      updated: "Je wachtwoord is veranderd. Je bent nu ingelogd."
+      updated: "Je wachtwoord is veranderd."
       user:
         updated_not_active: Wachtwoord succesvol veranderd.
     registrations:
@@ -123,7 +123,7 @@ nl:
       new:
         resend_unlock: "Stuur ontgrendelinstructies nogmaals"
       send_instructions: "Je ontvangt een e-mail met instructies om je account te deblokkeren."
-      unlocked: "Je account is succesvol gedeblokkeerd. Je bent nu ingelogd."
+      unlocked: "Je account is succesvol gedeblokkeerd."
   errors:
     messages:
       already_confirmed: "is al geactiveerd"
