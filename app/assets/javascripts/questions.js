@@ -14,7 +14,7 @@ function add_fields(link, association, content) {
 	var daypart = $("#project_daypart").val();
 
   var regexp = new RegExp("new_" + association, "g");
-  $(link).parent().before(content.replace(regexp, new_id));
+  $(link).before(content.replace(regexp, new_id));
 
 	$(".item_daypart").val(daypart);
 

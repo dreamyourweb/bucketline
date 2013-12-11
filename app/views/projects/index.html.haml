@@ -7,9 +7,9 @@
   .small-12.columns
     - if @initiative.projects.count == 0
       - if current_user.initiative_admin(@initiative)
-        = alert("Er zijn nog geen klussen in de kalender geplaatst. Klik op een getalletje in de kalender om voor die dag een klus te plaatsen.")
+        = alert("Er zijn nog geen taken in de kalender geplaatst. Klik op een dag om een taak te plaatsen.","",true)
       - else
-        = alert("Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.")
+        = alert("Er zijn nog geen taken in de kalender geplaatst. Een beheerder moet eerst een taak plaatsen voor je kunt bijdragen.","",true)
 
 #projectCalendar
   = render partial: 'shared/calendar', locals: {year: @year, month: @month, events: @events_hash}

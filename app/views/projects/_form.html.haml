@@ -23,12 +23,12 @@
       = f.label 'Begin:'  
       .row
         .small-12.columns
-          = f.time_select(:input_start_at, {:minute_step => 15}, {class: "time"}) 
+          = f.time_select(:input_start_at, {:minute_step => 15, time_separator: ''}, {class: "time"}) 
 
       = f.label 'Einde:'  
       .row.tim
         .small-12.columns
-          = f.time_select(:input_end_at, {:minute_step => 15}, {class: "time"}) 
+          = f.time_select(:input_end_at, {:minute_step => 15, time_separator: ''}, {class: "time"}) 
 
       = f.label "Verzamel locatie:" 
       = f.select(:location, [["Thuis", "Thuis"], ["Elders (zie opmerkingen)", "Elders (zie opmerkingen)"]]) 
@@ -49,5 +49,9 @@
       = link_to_add_fields "Extra benodigdheid toevoegen", f, :items
 
     
-      - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Project', 'Placement']);" else onclick_action = "" end 
-      = f.submit "Project en items opslaan", :class => "button", :onclick => onclick_action 
+      .row
+        .small-12.columns
+        - if request.path_parameters[:action] == 'new' then onclick_action = "_gaq.push(['_trackEvent', 'Project', 'Placement']);" else onclick_action = "" end 
+      .row
+        .small-12.columns
+          = f.submit "Opslaan", :class => "button", :onclick => onclick_action 

@@ -118,9 +118,9 @@ module ApplicationHelper
 		time.to_formatted_s(:time)
 	end
 
-  def alert(content, type="")
+  def alert(content, type="", no_close=false)
     content_tag "div", class: "alert-box #{type}" do
-      (content + content_tag("a", "&times;".html_safe, class: "close")).html_safe
+      (content + (no_close ? "" : content_tag("a", "&times;".html_safe, class: "close"))).html_safe
     end
   end
 
