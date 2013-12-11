@@ -3,7 +3,7 @@
 
 - if current_user.bucket_group_admin?(@bucket_group)
   = link_to 'Gebruiker uitnodiging', new_bucket_group_invitation_path(@bucket_group), :class => "large button"
-  = link_to 'Nieuwe Preventieve Bucket Line', new_from_bucket_group_initiatives_path(bucket_group_id: @bucket_group.id), class: "large button"
+  = link_to 'Nieuwe Bucket Line', new_from_bucket_group_initiatives_path(bucket_group_id: @bucket_group.id), class: "large button"
 
 - if @bucket_group.user_is_admin?(current_user)
   
