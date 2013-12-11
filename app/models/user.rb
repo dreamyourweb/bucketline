@@ -102,7 +102,7 @@ class User
     if c.present?
       return c.first.admin
     else
-      return false
+      return self.super_admin || false
     end
   end
 

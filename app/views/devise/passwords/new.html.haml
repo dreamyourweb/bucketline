@@ -1,0 +1,17 @@
+- content_for :header do
+  .interior-header
+    .row
+      .large-6.columns
+        .title-text.white-text.hide-for-small
+          Wachtwoord vergeten?
+
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post}) do |f|
+  = devise_error_messages!
+
+  = f.label :email
+  = f.email_field :email
+
+  = f.submit "Stuur instructies om wachtwoord opnieuw in te stellen", class: "button"
+
+
+= render "links"

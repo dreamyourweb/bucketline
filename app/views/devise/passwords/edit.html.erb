@@ -1,18 +1,22 @@
-<% content_for :header do %>
-  <h1>Wachtwoord veranderen</h1>
-<% end %>
+- content_for :header do
+  .interior-header
+    .row
+      .large-6.columns
+        .title-text.white-text.hide-for-small
+          Wachtwoord veranderen
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+  = devise_error_messages!
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password %></div>
+  = f.hidden_field :reset_password_token
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+  = f.label :password, "Nieuw wachtwoord"
+  = f.password_field :password
 
-  <div><%= f.submit "Verander wachtwoord" %></div>
-<% end %>
+  = f.label :password_confirmation, "Bevestig nieuw wachtwoord"
+  = f.password_field :password_confirmation
 
-<%= render "links" %>
+  = f.submit "Verander wachtwoord", class: "button"
+
+
+= render "links"

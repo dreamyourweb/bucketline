@@ -198,3 +198,14 @@ nl:
   activerecord:
     errors:
       <<: *errors
+
+  mongoid:
+    attributes:
+      user:
+        password: Wachtwoord
+        email: E-mail
+        terms_and_conditions_accepted: Gebruikersvoorwaarden en privacybeleid
+        name: Naam
+        encrypted_password: Wachtwoord bevestiging
+        password_confirmation: Nieuw wachtwoord
+        current_password: Huidig wachtwoord

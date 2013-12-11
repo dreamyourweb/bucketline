@@ -68,7 +68,7 @@ nl:
     contributors: "bijdrager(s)"
   shared:
     visitor_instruction: "Je bent momenteel als bezoeker op de site. %{register_link} of %{login_link} om je te kunnen inschrijven om mee te helpen met %{initiative}."
-    accept_tac: "Ik verklaar mij akkoord met %{tac_link}."
+    accept_tac: "Ik ga akkoord met %{tac_link}."
     user_privacy: "de gebruikersvoorwaarden en het privacybeleid"
     contributions_of: "Bijdragen van"
     contribute: "Dit wil ik bijdragen!"

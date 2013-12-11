@@ -12,7 +12,7 @@
   %tbody
     - @bucket_groups.each do |group|
       %tr
-        %td= group.name
+        %td= link_to group.name, bucket_group_url(group)
         %td= group.description            
         %td
           = link_to 'Bewerken', admin_edit_bucket_group_url(group)

@@ -13,17 +13,19 @@ nl:
       send_instructions: "Je ontvangt een e-mail met instructies om je account te activeren."
     failure:
       inactive: "Je account is nog niet geactiveerd."
-      invalid: "De gebruikersnaam of het wachtwoord is ongeldig"
+      invalid: "De gebruikersnaam of het wachtwoord is ongeldig"    
       invalid_token: "Ongeldige authenticatietoken."
       locked: "Je account is geblokkeerd."
       timeout: "Je sessie is verlopen, log opnieuw in om verder te gaan."
       unauthenticated: "Log in of registreer om verder te gaan."
       unconfirmed: "Activeer je account om verder te gaan."
       already_authenticated: "Je bent al ingelogd."
+      user:
+        not_found_in_database: "De gebruikersnaam of het wachtwoord is ongeldig"
     invitations:
       invitation_token_invalid: "Onze excuses! Die uitnodigingstoken is ongeldig."
       send_instructions: "Je uitnodiging is verzonden."
-      updated: "Wachtwoord succesvol veranderd. Je bent nu ingelogd."
+      updated: "Wachtwoord succesvol veranderd."
     mailer:
       confirmation_instructions:
         confirm: "Bevestig mijn account"
@@ -84,6 +86,8 @@ nl:
         send_password_instructions: "Stuur mij instructies om mijn wachtwoord te resetten"
       send_instructions: "Je ontvangt een e-mail met instructies om je wachtwoord opnieuw in te stellen."
       updated: "Je wachtwoord is veranderd. Je bent nu ingelogd."
+      user:
+        updated_not_active: Wachtwoord succesvol veranderd.
     registrations:
       signed_up: 'Welkom! Je bent succesvol aangemeld.'
       signed_up_but_unconfirmed: 'Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen.'

@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       if initiative
       	redirect_to root_url(:subdomain => initiative.slug) 
       else
-      	flash[:notice] = "Welkom bij Bucket Line. Als je je net hebt aangemeld, nemen we binnenkort contact op om je verder op weg te helpen. Voor losse vragen kun je een e-mail sturen naar info@bucketline.nl"
+      	flash[:notice] = "Welkom bij Bucket Line."
       end
     end
   end
