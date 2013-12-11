@@ -212,3 +212,7 @@ nl:
       bucket_group:
         description: Beschrijving
         name: Naam
+      initiative:
+        description: Beschrijving
+        name: Naam
+        location: Lokatie

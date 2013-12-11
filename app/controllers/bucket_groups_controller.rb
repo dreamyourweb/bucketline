@@ -1,5 +1,5 @@
 class BucketGroupsController < ApplicationController
-  before_filter :get_bucket_group, only: [:show, :settings]
+  before_filter :get_bucket_group, only: [:show, :settings, :edit, :admin_edit]
   before_filter :authenticate_super_admin, :only => [:index, :new]
   before_filter :authenticate_user_for_bucket_group, except: [:new_unregistered, :create]
   before_filter :authenticate_admin_for_bucket_group, except: [:show, :new_unregistered, :create]
@@ -17,11 +17,11 @@ class BucketGroupsController < ApplicationController
   end
 
   def edit
-    @bucket_group = BucketGroup.find(params[:id])
+    # @bucket_group = BucketGroup.find(params[:id])
   end
 
   def admin_edit
-    @bucket_group = BucketGroup.find(params[:id])
+    # @bucket_group = BucketGroup.find(params[:id])
   end
 
   def show
