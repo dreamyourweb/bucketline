@@ -129,6 +129,8 @@ module ApplicationHelper
   end
 
   def is_current_page?(path)
+  	p "REQUEST PATH:"
+  	p request.original_url
     (request.original_url == path) ? "active" : ""
   end
 

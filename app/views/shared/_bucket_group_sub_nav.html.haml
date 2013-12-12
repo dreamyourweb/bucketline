@@ -7,10 +7,10 @@
     .large-8.columns
       %ul.inline-list
         %li
-          = link_to "Leden", bucket_group_path(@bucket_group), class: is_current_page?(bucket_group_path(@bucket_group))
+          = link_to "Leden", bucket_group_path(@bucket_group), class: is_current_page?(bucket_group_url(@bucket_group))
         
         - if current_user.bucket_group_admin?(@bucket_group)
           %li
-            = link_to "Instellingen", edit_bucket_group_path(@bucket_group), class: is_current_page?(edit_bucket_group_path(@bucket_group))
+            = link_to "Instellingen", edit_bucket_group_path(@bucket_group), class: is_current_page?(edit_bucket_group_url(@bucket_group))
         / %li
         /   = link_to "Instellingen", edit_user_registration_url(:subdomain => false), class: is_current_page?(edit_user_registration_url(:subdomain => false))

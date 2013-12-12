@@ -24,7 +24,7 @@ class BucketGroup
   end
 
   def user_is_admin?(user)
-    self.users.where(user_id: user.id).present? and self.users.where(user_id: user.id).first.admin
+    (self.users.where(user_id: user.id).present? and self.users.where(user_id: user.id).first.admin) || user.super_admin
   end
 
   private
