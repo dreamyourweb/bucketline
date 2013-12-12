@@ -3,7 +3,7 @@
     #error_explanation.alert
       %h2
         = pluralize(@project.errors.count, "error")
-        ":"
+        :
 
       %ul
         - @project.errors.full_messages.each do |msg| 

@@ -218,3 +218,7 @@ nl:
         location: Lokatie
       item:
         name: Benodigdheid
+      project:
+        query: Titel
+        input_end_at: Eindtijd
+        input_start_at: Begintijd
