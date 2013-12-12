@@ -53,4 +53,8 @@ class Initiative
     return events_hash
   end
 
+  def user_is_admin?(user)
+    (UserRole.where(:initiative_id => self.id, user_id: user.id).present? and UserRole.where(:initiative_id => self.id, user_id: user.id).first.admin) || user.super_admin
+  end
+
 end

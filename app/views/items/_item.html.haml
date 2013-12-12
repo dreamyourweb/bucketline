@@ -52,3 +52,5 @@
       of #{link_to "meld je aan", new_user_registration_path} om bij te dragen
   - if current_user && item.providing_user(current_user)
     = button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get, :onclick => "_gaq.push(['_trackEvent', 'Item', 'Retraction']);"
+  - if initiative.user_is_admin?(current_user)
+    %small= link_to "verwijder", item_path(item), confirm: 'Weet je zeker dat je deze klus wilt verwijderen? Dit kan niet ongedaan gemaakt worden!', method: :delete
