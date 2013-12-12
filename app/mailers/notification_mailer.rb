@@ -5,6 +5,6 @@ class NotificationMailer < ActionMailer::Base
   	@initiative = initiative
   	@projects = projects
 
-    mail(:to => ENV['EMAIL_SENDER'], :bcc => mailing_list, :subject => "Bucket Line - Er zijn nieuwe klussen geplaatst voor <%= @initiative.name %>")
+    mail(:to => ENV['EMAIL_SENDER'], :bcc => mailing_list, :subject => "Bucket Line - Er zijn nieuwe klussen geplaatst voor #{initiative.name}")
   end
 end

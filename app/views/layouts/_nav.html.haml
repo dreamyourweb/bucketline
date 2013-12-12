@@ -10,7 +10,7 @@
         - if user_signed_in?
           %li.name.has-dropdown
             %h1
-              - if @initiative
+              - if @initiative.present? and @initiative.name.present?
                 = link_to @initiative.name, "#"
               - else
                 = link_to "Mijn Bucket Lines", "#"
