@@ -50,21 +50,60 @@ class InvitationsController < ApplicationController
 
   #Send new invitation
   def create
-    if @initiative.present?
-      @invitation = @initiative.invitations.new(params[:invitation])
-    elsif @bucket_group.present?
-      @invitation = @bucket_group.invitations.new(params[:invitation])
+
+    if User.where(email: params[:invitation][:email]).count > 0
+      already_member = false
+      user = User.where(email: params[:invitation][:email]).first
+      if @initiative.present?
+        unless @initiative.user_roles.where(user: user).count > 0
+          @initiative.user_roles.create(user: user)
+        else
+          already_member = true
+        end
+      elsif @bucket_group.present?
+        unless @bucket_group.users.where(user: user).count > 0
+          @bucket_group.users.create(user: user)
+        else
+          already_member = true
+        end
+      else
+      end
+
+      respond_to do |format|
+        format.html do
+          if already_member
+            flash[:notice] = "Gebruikers is al lid."            
+          else
+            flash[:notice] = "Gebruiker toegevoegd."
+          end
+          if @initiative.present?
+            redirect_to root_path
+          else
+            redirect_to bucket_group_path(@bucket_group)
+          end
+        end
+      end
+
     else
+
+      if @initiative.present?
+        @invitation = @initiative.invitations.new(params[:invitation])
+      elsif @bucket_group.present?
+        @invitation = @bucket_group.invitations.new(params[:invitation])
+      else
+      end
+
+      respond_to do |format|
+        if @invitation.save
+          InvitationMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation.token, :subdomain => false), @invitation.email).deliver
+          format.html { redirect_to root_path, notice: 'Uitnodiging is verstuurd naar ' + @invitation.email.to_s }
+        else
+          format.html { redirect_to root_path, notice: "Er is iets fout gegaan... #{@invitation.errors.full_message}" }
+       end
+      end
+
     end
 
-    respond_to do |format|
-      if @invitation.save
-        InvitationMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation.token, :subdomain => false), @invitation.email).deliver
-        format.html { redirect_to root_path, notice: 'Uitnodiging is verstuurd naar ' + @invitation.email.to_s }
-      else
-        format.html { redirect_to root_path, notice: "Er is iets fout gegaan... #{@invitation.errors.full_message}" }
-     end
-    end
   end
 
   def register

@@ -39,10 +39,13 @@
                 = link_to "Feedback berichten", admin_feedback_url(:subdomain => false)
               %li{class: (request.path == admin_profiles_path) ? "active" : ""}
                 = link_to "Alle gebruikers", admin_profiles_url(:subdomain => false)
-        - else
-          %li
-            = link_to "Home", root_path
-          
+        - elsif current_user && current_user.bucketline_creator_role
+          %li.has-dropdown
+            = link_to "Applicatie beheer", admin_initiatives_path
+            %ul.dropdown              
+              %li
+                = link_to 'Nieuwe Bucket Line', new_initiative_path                
+
         - if @initiative && request.path_parameters[:controller] != "initiatives"
           / %li{class: get_active("calendar")}
           /   = link_to "Kalender", initiative_projects_path(@initiative)
