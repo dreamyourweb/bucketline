@@ -32,6 +32,7 @@ HvO::Application.routes.draw do
   resources :bucket_groups, except: :index  do
     member do
       get 'admin_edit'
+      delete 'destroy_user/:bgu_id', :to => "bucket_groups#destroy_user", as: "destroy_user"
     end
     collection do
       get "new_unregistered", :to => "bucket_groups#new_unregistered"
@@ -66,7 +67,8 @@ HvO::Application.routes.draw do
   devise_for :users, :skip => [:registrations]                                          
     as :user do
       get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
-      patch 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+      patch 'users/:id' => 'devise/registrations#update', :as => 'user_registration'
+      delete 'users/:id' => 'devise/registrations#destroy'            
     end
 
 	devise_scope :user do

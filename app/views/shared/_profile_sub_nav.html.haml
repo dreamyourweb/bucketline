@@ -7,9 +7,9 @@
     .large-8.columns
       %ul.inline-list
         %li
-          = link_to "Mijn profiel", edit_profile_url(current_user.profile, :subdomain => false), class: is_current_page?(edit_profile_url(current_user.profile, :subdomain => false))
+          = link_to "Mijn profiel", edit_profile_url(current_user.profile, :subdomain => false), class: (request.path == edit_profile_path(current_user.profile)) ? "active" : ""
         %li
-          = link_to "Instellingen", edit_user_registration_url(:subdomain => false), class: is_current_page?(edit_user_registration_url(:subdomain => false))
+          = link_to "Instellingen", edit_user_registration_url(:subdomain => false), class: (request.path == edit_user_registration_path) ? "active" : ""
 
       / - if current_user.initiative_admin(@initiative)
       /   %ul.inline-list.admin

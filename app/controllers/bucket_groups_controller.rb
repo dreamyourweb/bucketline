@@ -94,6 +94,13 @@ class BucketGroupsController < ApplicationController
     end
   end
 
+  def destroy_user
+    BucketGroup.find(params[:id]).users.find(params[:bgu_id]).delete
+    respond_to do |format|
+      format.html {redirect_to :back, notice: "Preventieve Bucket Line gebruiker verwijderd."}
+    end
+  end
+
   private
 
   def get_bucket_group

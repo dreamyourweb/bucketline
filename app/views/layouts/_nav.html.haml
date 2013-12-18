@@ -78,9 +78,9 @@
             = link_to current_user.email, profile_url(current_user.profile, :subdomain => false)#url_for(controller: 'profiles', action: 'show', id: current_user.profile.id,  subdomain: false)
             %ul.dropdown
               %li{class: get_active("profile")}
-                = link_to "Mijn profiel", profile_url(current_user.profile, :subdomain => false)
-              %li
-                = link_to "Mijn bijdragen", profile_contribution_url(current_user.profile, :subdomain => false)
+                = link_to "Mijn profiel", edit_profile_url(current_user.profile, :subdomain => false)
+              / %li
+              /   = link_to "Mijn bijdragen", profile_contribution_url(current_user.profile, :subdomain => false)
               %li
                 = link_to "Mijn Instellingen", edit_user_registration_url(:subdomain => false)
               %li.divider

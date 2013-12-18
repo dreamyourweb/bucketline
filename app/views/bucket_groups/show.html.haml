@@ -21,22 +21,24 @@
         %th Admin
         %th 
       = f.fields_for :users do |bgu|
-        %tr
-          %td= bgu.object.user.name
-          %td= bgu.object.user.profile.expertise if bgu.object.user.profile
-          %td= bgu.object.user.profile.willing_to_help_with if bgu.object.user.profile
-          %td= bgu.object.user.profile.tools_and_materials if bgu.object.user.profile
-          %td= bgu.object.user.profile.phone if bgu.object.user.profile
-          %td= bgu.object.user.email
-          %td= "Ja" if bgu.object.user.profile && bgu.object.user.profile.willing_to_become_admin
-          %td
-            - if bgu.object.user != current_user      
-              = bgu.check_box :admin
-            - else
-              = bgu.check_box :admin, disabled: true
-          %td
-            - if bgu.object.user != current_user            
-              =# link_to "Verwijderen", user_role_path(user_role) + "?redirect_to_profiles=true", :method => :delete, :confirm => "Weet je zeker dat je deze gebruiker uit deze Bucket Line wilt verwijderen?"
+        - if bgu.object.user.present?
+          %tr
+            %td= bgu.object.user.name
+            %td= bgu.object.user.profile.expertise if bgu.object.user.profile
+            %td= bgu.object.user.profile.willing_to_help_with if bgu.object.user.profile
+            %td= bgu.object.user.profile.tools_and_materials if bgu.object.user.profile
+            %td= bgu.object.user.profile.phone if bgu.object.user.profile
+            %td= bgu.object.user.email
+            %td= "Ja" if bgu.object.user.profile && bgu.object.user.profile.willing_to_become_admin
+            %td
+              - if bgu.object.user != current_user      
+                = bgu.check_box :admin
+              - else
+                = bgu.check_box :admin, disabled: true
+            %td
+              = link_to "Verwijderen", destroy_user_bucket_group_path(@bucket_group, bgu.object), :method => :delete, :confirm => "Weet je zeker dat je deze gebruiker uit deze Bucket Line wilt verwijderen?"
+        - else
+          - bgu.object.destroy
 
     = f.submit "Update", :class => "button", :confirm => "Weet je zeker dat je de rechten van deze gebruiker wilt aanpassen?"
 

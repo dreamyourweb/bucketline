@@ -2,8 +2,9 @@
   - if @project.errors.any? 
     #error_explanation.alert
       %h2
-        = pluralize(@project.errors.count, "error")
-        :
+        - if @project.errors.count > 0
+          = pluralize(@project.errors.count, "error")
+          = ":"
 
       %ul
         - @project.errors.full_messages.each do |msg| 
