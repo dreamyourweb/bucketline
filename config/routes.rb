@@ -91,6 +91,7 @@ HvO::Application.routes.draw do
   resources :messages, :except => [:index]
 
   scope "/admin" do
+    resources :users
     get 'feedback', :to => 'messages#index', :as => "admin_feedback"
     get 'profiles', :to => "profiles#super_admin_index", :as => "admin_profiles"
     get 'initiatives', :to => "initiatives#index", :as => "admin_initiatives"

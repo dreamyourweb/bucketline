@@ -1,29 +1,33 @@
 - content_for :header do
   = render :partial => "shared/site_admin_sub_nav" 
 
+= link_to "Nieuwe gebruiker", new_user_path, class: "button large"
+
 %table.admin-table
   %thead
     %tr
       %th Naam
       %th Bucket Line
-      %th Expertise
-      %th Kan helpen met
-      %th Handige spullen in bezit
       %th Telefoon
       %th Email
       %th Buddy bereidheid
-      %th Admin
-      %th Super admin
+      %th Bucket Admin
+      %th Bucket Creator
+      %th Super Admin
+      %th Update
+      %th Verwijder
   %tbody
     - @users.each do |user|
       %tr
-        %td= user.name
-        %td= initiatives_to_sentence(user.initiatives)
-        %td= user.profile.expertise if user.profile
-        %td= user.profile.willing_to_help_with if user.profile
-        %td= user.profile.tools_and_materials if user.profile
-        %td= user.profile.phone if user.profile
-        %td= user.email
-        %td= "✓" if user.profile && user.profile.willing_to_become_admin 
-        %td= "✓" if user.initiative_admin(user.initiatives)
-        %td= "✓" if user.super_admin
+        = form_for(user) do |f|
+          %td= link_to user.name, edit_user_path(user)
+          %td= initiatives_to_sentence(user.initiatives)
+          %td= user.profile.phone if user.profile
+          %td= user.email
+          %td= "✓" if user.profile && user.profile.willing_to_become_admin 
+          %td= "✓" if user.initiative_admin(user.initiatives)
+          %td= f.check_box :bucketline_creator_role
+          %td= f.check_box :super_admin
+          %td= f.submit class: "button"
+          %td
+            %small= link_to 'verwijder'.html_safe, user_path(user), confirm: 'Weet je zeker dat je deze gebruiker wilt verwijderen? Dit kan niet ongedaan gemaakt worden!', method: :delete
