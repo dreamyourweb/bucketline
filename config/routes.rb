@@ -15,7 +15,7 @@ HvO::Application.routes.draw do
     resources :initiatives
     resources :invitations
   end
-  root :to => to: redirect('http://www.dreamyourapp.nl/')
+  root to: redirect('http://www.dreamyourapp.nl/')
 
   # get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
 
