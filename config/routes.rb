@@ -15,7 +15,7 @@ HvO::Application.routes.draw do
     resources :initiatives
     resources :invitations
   end
-  root :to => "home#index"
+  root :to => to: redirect('http://www.dreamyourapp.nl/')
 
   # get "/invitations/new", :to => "invitations#new", :as => "new_invitation"
 
@@ -164,4 +164,7 @@ HvO::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+  # get '/*other', to: redirect('http://www.dreamyourapp.nl/%{other}')
+
 end
