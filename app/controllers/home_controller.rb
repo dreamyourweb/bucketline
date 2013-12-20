@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       if initiative
       	redirect_to root_url(:subdomain => initiative.slug) 
       else
-      	flash[:notice] = "Welkom bij Bucket Line."
+      	redirect_to "http://www.dreamyourapp.nl"
       end
     end
   end
