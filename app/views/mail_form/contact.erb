@@ -1,6 +1,6 @@
 <h3><%= message.subject %></h3>
 
-<% @resource.attributes.each do |attribute, value| %>
+<% @resource.mail_form_attributes.each do |attribute, value| %>
   <% if attribute == "update_notice" && value == "true" %>
     <p>Hieronder vind je de nieuwste gegevens.</p>
   <% end %>
@@ -88,5 +88,5 @@
   <br />
 <% end %>
 
-<p>Deze mail is automatisch verstuurd via <%= link_to "Bucket Line", "http://bucketline.nl", :target => "_blank" %>. Reageer niet op deze mail, maar geef je bijdrage door op onze waardeverbinder. Als je geen herinneringen meer wilt ontvangen, dan kun je deze in je profiel uitzetten.</p>
+<p>Deze mail is automatisch verstuurd via <%= link_to "Bucket Line", "http://bucketline.nl", :target => "_blank" %>. Reageer niet op deze mail, maar geef je bijdrage door in Bucket Line. Als je geen herinneringen meer wilt ontvangen, dan kun je deze in je profiel uitzetten.</p>
 

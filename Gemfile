@@ -1,17 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 3.2.11'
-
+gem 'rails', '~> 4.0.0'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jquery-rails'
 
-gem "mongoid", "~> 2.4"
-gem "bson_ext", "~> 1.5"
+gem "mongoid", github: 'mongoid/mongoid'
+gem 'mongoid_multiparams'
+gem "bson_ext"
 
 gem 'mail_form'
 gem 'devise'
 #gem 'devise_invitable'
-gem 'event-calendar', :require => 'event_calendar'
-gem 'later_dude', '>= 0.3.1'
+# gem 'event-calendar', :require => 'event_calendar'
+gem 'calendar_helper'
 
 #gem "watu_table_builder", :require => "table_builder"
 
@@ -22,21 +24,22 @@ gem 'oauth2'
 
 gem 'fancybox-rails'#, :git => 'git://github.com/sverigemeny/fancybox-rails.git'
 
-gem "haml-rails"
-
 gem "fog"
 gem "heroku-mongo-backup"
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'bootstrap-sass'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'compass-rails'
-  
-  gem 'zurb-foundation', '~> 3.2'
-  gem 'foundation-icons-sass-rails'
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'rails-i18n', '~> 4.0.0' 
+
+gem 'coffee-rails'
+gem 'sprockets'
+
+gem 'uglifier', '>= 1.0.3'
+
+gem 'sass-rails', github: "rails/sass-rails"
+gem "haml-rails"
+gem 'zurb-foundation'
+gem 'compass-rails', github: "Compass/compass-rails"
+gem 'foundation-icons-sass-rails'
+
 
 group :development, :test do
 	gem "rspec-rails"
@@ -56,10 +59,10 @@ group :test do
 	gem 'email_spec'
 end
 
-group :production do
-	gem 'heroku'
-	gem 'pg'
-end
+# group :production do
+# 	gem 'heroku'
+# 	gem 'pg'
+# end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -69,9 +72,22 @@ end
 
 # Use unicorn as the web server
 gem "unicorn-rails"
+gem "unicorn"
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+# 
+gem 'protected_attributes' # https://github.com/rails/protected_attributes
+# gem 'active_resource' # https://github.com/rails/activeresource
+# gem 'actionpack-action_caching' # https://github.com/rails/actionpack-action_caching
+# gem 'activerecord-session_store' # https://github.com/rails/activerecord-session_store
+# gem 'rails-observers' # https://github.com/rails/rails-observers
+# 
+group :production, :staging do
+  gem 'rails_12factor'
+end
+
+ruby "2.0.0"

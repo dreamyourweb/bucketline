@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
 		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.user_roles.where(:initiative_id => @initiative.id).last)
 	end
 
+	def authenticate_user_for_bucket_group
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_member?(current_user))
+	end
+
+	def authenticate_admin_for_bucket_group
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user) )
+	end
+
 	def get_profile
 		if current_user
 			@profile = current_user.profile
@@ -30,6 +38,17 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
+    devise_parameter_sanitizer.for(:sign_up) << :terms_and_conditions_accepted
+  end
+
+  	def after_sign_out_path_for(resource)
+  		"http://bucketline.nl"
+	end
+	
 	protected
 
 	def authenticate_inviter!

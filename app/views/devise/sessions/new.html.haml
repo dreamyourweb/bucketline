@@ -1,5 +1,9 @@
 - content_for :header do
-  %h1 Inloggen
+  .interior-header
+    .row
+      .large-4.columns
+        .title-text.white-text.hide-for-small
+          Inloggen
  
 .four.columns
   / .login
@@ -15,6 +19,9 @@
         Onthoud mij
     .controls
       = f.submit "Inloggen", :class => "button"
+
+    / .terms.small-text * #{raw(t('shared.accept_tac', :tac_link => link_to(t('shared.user_privacy'), terms_and_conditions_url)))}
+
   .login-links
     = render "links"
   / .last{:style => "display:none"}

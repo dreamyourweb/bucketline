@@ -1,0 +1,23 @@
+.interior-header.profile
+  .row
+    .large-4.columns
+      .title-text.white-text.hide-for-small
+        Mijn profiel
+    
+    .large-8.columns
+      %ul.inline-list
+        %li
+          = link_to "Mijn profiel", edit_profile_url(current_user.profile, :subdomain => false), class: (request.path == edit_profile_path(current_user.profile)) ? "active" : ""
+        %li
+          = link_to "Instellingen", edit_user_registration_url(:subdomain => false), class: (request.path == edit_user_registration_path) ? "active" : ""
+
+      / - if current_user.initiative_admin(@initiative)
+      /   %ul.inline-list.admin
+      /     %li
+      /       = link_to "Bucket Line instellingen", "/initiative/edit", class: (request.path == "/initiative/edit") ? "active" : ""
+      /     %li
+      /       = link_to "Deelnemers beheer", "/profiles", class: (request.path == "/profiles") ? "active" : ""
+      /     %li
+      /       = link_to "Alle beschikbaarheid", "/all_available_dates", class: (request.path == "/all_available_dates") ? "active" : ""
+      /     %li
+      /       = link_to "Alle bijdragen", "/links", class: (request.path == "/links") ? "active" : ""

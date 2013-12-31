@@ -9,7 +9,7 @@ Feature: Place a new project
 		#And I am on the only initiatives' projects page
 
 	Scenario: Place new project
-		And I follow "Nieuwe Klus"
+		And I go to the new project form
 		And I fill in the form with a project and an item
 		And I press "Project en items opslaan"
 		Then I should see my project

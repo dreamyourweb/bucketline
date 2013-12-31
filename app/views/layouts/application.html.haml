@@ -16,6 +16,8 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
+  %link{rel: "shortcut icon", href: "/favicon.ico"}
+
   %title= content_for?(:title) ? yield(:title) : "Untitled"
 
   -# Included CSS Files
@@ -23,6 +25,7 @@
 
   -# Included JS Files
   = javascript_include_tag "application"
+  = javascript_include_tag "vendor/custom.modernizr"
 
   = csrf_meta_tag
 
@@ -31,32 +34,28 @@
 
 %body{:class => (controller.controller_name == "initiatives" && (controller.action_name == "show" || controller.action_name == "index")) ? "home" : ""}
 
-  = render :partial => "layouts/nav"
-  
-  #flashmessages
-    = render 'layouts/flashmessages'
+  %section#main
 
-  - if current_user
-    #feedback.hide-for-small
-      = link_to new_message_path, class: "fancybox fancybox.ajax" do
-        %h6 Feedback
+    = render :partial => "layouts/nav"
 
-  - if content_for?(:header)
-    %header
-      .row
-        %section.header
-          = yield(:header)
-  - if content_for?(:sidebar)
-    .row
-      .nine.columns.push-three
-        = yield
-      .three.columns.pull-nine
-        = yield(:sidebar)
-  - elsif content_for?(:full)
-    = yield(:full)   
-  - else
-    .row
-      .twelve.columns
-        = yield
+    - if content_for?(:header)
+      = yield(:header)
+
+    - if content_for?(:title)
+      = render partial: "shared/title" 
+
+    - if content_for?(:full)
+      = yield(:full)
+
+    - else
+      .row.bump-25
+        .large-12.columns
+          .row
+            .small-12.columns
+              = render 'layouts/flashmessages'
+          .row
+            .small-12.columns
+              = yield
+    #layoutFooter
 
   = render :partial => "layouts/footer"

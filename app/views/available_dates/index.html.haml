@@ -1,6 +1,5 @@
 - content_for :header do
-  %h1 Mijn beschikbaarheid
-  %h4.subheader Laat de projectleiders weten wanneer je beschikbaar bent
+  = render :partial => "shared/sub_nav" 
  
 - content_for :sidebar do
   = render :partial => "shared/initiative_side_menu.html"
@@ -10,4 +9,9 @@
     - if @available_dates.count == 0
       %p.instruction Je hebt nog geen beschikbaarheid doorgegeven. Klik op een getalletje in de kalender om voor die dag je beschikbaarheid door te geven, zodat de beheerders gerichter klussen kunnen plaatsen.
 
-= raw(availability_event_calendar)
+/ = raw(availability_event_calendar)
+#availabilityCalendar{"data-profile-id" => @profile.id}
+  = render partial: 'shared/calendar', locals: {year: @year, month: @month, events: @available_dates_hash}
+
+
+#availabilityModal.reveal-modal

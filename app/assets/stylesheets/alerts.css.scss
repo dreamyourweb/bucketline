@@ -1,0 +1,8 @@
+div.alert-box{
+  line-height: 1.6;
+  &.notice
+  {
+    background-color: $success-color;
+    border: none;
+  }
+}

@@ -1,0 +1,17 @@
+<h3>Bucket Line - Er zijn nieuwe klussen geplaatst voor <%= @initiative.name %></h3>
+
+<% @projects.each do |project| %>
+	<p>
+		<b><%= project.query %></b>
+		<ul>
+			<li> Van <%= I18n.l(project.start_at, :format => :long) %> tot <%= I18n.l(project.end_at, :format => :long) %></li>
+			<li>Benodigdheden: <%= project.build_items_for_mailer %></li>
+			<% if project.owner %><li>Contactpersoon: <%= project.owner.name + ' (' + project.owner.email + ')'%></li><% end %>
+			<% if project.location %><li>Locatie: <%= project.location %></li><% end %>
+			<% if project.remark %><li>Opmerkingen: <%= project.remark %></li><% end %>
+		</ul>
+	</p>
+	<hr>
+<% end %>
+
+<p>Deze mail is automatisch verstuurd via <%= link_to "Bucket Line", "http://www.bucketline.nl", :target => "_blank" %>. Reageer niet op deze mail, maar geef je bijdrage door op de Bucket Line website. Als je geen herinneringen meer wilt ontvangen, dan kun je deze in je profiel op de website uitzetten.</p>

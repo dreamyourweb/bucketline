@@ -1,23 +1,17 @@
 - content_for :header do
-  %h1 Kalender
-  %h4.subheader Help mee met een van de taken in de kalender
-  - if current_user.initiative_admin(@initiative)
-    = link_to 'Nieuwe Klus', new_project_path, :class => "large button"
+  = render :partial => "shared/sub_nav" 
 
-- content_for :sidebar do
-  = render :partial => "shared/initiative_side_menu"
+= hidden_field_tag "initiativeAdmin", current_user.initiative_admin(@initiative) 
 
 .row
-  .twelve.columns
+  .small-12.columns
     - if @initiative.projects.count == 0
       - if current_user.initiative_admin(@initiative)
-        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Klik op een getalletje in de kalender om voor die dag een klus te plaatsen.
+        = alert("Er zijn nog geen taken in de kalender geplaatst. Klik op een dag om een taak te plaatsen.","",true)
       - else
-        %p.instruction Er zijn nog geen klussen in de kalender geplaatst. Een beheerder moet eerst een klus plaatsen voor je kunt bijdragen.
+        = alert("Er zijn nog geen taken in de kalender geplaatst. Een beheerder moet eerst een taak plaatsen voor je kunt bijdragen.","",true)
 
-= raw(event_calendar)
-/ = calendar_for(Date.today.year, Date.today.month, first_day_of_week: 1) do |day|
-/   - if @events_hash[day.day]
-/     - @events_hash[day.day].query
-/   - else
-/     - day.day
+#projectCalendar
+  = render partial: 'shared/calendar', locals: {year: @year, month: @month, events: @events_hash}
+
+#itemModal.reveal-modal

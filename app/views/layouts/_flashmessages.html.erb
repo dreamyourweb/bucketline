@@ -1,10 +1,10 @@
-<% flash.each do |key, value| %>
-	<div class="row">
-		<div class="twelve columns">
-			<%= content_tag(:div, :class => "alert fade in alert-#{key}") do |bla| %>
-		 		<%= value %>
-		 		<% #<a class="close" data-dismiss="alert" href="#">×</a> %>
-			<% end %>
-		</div>
-	</div>
+<% if flash.present? %>
+  <div id="flashmessages">
+    <% flash.each do |key, value| %>
+      <div data-alert class="alert-box <%= key %>">
+        <%= value %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+  </div>
 <% end %>

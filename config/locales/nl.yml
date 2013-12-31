@@ -1,13 +1,13 @@
 nl:
   date:
     abbr_day_names:
-    - zon
-    - maa
-    - din
-    - woe
-    - don
-    - vri
-    - zat
+    - zo
+    - ma
+    - di
+    - wo
+    - do
+    - vr
+    - za
     abbr_month_names:
     -
     - jan
@@ -198,3 +198,27 @@ nl:
   activerecord:
     errors:
       <<: *errors
+
+  mongoid:
+    attributes:
+      user:
+        password: Wachtwoord
+        email: E-mail
+        terms_and_conditions_accepted: Gebruikersvoorwaarden en privacybeleid
+        name: Naam
+        encrypted_password: Wachtwoord bevestiging
+        password_confirmation: Nieuw wachtwoord
+        current_password: Huidig wachtwoord
+      bucket_group:
+        description: Beschrijving
+        name: Naam
+      initiative:
+        description: Beschrijving
+        name: Naam
+        location: Lokatie
+      item:
+        name: Benodigdheid
+      project:
+        query: Titel
+        input_end_at: Eindtijd
+        input_start_at: Begintijd

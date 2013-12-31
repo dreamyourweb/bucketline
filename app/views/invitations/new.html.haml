@@ -1,0 +1,10 @@
+- content_for :header do
+  = render :partial => "shared/sub_nav" 
+
+= form_for @invitation do |f|
+  .row
+    .small-12.large-6.columns
+      = f.label :email, "E-mail ontvanger (let op, je kunt maar aan 1 adres tegelijk invoeren):"
+      = f.email_field :email
+      
+      = f.submit "Verstuur Uitnodiging", :class => "button"

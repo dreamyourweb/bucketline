@@ -1,0 +1,62 @@
+- content_for :header do
+  = render :partial => "shared/sub_nav" 
+
+.row
+  .small-12.columns
+    - if @projects.count == 0 && @loose_items.count == 0
+      %p.instruction Er geen verdere bijdragen aan je Bucket Line. Plaats eerst een klus in de kalender of een benodigdheid in het verlanglijstje, zodat mensen kunnen bijdragen.
+          
+    %p= link_to "Toon ook projecten en bijdragen van eerder dan vandaag.", :controller => "links", :action => "index", :show => "all"
+    #accordion3.accordion
+      - @projects.each do |project|
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{href: "##{project.id.to_s}", "data-parent" => "#accordion3", "data-toggle" => "collapse"} #{project.query}
+          %div.accordion-body.collapse{id: project.id.to_s, style:"height: 0px;"}
+            .accordion-inner
+              %table.admin-table.table.table-bordered.table-striped
+                %tr
+                  %th Bijdrage
+                  %th Aantal voorzien
+                  %th Datum
+                  %th Begintijd
+                  %th Eindtijd
+                  %th Naam
+                  %th Email
+                  %th
+                - project.items.each do |item|
+                  - item.links.each do |link|
+                    %tr
+                      %td= link.item.name
+                      %td
+                        = link.amount
+                        van #{link.item.amount}
+                      %td= pretty_date(Item.find(link.item_id).project.start_at)
+                      %td= pretty_time(Item.find(link.item_id).project.start_at)
+                      %td= pretty_time(Item.find(link.item_id).project.end_at)
+                      %td= link.profile.user.name
+                      %td= link.profile.user.email
+                      %td= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen."
+          }
+      .accordion-group
+        .accordion-heading    
+          %a.accordion-toggle{href: "#no-project", "data-parent" => "#accordion3" ,"data-toggle" => "collapse"} Bijdragen aan verlanglijstje
+        #no-project.accordion-body.collapse{style: "height: 0px;"}
+          .accordion-inner
+            %table.admin-table.table.table-bordered.table-striped
+              %tr
+                %th Bijdrage
+                %th Aantal voorzien
+                %th Naam
+                %th Email
+                %th
+              - @loose_items.each do |item|
+                - item.links.each do |link|
+                  %tr
+                    %td= link.item.name
+                    %td
+                      = link.amount
+                      van #{link.item.amount}
+                    %td= link.profile.user.name
+                    %td= link.profile.user.email
+                    %td= link_to "bijdrage weigeren", remove_item_from_profile_path(link.profile_id, link.item_id) + "?redirect_to_links=true", :confirm => "Weet je zeker dat je deze bijdrage wilt weigeren? Zo ja, dan kan het goed zijn om nu nog even het mailadres te noteren, zodat je nog een mail kunt sturen."

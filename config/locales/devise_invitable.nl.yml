@@ -3,7 +3,7 @@ nl:
     invitations:
       send_instructions: 'Er is een uitnodiging verstuurd naar %{email}.'
       invitation_token_invalid: 'Het ingevoerde token voor de uitnodiging is ongeldig!'
-      updated: 'Je wachtwoord is succesvol ingesteldt. Je bent nu ingelogd.'
+      updated: 'Je wachtwoord is succesvol ingesteldt.'
       no_invitations_remaining: "Geen uitnodigingen meer beschikbaar"
       new:
         header: "Verstuur uitnodiging"

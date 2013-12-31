@@ -1,0 +1,8 @@
+- content_for :header do
+  = render :partial => "shared/bucket_group_sub_nav"
+
+.row
+  .six.columns
+    %h3 Nieuwe Bucket Line
+    = render 'form'
+    = link_to 'Terug', admin_initiatives_path

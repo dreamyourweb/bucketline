@@ -1,5 +1,5 @@
 class InvitationMailer < ActionMailer::Base
-  default :from => "no-reply@bucketline.nl"
+  default :from => ENV['EMAIL_SENDER']
 
   def invitation_email(inviter, invitation_url, email)
     @inviter = inviter

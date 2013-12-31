@@ -1,10 +1,30 @@
 %footer
   .row
-    .twelve.columns
-      %p
-        Voor vragen over Bucket Line kun je een email sturen naar info@bucketline.nl. Bucket Line maakt gebruik van de waardeverbinder. Deze online tool verbindt alle hulp vanuit een groep mensen, om zo gezamelijk een gaaf project neer te zetten. #{link_to "Lees meer over de waardeverbinder", waardeverbinder_info_path}. Bucket Line heeft ook een #{link_to "profiel op idealenkompas", "http://www.idealenkompas.nl/initiatief/899", :target => "_blank"}.
-      %sub
-        \&copy;
-        %a{:href => "http://www.dreamyourweb.nl", :target => "_blank"} dreamyourweb
-        = Date.today.year.to_s + "."
-        = link_to "Disclaimer.", disclaimer_path
+    .small-10.columns
+      .row
+        .small-12.columns
+          %ul.inline-list
+            %li
+              %a{href:"http://bucketline.nl"} Home
+            %li
+              %a{href:"http://bucketline.nl/eerstelijns-zorgorganisaties"} Voor 1e-lijns organisatie
+            %li
+              %a{href:"http://bucketline.nl/voor-mantelzorgers/"} Voor Mantelzorgers
+            %li
+              = link_to "Preventief netwerk opzetten", new_unregistered_bucket_groups_path
+              / %a{href:"http://bucketline.nl/?page_id=50"} Preventief netwerk opzetten
+            %li
+              %a{href:"http://bucketline.nl/contact/"} Contact
+            - unless user_signed_in?
+              %li
+                = link_to "Inloggen", login_path
+      .row
+        .small-12.columns
+          %sub
+            \&copy;
+            %a{:href => "http://www.dreamyourweb.nl", :target => "_blank"} dreamyourweb
+            = Date.today.year.to_s + "."
+            = link_to t('footer.privacy'), terms_and_conditions_url
+
+    .small-2.columns
+      = image_tag "logo_footer.png"

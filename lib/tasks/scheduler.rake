@@ -43,7 +43,7 @@ task :send_item_placement_mail => :environment do
 		items = initiative.items.where(:created_at.gt => Time.now.utc - 1.hour, :project_id => nil).all #Get all items that were created less than an hour ago
 
 		unless items.empty?
-			puts "Building item placement mail..."
+			puts "Building item placement mail for #{initiative.name}..."
 
 			#Build mailinglist
 			mailing_list = []
@@ -56,15 +56,38 @@ task :send_item_placement_mail => :environment do
 			#Build sentence
 			item_sentence = ""
 			items.each do |item|
-				item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + ". "
+				item_sentence << item.amount.to_s + " " + item.name + ": " + item.description + " / "
 			end	
 
 			email = ItemPlacementMailer.new(:recipients => mailing_list, :item_sentence => item_sentence, :initiative => initiative.name)
 			puts "sending emails..."
-			puts email.recipients
-			puts email.item_sentence
+			#puts email.recipients
+			#puts email.item_sentence
 			email.deliver
 		end
 	end
 	puts "done."
+end
+
+task :send_project_placement_mail => :environment do
+	Initiative.all.each do |initiative|
+		#Build item list
+		projects = initiative.projects.where(:created_at.gt => Time.now.utc - 1.hour).all #Get all projects that were created less than an hour ago
+
+		unless projects.empty?
+			puts "Building project placement mail for #{initiative.name}..."
+
+			#Build mailing list
+			mailing_list = []
+			initiative.users.each do |user|
+				if user.profile.always_send_project_placement_mail #Get all the to-be-notified-users that are not the owner of this project
+					mailing_list << user.email
+				end
+			end
+
+	        email = NotificationMailer.project_placement_mail(initiative, projects, mailing_list)
+			puts "sending emails..."
+			email.deliver
+		end
+	end
 end

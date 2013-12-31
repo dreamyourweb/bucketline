@@ -5,7 +5,7 @@ class Invitation
   field :token, :type => String
   field :email, :type => String
 
-  belongs_to :initiative
+  belongs_to :invitationable, polymorphic: true
 
   before_create :set_token
 

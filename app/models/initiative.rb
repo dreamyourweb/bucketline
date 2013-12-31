@@ -14,7 +14,7 @@ class Initiative
   validates_exclusion_of :slug, :in => ["www", "bucketline"], :message => "Naam is niet toegestaan."
 
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
-  has_many :invitations, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy, as: :invitationable
 
 	has_many :projects #, :dependent => :destroy
 	has_many :items #, :dependent => :destroy #loose items
@@ -51,6 +51,10 @@ class Initiative
       events_hash[project.start_at.day] = project
     end
     return events_hash
+  end
+
+  def user_is_admin?(user)
+    (UserRole.where(:initiative_id => self.id, user_id: user.id).present? and UserRole.where(:initiative_id => self.id, user_id: user.id).first.admin) || user.super_admin
   end
 
 end

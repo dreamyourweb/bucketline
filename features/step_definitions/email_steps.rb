@@ -28,21 +28,33 @@ When /^I open the email$/ do
 end
 
 When /^the system sends the reminders$/ do    
-  @rake = Rake::Application.new
-  Rake.application = @rake
+  require "rake"
+  if Rake.application.tasks.empty?
+    Rake.application = Rake::Application.new
+  end
   Rake.application.rake_require "tasks/scheduler"
-  Rake::Task.define_task(:send_reminders)
-  @rake[:send_reminders].execute   
-  @rake[:send_reminders].reenable   
+  Rake::Task.define_task(:environment)
+  Rake.application['send_reminders'].execute   
 end
 
 When /^the system sends the item placement mail$/ do    
-  @rake = Rake::Application.new
-  Rake.application = @rake
+  require "rake"
+  if Rake.application.tasks.empty?
+    Rake.application = Rake::Application.new
+  end
   Rake.application.rake_require "tasks/scheduler"
-  Rake::Task.define_task(:send_item_placement_mail)
-  @rake[:send_item_placement_mail].execute   
-  @rake[:send_item_placement_mail].reenable   
+  Rake::Task.define_task(:environment)
+  Rake.application['send_item_placement_mail'].execute  
+end
+
+When /^the system sends the project placement mail$/ do    
+  require "rake"
+  if Rake.application.tasks.empty?
+    Rake.application = Rake::Application.new
+  end
+  Rake.application.rake_require "tasks/scheduler"
+  Rake::Task.define_task(:environment)
+  Rake.application['send_project_placement_mail'].execute   
 end
 
 Then /^"([^']*?)" should receive (\d+) emails? from "([^']*?)"$/ do |address, n, sender|

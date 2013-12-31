@@ -37,6 +37,10 @@ module ApplicationHelper
 		end
 	end
 
+  def get_current(page)
+    (get_active(page) == "active") ? "current" : ""
+  end
+
   def month_link(month_date)
     link_to(I18n.localize(month_date, :format => "%B"), {:month => month_date.month, :year => month_date.year})
   end
@@ -113,4 +117,40 @@ module ApplicationHelper
 	def pretty_time(time)
 		time.to_formatted_s(:time)
 	end
+
+  def alert(content, type="", no_close=false)
+    content_tag "div", class: "alert-box #{type}" do
+      (content + (no_close ? "" : content_tag("a", "&times;".html_safe, class: "close"))).html_safe
+    end
+  end
+
+  def current_initiative
+    @initiative = Initiative.where(slug: request.subdomain).first if request.subdomain
+  end
+
+  def is_current_page?(path)
+  	p "REQUEST PATH:"
+  	p request.original_url
+    (request.original_url == path) ? "active" : ""
+  end
+
+  class BetterFormBuilder < ActionView::Helpers::FormBuilder
+
+    def field_error(field, object=nil)
+      if object.nil?
+        object = @object
+      end
+      if object.errors[field].any?
+        message = object.errors[field].first
+        if message.is_a? Array
+          message = message.first
+        end
+        if message.present?
+          "<div class='error'><small class='error'>#{object.errors[field].first}</small></div>".html_safe
+        end
+      end
+    end
+
+  end
+
 end

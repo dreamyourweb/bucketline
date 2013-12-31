@@ -1,0 +1,56 @@
+.item
+  %h3
+    = item.name
+    .item-icons
+      - if current_user && item.success
+        %i.green.general.foundicon-checkmark{title: "Afgevinkt"}
+      - if current_user && item.providing_user(current_user)
+        %i.red.general.foundicon-heart{title: "Jij draagt hieraan bij"}
+      - if current_user && current_user.initiative_admin(initiative)
+        = link_to edit_item_path(item) do
+          %i.general-enclosed.foundicon-settings{title: "Item bewerken"}
+        = link_to item_path(item), :method => :delete, :confirm => "Weet je zeker dat je dit item wilt verwijderen? Alle bijdragen worden dan ook ingetrokken.", :title => "Item verwijderen", :onclick => "_gaq.push(['_trackEvent', 'Item', 'Cancellation']);" do
+          %i.general-enclosed.foundicon-trash{title: "Item verwijderen"}
+    - if !item.success && !item.provided
+      %span.round.label
+        Nog #{item.items_left.to_s} nodig
+    - elsif !item.success
+      %span.success.round.label Voorzien
+  .item-info
+    %p= item.description
+    .item-more-info
+      - contributors = get_contributors(item)
+      - if !contributors.empty?
+        %p
+          %strong Bijdragen van:
+          %br/
+          = contributors
+      - if user_signed_in?
+        - item_owner = item.owner
+        - if item_owner
+          %p
+            %strong Contactpersoon:
+            %br/
+            = item_owner.name
+            %br/
+            %a{href: "mailto:#{item_owner.email}"}= item_owner.email
+            %br/
+            = item_owner.profile.phone
+  - if !item.provided && user_signed_in?
+    - if item.success then
+      %button{disabled: "true"} Item afgevinkt
+    - else
+      = form_tag item_path(item), :method => "put", :class=>"item-form" do
+        %div
+          %p.left Aantal:
+          = text_field_tag 'amount_to_give', 1, :class => "amount-input"
+        %div= submit_tag "Dit wil ik bijdragen!", :class => "small button", :onclick => "_gaq.push(['_trackEvent', 'Item', 'Contribution']);"
+        = hidden_field_tag :redirect_to_dashboard, true
+  - elsif !item.provided
+    %p
+      = link_to "Log in", login_path
+      of #{link_to "meld je aan", new_user_registration_path} om bij te dragen
+  - if current_user && item.providing_user(current_user)
+    = button_to "Bijdrage intrekken", remove_item_from_profile_path(current_user.profile, item)  + "?redirect_to_wishlist=true", :confirm => "Weet je zeker dat je deze bijdrage wilt intrekken?", :class => "small button", :method => :get, :onclick => "_gaq.push(['_trackEvent', 'Item', 'Retraction']);"
+  - if initiative.user_is_admin?(current_user)
+    %small= link_to "verwijder", item_path(item), confirm: 'Weet je zeker dat je deze klus wilt verwijderen? Dit kan niet ongedaan gemaakt worden!', method: :delete

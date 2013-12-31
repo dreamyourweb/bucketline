@@ -1,15 +1,21 @@
-%ul.nav-bar.vertical
-  %li{class: get_active("calendar")}
-    = link_to "Kalender", projects_path
-  %li{class: get_active("dashboard")}
-    = link_to "Verlanglijstje", "/wishlist"
-  %li{class: get_active("availability")}
-    = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user)
-  %li{class: get_active("home")}
-    = link_to "Over deze Bucket Line", initiative_path
+/ %ul.side-nav
+/   %h4 
+/     %small Navigatie
+/   %li.divider
+/   %li{class: get_active("calendar")}
+/     = link_to "Kalender", projects_path
+/   %li{class: get_active("dashboard")}
+/     = link_to "Verlanglijstje", "/wishlist"
+/   %li{class: get_active("availability")}
+/     = link_to "Mijn beschikbaarheid", profile_available_dates_path(current_user)
+/   %li{class: get_active("home")}
+/     = link_to "Over deze Bucket Line", initiative_path
 
 - if current_user.initiative_admin(@initiative)
-  %ul.nav-bar.vertical
+  %ul.side-nav
+    %h4 
+      %small Admin
+    %li.divider
     %li{class: (request.path == "/initiative/edit") ? "active" : ""}
       = link_to "Bucket Line instellingen", "/initiative/edit"
     %li{class: (request.path == "/profiles") ? "active" : ""}

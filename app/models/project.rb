@@ -2,8 +2,8 @@ class Project
   include Mongoid::Document
  	include Mongoid::Timestamps
 	include Mongoid::MultiParameterAttributes
-	include EventCalendar
-	has_event_calendar
+	# include EventCalendar
+	# has_event_calendar
 
 	
 	has_many :items, :autosave => true, :dependent => :delete
@@ -27,7 +27,7 @@ class Project
 	field :end_at, :type => DateTime
 	field :location, :type => String, :default => ""
 	field :remark, :type => String
-	field :success, :type => Boolean, :default => false
+	field :success, :type => Mongoid::Boolean, :default => false
  
 	def input_end_at_greater_than_input_start_at
 	 unless self.input_end_at.to_i >= self.input_start_at.to_i

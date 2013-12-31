@@ -1,0 +1,26 @@
+.row
+  .small-12.columns
+    = form_for @user do |f|
+
+      = f.label :name
+      = f.text_field :name
+
+      = f.label :email
+      = f.email_field :email
+
+      = f.label :password, "Nieuw wachtwoord (leeglaten als je deze niet wilt veranderen)"
+      = f.password_field :password, :autocomplete => "off"
+
+      = f.label :super_admin do
+        = f.check_box :super_admin
+        Super Admin
+
+      = f.label :bucketline_creator_role do
+        = f.check_box :bucketline_creator_role
+        Kan bucketlines aanmaken
+
+      = f.submit class: "button"
+
+.row
+  .small-12.columns
+    %small= link_to 'verwijder'.html_safe, user_path(@user), confirm: 'Weet je zeker dat je deze gebruiker wilt verwijderen? Dit kan niet ongedaan gemaakt worden!', method: :delete

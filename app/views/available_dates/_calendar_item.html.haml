@@ -1,0 +1,9 @@
+.calendar-day
+  .day-label
+    = date.day
+    - if events.present?
+      - events.each do |event|
+        %a.event{href: edit_profile_available_date_path(@profile, event), "data-reveal-id" => "availabilityModal", "data-reveal-ajax" => "true"}
+          %ul.vcard
+            %li.fn Beschikbaar
+            %li.available_day_parts #{event.daypart.join(", ")}          

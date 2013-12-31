@@ -1,45 +1,57 @@
+@import "compass/layout.scss";
+
+@include sticky-footer(100px, "#main", "#layoutFooter", "footer");
+
 footer{
 	background-color:$footerColor;
 	padding-top: 20px;
 	margin-top: 20px;
-	color: $white;
+	color: $shiny-edge-color;;
 
 	a{
-		color: $shinyEdge;
+		color: $shiny-edge-color;
 	}
 
 	a:hover{
 		color: $backgroundMediumColor;
 	};
+	overflow: hidden;
+	.full-height{
+		height: 100%;
+		vertical-align: bottom;
+	}
+	ul.inline-list{
+		font-size: 85%;
+	}
 }
 
 /*************** OLD *******************/
 
-#footer {
-	//margin-top:20px;
-	padding-top:20px;
-	color:#F5F5F5;
-	background-color: black;
-	height:120px;
-	position: absolute;
-	bottom: 0px;
-	width: 100%;
-}
+// #footer {
+// 	//margin-top:20px;
+// 	padding-top:20px;
+// 	color:#F5F5F5;
+// 	background-color: black;
+// 	height:120px;
+// 	position: absolute;
+// 	bottom: 0px;
+// 	width: 100%;
+// }
 
-#footer .container{
-	height: 100%;
-	position: relative;
-}
+// #footer .container{
+// 	height: 100%;
+// 	position: relative;
+// }
 
-#footer sub{
-	position: absolute;
-	bottom: 10px;
-	text-align: center;
-	width: 100%;
-}
+// #footer sub{
+// 	position: absolute;
+// 	bottom: 10px;
+// 	text-align: center;
+// 	width: 100%;
+// }
 
-.footer-logo{
-	height: 100px;
-	background-image: url(hvo-logo.png);
-	background-repeat: no-repeat;
-}
+// .footer-logo{
+// 	height: 100px;
+// 	background-image: url(hvo-logo.png);
+// 	background-repeat: no-repeat;
+// }

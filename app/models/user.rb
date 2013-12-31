@@ -4,7 +4,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :registerable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	has_one :profile, :autosave => true, :dependent => :destroy
 	has_many :owned_projects, :class_name => "Project", :inverse_of => :owner
@@ -12,14 +12,15 @@ class User
 	#Facebook
 	has_many :authentications, :dependent => :destroy
   has_many :user_roles, :dependent => :destroy #Roles such as admin are tracked via the userrole model and is the role of a user for a particular initiative
+  # has_many :bucket_group_users, dependent: :destroy
 
-	field :super_admin, :type => Boolean, :default => false #Super admin is the owner and admin for the entire client instance
-  field :invited, :type => Boolean, :default => false #Was user invited or did he register on his own 
+	field :super_admin, :type => Mongoid::Boolean, :default => false #Super admin is the owner and admin for the entire client instance
+  field :invited, :type => Mongoid::Boolean, :default => false #Was user invited or did he register on his own 
 
-  field :name, :type => String, :null => false
+  field :name, :type => String
 	## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
-  field :encrypted_password, :type => String, :null => false, :default => ""
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -38,6 +39,10 @@ class User
   field :confirmed_at,         :type => Time
   field :confirmation_sent_at, :type => Time
   field :unconfirmed_email,    :type => String # Only if using reconfirmable
+                                               # 
+  field :terms_and_conditions_accepted, :type => Mongoid::Boolean
+
+  field :bucketline_creator_role, type: Mongoid::Boolean, default: false
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
@@ -50,6 +55,10 @@ class User
 
   before_save :check_or_create_profile
   after_create :send_user_created_mail
+
+  validates_acceptance_of :terms_and_conditions_accepted, accept: true#, :message => "must be checked to be able to register."
+  validates_presence_of :name, :email, :encrypted_password
+
 
   def send_user_created_mail
     if self.invited == false #User performed a loose registration
@@ -88,6 +97,15 @@ class User
     initiative_admin_role
   end
 
+  def bucket_group_admin?(bucket_group)
+    c = bucket_group.users.includes(:user).where(user_id: self.id)
+    if c.present?
+      return c.first.admin
+    else
+      return self.super_admin || false
+    end
+  end
+
   def initiatives #the initiatives in which the user has a role
     user_roles = UserRole.where(:user_id => self.id).all
     initiatives = []
@@ -96,4 +114,9 @@ class User
     end
     initiatives
   end
+
+  def bucket_groups
+    BucketGroup.where('users.user_id' => self.id).asc(:name)
+  end
+
 end

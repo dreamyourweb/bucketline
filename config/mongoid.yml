@@ -1,21 +1,40 @@
 development:
-  host: localhost
-  database: bucketline_development
+  sessions:
+    default:
+      database: bucketline_development
+      hosts:
+        - localhost:27017
+      options:
+        identity_map_enabled: true
 
 test:
-  host: localhost
-  database: bucketline_test
+  sessions:
+    default:
+      database: bucketline_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+        # In the test environment we lower the retries and retry interval to
+        # low amounts for fast failures.
+        max_retries: 1
+        retry_interval: 0
+        identity_map_enabled: true
 
-# set these environment variables on your prod server
-production:
-  uri: <%= ENV['MONGOHQ_URL'] %>
-  # host: <%= ENV['MONGOID_HOST'] %>
-  # port: <%= ENV['MONGOID_PORT'] %>
-  # username: <%= ENV['MONGOID_USERNAME'] %>
-  # password: <%= ENV['MONGOID_PASSWORD'] %>
-  # database: <%= ENV['MONGOID_DATABASE'] %>
-  # slaves:
-  #   - host: slave1.local
-  #     port: 27018
-  #   - host: slave2.local
-  #     port: 27019
+production:   
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
+        identity_map_enabled: true
+
+staging:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
+        identity_map_enabled: true

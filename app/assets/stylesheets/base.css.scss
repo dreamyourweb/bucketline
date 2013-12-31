@@ -2,13 +2,6 @@ body{
 	line-height: auto;
 }
 
-header{
-	padding-top: 20px;
-	background-color: $backgroundMediumColor;
-	margin-bottom: 30px;
-	padding-bottom: 20px;
-}
-
 .instruction {
 	font-size:12px;
 	color:red;
@@ -41,11 +34,11 @@ fieldset{
 	bottom: 0px;
 	z-index: 1000;
 	h6{
-		color: $white;
+		color: $secondary-color;
 		margin: 6px;
 	}
 	background-color: black;
-	border: 3px solid $white;
+	border: 3px solid $secondary-color;
 	border-bottom: 0px;
 	@include single-box-shadow;
 
@@ -60,7 +53,7 @@ fieldset{
 }
 
 section.header{
-	@include column(12);
+	@include grid-column(12);
 }
 
 // #main{
@@ -297,4 +290,20 @@ input.btn-metal, input.btn-metal:hover, input.btn-metal:visited{
 
 .alert{
 	margin-top: 20px;
+}
+
+.terms {
+	padding-bottom:10px;
+}
+
+.small-text{
+	font-size:10px;
+}
+
+.bump-25 {
+    margin-top: 25px !important;
+}
+
+.block{
+	display: block;
 }

@@ -1,0 +1,12 @@
+.panel
+	= f.label :name, "Benodigdheid:", :class => "control-label"
+	= f.text_field :name
+
+	= f.label :type, "Type:", :class => "control-label"
+	= f.select :type, [['Vervoer', 'vervoer'],['In en om het huis', 'in en om het huis'],['Oppas en gezelschap','oppas en gezelschap'],['Boodschappen en koken','boodschappen en koken']]
+				
+	= f.label :amount, "Aantal:", :class => "control-label"
+	= f.text_field :amount
+
+	= link_to_remove_fields "Verwijder benodigdheid", f
+

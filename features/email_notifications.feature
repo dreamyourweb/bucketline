@@ -13,7 +13,8 @@ Feature: get email notifications
 		And the initiative admin logs in
 		And the initiative admin plans a project for tomorrow
 		And the initiative admin logs out
-		Then "initiative_user@test.com" should receive 1 email from "initiative_admin@test.com"
+		And the system sends the project placement mail
+		Then "initiative_user@test.com" should receive 1 email from "no-reply@bucketline.nl"
 
 	Scenario: receive notification when a loose item is placed
 		Given I am logged in as an initiative user
@@ -23,7 +24,7 @@ Feature: get email notifications
 		And the initiative admin places a loose item
 		And the initiative admin logs out
 		And the system sends the item placement mail
-		Then "initiative_user@test.com" should receive 1 email
+		Then "initiative_user@test.com" should receive 1 email from "no-reply@bucketline.nl"
 
 	Scenario: receive notification when a contribution is made
 		Given no emails have been sent
@@ -33,7 +34,7 @@ Feature: get email notifications
 	Scenario: receive notification when a contribution is cancelled
 		Given I have contributed to a project
 		And no emails have been sent
-		When I follow "Mijn project"
+		When I click on a project
 		And I retreat my contribution via the button
 		Then "initiative_admin@test.com" should receive 1 email
 
@@ -67,7 +68,6 @@ Feature: get email notifications
 		When a new user is registered on the initiative
 		Then "initiative_admin@test.com" should receive 1 email
 
-	@wip
 	Scenario: send reminders
 		Given I am logged in as an initiative user
 		And there is a project with an item

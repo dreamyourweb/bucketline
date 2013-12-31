@@ -1,17 +1,10 @@
 - content_for :header do
-  %h1 Alle Bucket Lines
-  = link_to 'Nieuwe Bucket Line', new_initiative_url, class: "large button"
- 
-- content_for :sidebar do
-  = render :partial => "admin/side_menu"
+  = render :partial => "shared/site_admin_sub_nav" 
 
-- if !current_user
-  %p
-    = link_to 'Log in', login_path
-    of #{link_to 'meld je aan', new_user_registration_path}.
-- if current_user
-  - if !@initiatives.empty?
-    %table.table.table-bordered.table-striped
+= link_to 'Nieuwe Bucket Line', new_initiative_path, class: "large button"
+- if !@initiatives.empty?
+  %table.admin-table
+    %thead
       %tr
         %th Initiatief
         %th Locatie
@@ -19,6 +12,7 @@
         %th Mijn rol
         %th
         //%th
+    %tbody
       - @initiatives.each do |initiative|
         %tr
           %td= initiative.name
@@ -31,6 +25,6 @@
           //  - if user_admin_role
           //    = link_to 'Bewerken', edit_initiative_url(subdomain: initiative.slug)
           //    | #{link_to 'Verwijderen', initiative_url(subdomain: initiative.slug), confirm: 'Bucket Line wordt verwijderd inclusief alle klussen en benodigdheden. //Dit kan niet ongedaan worden gemaakt. Weet je het echt zeker?', method: :delete}
-  - else
-    .alert.alert-block
-      %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line, lid worden van een Bucket Line gaat altijd op uitnodiging. Binnenkort nemen we contact me je op, om te kijken hoe we je verder kunnen helpen. Voor losse vragen kun je mailen met info@bucketline.nl
+- else
+  .alert.alert-block
+    %p{:style => "font-weight:bold;"} Je bent nog geen lid van een Bucket Line, lid worden van een Bucket Line gaat altijd op uitnodiging. Binnenkort nemen we contact me je op, om te kijken hoe we je verder kunnen helpen. Voor losse vragen kun je mailen met info@bucketline.nl
