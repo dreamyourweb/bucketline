@@ -14,7 +14,7 @@ class HomeController < ApplicationController
         redirect_to profile_url(current_user.profile, :subdomain => false)
       end
     else
-      redirect_to "http://www.dreamyourapp.nl"
+      redirect_to "http://www.bucketline.nl"
     end
   end
 
