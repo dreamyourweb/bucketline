@@ -2,9 +2,10 @@
   = render :partial => "shared/sub_nav" 
 
 - if @items.present?
-  .row
-    .small-12.columns
-      = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "medium button"
+  - if current_user.initiative_admin(@initiative)
+    .row
+      .small-12.columns
+        = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "medium button"
   .row
     .small-12.large-3.columns
       %h6 Vervoer
