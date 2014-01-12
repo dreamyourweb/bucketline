@@ -5,7 +5,8 @@ class InitiativesController < ApplicationController
   before_filter :authenticate_user_for_initiative, :only => [:show]
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
   before_filter :get_initiative_from_subdomain, only: [:show, :edit, :update]
-  before_filter :authenticate_admin_for_bucket_group, :only => [:new_from_bucket_group, :create]
+  before_filter :authenticate_admin_for_bucket_group, :only => [:new_from_bucket_group]
+  before_filter :authenticate_bucket_line_creator, only: :create
 
   # GET /initiatives
   # GET /initiatives.json
