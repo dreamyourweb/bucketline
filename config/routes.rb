@@ -27,6 +27,8 @@ HvO::Application.routes.draw do
     # resources :invitations
     collection do
       get "new_from_bucket_group", :to => "initiatives#new_from_bucket_group"
+      get "new_with_buddy", to: "initiatives#new_with_buddy"
+      post "create_with_buddy", to: "initiatives#create_with_buddy"
     end
   end
   resources :bucket_groups, except: :index  do

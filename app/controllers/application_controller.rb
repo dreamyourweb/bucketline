@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate_admin_for_initiative
-		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.user_roles.where(:initiative_id => @initiative.id).last.admin)
+		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || current_user.initiative_admin(@initiative))
 	end
 
 	def authenticate_user_for_initiative

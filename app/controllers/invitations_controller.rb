@@ -34,10 +34,18 @@ class InvitationsController < ApplicationController
       else
 
         if @invitationable.is_a? Initiative
-          @invitationable.user_roles.create(:user_id => user.id)
+          inv_u = @invitationable.user_roles.create(:user_id => user.id)
+          if @invitation.admin
+            inv_u.admin = true
+            inv_u.save!
+          end
           @invitation.delete
         elsif @invitationable.is_a? BucketGroup
           @invitationable.users.build(user: user)
+          if @invitation.admin
+            inv_u.admin = true
+            inv_u.save!
+          end
           @invitation.delete
         else
         end
@@ -115,10 +123,17 @@ class InvitationsController < ApplicationController
       if @user.save
 
         if @invitation.invitationable.is_a? Initiative
-          @user.user_roles.create(initiative: @invitation.invitationable)
+          inv_u = @user.user_roles.create(initiative: @invitation.invitationable)
+          if @invitation.admin
+            inv_u.admin = true
+            inv_u.save
+          end
           @invitation.delete
         elsif @invitation.invitationable.is_a? BucketGroup
-          @invitation.invitationable.users.build(user: @user)
+          inv_u = @invitation.invitationable.users.build(user: @user)
+          if @invitation.admin
+            inv_u.admin = true
+          end
           @invitation.invitationable.save
         else
           format.html { redirect_to root_path, notice: 'Er is iets mis gegaan. Probeer later nog eens.' }

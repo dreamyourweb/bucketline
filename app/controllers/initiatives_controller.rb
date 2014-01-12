@@ -6,7 +6,7 @@ class InitiativesController < ApplicationController
   before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
   before_filter :get_initiative_from_subdomain, only: [:show, :edit, :update]
   before_filter :authenticate_admin_for_bucket_group, :only => [:new_from_bucket_group]
-  before_filter :authenticate_bucket_line_creator, only: :create
+  before_filter :authenticate_bucket_line_creator, only: [:new_with_buddy, :create_with_buddy]
 
   # GET /initiatives
   # GET /initiatives.json
@@ -48,6 +48,15 @@ class InitiativesController < ApplicationController
         if @bucket_group.present?
           render "new_bucket_group"
         end
+      end
+      format.json { render json: @initiative }
+    end
+  end
+
+  def new_with_buddy
+    @initiative = Initiative.new
+    respond_to do |format|
+      format.html do
       end
       format.json { render json: @initiative }
     end
@@ -98,6 +107,43 @@ class InitiativesController < ApplicationController
         format.json { render json: @initiative.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_with_buddy
+    @initiative = Initiative.new(params[:initiative])
+    if params[:initiative][:patient_email].present?
+
+      @invitation_patient = @initiative.invitations.new(email: params[:initiative][:patient_email], name: params[:initiative][:patient_name], admin: true)
+      if params[:initiative][:buddy_email].present?
+        @invitation_buddy = @initiative.invitations.new(email: params[:initiative][:buddy_email], name: params[:initiative][:buddy_name], admin: true)
+      end
+      patient_email_present = true
+    else
+      patient_email_present = false
+    end
+
+    respond_to do |format|
+      if patient_email_present && @initiative.save && @invitation_patient.save
+        buddy_name = nil
+        if @invitation_buddy.present?
+          @invitation_buddy.save
+          buddy_name = @invitation_buddy.name          
+        end
+        InvitationPatientMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation_patient.token, :subdomain => false), @invitation_patient.email, @invitation_patient.name, buddy_name).deliver
+        if @invitation_buddy.present?
+          InvitationBuddyMailer.invitation_email(current_user.name, accept_invitation_url(:token => @invitation_buddy.token, :subdomain => false), @invitation_buddy.email, @invitation_buddy.name, @invitation_patient.name).deliver
+        end
+                                                                      #
+        format.html { redirect_to initiative_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangemaakt." }
+      else
+        format.html do
+          flash[:alert] = "Bucketline aanmaken mislukt. #{patient_email_present ? '' : 'Vul een emailadres in voor de patient' }"
+          render action: "new_with_buddy"
+        end
+        format.json { render json: @initiative.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # PUT /initiatives/1

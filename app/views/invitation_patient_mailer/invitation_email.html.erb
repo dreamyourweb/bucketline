@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+
+    <p>Beste <%= @name.present? ? @name : "Heer, Mevrouw" %>,
+
+    <p>De komende tijd heeft u een persoonlijke noodsituatie te overwinnen.<p>
+    <p>Middels Bucket Line kunt u gemakkelijk mensen om u heen mobiliseren.</p>
+
+    <p>Een buddy kan u daarbij helpen door de organisatie op zich te nemen. In dit geval is <%= @buddy_name.present? ? @buddy_name : "er nog geen buddy" %> toegewezen tot uw Bucket Line.</p>
+
+    <p>Klik op onderstaande link om uw account te valideren en vrienden, familie of kennissen uit te nodigen.
+    Heeft u dit gedaan, dan kunt u starten met het vragen om hulp.</p>
+
+    <p><%= link_to 'Uitnodiging accepteren', @invitation_url %></p>
+
+    <p>Vriendelijke groet,</p>
+
+    <p><%= @inviter %></p>
+    
+  </body>
+</html>

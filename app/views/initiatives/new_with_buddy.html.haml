@@ -1,0 +1,52 @@
+- content_for :header do
+  = render :partial => "shared/site_admin_sub_nav"
+
+.row
+  .six.columns
+    = form_for @initiative, :url => {:controller => :initiatives, :action => :create_with_buddy} do |f|
+      - if @initiative.errors.any?
+        %h6.alert
+          = pluralize(@initiative.errors.count, "fouten")
+
+      = f.label :name_bucketline, class: form_error_class(@initiative.errors[:name])
+      = f.text_field :name, class: form_error_class(@initiative.errors[:name])
+      - if @initiative.errors[:slug].present?
+        %small.error #{@initiative.errors[:slug].first}
+
+      = f.label :location, class: form_error_class(@initiative.errors[:location])
+      = f.text_field :location, class: form_error_class(@initiative.errors[:location])
+      - if @initiative.errors[:location].present?
+        %small.error #{@initiative.errors[:location].first}
+
+      = f.label :description, class: form_error_class(@initiative.errors[:description])
+      = f.text_area :description, class: form_error_class(@initiative.errors[:description])
+      - if @initiative.errors[:description].present?
+        %small.error #{@initiative.errors[:description].first}
+
+
+
+
+
+
+      = f.label :patient_email, class: form_error_class(@initiative.errors[:patient_email])
+      = f.text_field :patient_email, class: form_error_class(@initiative.errors[:patient_email])
+      - if @initiative.errors[:patient_email].present?
+        %small.error #{@initiative.errors[:patient_email].first}
+
+      = f.label :patient_name, class: form_error_class(@initiative.errors[:patient_name])
+      = f.text_field :patient_name, class: form_error_class(@initiative.errors[:patient_name])
+      - if @initiative.errors[:patient_name].present?
+        %small.error #{@initiative.errors[:patient_name].first}
+
+      = f.label :buddy_email, class: form_error_class(@initiative.errors[:buddy_email])
+      = f.text_field :buddy_email, class: form_error_class(@initiative.errors[:buddy_email])
+      - if @initiative.errors[:buddy_email].present?
+        %small.error #{@initiative.errors[:buddy_email].first}
+
+      = f.label :buddy_name, class: form_error_class(@initiative.errors[:buddy_name])
+      = f.text_field :buddy_name, class: form_error_class(@initiative.errors[:buddy_name])
+      - if @initiative.errors[:buddy_name].present?
+        %small.error #{@initiative.errors[:buddy_name].first}
+
+      = f.submit "Maak bucketline", class: "button"
+

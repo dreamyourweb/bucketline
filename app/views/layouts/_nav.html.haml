@@ -45,6 +45,7 @@
             %ul.dropdown              
               %li
                 = link_to 'Nieuwe Bucket Line', new_initiative_path                
+                = link_to 'Nieuwe Bucket Line voor Patient en Buddy', new_with_buddy_initiatives_url(subdomain: false)
 
         - if @initiative && request.path_parameters[:controller] != "initiatives"
           / %li{class: get_active("calendar")}

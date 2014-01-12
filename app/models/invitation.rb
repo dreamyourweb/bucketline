@@ -4,6 +4,8 @@ class Invitation
 
   field :token, :type => String
   field :email, :type => String
+  field :name, type: String
+  field :admin, type: Mongoid::Boolean
 
   belongs_to :invitationable, polymorphic: true
 
