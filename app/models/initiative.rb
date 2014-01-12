@@ -7,11 +7,18 @@ class Initiative
   field :description, :type => String
   field :slug, :type => String
 
+  field :patient_email, type: String
+  field :patient_name, type: String
+  field :buddy_email, type: String
+  field :buddy_name, type: String
+
   before_validation :build_slug
 
   validates_presence_of :name
   validates_uniqueness_of :slug, :message => "Naam bestaat al."
   validates_exclusion_of :slug, :in => ["www", "bucketline"], :message => "Naam is niet toegestaan."
+  validates_format_of :patient_email, with: /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i, allow_blank: true
+  validates_format_of :buddy_email, with: /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i, allow_blank: true
 
   has_many :user_roles, :dependent => :destroy #Roles for an initiative such as admin or superadmin are tracked via the userrole model
   has_many :invitations, :dependent => :destroy, as: :invitationable
