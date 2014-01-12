@@ -119,4 +119,8 @@ class User
     BucketGroup.where('users.user_id' => self.id).asc(:name)
   end
 
+  def can_create_bucket_lines?
+    return self.bucketline_creator_role || self.super_admin 
+  end
+
 end

@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
 		redirect_to login_url(:subdomain => false) unless current_user && (current_user.super_admin || @bucket_group.user_is_admin?(current_user) )
 	end
 
+	def authenticate_bucket_line_creator
+		redirect_to login_url(:subdomain => false) unless (current_user && current_user.can_create_bucket_lines?)
+	end
+
 	def get_profile
 		if current_user
 			@profile = current_user.profile
