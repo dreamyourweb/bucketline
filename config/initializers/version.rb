@@ -1,5 +1,5 @@
 module HvO
   class Application
-    VERSION = "1.6.0"
+    VERSION = "1.6.2"
   end
 end
