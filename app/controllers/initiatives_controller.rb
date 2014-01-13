@@ -24,7 +24,7 @@ class InitiativesController < ApplicationController
     @extra_user_count = 0
 
     @initiative.user_roles.each do |user_role|
-      if user_role.admin && user_role.user.profile.show_name_in_overview
+      if user_role.admin
         @admin_names << user_role.user.name
       elsif user_role.user.profile.show_name_in_overview
         @user_names << user_role.user.name

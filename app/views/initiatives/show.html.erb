@@ -11,7 +11,9 @@
 <p><b>Locatie:</b> <%= @initiative.location %><p>
 
 <p><b>Bucket Line beheerders:</b> <%= @admin_names.to_sentence %>.</p>
-<p><b>Bucket Line leden:</b> <%= @user_names.to_sentence %><%= if @extra_user_count > 0 then ", en nog " + @extra_user_count.to_s + " ander(en)." end %></p>
+<% if @user_names.count + @extra_user_count > 0 %>
+	<p><b>Bucket Line leden:</b> <%= @user_names.to_sentence %><%= if @extra_user_count > 0 then (@user_names.count > 0 ? " en " : "") + @extra_user_count.to_s + " verborgen leden." end %></p>
+<% end %>
 
 <% if @user_role %>
 	<p><%= link_to "Schrijf mij uit bij deze Bucket Line", user_role_path(@user_role), :method => :delete, :confirmation => "Weet je zeker dat je jezelf wilt uitschrijven bij deze Bucket Line?" %></p>
