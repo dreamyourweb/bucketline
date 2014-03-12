@@ -4,6 +4,10 @@
   - if events.present?
     - events.each do |event|
       %a.event{href: project_items_path(event), "data-reveal-id" => "itemModal", "data-reveal-ajax" => "true"}
+        - if event.success
+          %i.green.fi-check.right{style:'margin-right:2px;'}
+        - if current_user && event.providing_user(current_user)
+          %i.red.fi-heart.right{style:'margin-right:2px;'}
         %ul.vcard
           %li.fn #{event.query}
           %li.time #{event.start_at.to_s(:time)} - #{event.end_at.to_s(:time)}
