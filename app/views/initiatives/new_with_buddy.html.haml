@@ -25,9 +25,6 @@
 
 
 
-
-
-
       = f.label :patient_email, class: form_error_class(@initiative.errors[:patient_email])
       = f.text_field :patient_email, class: form_error_class(@initiative.errors[:patient_email])
       - if @initiative.errors[:patient_email].present?
@@ -48,5 +45,5 @@
       - if @initiative.errors[:buddy_name].present?
         %small.error #{@initiative.errors[:buddy_name].first}
 
-      = f.submit "Maak bucketline", class: "button"
+      = f.submit "Maak Bucket Line", class: "button"
 

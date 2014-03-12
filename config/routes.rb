@@ -11,7 +11,7 @@ HvO::Application.routes.draw do
     get '/initiative/edit' => "initiatives#edit"
     delete '/initiative', :to => "initiatives#destroy"
     get '/initiative', :to => "initiatives#show"
-    put '/initiative', :to => "initiatives#update"
+    patch '/initiative', :to => "initiatives#update"
     resources :initiatives
     resources :invitations
   end

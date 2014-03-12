@@ -58,7 +58,7 @@ class BucketGroupsController < ApplicationController
           if current_user.present?
             redirect_to admin_bucket_groups_url(:subdomain => false), :notice => "Preventieve Bucket Line is aangemaakt."
           else
-            redirect_to root_path, notice: "Je nieuwe preventieve Bucket Line is aangemaakt. Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen."
+            redirect_to login_path, notice: "Je nieuwe preventieve Bucket Line is aangemaakt. Een bericht met een bevestigingslink is verstuurd naar je e-mail adres. Klik op deze link om je aanmelding te bevestigen."
           end
         end
       else

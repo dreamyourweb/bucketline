@@ -2,9 +2,9 @@ class InitiativesController < ApplicationController
   before_filter :get_initiative, :only => [:edit, :show, :update, :destroy]
   before_filter :get_bucket_group, only: [:new_from_bucket_group, :create]
   # before_filter :authenticate_super_admin, :except => [:edit, :update, :show]
-  before_filter :authenticate_user_for_initiative, :only => [:show]
-  before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
   before_filter :get_initiative_from_subdomain, only: [:show, :edit, :update]
+  before_filter :authenticate_user_for_initiative, :only => [:show]
+  # before_filter :authenticate_admin_for_initiative, :only => [:edit, :update]
   before_filter :authenticate_admin_for_bucket_group, :only => [:new_from_bucket_group]
   before_filter :authenticate_bucket_line_creator, only: [:new_with_buddy, :create_with_buddy]
 
@@ -24,7 +24,7 @@ class InitiativesController < ApplicationController
     @extra_user_count = 0
 
     @initiative.user_roles.each do |user_role|
-      if user_role.admin && user_role.user.profile.show_name_in_overview
+      if user_role.admin
         @admin_names << user_role.user.name
       elsif user_role.user.profile.show_name_in_overview
         @user_names << user_role.user.name
@@ -151,7 +151,7 @@ class InitiativesController < ApplicationController
   def update
     #@initiative = Initiative.find(params[:id])
     if @initiative.update_attributes(params[:initiative])
-      redirect_to edit_initiative_url(:subdomain => @initiative.slug), :notice => "Bucket Line is aangepast."
+      redirect_to edit_initiative_url(:subdomain => @initiative.slug, id: @initiative.id), :notice => "Bucket Line is aangepast."
     else
       render action: "edit"
     end

@@ -216,6 +216,11 @@ nl:
         description: Beschrijving
         name: Naam
         location: Lokatie
+        name_bucketline: Naam Bucket Line
+        patient_email: Patien E-mail
+        buddy_email: Patien E-mail
+        buddy_name: Buddy Naam
+        patient_name: Patient Naam
       item:
         name: Benodigdheid
       project:

@@ -41,7 +41,7 @@
                 = link_to "Alle gebruikers", admin_profiles_url(:subdomain => false)
         - elsif current_user && current_user.bucketline_creator_role
           %li.has-dropdown
-            = link_to "Applicatie beheer", admin_initiatives_path
+            = link_to "Applicatie beheer", "#"
             %ul.dropdown              
               %li
                 = link_to 'Nieuwe Bucket Line', new_initiative_path                
