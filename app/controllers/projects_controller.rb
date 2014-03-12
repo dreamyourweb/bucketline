@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     
     @current_month = Date.civil(@year, @month)
     @first_day_month = Date.civil(@year, @month)
-    @last_day_month = Date.civil(@year, @month, -1)
+    @last_day_month = Date.civil(@year, @month, -1) + 1
 
 		@first_day_of_week = 1
 
