@@ -1,0 +1,8 @@
+- content_for :header do
+  = render :partial => "shared/sub_nav" 
+
+- content_for :sidebar do
+  = render :partial => "shared/initiative_side_menu"
+
+%h3 Klus en benodigdheden bewerken
+= render 'form'
