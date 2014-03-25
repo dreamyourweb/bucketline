@@ -125,7 +125,7 @@ class Project
 
 	def all_items_completed?
 		self.items.each do |item|
-			return false unless item.success
+			return false unless item.provided
 		end
 		return true
 	end
