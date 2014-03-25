@@ -1,5 +1,5 @@
 - content_for :header do
-  = render :partial => "shared/sub_nav" 
+  = render :partial => "shared/sub_nav"
 
 - if @items.present?
   - if current_user.initiative_admin(@initiative)
@@ -17,19 +17,31 @@
       %h6 Boodschappen en koken
   .row
     .small-12.large-3.columns
-      = render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile}
+      - unless @vervoer.empty?
+        = render :partial => "item", :collection => @vervoer, :locals => {:initiative => @initiative, :profile => @profile}
+      - else
+        Er zijn nog geen benodigdheden voor vervoer.
     .small-12.large-3.columns
-      = render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile}
+      - unless @in_en_om_het_huis.empty?
+        = render :partial => "item", :collection => @in_en_om_het_huis, :locals => {:initiative => @initiative, :profile => @profile}
+      - else
+        Er zijn nog geen benodigdheden voor in en om het huis.
     .small-12.large-3.columns
-      = render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile}
+      - unless @oppas_en_gezelschap.empty?
+        = render :partial => "item", :collection => @oppas_en_gezelschap, :locals => {:initiative => @initiative, :profile => @profile}
+      - else
+        Er zijn nog geen benodigdheden voor oppas en gezelschap.
     .small-12.large-3.columns
-      = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
+      - unless @boodschappen_en_koken.empty?
+        = render :partial => "item", :collection => @boodschappen_en_koken, :locals => {:initiative => @initiative, :profile => @profile}
+      - else
+        Er zijn nog geen benodigdheden voor boodschappen en koken.
 
   - if current_user && current_user.initiative_admin(@initiative)
     = link_to 'Toon ook de afgeronde items', dashboard_path + "?show_all_items=true"
 - else
   %h3 Er is hier niets te zien. Er zijn nog geen benodigdheden.
-  - if current_user.initiative_admin(@initiative) 
+  - if current_user.initiative_admin(@initiative)
     %p Er zijn nog geen benodigdheden op het verlanglijstje geplaatst. Klik op 'Nieuwe Benodigdheid' om een item toe te voegen.
     = link_to 'Nieuwe Benodigdheid', new_item_path, :class => "medium button"
   - else
