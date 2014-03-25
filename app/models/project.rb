@@ -131,7 +131,7 @@ class Project
 	end
 
 	def project_completed?
-		self.all_items_completed? || success
+		self.all_items_completed? || self.success
 	end
 
 end
