@@ -122,4 +122,16 @@ class Project
 		end
 		unique_users = users.uniq
 	end
+
+	def all_items_completed?
+		self.items.each do |item|
+			return false unless item.provided
+		end
+		return true
+	end
+
+	def project_completed?
+		self.all_items_completed? || self.success
+	end
+
 end
