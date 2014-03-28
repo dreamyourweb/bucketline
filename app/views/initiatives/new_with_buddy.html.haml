@@ -25,22 +25,22 @@
 
 
 
-      = f.label :patient_email, class: form_error_class(@initiative.errors[:patient_email])
+      = f.label "Patiënt E-mail", class: form_error_class(@initiative.errors[:patient_email])
       = f.text_field :patient_email, class: form_error_class(@initiative.errors[:patient_email])
       - if @initiative.errors[:patient_email].present?
         %small.error #{@initiative.errors[:patient_email].first}
 
-      = f.label :patient_name, class: form_error_class(@initiative.errors[:patient_name])
+      = f.label "Patiënt naam", class: form_error_class(@initiative.errors[:patient_name])
       = f.text_field :patient_name, class: form_error_class(@initiative.errors[:patient_name])
       - if @initiative.errors[:patient_name].present?
         %small.error #{@initiative.errors[:patient_name].first}
 
-      = f.label :buddy_email, class: form_error_class(@initiative.errors[:buddy_email])
+      = f.label "Buddy E-mail", class: form_error_class(@initiative.errors[:buddy_email])
       = f.text_field :buddy_email, class: form_error_class(@initiative.errors[:buddy_email])
       - if @initiative.errors[:buddy_email].present?
         %small.error #{@initiative.errors[:buddy_email].first}
 
-      = f.label :buddy_name, class: form_error_class(@initiative.errors[:buddy_name])
+      = f.label "Buddy naam", class: form_error_class(@initiative.errors[:buddy_name])
       = f.text_field :buddy_name, class: form_error_class(@initiative.errors[:buddy_name])
       - if @initiative.errors[:buddy_name].present?
         %small.error #{@initiative.errors[:buddy_name].first}
