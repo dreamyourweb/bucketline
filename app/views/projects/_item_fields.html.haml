@@ -1,5 +1,5 @@
 .panel
-	= f.label :name, "Benodigdheid:", :class => "control-label"
+	= f.label :name, "Klus: (verplicht veld)", :class => "control-label"
 	= f.text_field :name
 
 	= f.label :type, "Type:", :class => "control-label"
@@ -8,5 +8,5 @@
 	= f.label :amount, "Aantal:", :class => "control-label"
 	= f.text_field :amount
 
-	= link_to_remove_fields "Verwijder benodigdheid", f
+	= link_to_remove_fields "Verwijder klus", f
 
