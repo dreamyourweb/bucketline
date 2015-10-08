@@ -27,7 +27,7 @@ class Initiative
 	has_many :items #, :dependent => :destroy #loose items
 
 	def build_slug
-		self.slug = self.name.downcase.gsub(' ', '-').gsub("'", "")
+		self.slug = self.name.downcase.gsub(' ', '-').gsub("'", "").gsub("&", "").gsub("+", "").gsub("#", "").gsub("@", "")
 	end
 
 	def admins
